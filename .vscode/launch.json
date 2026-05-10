@@ -1,0 +1,12 @@
+{
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.root": "/",
+  "liveServer.settings.mount": [
+    ["/", "./"]
+  ],
+  "liveServer.settings.proxy": {
+    "enable": true,
+    "baseUri": "/",
+    "proxyUri": "/404.html"
+  }
+}

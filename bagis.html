@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta property="og:url" content="https://www.hayalagacidernegi.org/bagis.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hayal Ağacı Derneği'ne bağış yaparak bir çocuğun hayallerini yeşertin. Kitap bağışı ve maddi destek için tüm bilgiler burada.">
+    <title>Bağış Yap - Hayal Ağacı Derneği</title>
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_lr.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .bagis-sayfa {
+            background-color: rgb(254, 249, 241);
+            min-height: 100vh;
+            padding: 120px 5% 80px 5%;
+        }
+
+        .bagis-baslik-alani {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .bagis-baslik-alani h2 {
+            font-size: 2.8rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 15px;
+        }
+
+        .bagis-baslik-alani p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ---- EŞDEĞERLİK KARTLARI ---- */
+        .esdeger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 70px auto;
+        }
+
+        .esdeger-kart {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            border-bottom: 4px solid rgb(134, 220, 84);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .esdeger-kart:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(134, 220, 84, 0.2);
+        }
+
+        .esdeger-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .esdeger-tutar {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgb(134, 220, 84);
+            margin-bottom: 8px;
+        }
+
+        .esdeger-aciklama {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ---- BAĞIŞ YÖNTEMLERİ ---- */
+        .yontem-bolumu {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .yontem-bolumu h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 35px;
+            color: rgb(27, 27, 27);
+        }
+
+        .yontem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .yontem-kart {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yontem-kart::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: rgb(134, 220, 84);
+        }
+
+        .yontem-kart h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: rgb(27, 27, 27);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .yontem-kart p, .yontem-kart li {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .yontem-kart ul {
+            padding-left: 20px;
+        }
+
+        /* IBAN kutusu */
+        .iban-kutusu {
+            background: rgb(254, 249, 241);
+            border: 2px dashed rgb(134, 220, 84);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .iban-no {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgb(27, 27, 27);
+            letter-spacing: 1px;
+            word-break: break-all;
+        }
+
+        .kopyala-btn {
+            background: rgb(134, 220, 84);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .kopyala-btn:hover { background: rgb(100, 190, 55); transform: scale(1.05); }
+        .kopyala-btn.kopyalandi { background: #28a745; }
+
+        /* Adres kutusu */
+        .adres-kutusu {
+            background: rgb(254, 249, 241);
+            border: 2px dashed rgb(134, 220, 84);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-top: 15px;
+        }
+
+        .adres-satir {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .adres-metin {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* ---- TEŞEKKÜR NOTU ---- */
+        .tesekkur-notu {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .tesekkur-notu p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ---- DARK MODE ---- */
+        body.dark-mode .bagis-sayfa { background-color: #1a1a1a; }
+        body.dark-mode .bagis-baslik-alani h2 { color: #f5f5f5; }
+        body.dark-mode .bagis-baslik-alani p { color: #aaa; }
+        body.dark-mode .esdeger-kart,
+        body.dark-mode .yontem-kart,
+        body.dark-mode .tesekkur-notu { background: #2a2a2a; }
+        body.dark-mode .yontem-kart h4,
+        body.dark-mode .yontem-bolumu h3 { color: #f5f5f5; }
+        body.dark-mode .iban-kutusu,
+        body.dark-mode .adres-kutusu { background: #1a1a1a; }
+        body.dark-mode .iban-no,
+        body.dark-mode .adres-metin { color: #ddd; }
+
+       /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .bagis-baslik-alani h2 { font-size: 2rem; }
+            .iban-kutusu { flex-direction: column; }
+            
+            .iban-no {
+                font-size: 0.85rem;
+                letter-spacing: 0px;
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-ic">
+            <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+            <div class="yukleme-cubugu"><div class="ilerleme"></div></div>
+            <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            var l = document.getElementById('preloader');
+            if (l) { l.style.opacity='0'; l.style.visibility='hidden'; setTimeout(()=>l.style.display='none',600); }
+        });
+        setTimeout(function() {
+            var l = document.getElementById('preloader');
+            if (l && l.style.display !== 'none') { l.style.opacity='0'; setTimeout(()=>l.style.display='none',600); }
+        }, 5000);
+    </script>
+
+    <!-- HEADER -->
+    <header>
+        <div id="header0">
+            <div id="isim_logo">
+                <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                <h1>Hayal Ağacı Derneği</h1>
+            </div>
+            <div id="hamburger-btn">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
+            <nav>
+                <ul>
+                    <a href="index.html"><li>Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
+                    <a href="sss.html"><li>S.S.S.</li></a>
+                    <a href="iletisim.html"><li>İletişim</li></a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SAYFA İÇERİĞİ -->
+    <div class="bagis-sayfa">
+
+        <div class="bagis-baslik-alani">
+            <h2>Her Kitap Bir Işık</h2>
+            <p>Bağışladığınız her kitap, deprem bölgesindeki bir çocuğun rafında umut olarak duracak. Küçük bir adım, büyük bir hayaller.</p>
+        </div>
+
+        <!-- EŞDEĞERLİK KARTLARI -->
+        <div class="esdeger-grid">
+            <div class="esdeger-kart">
+                <div class="esdeger-emoji">📖</div>
+                <div class="esdeger-tutar">1 Kitap</div>
+                <div class="esdeger-aciklama">Bir çocuğun hayallerine ortak olursunuz</div>
+            </div>
+            <div class="esdeger-kart">
+                <div class="esdeger-emoji">📚</div>
+                <div class="esdeger-tutar">10 Kitap</div>
+                <div class="esdeger-aciklama">Bir rafı doldurmaya yetecek başlangıç</div>
+            </div>
+            <div class="esdeger-kart">
+                <div class="esdeger-emoji">🗂️</div>
+                <div class="esdeger-tutar">1 Koli</div>
+                <div class="esdeger-aciklama">Bir sınıfın okuma köşesini kurabilirsiniz</div>
+            </div>
+            <div class="esdeger-kart">
+                <div class="esdeger-emoji">🏫</div>
+                <div class="esdeger-tutar">Kütüphane</div>
+                <div class="esdeger-aciklama">Kurumsal destekle tüm bir kütüphane kuruyoruz</div>
+            </div>
+        </div>
+
+        <!-- BAĞIŞ YÖNTEMLERİ -->
+        <div class="yontem-bolumu">
+            <h3>Nasıl Destek Olabilirsiniz?</h3>
+
+            <div class="yontem-grid">
+
+                <!-- KİTAP BAĞIŞI -->
+                <div class="yontem-kart">
+                    <h4>📦 Kitap &amp; Kırtasiye Bağışı</h4>
+                    <p>Kabul ettiğimiz malzemeler:</p>
+                    <ul>
+                        <li>İlkokul, ortaokul ve lise kitapları</li>
+                        <li>Roman, hikaye ve masal kitapları</li>
+                        <li>Test ve kaynak kitaplar</li>
+                        <li>Boya kalemi, defter, kalem</li>
+                    </ul>
+                    <p style="margin-top: 12px; font-size: 0.9rem; color: #999;">Not: Kitaplar temiz ve kullanılabilir durumda olmalıdır.</p>
+
+                    <div class="adres-kutusu">
+                        <div class="adres-satir">
+                            <div class="adres-metin">
+                                <strong>Kargo Adresi:</strong><br>
+                                Hayal Ağacı Derneği<br>
+                                <!-- Gerçek adresinizi buraya yazın -->
+                                [Adresinizi buraya ekleyin]<br>
+                                Adıyaman / TÜRKİYE
+                            </div>
+                            <button class="kopyala-btn" onclick="adresiKopyala(this)">📋 Kopyala</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MADDİ BAĞIŞ -->
+                <div class="yontem-kart">
+                    <h4>🏦 Banka Havalesi</h4>
+                    <p>Bağışlarınızı aşağıdaki hesaba iletebilirsiniz:</p>
+
+                    <div style="margin-top: 15px;">
+    <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">Hesap Adı</p>
+    <div class="iban-kutusu">
+        <span class="iban-no" id="hesap-adi">HAYAL AĞACI DERNEĞİ</span>
+        <button class="kopyala-btn" onclick="hesapAdiKopyala(this)">📋 Kopyala</button>
+    </div>
+</div>
+
+                    <div style="margin-top: 12px;">
+                        <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">IBAN (TL)</p>
+                        <div class="iban-kutusu">
+                            <!-- Gerçek IBAN'ınızı buraya yazın -->
+                            <span class="iban-no" id="iban-no">TR00 0000 0000 0000 0000 0000 00</span>
+                            <button class="kopyala-btn" onclick="ibanKopyala(this)">📋 Kopyala</button>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: #999;">
+                        Açıklama kısmına <strong>"Kitap Bağışı"</strong> yazmanızı öneririz.
+                    </p>
+                </div>
+
+                <!-- GÖNÜLLÜ OL -->
+                <div class="yontem-kart">
+                    <h4>🤝 Gönüllü Destek</h4>
+                    <p>Para ya da kitap dışında emeğinizle de yanımızda olabilirsiniz:</p>
+                    <ul>
+                        <li>Kütüphane kurulum ekibine katılın</li>
+                        <li>Kitap tasnif çalışmalarına destek olun</li>
+                        <li>Sosyal medyada paylaşarak farkındalık yaratın</li>
+                        <li>Kurumsal iş birliği için iletişime geçin</li>
+                    </ul>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXI-T2nXzO6ZOW5DndTx9CkO-8ro7R8r-aQfTdxt34Hbq1Rw/viewform"
+                           target="_blank" rel="noopener noreferrer"
+                           class="katılbt"
+                           style="position:static; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; width:auto; padding: 12px 30px; border-radius: 30px; font-size: 1rem;">
+                            Gönüllü Ol →
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TEŞEKKÜR NOTU -->
+            <div class="tesekkur-notu">
+                <p>
+    Bağışlarınız için sertifika düzenleyebiliriz. Kargo bildiriminizi 
+    <strong>hayalagaci.iletisim@gmail.com</strong> 
+    adresine ilettiğinizde sizi haberdar ediyoruz.
+</p>
+                <a href="iletisim.html" class="katılbt"
+                   style="position:static; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; width:auto; padding: 12px 30px; border-radius: 30px; font-size: 1rem; margin-top: 10px;">
+                    Bize Ulaşın
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="bagis.html-footer">
+        <p id="iletisim0">İletişim</p>
+        <div id="iconlar">
+    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+    </a>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+    </a>
+</div>
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
+        </div>
+        <p id="hak">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+        <p id="credit"><span id="credi">Onur TURAN</span> tarafından yapılmıştır</p>
+    </footer>
+
+<script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+    <script src="site.js"></script>
+
+    <script>
+        function ibanKopyala(btn) {
+            const iban = document.getElementById('iban-no').innerText;
+            navigator.clipboard.writeText(iban).then(() => {
+                btn.textContent = '✅ Kopyalandı';
+                btn.classList.add('kopyalandi');
+                setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
+            });
+        }
+
+        function adresiKopyala(btn) {
+            const adres = "Hayal Ağacı Derneği\n[Adresinizi buraya ekleyin]\nAdıyaman / TÜRKİYE";
+            navigator.clipboard.writeText(adres).then(() => {
+                btn.textContent = '✅ Kopyalandı';
+                btn.classList.add('kopyalandi');
+                setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
+            });
+        }
+    </script>
+
+</body>
+</html>

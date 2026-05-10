@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesajınız İletildi - Hayal Ağacı Derneği</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tesekkur-kapsayici {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f9fbf7;
+            padding: 20px;
+            transition: background-color 0.8s ease; /* Yumuşak geçiş eklendi */
+        }
+        .tesekkur-kart {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+            max-width: 600px;
+            border-top: 8px solid rgb(134, 220, 84);
+            transition: background-color 0.8s ease, box-shadow 0.8s ease; /* Yumuşak geçiş */
+        }
+        .basari-ikon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .tesekkur-kart h2 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            transition: color 0.8s ease;
+        }
+        .tesekkur-kart p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            transition: color 0.8s ease;
+        }
+        .ana-sayfa-don {
+            background: rgb(134, 220, 84);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .ana-sayfa-don:hover {
+            transform: scale(1.05);
+            background: #5db03a;
+        }
+
+        /* ==========================================
+           KARANLIK MOD (DARK MODE) AYARLARI
+        ========================================== */
+        body.dark-mode .tesekkur-kapsayici {
+            background-color: #121212; /* Sitenin ana koyu arka planı */
+        }
+        body.dark-mode .tesekkur-kart {
+            background-color: #2a2a2a; /* Kartlar için füme rengi */
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4); /* Gölgeyi karanlığa uydurur */
+        }
+        body.dark-mode .tesekkur-kart h2 {
+            color: #f5f5f5; /* Parlak beyaz başlık */
+        }
+        body.dark-mode .tesekkur-kart p {
+            color: #ccc; /* Açık gri metin */
+        }
+    </style>
+</head>
+<body>
+    <div class="tesekkur-kapsayici">
+        <div class="tesekkur-kart">
+            <span class="basari-ikon">📩</span>
+            <h2>Mesajınız Gönderildi.</h2>
+            <p>Ekibimiz mesajınızı inceleyip en kısa sürede sizinle iletişime geçecektir.</p>
+            <a href="index.html" class="ana-sayfa-don">Anasayfaya Dön</a>
+        </div>
+    </div>
+
+    <script src="site.js"></script>
+</body>
+</html>

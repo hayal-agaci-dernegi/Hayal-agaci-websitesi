@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kütüphane Kurulumu - Hayal Ağacı Derneği</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* == FOTOĞRAF VE YAZI ALANINI KİLİTLEYEN, İÇERİĞİ ORTALAYAN KOD == */
+        .kutuphane-karti {
+            overflow: hidden !important; 
+            display: flex !important;
+        }
+        
+        /* Resim Alanı (Kilitli Boyut) */
+        .kart-resim {
+            flex: 0 0 40% !important; 
+            width: 40% !important;
+            max-width: 40% !important;
+            height: 400px !important; 
+            min-height: 400px !important;
+            max-height: 400px !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* Yazı Alanı (Kaydırma Çubuğu İptal Edildi) */
+        .kart-icerik {
+            flex: 0 0 60% !important; 
+            width: 60% !important;
+            max-width: 60% !important;
+            height: 400px !important; 
+            box-sizing: border-box !important;
+            padding: 40px 50px !important; 
+            word-wrap: break-word !important; 
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important; 
+            align-items: flex-start !important;
+        }
+
+        .kart-resim img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; 
+            display: block !important;
+        }
+
+        /* Buton Konumlandırması (Aşağı ve İçeri Alındı) */
+        .hikaye-butonu {
+            margin-top: 30px !important; 
+            margin-left: 20px !important; 
+        }
+        
+        /* Telefon Ekranları İçin Sabitleme */
+        @media (max-width: 900px) {
+            .kutuphane-karti {
+                flex-direction: column !important;
+            }
+            .kart-resim {
+                flex: 0 0 250px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 250px !important;
+                min-height: 250px !important;
+            }
+            .kart-icerik {
+                flex: 1 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important; 
+                overflow: visible !important;
+                justify-content: flex-start !important;
+                padding: 30px !important;
+            }
+            .hikaye-butonu {
+                margin-left: 0 !important; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('preloader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    });
+    
+    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
+    setTimeout(function() {
+        var loader = document.getElementById('preloader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    }, 5000);
+</script>
+
+    <header>
+        <div id="header0">
+            <div id="isim_logo">
+                <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                <h1>Hayal Ağacı Derneği</h1>
+            </div>
+
+            <div id="hamburger-btn">
+    <span class="cizgi"></span>
+    <span class="cizgi"></span>
+    <span class="cizgi"></span>
+</div>
+
+            <nav>
+                <ul>
+                    <a href="index.html"><li>Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
+                    <a href="sss.html"><li>S.S.S.</li></a>
+                    <a href="iletisim.html"><li>İletişim</li></a> </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="kutuphaneler-bolumu">
+        <div class="kutuphaneler-listesi">
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim">
+                    <img src="source/ha/resim_eklenecek.jpg" alt="Enkaz Kütüphanesi">
+                </div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Enkaz Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Adıyaman, Merkez Halk Kütüphanesi</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Melek yüzlü Beyza'nın anısına, enkazdan toplanan kitaplarla kurulan anı kütüphanemiz.</p>
+                    <a href="enkaz.kutuphanesi.html" class="hikaye-butonu">Hikayesini Oku</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim">
+                    <img src="source/ha/kutuphane2.jpg" alt="Enkaz Büstü">
+                </div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Enkaz Büstü</h2>
+                    <span class="konum-bilgisi">Merkez Halk Kütüphanesi</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Üniversiteli dostlarımızın anısına yapılan "Enkaz Ağacı" büstü ve isim alanı.</p>
+                    <a href="enkaz.bustu.html" class="hikaye-butonu">Büsbütün Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim">
+                    <img src="source/ha/resim_eklenecek.jpg" alt="Beyza Yılmaz">
+                </div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Beyza Yılmaz</h2>
+                    <span class="konum-bilgisi">Kuyucak Şehit Abdurrahman Doğan Ortaokulu</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">"Acılarımızı güzelleştirmeliyiz" diyen Beyza'nın hayallerini yaşatıyoruz.</p>
+                    <a href="beyza.yilmaz.html" class="hikaye-butonu">Beyza Yılmaz Kimdir?</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim">
+                    <img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t0z4cut0z4cut0z4.png" alt="Ayşenur Yılmaz">
+                </div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Ayşenur Yılmaz</h2>
+                    <span class="konum-bilgisi">Adıyaman Dağ Kuyucak Ortaokulu</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Ayşenur'un pozitif enerjisini ve hayallerini çocuklarla buluşturuyoruz.</p>
+                    <a href="aysenur.yilmaz.html" class="hikaye-butonu">Ayşenur Yılmaz Kimdir?</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Muhammed Işıkbulanoğlu</h2>
+                    <span class="konum-bilgisi">Zey Köy Okulu Kütüphanesi</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Zey köyündeki öğrencilerimiz için kurulan kütüphane projemiz.</p>
+                    <a href="muhammed.isikbulanoglu.html" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K1 Konteyner Kent</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🏠 📚</div>
+                    <p class="kutuphane-hikayesi">Konteyner kentteki yaşam alanlarını kitaplarla güzelleştiriyoruz.</p>
+                    <a href="k1.konteyner.kent.html" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K13 Konteyner Kent</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🏠 📚</div>
+                    <p class="kutuphane-hikayesi">Eğitimin her koşulda devam etmesi için kurulan kütüphanemiz.</p>
+                    <a href="k13.konteyner.kent.html" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K6 Konteyner Kent</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🏠 📚</div>
+                    <p class="kutuphane-hikayesi">Çocukların sosyal gelişimine katkı sunan okuma alanı.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K2-B Konteyner Kent</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🏠 📚</div>
+                    <p class="kutuphane-hikayesi">Kitapların gücüyle hayatı yeniden inşa ediyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K27 Konteyner Kent</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🏠 📚</div>
+                    <p class="kutuphane-hikayesi">Konteyner kentteki minik kalplere yeni bir dünya açıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Şerefli Köyü İlkokulu</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Köy okullarındaki imkanları artırmak için kurulan kütüphanemiz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Faik Orhan Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Kayatepe Köyü İlkokulu</span>
+                    <div class="motif-alani">📚 ✨</div>
+                    <p class="kutuphane-hikayesi">Kayatepe köyündeki öğrencilerin yeni bilgi yuvası.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">K1 100. Yıl Ortaokulu</h2>
+                    <span class="konum-bilgisi">Adıyaman Merkez</span>
+                    <div class="motif-alani">🤝 📚</div>
+                    <p class="kutuphane-hikayesi">100. Yıl ortaokulu kütüphanesine sağladığımız katkılarla eğitime destek veriyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Berfin & Zeynep Emsal Sarı</h2>
+                    <span class="konum-bilgisi">Kalburcu Köyü İlkokulu</span>
+                    <div class="motif-alani">🌸 📖</div>
+                    <p class="kutuphane-hikayesi">Kalburcu köyünde iki güzel ismin anısını yaşatan kütüphanemiz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Mahmut Çavuş Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Serincek Köyü</span>
+                    <div class="motif-alani">🌿 📚</div>
+                    <p class="kutuphane-hikayesi">Serincek köyündeki kütüphane kurulum projemiz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Nevzat İzci Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Yenigüven Köyü Okulu</span>
+                    <div class="motif-alani">📖 ✨</div>
+                    <p class="kutuphane-hikayesi">Yenigüven köyündeki çocukların geleceğine ışık tutuyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Şehit Erdal Er Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Şireci Köy Okulu</span>
+                    <div class="motif-alani">🤝 📖</div>
+                    <p class="kutuphane-hikayesi">Şireci köyü kütüphanesine verdiğimiz destekle şehidimizin adını yaşatıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Aziz Taştan Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Batman Seyitler Ortaokulu</span>
+                    <div class="motif-alani">🌿 📚</div>
+                    <p class="kutuphane-hikayesi">Batman'daki öğrencilerimiz için hazırladığımız okuma alanı.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Muhammed Akif Çevik</h2>
+                    <span class="konum-bilgisi">Kuyulu Köyü Okulu</span>
+                    <div class="motif-alani">📖 ✨</div>
+                    <p class="kutuphane-hikayesi">Kuyulu köyündeki kütüphane projemiz tamamlandı.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Mehmet Uçar Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Adıyaman Kömür Ortaokulu</span>
+                    <div class="motif-alani">🌿 📚</div>
+                    <p class="kutuphane-hikayesi">Kömür beldesindeki ortaokul öğrencilerimiz için kurulan kütüphane.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Abdurrahman Aslan Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Samsat Taşkuyu Ortaokulu</span>
+                    <div class="motif-alani">🌿 📖</div>
+                    <p class="kutuphane-hikayesi">Samsat ilçesindeki Taşkuyu köyünde kurulan kütüphanemiz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Şehit Özkan Demir Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Atakent Köy Okulu</span>
+                    <div class="motif-alani">🌿 ✨</div>
+                    <p class="kutuphane-hikayesi">Atakent'teki minik kalplere yeni bir dünya açıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Muhammed Yağar Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Örentaş Köy Okulu</span>
+                    <div class="motif-alani">🌿 📖</div>
+                    <p class="kutuphane-hikayesi">Örentaş köyündeki okuma seferberliğimizin bir parçası.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Hasan Tanrıverdi Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Azikan Köy Okulu</span>
+                    <div class="motif-alani">🌿 ✨</div>
+                    <p class="kutuphane-hikayesi">Azikan köyündeki kütüphane kurulum çalışmamız.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Pınar Akın Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Kuyucak İlkokulu</span>
+                    <div class="motif-alani">🌿 📖</div>
+                    <p class="kutuphane-hikayesi">Kuyucak köyünde eğitimin kalbine dokunuyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Pazartesi Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Karagöl Köy Okulu</span>
+                    <div class="motif-alani">🌿 ✨</div>
+                    <p class="kutuphane-hikayesi">Karagöl köyündeki öğrencilerimize yeni okuma imkanları sağlıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Yarımbağ Köy Okulu</h2>
+                    <span class="konum-bilgisi">Adıyaman Samsat</span>
+                    <div class="motif-alani">🤝 📖</div>
+                    <p class="kutuphane-hikayesi">Yarımbağ köy okulunun kütüphane kurulumuna destek olduk.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Şehit Mevlüt Yoğurtçu Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Gerger Şamani Köy Okulu</span>
+                    <div class="motif-alani">🌿 ✨</div>
+                    <p class="kutuphane-hikayesi">Şamani köyünde şehidimizin adını kütüphanemizde yaşatıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Besni Bilim Sanat Merkezi</h2>
+                    <span class="konum-bilgisi">Adıyaman Besni</span>
+                    <div class="motif-alani">🤝 📚</div>
+                    <p class="kutuphane-hikayesi">Bilim sanat merkezi kütüphanesine verdiğimiz destekle yanlarındayız.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Dağyalankoz Köy Okulu Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Dağyalankoz köyündeki okuma alanlarını geliştirmeye devam ediyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Tepecik Köy Okulu Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Tepecik köyündeki çocuklarımızı kitaplarla buluşturuyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Güzelyurt Köy Okulu Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Adıyaman</span>
+                    <div class="motif-alani">🌿 🌳</div>
+                    <p class="kutuphane-hikayesi">Güzelyurt köyündeki öğrencilerimize yeni okuma imkanları sağlıyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sol">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Sinem Erol Yalçınkaya Kütüphanesi</h2>
+                    <span class="konum-bilgisi">Bozova Ortatepe Köy Okulu</span>
+                    <div class="motif-alani">🌿 📖</div>
+                    <p class="kutuphane-hikayesi">Şanlıurfa Ortatepe köyündeki yeni okuma alanımız öğrencilerle buluştu.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+            <div class="kutuphane-karti gizli-sag">
+                <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
+                <div class="kart-icerik">
+                    <h2 class="sehit-ismi">Mehmet Akif Ortaokulu</h2>
+                    <span class="konum-bilgisi">Adıyaman Merkez</span>
+                    <div class="motif-alani">🤝 ✨</div>
+                    <p class="kutuphane-hikayesi">Merkez ortaokul kütüphanesine sağladığımız katkılarla eğitime omuz veriyoruz.</p>
+                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="iletisim">
+        <p id="iletisim0">İletişim</p>
+        <div id="iconlar">
+    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+    </a>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+    </a>
+</div>
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
+        </div>
+        <p id="hak">Hayal Ağacı Derneği &copy Tüm hakları saklıdır</p>
+        <p id="credit"><span id="credi">Onur TURAN</span> tarafından yapılmıştır</p>
+    </footer>
+
+<script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+    <script src="site.js"></script>
+</body>
+</html>

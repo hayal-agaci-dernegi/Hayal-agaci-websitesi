@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifika Doğrulama - Hayal Ağacı</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: rgb(254, 249, 241); }
+        .dogrulama-paneli {
+            max-width: 500px; margin: 100px auto; text-align: center; background: white; 
+            padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-top: 5px solid rgb(134, 220, 84);
+        }
+        .modal-input {
+            margin-bottom: 20px; width: 100%; box-sizing: border-box; 
+            padding: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1.1rem;
+        }
+        .modal-input:focus { border-color: rgb(134, 220, 84); outline: none; }
+        
+        body.dark-mode .dogrulama-paneli { background: #2a2a2a; color: white; }
+        body.dark-mode .modal-input { background: #1e1e1e; color: white; border-color: #444; }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('preloader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    });
+    
+    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
+    setTimeout(function() {
+        var loader = document.getElementById('preloader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    }, 5000);
+</script>
+
+    <div class="dogrulama-paneli">
+        <h2 style="color: rgb(134, 220, 84); margin-top: 0;">Sertifika Doğrulama</h2>
+        <p style="color: #666; margin-bottom: 30px;">Sisteme kayıt edilmeyen belgelerin kriptografik orijinallik sorgusu.</p>
+        
+        <input type="text" id="sorgu-isim" placeholder="Belgedeki İsim (Örn: Ahmet Yılmaz)" class="modal-input">
+        <input type="text" id="sorgu-kod" placeholder="Belgedeki Seri No (Örn: HA-A1B2C3D4E5)" class="modal-input">
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button onclick="belgeDogrula()" class="katılbt" style="position: static; width: auto; padding: 12px 40px; border-radius: 30px; border: none; font-size: 1.1rem; cursor: pointer; box-shadow: 0 5px 15px rgba(134, 220, 84, 0.3); transition: all 0.3s ease;">
+                🔍 Belgeyi Teyit Et
+            </button>
+        </div>
+        
+        <div id="dogrulama-sonucu" style="margin-top: 25px; font-weight: bold; padding: 20px; border-radius: 10px; display: none; line-height: 1.5;"></div>
+
+    <script>
+        async function belgeDogrula() {
+            const isim = document.getElementById('sorgu-isim').value.trim().toUpperCase();
+            const girilenKod = document.getElementById('sorgu-kod').value.trim().toUpperCase();
+            const sonucKutusu = document.getElementById('dogrulama-sonucu');
+            
+            // Sertifika üretirken kullandığımız anahtarın aynısı
+            const gizliAnahtar = "HAYAL_AGACI_2026_OZEL"; 
+
+            if (!isim || !girilenKod) {
+                alert("Lütfen isim ve seri numarası alanlarını doldurun.");
+                return;
+            }
+
+            // İşlemin başladığını göster
+            sonucKutusu.style.display = "block";
+            sonucKutusu.innerHTML = "Sorgulanıyor...";
+            sonucKutusu.style.backgroundColor = "#f0f0f0";
+            sonucKutusu.style.color = "#333";
+            sonucKutusu.style.borderColor = "transparent";
+
+            // Arka planda şifrelemeyi yeniden oluştur
+            const mesaj = isim + gizliAnahtar;
+            const msgBuffer = new TextEncoder().encode(mesaj);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            // Sistemin bulduğu gerçek kod
+            const olmasiGerekenKod = "HA-" + hashHex.substring(0, 10).toUpperCase();
+
+            // Yarım saniyelik bir gecikme ile sonucu ekrana bas (gerçekçilik katar)
+            setTimeout(() => {
+                if (girilenKod === olmasiGerekenKod) {
+                    sonucKutusu.style.backgroundColor = "rgba(134, 220, 84, 0.2)";
+                    sonucKutusu.style.color = "green";
+                    sonucKutusu.style.border = "2px solid rgb(134, 220, 84)";
+                    sonucKutusu.innerHTML = "✅ BAŞARILI: Bu sertifika tamamen orijinaldir ve Hayal Ağacı Derneği tarafından üretilmiştir.";
+                } else {
+                    sonucKutusu.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+                    sonucKutusu.style.color = "red";
+                    sonucKutusu.style.border = "2px solid red";
+                    sonucKutusu.innerHTML = `❌ GEÇERSİZ BELGE: Bu seri numarası ile "${isim}" ismi eşleşmiyor. Belge üzerinde oynanmış veya sahte üretilmiş.`;
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>

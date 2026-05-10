@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aradığınız sayfa bulunamadı - Hayal Ağacı Derneği">
+    <title>Sayfa Bulunamadı - Hayal Ağacı Derneği</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Sadece 404 sayfasına özel hizalama ayarları */
+        .hata-kapsayici {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* YENİ: "height" yerine "min-height" kullandık ki sığmazsa aşağı kaydırılabilsin */
+            min-height: 100vh; 
+            background-color: rgb(254, 249, 241);
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box; /* Padding'in sayfayı taşırmasını engeller */
+        }
+
+        .hata-kodu {
+            font-size: 10rem;
+            font-weight: bold;
+            color: rgb(134, 220, 84);
+            margin: 0;
+            line-height: 1;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hata-mesaj {
+            font-size: 2.5rem;
+            color: rgb(27, 27, 27);
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hata-aciklama {
+            font-size: 1.2rem;
+            color: rgb(80, 80, 80);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* YENİ: TELEFON VE TABLET İÇİN KÜÇÜLTME (RESPONSIVE) AYARLARI */
+        @media (max-width: 900px) {
+            .hata-kapsayici img {
+                width: 100px !important; /* Logoyu küçült */
+                margin-bottom: 10px !important;
+            }
+            .hata-kodu {
+                font-size: 6rem; /* 10rem olan dev yazıyı telefona sığacak kadar küçült */
+            }
+            .hata-mesaj {
+                font-size: 1.8rem;
+            }
+            .hata-aciklama {
+                font-size: 1rem;
+                padding: 0 10px;
+                margin-bottom: 25px;
+            }
+            .hata-kapsayici .katılbt {
+                width: 80% !important; /* Butonun dışarı taşmasını engeller */
+                max-width: 300px;
+                padding: 15px !important;
+                font-size: 1.2rem !important;
+            }
+        }
+
+        /* Karanlık Mod (Dark Mode) Uyumu */
+        body.dark-mode .hata-kapsayici { background-color: #121212 !important; }
+        body.dark-mode .hata-mesaj { color: #f5f5f5 !important; }
+        body.dark-mode .hata-aciklama { color: #ccc !important; }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('preloader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    });
+    
+    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
+    setTimeout(function() {
+        var loader = document.getElementById('preloader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    }, 5000);
+</script>
+
+    <div class="hata-kapsayici">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" style="width: 150px; margin-bottom: 20px;">
+        
+        <h1 class="hata-kodu">404</h1>
+        <h2 class="hata-mesaj">Yolumuzu Kaybettik</h2>
+        <p class="hata-aciklama">
+            Aradığınız sayfa silinmiş veya adresi değiştirilmiş olabilir. Ancak merak etmeyin, kütüphane kurduğumuz okullardaki çocuklarımız aynı yerlerinde umutla beklemeye devam ediyor.
+        </p>
+        
+        <a href="index.html" class="katılbt" style="text-decoration: none; display: flex; align-items: center; justify-content: center; position: static; margin: 0 auto;">
+    Anasayfa'ya Dön
+</a>
+    </div>
+
+    <script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+1. Google da incele butonuna basınca hatalalar çıkıyor hata buluyor onları ben bulamadım yapa bilirse onur düzeltsin
+
+2. bağış.html dosyasındaki en altta teşekkür notu olan kısımda e posta adresini bir türlü bölmeden sığdıramadım mobil versiyonda) hizalaya bilirse hizalasın. (not: pc görünümünde ekran geniş diye sığıyor)
+
+3. tüm sayfalara İngilizce eklenmelimi tartışılsın karar verilirse tüm sayfaya İngilizce eklensin (ortaklaşan yapın)
+
+4. hizmetlerimiz bölümündeki tüm bölümlere bir işlev konulması için istişare edilsin ve ona göre düzenlenip eklensin.
+
+5. faaliyetlerimiz bölümünde tüm başlıklara bir fotoğraf hazırlanmalı ve yerleştirilmeli.
+
+6. butonlarrr bölümüne ne yapılacağı karar verilmeli.
+
+7. whatsapp için numara eklenmeli mi diye Yusufcan Hocaya danışılmalı ve onar göre eklenip veya silinmeli.
+
+8. yapıla bilirse hakkımızda bölümünde Türkçe yazılınca (mobil versiyonda) her kelime arasında boşluk oluşuyor ama İngilizce çevirisinde bu boşluklar olmuyor bunu ben çözemedim
+
+9. ekip.html için bir taslak oluşturdum detaylandırılıp bir şema haline getirilmeli.
+
+10. kütüphane.kurulmu.html dosyasındaki isimler ve konumlar güncellenmeli şema aynı (aysenur.yilmaz.html) dosyasında olduğu gibi tüm hepsini kopyalayıp sadece düzenleyip bula bilirsek resimlerini yerleştireceğiz (en uzun görev bu olacak tahminimce)
+
+11. galeri kısmında eklemeler yapacağız varsa hataları ve eksiklikleri gidereceğiz. 
+
+12. galeri kısmında footer kısmında garip bir hata var çözemedim live studio ile çalıştırınca footer kısmındaki mailve S.S.S. kısmı gözükmüyor ama normal sunucu olmadan çalıştırınca hiç bir eksiği kalmıyor bunun sebebini bulup gidermeye çalışılması lazım.
+
+13. ve de fotoğrafları korumak için kullandığım sağ tık iptaline yarayan kod (galeri için tüm sayfayı etkiliyor sağ tık yapıp inceleyemiyoruz (aslında iyi bir şey ve sadece önceki sayfada incele butonuna basınca sadece galeri bölümünde incele kısmını göre biliyoruz bu kala bilir bunu değiştiröeyelim.)
+
+14. sıkça sorula soruları Yusuf hocaya danışarak düzenleyeceğiz zira eklemek veya değiştirmek istediği bir soru cevap olursa ona göre ilerleyeceğiz.
+
+15. Özel Günler İçin Bir Tasarım Denedim Gün sayan bir motor ekledim ama sorun şu ki test edemiyorum bir tek 23 nisanda test ettim ama ondada tasarım öyle göze pek hitap edecek şekilde olmadı diye düşünüyorum tasarımı geliştirirsek belki ola bilir onu test edip tasarımda değişiklik yapmasını sağlamamız lazım bu sayede özel günlerde göze hitap ede biliriz dernek olarak buna çok önem veriyoruz tüm özel günlere özen gösterdiğimiz için bunu yapa bilirsek çok güzel ola biliriz.
+
+16. bir türlü düzeltemediğim garip bir hata var bagis.html dosyasındaki header kısmında bulunan iletişim butonuna basınca beni diğer sayfada olan iletişim.html dosyasına atıyor bunu düzeltmeyi denedim ama işe yaramadı bunun kesinlikle onurun bakıp düzeltmesi lazım kaynağını bulamadı.
+
+17. bagis.html ile iletisim.html de bulunan footer kısmı diğerleri gibi arka plandan ayırt edilmesi lazım ama ben denedim bazı yerler bozuldu bir de onur baksın
+
+(Not: mobil sürüm için kullandığım dp/dip ölçeği 320x608 (en ince telefonları ve ekranları simüle etmek için kullandığım aralık)).

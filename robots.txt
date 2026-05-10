@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Yönetim panelini Google'dan gizle (Güvenlik)
+Disallow: /belge-olustur.html
+
+Sitemap: https://www.hayalagaci.com/sitemap.xml

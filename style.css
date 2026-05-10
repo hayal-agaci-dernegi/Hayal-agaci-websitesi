@@ -1,0 +1,2564 @@
+html {
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    line-height: 1.2;
+    background-color: rgb(220, 241, 218);
+    color: rgb(27, 27, 27);
+    min-width:290px;
+    font-family: "MyCustomFont", sans-serif; 
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.65);
+    z-index: 100005 !important; /* Menünün (99998) üzerine çıkması için en yüksek değer */
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+}
+
+/* MENÜ AÇIKKEN HEADER ARKA PLANINI SİLİYORUZ */
+body.menu-acik-kilit header {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+#logo{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+#isim_logo{
+    display: flex;
+    align-items: center;
+}
+
+#header0{
+    text-align: center;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+header h1{
+    text-align: center;
+    margin: 0px;
+    font-size: 1.5rem;
+}
+header ul {
+    list-style-type: none; 
+}
+
+header a li{
+    padding: 23px;
+    size: 10px 10px;
+    display: inline;
+    color: rgb(0, 0, 0);
+}
+header a{
+    display: inline-block;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#bhr{
+    margin: 0px;
+    margin-bottom: 5px;
+    border-color: rgb(57, 57, 57);
+}
+
+#barbeyaz{
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+}
+
+#anasayfa{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    border-radius: 25px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 540px;
+    box-shadow: 5px 6px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 60px;
+}
+
+#katıl #logo{
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+#katıl p {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+#anaresim{
+    height: auto;
+    width: 50%;
+    border-radius: 0px 20px 20px 0px;
+    object-fit: cover;
+    border-left: double rgb(134, 220, 84) 10px;
+}
+
+#katıl{
+    height: auto;
+    width: 50%;
+    background-color: rgb(255, 251, 243);    
+    border-radius: 20px 0px 0px 20px;
+}
+
+.bagisbt{
+    height:55px;
+    width: 140px;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    border: rgb(134, 220, 84) solid 4px;
+    background-color: white;
+    color: rgb(134, 220, 84);
+    font-weight: bold;
+    position: absolute;
+    top: 540px;         
+    left: 26%; 
+}
+.katılbt{
+    height:55px;
+    width: 140px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: rgb(134, 220, 84);
+    font-weight: bold;
+    font-size: 1.25rem;
+    position: absolute;
+    top: 540px;         
+    left: 37%; 
+}
+
+.bagisbt:hover{
+    color: rgb(134, 220, 84);
+    border-color:rgb(134, 220, 84) ;
+}
+
+#logo_baslik_yan_yana {
+    display: flex;
+    align-items: center;
+}
+
+.ny {
+    font-size: 2em;
+    margin-left: 15px; 
+    color: rgb(27, 27, 27);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.yhr{
+    border-color: rgb(255, 255, 255);
+    width: 50%;
+    margin: 10x auto 0px auto;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+#hakkimizda{
+    background-color: rgb(254, 249, 241);
+}
+
+.kim2{
+    color: rgb(244, 180, 97);
+    font-weight: bold;
+}
+
+#paragraf{
+    padding: 10px;
+    display: flex;
+}
+
+#kim{
+    font-size: 1.5em;
+    min-width: 0; 
+    width: 50%;
+    margin-left: 5%;
+}
+
+/* ==========================================
+   FOTOĞRAF VE ARKA PLAN KİLİT SİSTEMİ (DÜZELTİLDİ)
+========================================== */
+#hakkimizda_resim_alani {
+    position: relative; /* Arka planı fotoğrafa mühürleyen kod */
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 7%;
+    flex-shrink: 0;
+}
+
+#hakkimizda_resim {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2; /* Resim üstte */
+}
+
+#foto_arkaplan {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(134, 220, 84);
+    top: 30px; /* Sadece 30px aşağıda dursun */
+    left: 30px; /* Sadece 30px sağda dursun */
+    position: absolute;
+    border-radius: 30px;
+    box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Resmin arkasında */
+}
+
+#skortablosu{
+    margin-right: 42px;
+    margin-top: 140px;
+    display: flex;
+    height: 130px;
+    margin-bottom: 20px;
+}
+.skor{
+    width: 25%;
+    align-items: center;
+    text-align: center; 
+}
+.veri{
+    margin: auto 0px auto 0px;
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: -3px;
+    position: relative;
+    right: 14px;
+    text-shadow: 3px 3px 6px rgb(0, 0, 0,0.4);
+}
+.veri_aciklamasi{
+    color: rgb(134, 220, 84);
+    text-shadow: 2px 2px 2px rgb(0, 0, 0,0.26);
+    font-size: 2.25rem;
+    font-weight: bold;
+    top: -7px;
+    position: relative;
+    line-height: 27px;
+}
+
+#kresim{
+    width: 400px;
+    height: 300px;
+    display: inline-block;
+}
+
+#kolaj{
+    display: flex;
+    flex-direction: row;
+}
+
+#kolaj img{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+.wrapper {
+    padding: 25px;
+    background-color: rgb(254, 249, 241);
+    width: 90%;
+    max-width: 1536px;
+    margin-inline: auto;
+    position: relative;
+    height: 250px;
+    margin-top: 5rem;
+    overflow: hidden;
+    mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@keyframes scrollLeft {
+  to { left: -300px; }
+}
+
+.item {
+  object-fit: cover;
+  width: 270px;
+  height: 200px;
+  background-color: red;
+  border-radius: 9px;
+  position: absolute;
+  left: max(calc(200px * 30), 100%);
+  animation-name: scrollLeft;
+  animation-duration: 75s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bagisbt, .katılbt { transition: all 0.3s ease; }
+.bagisbt:hover, .katılbt:hover { transform: scale(1.05); }
+
+.skor { transition: transform 0.3s ease; }
+.skor:hover { transform: translateY(-10px); }
+
+.gizli {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.goster {
+    opacity: 1;
+    transform: translateY(0);
+}
+.item1 { animation-delay: calc(75s / 18 * (18 - 1) * -1); }
+.item2 { animation-delay: calc(75s / 18 * (18 - 2) * -1); }
+.item3 { animation-delay: calc(75s / 18 * (18 - 3) * -1); }
+.item4 { animation-delay: calc(75s / 18 * (18 - 4) * -1); }
+.item5 { animation-delay: calc(75s / 18 * (18 - 5) * -1); }
+.item6 { animation-delay: calc(75s / 18 * (18 - 6) * -1); }
+.item7 { animation-delay: calc(75s / 18 * (18 - 7) * -1); }
+.item8 { animation-delay: calc(75s / 18 * (18 - 8) * -1); }
+.item9 { animation-delay: calc(75s / 18 * (18 - 9) * -1); }
+.item10 { animation-delay: calc(75s / 18 * (18 - 10) * -1); }
+.item11 { animation-delay: calc(75s / 18 * (18 - 11) * -1); }
+.item12 { animation-delay: calc(75s / 18 * (18 - 12) * -1); }
+.item13 { animation-delay: calc(75s / 18 * (18 - 13) * -1); }
+.item14 { animation-delay: calc(75s / 18 * (18 - 14) * -1); }
+.item15 { animation-delay: calc(75s / 18 * (18 - 15) * -1); }
+.item16 { animation-delay: calc(75s / 18 * (18 - 16) * -1); }
+.item17 { animation-delay: calc(75s / 18 * (18 - 17) * -1); }
+.item18 { animation-delay: calc(75s / 18 * (18 - 18) * -1); }
+
+#hakkimizda_ust{
+    background-color: rgb(254, 249, 241);
+    height: 30px;
+}
+#hakkimizda_alt{
+    background-color: rgb(254, 249, 241);
+    height: 80px;
+}
+
+#hizmetd{ padding: 30px; }
+
+.hizmet_baslik{
+    padding: 30px;
+    margin-left: 30px;
+    font-size: 2.1em;
+}
+
+.kbaslik{
+    font-size: 1.8em;
+    margin: 33px;
+    color: rgb(253, 197, 31);
+}
+
+.kaciklama{
+    font-size: 1.7em;
+    margin: 10px;
+}
+.mini_baslık{
+    font-size: 1.9em;
+    text-align: center;
+}
+
+#buton_tablosu{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.buton{
+    width: 30%;
+    font-size: 30px;
+    border: 4px red solid;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+footer{
+    background-color: rgb(241, 178, 91);
+    height: auto;
+    padding-bottom: 30px;
+}
+
+.insta{ width: 50px; height: 50px; }
+
+/* FOOTER İKONLARI VE BUZLU CAM EFEKTİ */
+#iconlar {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px);
+    padding: 15px 30px;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 20px auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-ikon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.footer-ikon-svg {
+    width: 35px;
+    height: 35px;
+    color: rgb(27, 27, 27);
+    transition: all 0.3s ease;
+}
+
+.footer-ikon-link:hover .footer-ikon,
+.footer-ikon-link:hover .footer-ikon-svg {
+    transform: scale(1.2);
+    color: rgb(134, 220, 84); /* Hoverda dernek yeşili */
+}
+
+/* HEADER HİZALAMA GRUBU */
+.nav-kontrol {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Menü ile buton arasındaki boşluk */
+}
+
+/* DİL BUTONU - YENİ SABİT VE ŞIK TASARIM */
+#dil-btn {
+    position: static !important; /* Üst üste binmeyi engelleyen kritik komut */
+    background: rgba(134, 220, 84, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgb(134, 220, 84);
+    color: rgb(134, 220, 84);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Yazının kırılmasını engeller */
+}
+
+#dil-btn:hover {
+    background: rgb(134, 220, 84);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Karanlık Mod Uyumu */
+body.dark-mode #dil-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f5f5f5;
+    border-color: #555;
+}
+
+
+
+#iletisim0{
+    margin: 0px;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    color: black;
+    font-weight: bold;
+}
+
+#hak{
+    margin: 0px;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1em;
+    color: black;
+    font-weight: bold;
+}
+
+#credit{
+    padding: 5px;
+    text-align: center;
+    font-size: 1.1sem;
+    color: black;
+    font-weight: bold;
+    border: 2px black solid;
+    width: 330px;
+    margin:  0 auto 0 auto;
+    border-radius: 20px;
+}
+#credi{ text-decoration: underline red 2px; }
+
+@font-face {
+    font-family: "MyCustomFont";
+    src: url(source/robo/RobotoSlab-VariableFont_wght.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MyCustomFont";
+    src: url(source/robo/static/RobotoSlab-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+}
+
+body, html { overflow-x: hidden; }
+
+@media (max-width: 1000px) and (min-width:801px) {
+    .uy{ font-size: 1.85em; width: 655px; top: 50%; }
+    .dy{ font-size: 1em; width: 500px; top: 57%; }
+    #paragraf{ display: block; margin: 15px; }
+    #kim{ font-size: 1.3em; width: 100%; }
+    #hakkimizda_resim_alani{
+        width: 90%;
+        display: block;
+        margin: 30px auto;
+    }
+    #hakkimizda_resim{ width: 100%; height: auto; }
+}
+
+@media (max-width: 800px) {
+    header a li{ padding: 10px; }
+    .uy{ font-size: 2em; width: 400px; }
+    .dy{ font-size: 1em; width: 300px; top: 56%; }
+    #paragraf{ display: block; margin: 15px; }
+    #kim{ font-size: 1.3em; width: 100%; }
+    #hakkimizda_resim_alani{
+        width: 90%;
+        display: block;
+        margin: 30px auto;
+    }
+    #hakkimizda_resim{ width: 100%; height: auto; }
+    header a{
+        display: inline-block;
+        text-align: center;
+        color: black;
+        font-size: 20px;
+    }
+}
+
+header { transition: transform 0.5s ease, opacity 0.5s ease; }
+header.gizle {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bagisbt, .katılbt, .buton {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.bagisbt:hover {
+    transform: translateY(-3px) scale(1.03);
+    background-color: rgb(134, 220, 84);
+    color: white;
+    box-shadow: 0 10px 20px rgba(134, 220, 84, 0.3);
+}
+
+.katılbt:hover {
+    transform: translateY(-3px) scale(1.03);
+    background-color: rgb(134, 220, 84); /* Parlak Yeşil */
+    box-shadow: 0 10px 20px rgba(134, 220, 84, 0.3);
+}
+
+.buton:hover {
+    transform: translateY(-5px);
+    background-color: red;
+    color: white;
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+}
+
+header a { position: relative; }
+header a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: rgb(134, 220, 84);
+    transition: width 0.3s ease;
+}
+header a:hover::after { width: 100%; }
+
+#hizmetlerimiz {
+    background-color: rgb(220, 241, 218); 
+    padding-bottom: 60px;
+}
+
+.hizmet-izgarasi {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+    padding: 0 5%;
+}
+.hizmet-karti {
+    background-color: rgb(254, 249, 241);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 3s → 0.3s */
+}
+
+.hizmet-karti:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hizmet-karti::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+
+
+.ikon-kutu {
+    background-color: rgb(134, 220, 84);
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ikon-kutu svg { color: white; width: 22px; height: 22px; }
+
+.hizmet-karti h3 {
+    font-size: 1.3rem;
+    color: rgb(27, 27, 27);
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.hizmet-karti p {
+    font-size: 0.95rem;
+    color: rgb(80, 80, 80);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 1000px) { .hizmet-izgarasi { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) { .hizmet-izgarasi { grid-template-columns: 1fr; } }
+#projelerimiz {
+    background-color: rgb(254, 249, 241); 
+    padding-bottom: 60px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.proje-izgarasi {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 0 5%;
+}
+.proje-karti {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+}
+.proje-karti::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+.proje-karti:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+.proje-icerik {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+.proje-icerik h3 {
+    font-size: 1.4rem;
+    color: rgb(27, 27, 27);
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+/* === PROJE KARTLARI FOTOĞRAF SIĞDIRMA AYARI === */
+.resim-alani {
+    width: 100%;
+    height: 250px;
+    background-color: #e0e0e0; 
+    border-radius: 15px 15px 0 0; 
+    overflow: hidden;
+    position: relative;
+    display: block !important;
+}
+.resim-alani img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+}
+.proje-durum {
+    margin-top: auto;
+    padding: 6px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background-color: rgb(134, 220, 84);
+}
+
+@media (max-width: 900px) { .proje-izgarasi { grid-template-columns: 1fr; } }
+
+.slider-pencere { position: relative; width: 100%; overflow: hidden; background: white; cursor: grab; }
+
+.golge-sol {
+    position: absolute; left: 0; top: 0; width: 200px; height: 100%;
+    background: linear-gradient(to right, white, transparent);
+    z-index: 5; pointer-events: none; 
+}
+.golge-sag {
+    position: absolute; right: 0; top: 0; width: 200px; height: 100%;
+    background: linear-gradient(to left, white, transparent);
+    z-index: 5; pointer-events: none;
+}
+
+.slider-hareket-alanı {
+    display: flex; gap: 20px; padding: 20px 0; will-change: transform; transform: translateX(0);
+}
+
+.slider-hareket-alanı img { height: 250px; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.wrapper { display: flex; gap: 20px; will-change: transform; }
+.wrapper img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+
+.mail-link { text-decoration: none; color: inherit; transition: 0.3s; }
+.mail-link:hover { color: rgb(134, 220, 84); transform: scale(1.1); }
+
+.kutuphaneler-bolumu {
+    padding: 120px 5% 100px 5%; 
+    background-color: rgb(254, 249, 241); 
+    width: 100%;
+}
+
+.sayfa-basligi {
+    text-align: center; font-size: 2.8rem; color: rgb(27, 27, 27);
+    margin-bottom: 10px; font-weight: bold;
+}
+.sayfa-aciklamasi {
+    text-align: center; font-size: 1.2rem; color: rgb(80, 80, 80);
+    max-width: 700px; margin: 0 auto 60px auto; line-height: 1.6;
+}
+
+.kutuphaneler-listesi { display: flex; flex-direction: column; gap: 100px; max-width: 1200px; margin: 0 auto; }
+
+.kutuphane-karti {
+    display: flex; align-items: center; gap: 60px; background-color: white; 
+    border-radius: 20px; padding-right: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: box-shadow 0.4s ease;
+}
+.kutuphane-karti:nth-child(even) {
+    flex-direction: row-reverse; padding-right: 0; padding-left: 30px;
+}
+.kutuphane-karti:hover { box-shadow: 0 15px 40px rgba(134, 220, 84, 0.15); }
+
+.kart-resim { flex: 1; height: 400px; border-radius: 20px; overflow: hidden; }
+.kart-resim img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.kutuphane-karti:hover .kart-resim img { transform: scale(1.05); }
+
+.kart-icerik {
+    flex: 1; padding-left: 25px; border-left: 3px solid rgb(134, 220, 84); 
+    display: flex; flex-direction: column; align-items: flex-start;
+}
+.kutuphane-karti:nth-child(even) .kart-icerik {
+    border-left: none; border-right: 3px solid rgb(134, 220, 84); 
+    padding-left: 0; padding-right: 25px;
+}
+
+.sehit-ismi { font-size: 2.8rem; color: #2c2c2c; margin: 0 0 10px 0; font-weight: bold; }
+.konum-bilgisi { font-size: 1.1rem; color: rgb(134, 220, 84); font-weight: bold; margin-bottom: 15px; display: block; }
+.motif-alani { font-size: 2rem; margin-bottom: 20px; opacity: 0.7; }
+.kutuphane-hikayesi { font-size: 1.1rem; line-height: 1.8; color: #333; margin-bottom: 30px; font-weight: 500; }
+
+.hikaye-butonu {
+    padding: 12px 30px; background-color: rgb(134, 220, 84); color: white;
+    text-decoration: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.hikaye-butonu:hover {
+    background-color: rgb(100, 180, 60); transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(134, 220, 84, 0.3);
+}
+
+.gizli-sol, .gizli-sag { opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+.gizli-sol { transform: translateX(-100px); }
+.gizli-sag { transform: translateX(100px); }
+.goster-animasyon { opacity: 1; transform: translateX(0); }
+
+@media (max-width: 900px) {
+    .kutuphane-karti, .kutuphane-karti:nth-child(even) {
+        flex-direction: column; gap: 30px; padding: 20px;
+    }
+    .kart-resim { width: 100%; height: 250px; }
+    .kart-icerik, .kutuphane-karti:nth-child(even) .kart-icerik {
+        border-left: none; border-right: none; border-top: 3px solid rgb(134, 220, 84);
+        padding-left: 0; padding-right: 0; padding-top: 20px;
+    }
+    .sehit-ismi { font-size: 2rem; }
+}
+
+img {
+    -webkit-user-drag: none !important; -khtml-user-drag: none !important;
+    -moz-user-drag: none !important; -o-user-drag: none !important;
+    user-select: none !important; -webkit-user-select: none !important;
+    pointer-events: none;
+}
+
+/* ==========================================
+   DERNEK ÖZEL DUYURU PANELİ TASARIMI
+========================================== */
+#duyuru-kart-sistemi {
+    max-width: 800px;
+    margin: 40px auto 60px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.duyuru-akordeon {
+    background: #ffffff;
+    border: 2px solid rgba(134, 220, 84, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.duyuru-akordeon:hover {
+    border-color: rgb(134, 220, 84);
+    box-shadow: 0 15px 40px rgba(134, 220, 84, 0.1);
+    transform: translateY(-5px);
+}
+
+.duyuru-ozet {
+    padding: 20px;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+}
+
+.duyuru-ozet::-webkit-details-marker { display: none; }
+
+.duyuru-baslik-alanı {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.duyuru-can-konteynir {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background: rgba(134, 220, 84, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.duyuru-can {
+    font-size: 22px;
+    animation: canSallanma 2.5s infinite ease-in-out;
+    display: inline-block;
+}
+
+.duyuru-can-dalga {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(134, 220, 84);
+    border-radius: 50%;
+    animation: canDalga 2s infinite;
+}
+
+@keyframes canSallanma {
+    0%, 100% { transform: rotate(0); }
+    10%, 30%, 50% { transform: rotate(15deg); }
+    20%, 40%, 60% { transform: rotate(-15deg); }
+    70% { transform: rotate(0); }
+}
+
+@keyframes canDalga {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+#kisa-duyuru-metni {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 500px;
+    animation: yaziNefes 3s infinite ease-in-out;
+}
+
+@keyframes yaziNefes {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; color: rgb(134, 220, 84); }
+}
+
+.acilis-oku {
+    color: rgb(134, 220, 84);
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.duyuru-akordeon[open] .acilis-oku { transform: rotate(180deg); }
+
+.duyuru-tam-metin-alanı {
+    padding: 0 25px 25px 85px;
+    color: #666;
+    line-height: 1.6;
+    border-top: 1px dashed #eee;
+    padding-top: 20px;
+}
+
+/* ==========================================
+   GECE / GÜNDÜZ MODU (DARK MODE) SİSTEMİ (KUSURSUZ SÜRÜM)
+========================================== */
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #f5f5f5 !important;
+}
+
+/* 1. SEVİYE: Genel Arka Planlar (Koyu Gri) */
+body.dark-mode #barbeyaz,
+body.dark-mode #katıl,
+body.dark-mode #hakkimizda,
+body.dark-mode #hakkimizda_ust,
+body.dark-mode #hakkimizda_alt,
+body.dark-mode .wrapper,
+body.dark-mode #hizmetlerimiz,
+body.dark-mode #projelerimiz,
+body.dark-mode .kutuphaneler-bolumu,
+body.dark-mode #faaliyet-haritasi {
+    background-color: #1e1e1e !important;
+    color: #f5f5f5 !important;
+}
+
+/* 2. SEVİYE: Dikdörtgen Kartlar ve Detay Alanları (Açık Gri - Ayrıştırılmış) */
+body.dark-mode .hizmet-karti,
+body.dark-mode .proje-karti,
+body.dark-mode .kutuphane-karti,
+body.dark-mode .duyuru-akordeon,
+body.dark-mode .detay-hero,
+body.dark-mode .hikaye-bolumu,
+body.dark-mode .galeri-bolumu,
+body.dark-mode .bilgi-serit,
+body.dark-mode .geri-don-sarici {
+    background-color: #2a2a2a !important; /* Kartları öne çıkaran renk */
+    border: 1px solid #3d3d3d !important; /* Sınır çizgisi */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important; /* Derinlik gölgesi */
+    color: #f5f5f5 !important;
+}
+
+/* 3. SEVİYE: Yazı Renkleri */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .ny,
+body.dark-mode .kim2,
+body.dark-mode .veri,
+body.dark-mode .sehit-ismi,
+body.dark-mode .detay-baslik,
+body.dark-mode .kutuphane-hikayesi,
+body.dark-mode .proje-icerik p,
+body.dark-mode .hizmet-karti p,
+body.dark-mode .detay-aciklama,
+body.dark-mode #kim {
+    color: #f5f5f5 !important;
+}
+
+/* 4. SEVİYE: Özel Ayrıştırıcı Çizgiler ve Etiketler */
+body.dark-mode .kart-icerik {
+    border-color: rgb(134, 220, 84) !important;
+}
+body.dark-mode .bilgi-kutusu {
+    background-color: #333 !important;
+    border-radius: 10px;
+}
+
+/* 5. SEVİYE: Header, Footer ve Butonlar */
+body.dark-mode header {
+    background-color: rgba(18, 18, 18, 0.85) !important;
+}
+body.dark-mode header a,
+body.dark-mode header a li {
+    color: #f5f5f5 !important;
+}
+body.dark-mode footer {
+    background-color: #1a1a1a !important;
+}
+body.dark-mode footer p,
+body.dark-mode footer a {
+    color: #f5f5f5 !important;
+}
+body.dark-mode .konum-btn,
+body.dark-mode .geri-don-btn,
+body.dark-mode .bagisbt {
+    background-color: #2c2c2c !important;
+    color: #f5f5f5 !important;
+    border-color: rgb(134, 220, 84) !important;
+}
+
+/* Karanlık Mod Geçiş Butonu Tasarımı */
+#theme-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 9999;
+    border: 2px solid rgb(134, 220, 84);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.4) !important; /* Yarı saydam beyaz */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+#theme-toggle-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(134, 220, 84, 0.4);
+}
+
+/* ==========================================
+   HİKAYE VE AÇIKLAMA METİNLERİ İÇİN RENK DÜZELTMESİ
+========================================== */
+body.dark-mode .hikaye-bolumu p,
+body.dark-mode .detay-aciklama {
+    color: #f5f5f5 !important; /* Tertemiz, parlak beyaz/gri tonu */
+    font-weight: 500 !important; /* Okunabilirliği artırmak için çok hafif kalınlaştırma */
+}
+
+/* ==========================================
+   DUYURU METİNLERİ İÇİN KARANLIK MOD DÜZELTMESİ
+========================================== */
+body.dark-mode #kisa-duyuru-metni,
+body.dark-mode #tam-duyuru-metni,
+body.dark-mode .duyuru-tam-metin-alanı {
+    color: #f5f5f5 !important; /* Parlak beyaz/gri tonu */
+}
+
+/* ==========================================
+   FOOTER S.S.S. LİNKİ - İLETİŞİM BAŞLIĞI İLE EŞİT BOYDUTTA
+========================================== */
+.footer-sss-link {
+    font-size: 2em; /* İletişim yazısı ile birebir aynı boyut */
+    color: rgb(27, 27, 27);
+    font-weight: bold;
+    text-decoration: none;
+    padding-bottom: 5px;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.footer-sss-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px; 
+    bottom: 0;
+    left: 0;
+    background-color: rgb(134, 220, 84);
+    transition: width 0.3s ease;
+}
+
+.footer-sss-link:hover::after {
+    width: 100%;
+}
+
+/* Karanlık Mod Uyumu */
+body.dark-mode .footer-sss-link {
+    color: #f5f5f5 !important;
+}
+
+/* 404 sayfasındaki butonun ortalanması için özel ayar */
+.hata-kapsayici .katılbt {
+    position: static !important; /* Mutlak konumlandırmayı iptal eder */
+    margin: 0 auto; /* Yatayda ortalar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px; /* Metin sığsın diye genişlik bir tık artırıldı */
+    height: 55px;
+}
+
+/* SVG ELEMANLARININ GEÇİŞ AYARLARI */
+#main-circle, #mask-circle, #sun-rays {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+#theme-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: 2px solid rgb(134, 220, 84);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+/* Karanlık mod aktifken Güneş (Güneş parlaması için sarımsı bir ton) */
+body.dark-mode #theme-toggle-btn {
+    color: #ffce45;
+    border-color: #ffce45;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Aydınlık modda Ay (Gümüş rengi) */
+body:not(.dark-mode) #theme-toggle-btn {
+    color: #5c5c5c;
+}
+
+/* ==========================================
+   SAYFA GENELİ YUMUŞAK RENK GEÇİŞİ
+========================================== */
+
+/* Sayfadaki tüm renk değişim süreçlerini 0.8 saniyeye yayar */
+/* NOT: .hizmet-karti ve .proje-karti bu listeden ÇIKARILDI — kendi özel transition'ları var */
+body, 
+header, 
+footer, 
+.ekip-kart, 
+.buton, 
+#barbeyaz,
+#accessibility-panel {
+    transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease !important;
+}
+
+/* KARTLARın ÖZEL TRANSİTİONU:
+   — Dark mode renk geçişi YAVAŞ (0.8s)
+   — Hover hareketi (transform + box-shadow) HIZLI (0.3s) */
+.hizmet-karti,
+.proje-karti {
+    transition:
+        background-color 0.8s ease,
+        color 0.8s ease,
+        border-color 0.8s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease !important;
+}
+
+/* Harita ve görsellerin de bu yumuşaklığa uyum sağlaması için */
+#map, img {
+    transition: filter 0.8s ease !important;
+}
+
+/* ==========================================
+   KARANLIK MOD HEADER AYRIMI
+========================================== */
+body.dark-mode header {
+    background-color: rgba(18, 18, 18, 0.75) !important; /* Bir tık daha koyulaştırdık */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Çok ince, beyazımsı bir çizgi */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Header'ı sayfadan yükselten derin bir gölge */
+    backdrop-filter: blur(15px); /* Bulanıklığı bir tık artırdık */
+}
+
+/* Mevcut transition kodunu şu şekilde güncelleyin */
+body, header, footer {
+    transition: background-color 0.8s ease, 
+                color 0.8s ease, 
+                border-bottom 0.8s ease, 
+                box-shadow 0.8s ease !important;
+}
+
+/* ==========================================
+   PRELOADER (YÜKLEME EKRANI) STİLLERİ
+========================================== */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgb(254, 249, 241);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Geçiş süresi 0.4 saniye olarak sabitlendi */
+    transition: opacity 0.4s ease, visibility 0.4s ease !important;
+}
+
+.preloader-ic {
+    position: relative;
+    width: 240px;
+    height: 200px; 
+}
+
+/* ==========================================
+   TİTREMESİ KESİN OLARAK GİDERİLMİŞ LOGO
+========================================== */
+.yukleme-logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* Logoyu tam merkeze oturtur */
+    transform: translateX(-50%); 
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    
+    /* Anti-Aliasing (Kenar Titremesi) Önleyici */
+    outline: 1px solid transparent; 
+    transform-origin: center center;
+    will-change: transform, opacity;
+    
+    animation: nabizKilitli 1.5s infinite ease-in-out;
+}
+
+.yukleme-cubugu {
+    position: absolute;
+    bottom: 35px; /* Alttan 35px yukarıya sabit */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ilerleme {
+    width: 100%;
+    height: 100%;
+    background: rgb(134, 220, 84);
+    animation: dolum 2s infinite ease-in-out;
+    transform-origin: left;
+}
+
+.yukleme-metni {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Animasyonlar */
+@keyframes nabizKilitli {
+    0% { transform: translateX(-50%) scale3d(0.95, 0.95, 1); opacity: 0.8; }
+    50% { transform: translateX(-50%) scale3d(1.05, 1.05, 1); opacity: 1; }
+    100% { transform: translateX(-50%) scale3d(0.95, 0.95, 1); opacity: 0.8; }
+}
+
+@keyframes dolum {
+    0% { transform: scaleX(0); }
+    50% { transform: scaleX(1); }
+    100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* Karanlık Mod Desteği */
+body.dark-mode #preloader { background-color: #1e1e1e; }
+body.dark-mode .yukleme-cubugu { background: #333; }
+body.dark-mode .yukleme-metni { color: #bbb; }
+
+/* ==========================================
+   AKILLI BAŞA DÖN BUTONU (YENİ ZARİF TASARIM)
+========================================== */
+#basa-don-btn {
+    visibility: hidden; /* Başlangıçta tıklanmasını engeller */
+    opacity: 0; /* Tamamen saydam başlar */
+    position: fixed; 
+    bottom: 90px; 
+    right: 20px;
+    z-index: 999; 
+    background-color: white; 
+    color: rgb(134, 220, 84); /* İkon rengi (Dernek Yeşili) */
+    border: 2px solid rgb(134, 220, 84);
+    cursor: pointer; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Opacity dışındaki her şeye yumuşak geçiş veriyoruz */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.4) !important; /* Yarı saydam beyaz */
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+#basa-don-btn svg {
+    width: 22px;
+    height: 22px;
+    transition: stroke 0.3s ease;
+}
+
+/* Mouse ile üzerine gelince çalışacak görsel şölen */
+#basa-don-btn:hover {
+    background-color: rgb(134, 220, 84);
+    transform: translateY(-5px); /* Hafifçe yukarı zıplar */
+    box-shadow: 0 8px 20px rgba(134, 220, 84, 0.3);
+}
+
+#basa-don-btn:hover svg {
+    stroke: white; /* Zemin yeşil olunca ikon beyaza döner */
+}
+
+/* Gece Modu İçin Özel Uyum */
+body.dark-mode #basa-don-btn {
+    background-color: #1e1e1e;
+    border-color: #444;
+    color: #bbb;
+}
+body.dark-mode #basa-don-btn:hover {
+    background-color: rgb(134, 220, 84);
+    border-color: rgb(134, 220, 84);
+    color: white;
+}
+
+/* ==========================================
+   HAYAL AĞACI LOGO YAPRAK EFEKTİ
+========================================== */
+#isim_logo {
+    position: relative;
+    /* Yaprakların logonun dışına çok taşmasını engellersek overflow: hidden yapabiliriz, 
+       ama süzülerek kaybolmaları daha şık durduğu için böyle bırakıyoruz. */
+}
+
+.hayal-yaprak {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: rgb(134, 220, 84); /* Dernek Yeşili */
+    /* İşte kareyi yaprağa çeviren sihirli kod (Çapraz köşeleri yuvarla) */
+    border-radius: 0 14px 0 14px; 
+    opacity: 0;
+    pointer-events: none; /* Mouse ile tıklanmasını engeller, yazının üstünü kapatmaz */
+    z-index: 10;
+    /* İki animasyon aynı anda çalışır: Biri aşağı çeker, diğeri sağa sola sallar */
+    animation: yaprakDususu 4s linear forwards, yaprakRuzgari 1.5s ease-in-out infinite alternate;
+}
+
+/* Karanlık mod için yaprakları biraz daha canlı yapabiliriz */
+body.dark-mode .hayal-yaprak {
+    background-color: #9eea69;
+}
+
+@keyframes yaprakDususu {
+    0% { top: -10px; opacity: 0; }
+    15% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% { top: 80px; opacity: 0; } /* 80px aşağı inip kaybolur */
+}
+
+@keyframes yaprakRuzgari {
+    0% { transform: translateX(0) rotate(0deg); }
+    100% { transform: translateX(15px) rotate(60deg); }
+}
+
+/* ==========================================
+   ZİYARETÇİ KARŞILAMA TASARIMI
+========================================== */
+.karsilama-kutusu {
+    position: fixed;
+    bottom: -100px; /* Başlangıçta ekranın altında saklanır */
+    left: 20px;
+    background: white;
+    border-left: 5px solid rgb(134, 220, 84); /* Dernek Yeşili Vurgu */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    padding: 15px 25px;
+    border-radius: 8px;
+    z-index: 9998; 
+    transition: bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Yumuşak asansör efekti */
+    font-family: Arial, sans-serif;
+}
+
+.karsilama-icerik {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#karsilama-mesaji {
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.karsilama-kapat {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.karsilama-kapat:hover {
+    color: #d9534f; /* Üzerine gelince kırmızı olur */
+}
+
+/* Gece Modu Uyumu */
+body.dark-mode .karsilama-kutusu {
+    background: #2a2a2a;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+body.dark-mode #karsilama-mesaji {
+    color: #eee;
+}
+
+/* --- EKSİK OLAN BUTON HİZALAMA KODLARI --- */
+#dark-mode-toggle, #basa-don-btn {
+    position: fixed;
+    right:20px;/* Sağ kenara sabitle */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #eee;
+    background: white;
+    cursor: pointer;
+    z-index: 9999; /* Her şeyin üstünde dursun */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#dark-mode-toggle { 
+    bottom: 150px; /* Üstteki buton */
+    font-size: 1.4rem;
+}
+
+#basa-don-btn { 
+    bottom: 90px; /* Alttaki buton */
+    opacity: 0; 
+    visibility: hidden; /* JavaScript görünebilir yapana kadar gizli */
+}
+
+#basa-don-btn svg { 
+    width: 22px; 
+    height: 22px; 
+    color: rgb(134, 220, 84); 
+}
+
+/* Karanlık Modda Buton Renkleri */
+body.dark-mode #dark-mode-toggle, body.dark-mode #basa-don-btn {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+/* ==========================================
+   MÜZİK ÇALAR TASARIMI (SOL ALT)
+========================================== */
+#muzik-calar-kapsayici {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    /* İŞTE YENİ EKLENEN KOD: Müzik çaların yumuşakça inip çıkmasını sağlar */
+    transition: bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.muzik-kontroller {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgb(134, 220, 84);
+    border-radius: 50px;
+    padding: 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Karanlık Mod Uyumu */
+body.dark-mode .muzik-kontroller {
+    background: rgba(42, 42, 42, 0.9);
+    border-color: #444;
+}
+
+#oynat-duraklat-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: rgb(134, 220, 84);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#oynat-duraklat-btn:hover {
+    transform: scale(1.1);
+    background: #333;
+}
+
+body.dark-mode #oynat-duraklat-btn:hover {
+    background: rgb(134, 220, 84);
+}
+
+#oynat-duraklat-btn svg { width: 24px; height: 24px; }
+
+/* İlerleme Çubuğu Alanı (Başlangıçta kapalı) */
+#muzik-ilerleme-alani {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+/* Şarkı çalarken bar uzar ve görünür olur */
+#muzik-ilerleme-alani.acik {
+    width: 220px;
+    opacity: 1;
+    padding: 0 15px;
+}
+
+#gecen-sure, #kalan-sure {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: bold;
+}
+
+body.dark-mode #gecen-sure, body.dark-mode #kalan-sure { color: #bbb; }
+
+/* İlerleme Çubuğu (Zaman Çubuğu) */
+#ilerleme-cubugu {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+body.dark-mode #ilerleme-cubugu { background: #555; }
+
+#ilerleme-cubugu::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(134, 220, 84);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#ilerleme-cubugu::-webkit-slider-thumb:hover { transform: scale(1.4); }
+
+/* ==========================================
+   AKILLI TAKVİM VE TEMA SİSTEMİ
+   (Mevcut tüm kodlarla tam uyumlu eklenti)
+========================================== */
+
+/* === ÜSTTEN ŞERİT BANNER (#akilli-takvim-serit) === */
+/* ==========================================
+   AKILLI TAKVİM ŞERİDİ - KUSURSUZ BUZLU CAM
+========================================== */
+#akilli-takvim-serit {
+    width: 100%;
+    padding: 10px 22px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+    line-height: 1.4;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10001;
+    transition: background 0.5s ease, color 0.5s ease;
+
+    /* BUZLU CAMIN KALBİ (Doygunluk ve Bulanıklık Dengesi) */
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; /* Hafif bir derinlik */
+}
+
+/* Temalara Özel Renklendirilmiş Camlar (Saydamlık seviyeleri 0.5'e ayarlandı) */
+#akilli-takvim-serit.serit-milli { background: rgba(227, 10, 23, 0.5) !important; color: white; }
+#akilli-takvim-serit.serit-matem { background: rgba(26, 26, 26, 0.6) !important; color: #cfd8dc; }
+#akilli-takvim-serit.serit-doga  { background: rgba(46, 125, 50, 0.5) !important; color: white; }
+#akilli-takvim-serit.serit-vefa  { background: rgba(243, 156, 18, 0.5) !important; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+#akilli-takvim-serit.serit-beyza { background: rgba(96, 125, 139, 0.5) !important; color: white; }
+
+/* === TEMA-MİLLİ: Kırmızı / Beyaz (23 Nisan, 19 Mayıs, 15 Temmuz, 30 Ağustos, 29 Ekim) === */
+body.tema-milli:not(.dark-mode) {
+    background-color: #fff5f5 !important;
+}
+body.tema-milli:not(.dark-mode) header {
+    background-color: rgba(200, 30, 30, 0.13) !important;
+}
+#akilli-takvim-serit.serit-milli {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: #ffffff;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.35);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* === TEMA-MATEM: Siyah / Gri (6 Şubat, 12 Mart, 18 Mart, 17 Ağustos, 19 Eylül, 10 Kasım, 21 Aralık) === */
+body.tema-matem:not(.dark-mode) {
+    filter: grayscale(0.38) brightness(0.97) !important;
+}
+body.tema-matem:not(.dark-mode) header {
+    background-color: rgba(40, 40, 40, 0.2) !important;
+}
+#akilli-takvim-serit.serit-matem {
+    background: linear-gradient(135deg, #263238, #37474f);
+    color: #b0bec5;
+    border-bottom: 3px solid #546e7a;
+}
+
+/* === TEMA-DOGA: Yeşil tonları (Su, Çevre, Hayvanlar, Ağaçlandırma, Kütüphaneler...) === */
+body.tema-doga:not(.dark-mode) {
+    background-color: #e8f5e9 !important;
+}
+body.tema-doga:not(.dark-mode) header {
+    background-color: rgba(46, 125, 50, 0.11) !important;
+}
+#akilli-takvim-serit.serit-doga {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: #ffffff;
+    border-bottom: 3px solid #a5d6a7;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* === TEMA-VEFA: Krem / Sıcak (Anneler, Babalar, Emek, Kadınlar, Gönüllüler...) === */
+body.tema-vefa:not(.dark-mode) {
+    background-color: #fff8e1 !important;
+}
+body.tema-vefa:not(.dark-mode) header {
+    background-color: rgba(245, 127, 23, 0.1) !important;
+}
+#akilli-takvim-serit.serit-vefa {
+    background: linear-gradient(135deg, #e65100, #f57c00);
+    color: #ffffff;
+    border-bottom: 3px solid #ffcc80;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* === TEMA-BEYZA: Vakur soluk mavi-gri (12 Ağustos Özel Anma) === */
+body.tema-beyza:not(.dark-mode) {
+    background-color: #eceff1 !important;
+}
+body.tema-beyza:not(.dark-mode) header {
+    background-color: rgba(96, 125, 139, 0.15) !important;
+}
+#akilli-takvim-serit.serit-beyza {
+    background: linear-gradient(135deg, #455a64, #607d8b);
+    color: #cfd8dc;
+    border-bottom: 3px solid #90a4ae;
+}
+
+/* === KARANLIK MOD UYUMU: Tüm Tema Sınıfları === */
+/* Dark-mode aktifken tema filtresi devreye girmesin */
+body.dark-mode.tema-matem {
+    filter: none !important;
+}
+/* Tema renk override'ları dark-mode'da arka plana müdahale etmesin */
+body.dark-mode.tema-milli,
+body.dark-mode.tema-doga,
+body.dark-mode.tema-vefa,
+body.dark-mode.tema-beyza {
+    background-color: #121212 !important; /* dark-mode'un kendi rengi korunsun */
+}
+/* Header da dark-mode'da kendi stilini korusun */
+body.dark-mode.tema-milli header,
+body.dark-mode.tema-matem header,
+body.dark-mode.tema-doga header,
+body.dark-mode.tema-vefa header,
+body.dark-mode.tema-beyza header {
+    background-color: rgba(18, 18, 18, 0.85) !important;
+}
+
+/* === TAM EKRAN BALON ANİMASYONU (AŞAMA 1 — İlk 5 saniye) === */
+.akilli-balon-tam {
+    position: fixed;
+    bottom: -120px;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    pointer-events: none;
+    z-index: 9990;
+    will-change: transform, opacity;
+    animation: tamBalonUcus var(--sure, 5s) ease-in var(--gecikme, 0s) both;
+}
+
+/* Balon ipi */
+.akilli-balon-tam::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 20px;
+    background: rgba(80, 80, 80, 0.45);
+}
+
+@keyframes tamBalonUcus {
+    0%   { bottom: -120px; opacity: 0;    transform: translateX(0) rotate(var(--rot, 0deg)); }
+    18%  { opacity: 0.88; }
+    75%  { opacity: 0.82; }
+    100% { bottom: 115vh;  opacity: 0;    transform: translateX(var(--surus, 40px)) rotate(calc(var(--rot, 0deg) + 22deg)); }
+}
+
+/* === LOGO BALON ANİMASYONU (AŞAMA 2 — Sakin logo uçuşu) === */
+.logo-balon {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    pointer-events: none;
+    z-index: 20;
+    will-change: transform, opacity;
+    animation: logoBalonUcus var(--sure, 4s) ease-in var(--gecikme, 0s) both;
+}
+
+/* Balon ipi (logo balonları) */
+.logo-balon::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 14px;
+    background: rgba(80, 80, 80, 0.4);
+}
+
+@keyframes logoBalonUcus {
+    0%   { bottom: 0;     opacity: 0;    transform: translateX(0); }
+    20%  { opacity: 0.88; }
+    78%  { opacity: 0.7;  }
+    100% { bottom: 400px; opacity: 0;    transform: translateX(var(--surus, 25px)); }
+}
+
+/* ==========================================
+   2. SİSTEM: BUZLU CAM DOKUSU (GLASSMORPHISM)
+========================================== */
+
+/* Bu sınıfı hangi HTML etiketine eklerseniz, orası buzlu cama dönüşür */
+.buzlu-cam {
+    background: rgba(255, 255, 255, 0.4) !important; /* Yarı saydam beyaz */
+    backdrop-filter: blur(12px) saturate(150%); /* Arkasını bulanıklaştır ve renkleri canlandır */
+    -webkit-backdrop-filter: blur(12px) saturate(150%); /* Safari tarayıcı desteği */
+    border: 1px solid rgba(255, 255, 255, 0.5) !important; /* Camın kenarındaki ışık yansıması */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1) !important; /* Hafif derinlik gölgesi */
+    border-radius: 15px; /* Yumuşak köşeler */
+}
+
+/* Karanlık Modda Buzlu Cam (Füme Cam Efekti) */
+body.dark-mode .buzlu-cam {
+    background: rgba(30, 30, 30, 0.45) !important; /* Yarı saydam siyah/füme */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ==========================================
+   ALTERNATİF 1: OKUMA İLERLEME ÇUBUĞU
+========================================== */
+#okuma-cubugu-kapsayici {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Çizginin kalınlığı */
+    background-color: transparent;
+    z-index: 999999; /* Her şeyin üstünde olsun */
+    pointer-events: none;
+}
+
+#okuma-cubugu {
+    height: 100%;
+    width: 0%;
+    background-color: rgb(134, 220, 84); /* Dernek Yeşili */
+    box-shadow: 0 0 10px rgba(134, 220, 84, 0.6); /* Hafif parlama */
+    transition: width 0.1s ease-out; /* Pürüzsüz dolum efekti */
+}
+
+/* ==========================================
+   ALTERNATİF 2: RESİMLERDE NEFES EFEKTİ (DÜZELTİLMİŞ)
+========================================== */
+
+/* 1. Taşan kısımları gizle */
+.resim-alani, .kart-resim {
+    overflow: hidden !important;
+}
+
+/* 2. Geçiş komutu (Hakkımızda fotoğrafı bu gruptan ÇIKARILDI) */
+.resim-alani img, .kart-resim img {
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.7s ease !important;
+}
+
+/* 3. Farenin üzerine gelmesiyle çalışacak büyüme motoru (Hakkımızda fotoğrafı ÇIKARILDI) */
+.proje-karti:hover .resim-alani img, 
+.kutuphane-karti:hover .kart-resim img {
+    transform: scale(1.1) !important; /* %10 oranında içe doğru büyütür */
+    filter: brightness(1.15) !important; /* %15 oranında parlatır */
+}
+
+/* ==========================================
+   4. SİSTEM: SAYFA ARASI PÜRÜZSÜZ GEÇİŞ
+========================================== */
+.sayfa-gecis-perdesi {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(254, 249, 241); /* Sitenizin krem rengi */
+    z-index: 9999999; /* Her şeyin, yükleme ekranının bile üstünde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transform: translateY(100%); /* Başlangıçta ekranın en altında saklı durur */
+}
+
+/* Geçiş sırasında ortada belirecek logo */
+.sayfa-gecis-logo {
+    width: 90px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Perde ekranı kapladığında logoyu büyüt */
+.sayfa-gecis-perdesi.aktif .sayfa-gecis-logo {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.3s;
+}
+
+/* ==========================================
+   YÜKLEME EKRANI HIZ VE KAYMA ÇÖZÜMÜ
+========================================== */
+#preloader {
+    /* Geçişi 0.6 saniyeden 0.3 saniyeye hızlandırıyoruz */
+    transition: opacity 0.3s ease, visibility 0.3s ease !important; 
+    pointer-events: all; /* Normalde tıklamaları tutar */
+}
+
+/* display:none yerine bu "hayalet" sınıfı kullanacağız */
+.gizli-loader {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    /* Sistemsel çakışmayı önlemek için eklenen zorunlu gizleme */
+    display: none !important; 
+}
+
+body.dark-mode #preloader { background-color: #1e1e1e; }
+
+/* TAM EKRAN MENÜ VE ÇARPI DÖNÜŞÜMÜ */
+#hamburger-btn {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 22px;
+    position: relative;
+    z-index: 100001;
+}
+
+#hamburger-btn .cizgi {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 9px;
+    left: 0;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#hamburger-btn .cizgi:nth-child(1) { top: 0px; }
+#hamburger-btn .cizgi:nth-child(2) { top: 9px; }
+#hamburger-btn .cizgi:nth-child(3) { top: 18px; }
+
+/* Çarpı (X) Durumu */
+#hamburger-btn.aktif .cizgi:nth-child(1) { top: 9px; transform: rotate(135deg); }
+#hamburger-btn.aktif .cizgi:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+#hamburger-btn.aktif .cizgi:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+/* TAM EKRAN MENÜ AYARI */
+#tam-ekran-menu {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh;
+    z-index: 99998; /* Header'dan daha düşük kalmalı */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.4s ease;
+    background: rgba(254, 249, 241, 0.98); 
+    backdrop-filter: blur(15px);
+}
+
+#tam-ekran-menu.acik { opacity: 1; visibility: visible; }
+#tam-ekran-menu ul { list-style: none; padding: 0; text-align: center; display: flex; flex-direction: column; gap: 25px; }
+#tam-ekran-menu a { text-decoration: none; color: rgb(27, 27, 27); font-size: 2.2rem; font-weight: bold; transform: translateY(50px); opacity: 0; transition: all 0.4s ease; }
+#tam-ekran-menu.acik a { transform: translateY(0); opacity: 1; transition-delay: calc(0.1s * var(--i)); }
+
+/* Telefonda eski menüyü gizle, butonu göster */
+@media (max-width: 900px) {
+    header nav { display: none !important; }
+    #hamburger-btn { display: block; }
+}
+
+body.dark-mode #hamburger-btn .cizgi { background-color: #f5f5f5; }
+body.dark-mode #tam-ekran-menu { background: rgba(30, 30, 30, 0.95); }
+body.dark-mode #tam-ekran-menu a { color: #f5f5f5; }
+
+/* ==========================================
+   6. SİSTEM: KUSURSUZ MOBİL UYUM (RESPONSIVE)
+========================================== */
+
+/* Ekran boyutu 900px ve altındayken (Tablet ve Telefonlar) bu kurallar geçerli olur */
+@media (max-width: 900px) {
+    
+    /* 1. ANA EKRAN (Yazı ve Resim Yan Yana Değil, Alt Alta Olsun) */
+    #anasayfa {
+        flex-direction: column !important; /* Alt alta diz */
+        height: auto !important; /* Yüksekliği serbest bırak ki taşmasın */
+        margin-bottom: 30px !important;
+    }
+
+    #katıl {
+        width: 100% !important; /* Tam ekran genişliği */
+        border-radius: 20px 20px 0 0 !important; /* Sadece üst köşeleri yuvarla */
+        padding-bottom: 30px !important;
+        position: relative !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #anaresim {
+        width: 100% !important;
+        height: 300px !important; /* Telefondaki resmi biraz kısalt */
+        border-radius: 0 0 20px 20px !important; /* Sadece alt köşeleri yuvarla */
+        border-left: none !important;
+        border-top: double rgb(134, 220, 84) 10px !important; /* Çizgiyi üste al */
+    }
+
+    /* 2. ANA EKRAN BUTONLARI (Bağış ve Gönüllü Butonları) */
+    /* Havada asılı kalıp birbirine girmemeleri için sabitliyoruz */
+    #katıl .bagisbt, #katıl .katılbt {
+        position: static !important; 
+        width: 80% !important;
+        margin: 10px auto !important;
+        display: block !important;
+    }
+
+    #katıl p {
+        font-size: 2.2rem !important; /* Mobilde fontu küçült */
+        margin-left: 0 !important;
+        padding: 0 15px;
+    }
+
+    /* 3. SKOR TABLOSU (Yan yana 4'lü yerine, 2x2 Kare Şeklinde Olsun) */
+    #skortablosu {
+        flex-wrap: wrap !important; /* Sığmayanları alta at */
+        height: auto !important;
+        margin-top: 40px !important;
+        margin-right: 0 !important;
+        padding: 0 10px;
+    }
+    .skor {
+        width: 50% !important; /* Her biri ekranın yarısını kaplasın (2x2 olur) */
+        margin-bottom: 30px !important;
+    }
+    .veri { font-size: 3rem !important; right: 0 !important; }
+    .veri_aciklamasi { font-size: 1.5rem !important; line-height: 1.2 !important; }
+
+    /* 4. EN ALTTAKİ 3'LÜ BUTON TABLOSU (Alt alta diz) */
+    #buton_tablosu {
+        flex-direction: column !important;
+        height: auto !important;
+        align-items: center !important;
+    }
+    .buton {
+        width: 90% !important;
+        font-size: 22px !important;
+        padding: 15px 0 !important;
+        margin: 10px 0 !important;
+    }
+
+    /* 5. METİNLER VE GÖLGELERİ TOPARLAMA */
+    .hizmet_baslik, .kbaslik {
+        font-size: 2rem !important;
+        padding: 15px !important;
+        text-align: center !important;
+        margin-left: 0 !important;
+    }
+    
+    #kim {
+        font-size: 1.2rem !important;
+        width: 100% !important;
+        padding: 0 20px !important;
+        text-align: justify !important;
+    }
+
+    /* 6. HAKKIMIZDA FOTOĞRAFI */
+    #hakkimizda_resim_alani {
+        width: 90% !important;
+        margin: 40px auto !important;
+    }
+    #foto_arkaplan {
+        top: 15px !important;
+        left: 15px !important;
+    }
+}
+
+/* ==========================================
+           AKILLI VİDEO OYNAT BUTONU VE HOVER EFEKTİ
+        ========================================== */
+        .zarif-oynat-butonu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65px;
+            height: 65px;
+            /* Derneğe yakışır premium buzlu cam efekti */
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3; 
+            pointer-events: none; /* Farenin tıklamasını engellemez, altındaki karta geçirir */
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Oynat (Üçgen) İkonu */
+        .zarif-oynat-butonu svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+            margin-left: 4px; /* Üçgeni tam merkeze oturtmak için optik düzeltme */
+            transition: transform 0.3s ease;
+        }
+
+        /* Fare üzerine gelince video oynarken butonun büyüterek erimesi (Sihir burada) */
+        .medya-karti:hover .zarif-oynat-butonu {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        /* Video hover halindeyken overlay kararmaz, netleşir */
+        .medya-karti.video-karti:hover .medya-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        /* ==========================================
+   LITE MOD (SADECE AĞIR YÜKLERİ KAPATIR)
+========================================== */
+
+/* 1. Sadece cihazı kasan buzlu cam (blur) efektini iptal eder. Geçişlere ve gölgelere dokunmaz. */
+body.lite-mod * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 2. İşlemciyi sürekli meşgul eden "Sonsuz Dönen Yazı" animasyonlarını gizler */
+body.lite-mod .header-donen-metin,
+body.lite-mod .logo-donen-yazi,
+body.lite-mod .kinetik-rozet { 
+    display: none !important; 
+}
+
+/* 3. Menü veya Header açıldığında, cam efekti olmadığı için okunabilirliği sağlamak adına düz renk atar */
+body.lite-mod #tam-ekran-menu,
+body.lite-mod header {
+    background-color: rgba(254, 249, 241, 0.98) !important;
+}
+
+/* 4. Videolar arka planda durdurulduğu için oynat butonunu da gizler (resim gibi kalır) */
+body.lite-mod .zarif-oynat-butonu { 
+    display: none !important; 
+}
+
+/* ==========================================
+           YOUTUBE STİLİ YÜKLEME (BUFFER) ÇUBUĞU
+        ========================================== */
+        .video-ilerleme-alani {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px; /* Çizginin kalınlığı */
+            background: rgba(255, 255, 255, 0.2); /* Arka plan saydamlığı */
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Kartın üzerine gelince çubuk görünür olsun */
+        .medya-karti.video-karti:hover .video-ilerleme-alani {
+            opacity: 1;
+        }
+
+        /* İnen veriyi gösteren beyaz dolum kısmı */
+        .video-tampon-cubugu {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            width: 0%; /* Başlangıçta sıfır */
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            transition: width 0.2s linear;
+        }
+
+        /* LITE MOD İSTEĞE BAĞLI İNDİRME BUTONU */
+.lite-indir-btn {
+    display: none; /* Normalde gizli */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgb(134, 220, 84);
+    color: rgb(27, 27, 27);
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Sadece Lite Mod aktifse butonu göster */
+body.lite-mod .lite-indir-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.lite-mod .lite-indir-btn:hover {
+    background: rgb(134, 220, 84);
+    color: white;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Lite moddayken videoyu indirilene kadar gizle veya flu yap */
+body.lite-mod .medya-karti video {
+    filter: blur(10px) grayscale(100%);
+    opacity: 0.5;
+}
+
+/* Video yüklenince her şeyi normale döndür */
+.medya-karti.yuklendi video {
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* ==========================================
+   DİL DEĞİŞTİRİCİ BUTONU
+========================================== */
+#dil-btn {
+    position: fixed;
+    top: 15px;
+    right: 80px;
+    background: rgb(134, 220, 84);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 100006;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 1px;
+}
+#dil-btn:hover {
+    background: rgb(100, 190, 55);
+    transform: scale(1.05);
+}
+@media (max-width: 900px) {
+    #dil-btn { right: 60px; top: 18px; padding: 5px 11px; font-size: 0.8rem; }
+}
+
+/* ==========================================
+   LITE MOD VE KARANLIK MOD ÇAKIŞMA ÇÖZÜMÜ
+========================================== */
+body.lite-mod.dark-mode header,
+body.lite-mod.dark-mode #tam-ekran-menu {
+    background-color: rgb(22, 22, 22) !important; /* Karanlık moda uygun koyu arka plan */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Çakışmadan dolayı oluşabilecek parlama gölgelerini kapatır */
+body.lite-mod.dark-mode header {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* HEADER'I LITE MOD KISITLAMASINDAN KURTARMA */
+body.lite-mod header {
+    backdrop-filter: blur(15px) !important; /* Buğuyu zorla açık tutar */
+    -webkit-backdrop-filter: blur(15px) !important;
+    background-color: rgba(255, 255, 255, 0.65) !important; /* Hafif saydam beyaz */
+}
+
+/* Karanlık Modda da buğu bozulmasın */
+body.lite-mod.dark-mode header {
+    background-color: rgba(18, 18, 18, 0.75) !important; /* Hafif saydam siyah */
+}
+
+/* =============================================
+   MOBİL KATIL BÖLÜMÜ - TEMİZ YENİDEN YAZIM
+   Sadece 900px altındaki ekranlar için geçerli
+   ============================================= */
+@media (max-width: 900px) {
+
+    /* 1. Ana çerçeve: dikey dizilim, kenarlara nefes */
+    #anasayfa {
+        flex-direction: column !important;
+        height: auto !important;
+        margin-left: 3% !important;
+        margin-right: 3% !important;
+        margin-bottom: 30px !important;
+    }
+
+    /* 2. Sol panel (katıl kutusu): tam genişlik, ortalanmış */
+    #katıl {
+        width: 100% !important;
+        border-radius: 20px 20px 0 0 !important;
+        padding: 25px 20px 30px 20px !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Logo + "Hayal Ağacı Derneği" satırı: alt alta hizala */
+    #logo_baslik_yan_yana {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+
+    /* 4. Logo boyutu küçült */
+    #katıl #logo {
+        width: 80px !important;
+        height: 80px !important;
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 5. "Hayal Ağacı Derneği" yazısı: taşmasın */
+    .ny {
+        font-size: 1.35em !important;
+        margin-left: 0 !important;
+        text-align: center !important;
+        word-break: break-word !important;
+        padding: 0 10px !important;
+    }
+
+    /* 6. "Sizlerde bize katılabilirsiniz" paragrafı: taşmasın */
+    #katıl p {
+        font-size: 1.5rem !important;
+        margin-left: 0 !important;
+        padding: 12px 15px 22px 15px !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+        line-height: 1.4 !important;
+        hyphens: auto !important;
+    }
+
+    /* 7. Butonlar: position:absolute'u iptal et, eşit boyut, alt alta */
+    .bagisbt, .katılbt {
+        position: static !important;
+        display: block !important;
+        width: 78% !important;
+        max-width: 290px !important;
+        height: 52px !important;
+        margin: 8px auto !important;
+        font-size: 1.1rem !important;
+        border-radius: 12px !important;
+        left: unset !important;
+        top: unset !important;
+    }
+
+    /* 8. Fotoğraf bölümü: alta geç, düzgün kırp */
+    #anaresim {
+        width: 100% !important;
+        height: 250px !important;
+        border-radius: 0 0 20px 20px !important;
+        border-left: none !important;
+        border-top: double rgb(134, 220, 84) 10px !important;
+        object-fit: cover !important;
+    }
+}
+
+/* =============================================
+   MOBİL EK DÜZELTMELER - 2. PAKET
+   ============================================= */
+@media (max-width: 900px) {
+
+    /* 1. BAĞIŞ YAP BUTONU EŞİTLEME
+       (Daha güçlü seçici ile override) */
+    #anasayfa .bagisbt,
+    #anasayfa .katılbt,
+    .bagisbt,
+    .katılbt {
+        position: static !important;
+        display: block !important;
+        width: 78% !important;
+        max-width: 290px !important;
+        min-width: 200px !important;
+        height: 52px !important;
+        margin: 8px auto !important;
+        font-size: 1.1rem !important;
+        border-radius: 12px !important;
+        left: unset !important;
+        top: unset !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. MOBİLDE DOKUNMATIK ANİMASYON
+       (:hover mobilde çalışmaz, :active kullanıyoruz) */
+    .bagisbt:active {
+        transform: translateY(-2px) scale(1.03) !important;
+        background-color: rgb(134, 220, 84) !important;
+        color: white !important;
+        box-shadow: 0 8px 18px rgba(134, 220, 84, 0.35) !important;
+        transition: all 0.15s ease !important;
+    }
+
+    .katılbt:active {
+        transform: translateY(-2px) scale(1.03) !important;
+        background-color: rgb(100, 190, 55) !important;
+        box-shadow: 0 8px 18px rgba(134, 220, 84, 0.35) !important;
+        transition: all 0.15s ease !important;
+    }
+
+    /* Skor ve diğer butonlar için de dokunmatik animasyon */
+    .buton:active {
+        transform: translateY(-3px) !important;
+        background-color: red !important;
+        color: white !important;
+    }
+
+    /* Hizmet kartları - dokunmatik basma efekti */
+    .hizmet-karti:active {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12) !important;
+        transition: all 0.15s ease !important;
+    }
+
+    /* 3. KATIL BÖLÜMÜ 5PX AŞAĞI
+       (Header örtüşmesini gidermek için) */
+    #anasayfa {
+        margin-top: 30px !important;
+    }
+}
+
+/* MOBİL İÇİN MEDYA KARTI SIĞDIRMA */
+        @media (max-width: 900px) {
+            .galeri-izgarasi {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ==========================================
+   GALERİ MOBİL TAŞMA KESİN ÇÖZÜMÜ
+========================================== */
+@media (max-width: 900px) {
+    .galeri-izgarasi {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Kartları tek sütuna zorlar */
+        width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    .medya-karti {
+        width: 100% !important; /* Kartın dışarı taşmasını yasaklar */
+        max-width: 100% !important;
+    }
+}
+
+.iban-no {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgb(27, 27, 27);
+            letter-spacing: 1px;
+            word-break: normal; /* Kelimenin ortadan bölünmesini engeller */
+            overflow-wrap: break-word; /* Sadece uzun bir bütünse alt satıra geçirir */
+        }
+        /* Adres satırını alt alta gelecek şekilde güncelledik */
+.adres-satir {
+    display: flex;
+    flex-direction: column; /* Yan yana yerine alt alta dizilim */
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.tesekkur-notu p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    /* Metni kutu içinde dengeli tutar ve dışarı taşan kelimeleri alt satıra atar */
+    overflow-wrap: anywhere; 
+    text-align: center;
+}
+
+/* E-posta adresinin rengini ve duruşunu belirginleştirir */
+.tesekkur-notu strong {
+    color: rgb(134, 220, 84);
+    display: inline-block; /* Adresin bir bütün olarak hareket etmesine yardımcı olur */
+}
+
+/* ==========================================
+   PROJE KARTLARI SİMETRİ VE EŞİT BOY AYARI
+========================================== */
+/* Tıklanabilir linklerin grid yüksekliğini tam kaplamasını zorlar */
+.proje-izgarasi > a {
+    display: flex !important;
+    height: 100%;
+}
+
+/* Tüm kartların yüksekliğini %100 yaparak birbirine eşitler */
+.proje-karti {
+    height: 100% !important;
+    width: 100%;
+}
+
+/* Metin kısa da olsa uzun da olsa, 'Durum' etiketini her zaman kartın en dibine yapıştırır */
+.proje-durum {
+    margin-top: auto !important;
+}
+
+/* ==========================================
+   AKILLI TAKVİM İÇİN SAYFA İTME DÜZELTMESİ
+========================================== */
+
+/* Menünün her koşulda ekranın en üstüne yapışık kalmasını kesinleştiriyoruz */
+header {
+    top: 0 !important;
+}
+
+/* Şerit çıktığında tüm sayfayı şerit boyu kadar aşağı iter */
+body.tema-milli,
+body.tema-matem,
+body.tema-doga,
+body.tema-vefa,
+body.tema-beyza {
+    padding-top: 38px !important;
+}
+
+/* Telefonlarda metin alt satıra geçebileceği için itme payını artırıyoruz */
+@media (max-width: 900px) {
+    body.tema-milli,
+    body.tema-matem,
+    body.tema-doga,
+    body.tema-vefa,
+    body.tema-beyza {
+        padding-top: 68px !important; 
+    }
+}

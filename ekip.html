@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekibimiz - Hayal Ağacı Derneği</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ekip Sayfasına Özel Ek Stiller */
+        .ekip-sayfa-kapsayici {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 160px 20px 60px 20px; /* Header altında kalmaması için */
+            min-height: 80vh;
+        }
+        .ekip-hiyerarsi {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+        .ekip-satir {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+        }
+        .ekip-kart {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .ekip-kart:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(134, 220, 84, 0.3);
+        }
+        .profil-daire {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid rgb(134, 220, 84);
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+        .profil-daire img { width: 100%; height: 100%; object-fit: cover; }
+        .ekip-kart h3 { margin: 10px 0 5px 0; color: #333; font-size: 1.3rem; }
+        .ekip-kart span { color: rgb(134, 220, 84); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        
+        body.dark-mode .ekip-kart { background: #2a2a2a; }
+        body.dark-mode .ekip-kart h3 { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('preloader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    });
+    
+    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
+    setTimeout(function() {
+        var loader = document.getElementById('preloader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    }, 5000);
+</script>
+    
+    <header>
+    <div id="header0">
+        <div id="isim_logo">
+            <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+            <h1>Hayal Ağacı Derneği</h1>
+        </div>
+        
+        <div class="nav-kontrol">
+            <nav>
+                <ul>
+                    <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                    <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                    <a href="iletisim.html"><li>İletişim</li></a>
+                </ul>
+            </nav>
+            <button id="dil-btn">EN</button>
+        </div>
+
+        <div id="hamburger-btn">
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
+        </div>
+    </div>
+</header>
+
+    <div class="ekip-sayfa-kapsayici">
+        <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;" data-tr="Yönetim Kurulu ve Ekibimiz" data-en="Board of Directors and Our Team">Yönetim Kurulu ve Ekibimiz</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 50px;" data-tr="Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız." data-en="Our companions with whom we build the future together.">Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız.</p>
+
+        <div class="ekip-hiyerarsi">
+            <div class="ekip-satir">
+                <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+                    <div class="profil-daire">
+                        <img src="source\Ekip\WhatsApp Image 2026-04-22 at 09.42.46.jpeg" alt="Yusufcan Bektaş">
+                    </div>
+                    <h3>Yusufcan Bektaş</h3>
+                    <span>Dernek Başkanı</span>
+                </div>
+            </div>
+            <div class="ekip-hiyerarsi">
+
+    <div class="ekip-satir">
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/buse_sema.jpg" alt="Buse Sema Tekdal">
+            </div>
+            <h3>Buse Sema Tekdal</h3>
+            <p class="ekip-unvan">Başkan Yardımcısı</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/abuzer_kaya.jpg" alt="Abuzer Kaya">
+            </div>
+            <h3>Abuzer Kaya</h3>
+            <p class="ekip-unvan">Başkan Yardımcısı</p>
+        </div>
+    </div>
+
+    <div class="ekip-satir">
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/onur_turan.jpg" alt="Onur Turan">
+            </div>
+            <h3>Onur Turan</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/enes_saygilier.jpg" alt="Enes Saygılıer">
+            </div>
+            <h3>Enes Saygılıer</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/yusuf_safa.jpg" alt="Yusuf Safa Yılmaz">
+            </div>
+            <h3>Yusuf Safa Yılmaz</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/osman_erturk.jpg" alt="Osman Ertürk">
+            </div>
+            <h3>Osman Ertürk</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/ihsan_tasan.jpg" alt="İhsan Taşan">
+            </div>
+            <h3>İhsan Taşan</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/taha_coban.jpg" alt="Taha Çoban">
+            </div>
+            <h3>Taha Çoban</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/beyza_irfanoglu.jpg" alt="Beyza İrfanoğlu">
+            </div>
+            <h3>Beyza İrfanoğlu</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/gamze_cevik.jpg" alt="Gamze Çevik">
+            </div>
+            <h3>Gamze Çevik</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/betul_ozkalan.jpg" alt="Betül Özkalan">
+            </div>
+            <h3>Betül Özkalan</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/gazi_eren.jpg" alt="Gazi Eren Özer">
+            </div>
+            <h3>Gazi Eren Özer</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/zeynal_abidin.jpg" alt="Zeynal Abidin Bektaş">
+            </div>
+            <h3>Zeynal Abidin Bektaş</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/ezgi_bektas.jpg" alt="Ezgi Bektaş">
+            </div>
+            <h3>Ezgi Bektaş</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/miray_zeliha.jpg" alt="Miray Zeliha Yücetaş">
+            </div>
+            <h3>Miray Zeliha Yücetaş</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/berivan_kaya.jpg" alt="Berivan Kaya">
+            </div>
+            <h3>Berivan Kaya</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+
+        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
+            <div class="profil-daire">
+                <img src="source/Ekip/baris_tastan.jpg" alt="Barış Taştan">
+            </div>
+            <h3>Barış Taştan</h3>
+            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+        </div>
+    </div>
+</div>
+            
+            </div>
+        </div>
+    </div>
+
+    <footer id="iletisim">
+        <p id="iletisim0">İletişim</p>
+        <div id="iconlar">
+    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+    </a>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+    </a>
+</div>
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
+        </div>
+        <p id="hak">Hayal Ağacı Derneği &copy Tüm hakları saklıdır</p>
+        <p id="credit">Onur TURAN tarafından yapılmıştır</p>
+    </footer>
+
+    <script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+    <script src="site.js"></script>
+</body>
+</html>

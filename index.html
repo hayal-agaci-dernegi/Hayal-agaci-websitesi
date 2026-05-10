@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Hayal Ağacı Derneği - Umut Yeşertiyoruz</title>
+    
+    <meta name="description" content="Deprem bölgelerinde ve ihtiyaç duyulan okullarda kütüphaneler kurarak çocuklarımıza aydınlık bir gelecek sunuyoruz. Hayallerine ortak olun.">
+    <meta name="keywords" content="Hayal Ağacı Derneği, Adıyaman kütüphane, deprem bölgesi kitap bağışı, köy okullarına kütüphane, kitap bağışı, konteyner kent eğitim, gönüllü ol, Enkaz Kütüphanesi">
+    <meta name="author" content="Hayal Ağacı Derneği">
+    
+    <meta property="og:url" content="https://www.hayalagaci.com/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hayal Ağacı Derneği - Umut Yeşertiyoruz">
+    <meta property="og:description" content="Kütüphaneler kurarak çocuklarımızın hayallerini yeşertiyoruz. Siz de bize katılın.">
+    <meta property="og:image" content="https://www.hayalagaci.com/source/ha/ha_logo_lr.png">
+
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_lr.png">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+    
+    <header>
+    <div id="header0">
+        <div id="isim_logo">
+            <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+            <h1>Hayal Ağacı Derneği</h1>
+        </div>
+        
+        <div class="nav-kontrol">
+            <nav>
+                <ul>
+                    <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                    <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                    <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                </ul>
+            </nav>
+            <button id="dil-btn">EN</button>
+        </div>
+
+        <div id="hamburger-btn">
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
+        </div>
+    </div>
+</header>
+
+    <div id="barbeyaz"></div>
+
+    <div>
+        <div id="anasayfa">
+            <div id="katıl">
+                <div id="logo_baslik_yan_yana">
+                    <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                    <h2 class="ny">Hayal Ağacı DERNEĞİ</h2>
+                </div>
+                <p data-tr="Sizlerde Bize Katılabilirsiniz" data-en="You Can Join Us Too">Sizlerde Bize Katılabilirsiniz</p>
+                <a href="iletisim.html" style="text-decoration:none;">
+    <button class="bagisbt" data-tr="İletişim" data-en="Contact">İletişim</button>
+</a>
+                <button class="katılbt" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeXI-T2nXzO6ZOW5DndTx9CkO-8ro7R8r-aQfTdxt34Hbq1Rw/viewform', '_blank')" data-tr="Gönüllü Ol" data-en="Volunteer">Gönüllü Ol</button>
+            </div> 
+            <img src="source/ha/ha4.JPG" alt="kulaklık resmi" id="anaresim">
+        </div>
+    </div>
+
+    <div id="duyuru-kart-sistemi" style="display: none;">
+        <details class="duyuru-akordeon">
+            <summary class="duyuru-ozet">
+                <div class="duyuru-baslik-alanı">
+                    <div class="duyuru-can-konteynir">
+                        <span class="duyuru-can">🔔</span>
+                        <span class="duyuru-can-dalga"></span>
+                    </div>
+                    <p id="kisa-duyuru-metni"></p>
+                </div>
+                <span class="acilis-oku">▼</span>
+            </summary>
+            <div class="duyuru-tam-metin-alanı">
+                <p id="tam-duyuru-metni"></p>
+            </div>
+        </details>
+    </div>
+
+    <div id="hakkimizda_ust"></div>
+    <section id="hakkimizda">
+        <h2 class="hizmet_baslik" data-tr="Hakkımızda" data-en="About Us">Hakkımızda</h2>
+        <div id="paragraf">
+           <p id="kim" 
+               data-tr="6 Şubat depreminde başucunda kitabıyla vefat eden arkadaşımızın kütüphane hayalini gerçekleştirmek için enkazdan kitaplar toplayarak yola çıktık. <br> Gönüllülerimizin desteğiyle büyüyen bu projede, kaybettiğimiz dostlarımızın anısını kütüphane raflarına isimlerini vererek yaşatıyoruz. <br> Bugüne kadar Adıyaman'daki birçok konteyner kentte kütüphaneler açtık. Ayrıca Merkez Halk Kütüphanesi'nde, vefat eden üniversiteli arkadaşlarımızın isimlerini taşıyan &quot;Enkaz Ağacı&quot; büstünün yer aldığı &quot;Enkaz Kütüphanesi&quot;ni kurduk." 
+               data-en="We set out by collecting books from the rubble to realize the library dream of our friend who passed away with a book by her bedside in the February 6th earthquake. <br> In this project, which grew with the support of our volunteers, we keep the memory of our lost friends alive by naming library shelves after them. <br> To date, we have opened libraries in many container cities in Adıyaman. Additionally, we established the 'Rubble Library' in the Central Public Library, featuring the 'Rubble Tree' bust bearing the names of our university friends who lost their lives.">
+                6 Şubat depreminde başucunda kitabıyla vefat eden arkadaşımızın kütüphane hayalini gerçekleştirmek için enkazdan kitaplar toplayarak yola çıktık. <br> Gönüllülerimizin desteğiyle büyüyen bu projede, kaybettiğimiz dostlarımızın anısını kütüphane raflarına isimlerini vererek yaşatıyoruz. <br> Bugüne kadar Adıyaman'daki birçok konteyner kentte kütüphaneler açtık. Ayrıca Merkez Halk Kütüphanesi'nde, vefat eden üniversiteli arkadaşlarımızın isimlerini taşıyan "Enkaz Ağacı" büstünün yer aldığı "Enkaz Kütüphanesi"ni kurduk.
+            </p>
+            
+            <div id="hakkimizda_resim_alani">
+                <div id="foto_arkaplan"></div>
+                <img src="source/ha/ha15.jpeg" alt="hakkımızda" id="hakkimizda_resim">
+            </div>
+
+        </div>
+
+        <div id="skortablosu">
+            <div class="skor">
+                <p class="veri"><span class="sayac" data-hedef="94">0</span>+</p>
+                <p class="veri_aciklamasi" data-tr="Gönüllü" data-en="Volunteers">Gönüllü</p>
+            </div>
+            <div class="skor">
+                <p class="veri"><span class="sayac" data-hedef="62">0</span>+</p>
+                <p class="veri_aciklamasi" data-tr="Kütüphane" data-en="Libraries">Kütüphane</p>
+            </div>
+            <div class="skor">
+                <p class="veri"><span class="sayac" data-hedef="79">0</span>+</p>
+                <p class="veri_aciklamasi" data-tr="Okul Ziyareti" data-en="School Visits">Okul Ziyareti</p>
+            </div>
+            <div class="skor">
+                <p class="veri"><span class="sayac" data-hedef="420000">0</span>+</p>
+                <p class="veri_aciklamasi" data-tr="Kitap Dağıtımı" data-en="Books Donated">Kitap Dağıtımı</p>
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <img class="item item1" src="source/ha/ha02.jpeg" alt="">
+            <img class="item item2" src="source/ha/ha11.jpeg" alt="">
+            <img class="item item3" src="source/ha/ha2.JPG" alt="">
+            <img class="item item4" src="source/ha/ha6.JPG" alt="">
+            <img class="item item5" src="source/ha/ha7.JPG" alt="">
+            <img class="item item6" src="source/ha/ha01.jpeg" alt="">
+            <img class="item item7" src="source/ha/ha12.jpeg" alt="">
+            <img class="item item8" src="source/ha/ha04.jpeg" alt="">
+            <img class="item item9" src="source/ha/ha05.jpeg" alt="">
+            <img class="item item10" src="source/ha/ha13.jpeg" alt="">
+            <img class="item item11" src="source/ha/ha06.jpeg" alt="">
+            <img class="item item12" src="source/ha/ha07.jpeg" alt="">
+            <img class="item item13" src="source/ha/ha09.jpeg" alt="">
+            <img class="item item14" src="source/ha/ha14.jpeg" alt="">
+            <img class="item item15" src="source/ha/ha03.jpeg" alt="">
+            <img class="item item16" src="source/ha/ha08.jpeg" alt="">
+            <img class="item item17" src="source/ha/ha10.jpeg" alt="">
+            <img class="item item18" src="source/ha/ha3.JPG" alt="">
+        </div>
+        
+        <div id="hakkimizda_alt"></div>
+    </section>
+
+    <section id="butonlar">
+        <section id="hizmetlerimiz" class="gizli">
+            <h2 class="hizmet_baslik" data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</h2>
+            <div class="hizmet-izgarasi">
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="25" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <h3 data-tr="Kütüphane Kurulumu" data-en="Library Installation">Kütüphane Kurulumu</h3>
+                    <p data-tr="Deprem bölgelerinde ve ihtiyaç olan okullarda kütüphaneler kuruyoruz. Her kütüphaneye kaybettiğimiz dostlarımızın isimlerini vererek anılarına yaşatıyoruz." 
+               data-en="We establish libraries in earthquake zones and schools in need. We keep the memories of our lost friends alive by giving their names to each library.">
+                Deprem bölgelerinde ve ihtiyaç olan okullarda kütüphaneler kuruyoruz. Her kütüphaneye kaybettiğimiz dostlarımızın isimlerini vererek anılarına yaşatıyoruz.
+            </p>
+                </div>
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3 data-tr="Okul Ziyaretleri" data-en="School Visits">Okul Ziyaretleri</h3>
+                    <p data-tr="Türkiye genelinde okulları ziyaret ederek öğrencilere kitap dağıtıyoruz. Okuma alışkanlığı kazandırmak için etkinlikler ve söyleşi programları düzenliyoruz." 
+               data-en="We visit schools across Türkiye and distribute books to students. We organize events and talk programs to instill reading habits.">
+                Türkiye genelinde okulları ziyaret ederek öğrencilere kitap dağıtıyoruz. Okuma alışkanlığı kazandırmak için etkinlikler ve söyleşi programları düzenliyoruz.</p>
+                </div>
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h3 data-tr="Kitap Toplama ve Dağıtım" data-en="Book Collection and Distribution">Kitap Toplama ve Dağıtım</h3>
+                     <p data-tr="Türkiye genelinde okulları ziyaret ederek öğrencilere kitap dağıtıyoruz. Okuma alışkanlığı kazandırmak için etkinlikler ve söyleşi programları düzenliyoruz." 
+               data-en="We collect and sort donated books and distribute them to needy areas and schools. To date, we have distributed over 420,000 books.">
+                Bağışlanan kitapları topluyor, sınıflandırıyor ve ihtiyaç sahibi bölgeler ile okullara ulaştırıyoruz. Bugüne kadar 420 binden fazla kitap dağıttık.</p>
+                </div>
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                    </div>
+                    <h3 data-tr="Gönüllü Koordinasyonu" data-en="Volunteer Coordination">Gönüllü Koordinasyonu</h3>
+                    <p data-tr="Farklı şehirlerden gelen gönüllülerimizi organize ediyor, eğitim programları düzenliyoruz. Birlikte daha güçlü bir topluluk oluşturuyoruz." 
+               data-en="We organize volunteers from different cities and conduct training programs. Together, we create a stronger community.">
+                Farklı şehirlerden gelen gönüllülerimizi organize ediyor, eğitim programları düzenliyoruz. Birlikte daha güçlü bir topluluk oluşturuyoruz.</p>
+                </div>
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    </div>
+                    <h3 data-tr="Sosyal Medya ve Farkındalık" data-en="Social Media and Awareness">Sosyal Medya ve Farkındalık</h3>
+                    <p data-tr="Projelerimizi sosyal medyada paylaşıyor, kitap okuma farkındalığı oluşturuyoruz. Etkinliklerimizi canlı yayınlarla herkesin erişebileceği şekilde paylaşıyoruz." 
+               data-en="We share our projects on social media and create awareness about reading. We also broadcast our events live so everyone can access them.">
+                Projelerimizi sosyal medyada paylaşıyor, kitap okuma farkındalığı oluşturuyoruz. Etkinliklerimizi canlı yayınlarla herkesin erişebileceği şekilde paylaşıyoruz.</p>
+                </div>
+                <div class="hizmet-karti">
+                    <div class="ikon-kutu">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <h3 data-tr="Konteyner Kent Desteği" data-en="Container City Support">Konteyner Kent Desteği</h3>
+                    <p data-tr="Deprem sonrası konteyner kentlerde yaşayan ailelerin çocuklarına yönelik eğitim ve kütüphane hizmetleri sunuyoruz." 
+               data-en="We provide education and library services to children of families living in container cities after earthquakes.">
+                Deprem sonrası konteyner kentlerde yaşayan ailelerin çocuklarına yönelik eğitim ve kütüphane hizmetleri sunuyoruz.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+<section id="faaliyet-haritasi" style="padding: 40px 5%; background-color: rgb(254, 249, 241);">
+            <h2 data-tr="Faaliyet Haritamız" data-en="Our Activity Map">Faaliyet Haritamız</h2>
+            <div id="harita" style="width: 100%; height: 500px; border-radius: 20px; border: 4px solid rgb(134, 220, 84); z-index: 1;"></div>
+        </section>
+        
+
+        <section id="projelerimiz" style="padding: 40px 5%; background-color: rgb(254, 249, 241);">
+            <h2 class="hizmet_baslik" data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</h2>
+            <div class="proje-izgarasi">
+                
+                <div class="proje-karti" onclick="location.href='ekip.html';" style="cursor: pointer;">
+                    <div class="resim-alani">
+                        <img src="source/ha/ha03.jpeg" alt="Ekibimiz">
+                    </div>
+                    <div class="proje-icerik">
+                        <h3 data-tr="Ekibimiz" data-en="Our Team">Ekibimiz</h3>
+                        <p data-tr="Yönetim Kadromuz ve Görev Şeması" data-en="Management Team and Task Chart">Yönetim Kadromuz ve Görev Şeması</p>
+                        <span class="proje-durum" data-tr="Tamamlandı" data-en="Completed">Tamamlandı</span>
+                    </div>
+                </div>
+
+                <a href="kutuphane.kurulumu.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="proje-karti">
+                        <div class="resim-alani">
+                            <img src="source/ha/ha01.jpeg" alt="Konteyner Kent Kütüphaneleri">
+                        </div>
+                        <div class="proje-icerik">
+                            <h3 data-tr="Kütüphanelerimiz" data-en="Our Libraries">Kütüphanelerimiz</h3>
+                            <p data-tr="Kurduğumuz kütüphaneleri ve detaylarını buradan inceleyebilirsiniz." data-en="You can review the libraries we've established and their details here.">Kurduğumuz kütüphaneleri ve detaylarını buradan inceleyebilirsiniz.</p>
+                            <span class="proje-durum" data-tr="Devam Ediyor" data-en="In Progress">Devam Ediyor</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="galeri.html" style="text-decoration: none; color: inherit; display: block;">
+    <div class="proje-karti">
+        <div class="resim-alani">
+            <img src="source/ha/ha04.jpeg" alt="Galeri">
+        </div>
+        <div class="proje-icerik">
+            <h3 data-tr="Galeri" data-en="Gallery">Galeri</h3>
+            <p data-tr="Projelerimizin görsel kayıtlarını buradan inceleyebilirsiniz." data-en="You can review visual records of our projects here.">Projelerimizin görsel kayıtlarını buradan inceleyebilirsiniz.</p>
+            <span class="proje-durum" data-tr="Devam Ediyor" data-en="In Progress">Devam Ediyor</span>
+        </div>
+    </div>
+</a>
+                <div class="proje-karti">
+                    <div class="resim-alani">
+                        <img src="source/ha/ha06.jpeg" alt="Kitap Toplama Kampanyası">
+                    </div>
+                    <div class="proje-icerik">
+                        <h3 data-tr="Kitap Toplama Kampanyası" data-en="Book Collection Campaign">Kitap Toplama Kampanyası</h3>
+                        <p data-tr="Bağışladığınız her kitap bir çocuğun geleceğine atılan en sağlam imzadır." data-en="Every book you donate is the most solid signature for a child's future.">Bağışladığınız her kitap bir çocuğun geleceğine atılan en sağlam imzadır.</p>
+                        <span class="proje-durum">Sürekli</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </section>
+
+    <footer id="iletisim">
+        <p id="iletisim0" data-tr="İletişim" data-en="Contact">İletişim</p>
+        <div id="iconlar">
+    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+    </a>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+    </a>
+</div>
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
+        </div>
+        <p id="hak" data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+        <p id="credit"><span id="credi" data-tr="Onur TURAN" data-en="Onur TURAN">Onur TURAN</span> <span data-tr="tarafından yapılmıştır" data-en="built by">tarafından yapılmıştır</span></p>
+    </footer>
+
+    <script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+<div id="ziyaretci-karsilama" class="karsilama-kutusu">
+    <div class="karsilama-icerik">
+        <span id="karsilama-mesaji"></span>
+        <button onclick="karsilamayiKapat()" class="karsilama-kapat" title="Kapat">✖</button>
+    </div>
+</div>
+<div id="muzik-calar-kapsayici">
+    <audio id="dernek-sarkisi" src="source\Hayal Ağacı Derneği Müziği\dernek_sarkisi.wav" preload="metadata"></audio>
+    
+    <div class="muzik-kontroller">
+        <button id="oynat-duraklat-btn" title="Dernek Şarkımızı Dinle">
+            <svg id="play-ikon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pause-ikon" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        
+        <div id="muzik-ilerleme-alani">
+            <span id="gecen-sure">0:00</span>
+            <input type="range" id="ilerleme-cubugu" min="0" max="100" value="0">
+            <span id="kalan-sure">0:00</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

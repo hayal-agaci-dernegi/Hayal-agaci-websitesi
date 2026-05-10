@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifika Üretim Paneli - YÖNETİM</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .panel-kapsayici {
+            max-width: 600px; margin: 50px auto; background: white; 
+            padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            text-align: center; border-top: 5px solid rgb(134, 220, 84);
+        }
+        .isim-girdisi {
+            width: 100%; padding: 15px; margin-bottom: 25px; box-sizing: border-box;
+            border: 2px solid #eee; border-radius: 10px; font-size: 1.1rem; text-align: center;
+        }
+        .buton-grubu { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .sertifika-onizleme-kutusu { margin-top: 30px; display: none; }
+        .onizleme-resmi { max-width: 100%; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 15px; }
+        
+        body.dark-mode .panel-kapsayici { background: #2a2a2a; color: white; }
+    </style>
+</head>
+<body style="background-color: rgb(254, 249, 241);">
+
+    <div class="panel-kapsayici">
+        <h2 style="color: rgb(134, 220, 84); margin-top: 0;">Sertifika Üretim Merkezi</h2>
+        <p style="color: #666; margin-bottom: 30px;">Lütfen bağışçı ismini girip format seçiniz.</p>
+
+        <input type="text" id="sertifika-isim" class="isim-girdisi" placeholder="Ad Soyad Giriniz">
+
+        <div class="buton-grubu">
+            <button onclick="guvenliSertifikaUret('story')" class="katılbt" style="position: static; width: auto; padding: 10px 20px;">📱 Instagram Story Oluştur</button>
+            <button onclick="guvenliSertifikaUret('karton')" class="bagisbt" style="position: static; width: auto; padding: 10px 20px;">🖨️ Karton Sertifika Oluştur</button>
+        </div>
+
+        <canvas id="sertifikaCanvas" style="display: none;"></canvas>
+
+        <div id="onizleme-alani" class="sertifika-onizleme-kutusu">
+            <hr style="opacity: 0.2; margin: 25px 0;">
+            <h3 id="sonuc-baslik">Sertifika Ön Yüzü Hazır</h3>
+            <img id="sertifika-onizleme" class="onizleme-resmi" src="" alt="Ön Yüz">
+            
+            <div id="arka-yuz-bilgi" style="margin-top: 10px; padding: 15px; background: #f0f0f0; border-radius: 10px; color: #333; font-size: 0.9rem;">
+                <strong>Not:</strong> Arka yüz statiktir, e-posta gönderirken klasördeki 
+                <span id="arka-yuz-dosya-adi" style="font-weight: bold; color: rgb(134, 220, 84);"></span> 
+                dosyasını eklemeyi unutmayınız.
+            </div>
+
+            <a id="indir-link" download="Sertifika_On.png" class="katılbt" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; margin-top: 20px; position: static;">📥 Ön Yüzü İndir</a>
+        </div>
+    </div>
+
+    <script>
+        async function guvenliSertifikaUret(tip) {
+            const isim = document.getElementById('sertifika-isim').value.trim().toUpperCase();
+            if (!isim) { alert("Lütfen isim giriniz!"); return; }
+
+            const DOSYALAR = {
+                story: {
+                    on: 'source/Hayal Ağacı Sertifika/dikey.sertifika.on.png',
+                    arka: 'source/Hayal Ağacı Sertifika/dikey.setrifika.arka.png'
+                },
+                karton: {
+                    on: 'source/Hayal Ağacı Sertifika/yatay.sertifika.on.png',
+                    arka: 'source/Hayal Ağacı Sertifika/yatay.sertifika.arka.png'
+                }
+            };
+
+            // Seri No Üretimi
+            const gizliAnahtar = "HAYAL_AGACI_2026_OZEL"; 
+            const mesaj = isim + gizliAnahtar;
+            const msgBuffer = new TextEncoder().encode(mesaj);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            const seriNo = "HA-" + hashHex.substring(0, 10).toUpperCase();
+
+            // Canvas Ayarları
+            const canvas = document.getElementById('sertifikaCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = (tip === 'story') ? 1080 : 2000;
+            canvas.height = (tip === 'story') ? 1920 : 1414;
+
+            const imgOn = new Image();
+            imgOn.src = (tip === 'story') ? DOSYALAR.story.on : DOSYALAR.karton.on;
+
+            imgOn.onload = function() {
+                // Şablonu Çiz
+                ctx.drawImage(imgOn, 0, 0, canvas.width, canvas.height);
+
+                // İSİM YAZDIRMA (AŞAĞIYA ALINDI VE ORTALANDI)
+                ctx.textAlign = "center";
+                // Rengi isterseniz koyu lacivert yapmak için: "rgb(35, 33, 115)" yapabilirsiniz
+                ctx.fillStyle = "rgb(134, 220, 84)"; 
+                ctx.font = "italic bold 85px Arial";
+                
+                // İşte milimetrik ayar burada (Yatayda 950)
+                let isimY = (tip === 'story') ?1100 : 800;
+                ctx.fillText(isim, canvas.width/2, isimY); 
+
+                // Seri No ve Tarih
+                ctx.textAlign = "left";
+                ctx.fillStyle = "#666";
+                ctx.font = "bold 22px Courier New";
+                ctx.fillText("Seri No: " + seriNo, 120, canvas.height - 130);
+                ctx.fillText("Tarih: " + new Date().toLocaleDateString('tr-TR'), 120, canvas.height - 90);
+
+                // İMZA YOLU DÜZELTİLDİ
+                const imgImza = new Image();
+                imgImza.src = 'source/Hayal Ağacı Sertifika/islak.imza.png';
+                
+                imgImza.onload = function() {
+                    ctx.drawImage(imgImza, (tip === 'story' ? 650 : 1550), (tip === 'story' ? 1600 : 1150), 280, 140);
+                    Goster(tip, DOSYALAR);
+                };
+                imgImza.onerror = () => Goster(tip, DOSYALAR);
+            };
+
+            imgOn.onerror = function() {
+                alert("❌ Şablon resmi yüklenemedi! Klasör yollarını kontrol edin.");
+            };
+        }
+
+        function Goster(tip, dosyalar) {
+            const canvas = document.getElementById('sertifikaCanvas');
+            const finalResim = canvas.toDataURL("image/png");
+            
+            document.getElementById('sertifika-onizleme').src = finalResim;
+            document.getElementById('indir-link').href = finalResim;
+            document.getElementById('arka-yuz-dosya-adi').innerText = (tip === 'story' ? dosyalar.story.arka : dosyalar.karton.arka);
+            document.getElementById('onizleme-alani').style.display = "block";
+            document.getElementById('onizleme-alani').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
