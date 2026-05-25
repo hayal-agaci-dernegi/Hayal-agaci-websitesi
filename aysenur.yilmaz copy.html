@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ayşenur Yılmaz anısına – Hayal Ağacı Derneği">
+    <title>Ayşenur Yılmaz - Hayal Ağacı Derneği</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================
+           TÜM FOTOĞRAFLAR İÇİN GÜVENLİK KALKANI
+        ========================================== */
+        img {
+            -webkit-user-drag: none !important;
+            pointer-events: none !important; /* Sağ tık, uzun basma ve sürüklemeyi kökten keser */
+            user-select: none !important;
+        }
+
+        /* ── SAYFA HERO ─────────────────────────── */
+        .detay-hero {
+            padding: 140px 5% 60px 5%;
+            background-color: rgb(254, 249, 241);
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .detay-hero-resim {
+            flex: 1;
+            height: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            background-color: #e0e0e0;
+        }
+
+        .detay-hero-resim img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .detay-hero-icerik {
+            flex: 1;
+            border-left: 4px solid rgb(134, 220, 84);
+            padding-left: 40px;
+        }
+
+        .detay-etiket {
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgb(134, 220, 84);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .detay-baslik {
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgb(27, 27, 27);
+            margin: 0 0 10px 0;
+            line-height: 1.15;
+        }
+
+        .konum-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border: 2.5px solid rgb(134, 220, 84);
+            border-radius: 10px;
+            text-decoration: none;
+            color: rgb(27, 27, 27);
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background-color: white;
+            margin-bottom: 28px;
+        }
+
+        .konum-btn:hover {
+            background-color: rgb(134, 220, 84);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(134, 220, 84, 0.3);
+        }
+
+        .konum-btn svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .detay-aciklama {
+            font-size: 1.05rem;
+            color: rgb(60, 60, 60);
+            line-height: 1.85;
+        }
+
+        /* ── HİKAYE BÖLÜMÜ ─────────────────────── */
+        .hikaye-bolumu {
+            padding: 80px 5%;
+            background-color: rgb(254, 249, 241);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hikaye-bolumu h3 {
+            font-size: 1.9rem;
+            font-weight: bold;
+            color: rgb(27, 27, 27);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid rgb(134, 220, 84);
+            display: inline-block;
+        }
+
+        .hikaye-bolumu p {
+            font-size: 1.05rem;
+            color: rgb(60, 60, 60);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        /* ── FOTOĞRAF GALERİSİ ─────────────────── */
+        .galeri-bolumu {
+            padding: 80px 5%;
+            background-color: rgb(254, 249, 241);
+        }
+        
+        .galeri-konteyner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .galeri-bolumu h3 {
+            font-size: 2.4rem;
+            font-weight: bold;
+            color: rgb(27, 27, 27);
+            margin-bottom: 36px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid rgb(134, 220, 84);
+            display: inline-block;
+        }
+
+        .galeri-izgara {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .galeri-kare {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .galeri-kare img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .galeri-kare:hover img {
+            transform: scale(1.06);
+        }
+
+        /* ── LİGHTBOX (RESİM ÖNİZLEME EKRANI) ────── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* MUCİZE BURADA: Resim yerine boş kutu kullanıyoruz */
+        #lightbox-resmi {
+            width: 90vw;
+            height: 90vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: auto !important; /* Kaydırma için mecburi açık */
+            transition: transform 0.15s ease-out;
+            cursor: default;
+        }
+
+        .lightbox-kapat {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-kapat:hover {
+            color: rgb(134, 220, 84);
+        }
+
+        /* ── GERİ DÖN BUTONU ─────────────────────── */
+        .geri-don-sarici {
+            padding: 40px 5%;
+            background-color: rgb(220, 241, 218);
+            text-align: center;
+        }
+
+        .geri-don-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background-color: white;
+            border: 2.5px solid rgb(134, 220, 84);
+            border-radius: 10px;
+            text-decoration: none;
+            color: rgb(27, 27, 27);
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .geri-don-btn:hover {
+            background-color: rgb(134, 220, 84);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ── MOBİL UYUM ─────────────────────────── */
+        @media (max-width: 900px) {
+            .detay-hero {
+                flex-direction: column;
+                padding: 120px 5% 40px 5%;
+                gap: 30px;
+            }
+            .detay-hero-resim {
+                width: 100%;
+                height: 260px;
+            }
+            .detay-hero-icerik {
+                border-left: none;
+                border-top: 4px solid rgb(134, 220, 84);
+                padding-left: 0;
+                padding-top: 24px;
+            }
+            .detay-baslik {
+                font-size: 2rem;
+            }
+            .galeri-izgara {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .galeri-izgara {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+    <div class="preloader-ic">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+        <div class="yukleme-cubugu">
+            <div class="ilerleme"></div>
+        </div>
+        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('preloader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    });
+    
+    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
+    setTimeout(function() {
+        var loader = document.getElementById('preloader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+    }, 5000);
+</script>
+
+    <header>
+        <div id="header0">
+            <div id="isim_logo">
+                <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                <h1>Hayal Ağacı Derneği</h1>
+            </div>
+
+            <div id="hamburger-btn">
+    <span class="cizgi"></span>
+    <span class="cizgi"></span>
+    <span class="cizgi"></span>
+</div>
+
+            <nav>
+                <ul>
+                    <a href="index.html"><li>Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
+                    <a href="sss.html"><li>S.S.S.</li></a>
+                    <a href="iletisim.html"><li>İletişim</li></a>
+                </ul>
+            </nav>
+            
+        </div>
+    </header> 
+
+
+    <div class="detay-hero">
+        <div class="detay-hero-resim">
+            <img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t0z4cut0z4cut0z4.png" alt="Ayşenur Yılmaz">
+        </div>
+        <div class="detay-hero-icerik">
+            <span class="detay-etiket">Adıyaman · Dağ Kuyucak Köy Okulu</span>
+            <h1 class="detay-baslik">Ayşenur Yılmaz</h1>
+
+            <a href="https://goo.gl/maps/jCVKKAeQZBSjfPg98?g_st=aw" target="_blank" class="konum-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Haritada Gör
+            </a>
+
+            <p class="detay-aciklama">
+                Ayşen'in de her daim söylediği gibi sorunsuz mutluluk getiren yarınlarımız olması dileğiyle
+            </p>
+        </div>
+    </div>
+
+    <div class="hikaye-bolumu">
+        <h3>Ayşenur Yılmaz Kimdir?</h3>
+        <p>Ayşenur Yılmaz, 2004 doğumlu. Hayatla iç içe olmasıyla bilinip, onlarca arkadaşının hayatına dokunmuştu. Tek bir negatif düşüncesine güç vermeden hayata her zaman pozitiflik aşılardı. Hâlâ bugün dönüp baktığımızda hayatına dokunduğu insanlarda bıraktığı izlere rastlayabilirsiniz. Kurduğu hayallerin birini bile atlamadan amaçladığı şeylerin her birini gerçekleştirmek üzere yola çıktık Hayal Ağacı Derneği ile birlikte. Her zaman el ele hareket etmek üzere koyulduk yola. Minik kalplerimizin gözlerindeki hayata dair olan o buruk ifadeye yer bırakmadan her zaman umut vermeye çalıştık. Yıllardır dernek başkanımız ve gönüllülerimiz ile birlikte minik kalplerimize umut olmaya çalıştık. Ayşen'in kalbinin bizimle olduğunu hissettiğimiz anlar ve anılardı bizler için. Ve böyle olmaya devam etmesini amaçlayıp bu yolda ilerliyoruz.</p>
+    </div>
+
+    <div class="galeri-bolumu">
+        <div class="galeri-konteyner">
+            <h3>Fotoğraflar</h3>
+            <div class="galeri-izgara">
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t33nw6t33nw6t33n.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_sdmb7vsdmb7vsdmb.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-38-46-019.jpg" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-43-00-727.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-46-17-455.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-47-06-926kopya.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-49-03-621.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-50-20-536.png" alt=""></div>
+                <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Picsart_26-04-12_23-51-20-807.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resim-lightbox" class="lightbox" onclick="resmiKapat()">
+        <span class="lightbox-kapat">×</span>
+        <div id="lightbox-resmi" oncontextmenu="return false;" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <div class="geri-don-sarici">
+        <a href="kutuphane.kurulumu.html" class="geri-don-btn">
+            ← Tüm Kütüphanelere Dön
+        </a>
+    </div>
+
+    <footer id="iletisim">
+        <p id="iletisim0">İletişim</p>
+        <div id="iconlar">
+    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+    </a>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+    </a>
+</div>
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
+        </div>
+        <p id="hak">Hayal Ağacı Derneği © Tüm hakları saklıdır</p>
+        <p id="credit"><span id="credi">Onur TURAN</span> tarafından yapılmıştır</p>
+    </footer>
+
+    <script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+    <script>
+        let zoomSeviyesi = 1;
+        let surukleniyor = false;
+        let baslangicX = 0;
+        let baslangicY = 0;
+        let translateX = 0;
+        let translateY = 0;
+        
+        const lightbox = document.getElementById('resim-lightbox');
+        const lightboxResmi = document.getElementById('lightbox-resmi');
+
+        function resmiBuyut(element) {
+            // Küçük resmin yolunu alıyoruz
+            var resimYolu = element.querySelector('img').src;
+            
+            // GÜVENLİK HİLESİ: Resmi kutunun duvar kağıdı (background) yapıyoruz.
+            lightboxResmi.style.backgroundImage = `url('${resimYolu}')`;
+            
+            // Ayarları sıfırla
+            zoomSeviyesi = 1;
+            translateX = 0;
+            translateY = 0;
+            guncelleTransform();
+            
+            lightbox.style.display = 'flex';
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none'; 
+        }
+
+        function resmiKapat() {
+            lightbox.style.display = 'none';
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        }
+
+        // Arka plan kaymasını engelle
+        window.addEventListener('wheel', function(e) {
+            if (lightbox.style.display === 'flex') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Fare tekerleği ile yakınlaştırma
+        lightbox.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            let eskiZoom = zoomSeviyesi;
+            
+            if (e.deltaY < 0) {
+                zoomSeviyesi += 0.25;
+            } else {
+                zoomSeviyesi -= 0.25;
+            }
+            
+            if (zoomSeviyesi < 1) zoomSeviyesi = 1;
+            if (zoomSeviyesi > 5) zoomSeviyesi = 5;
+
+            const rect = lightbox.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left - rect.width / 2;
+            const mouseY = e.clientY - rect.top - rect.height / 2;
+
+            let oran = zoomSeviyesi / eskiZoom;
+            translateX = mouseX - (mouseX - translateX) * oran;
+            translateY = mouseY - (mouseY - translateY) * oran;
+            
+            if (zoomSeviyesi === 1) {
+                translateX = 0;
+                translateY = 0;
+            }
+            
+            guncelleTransform();
+        }, { passive: false });
+
+        // Fare ile fotoğrafı kaydırma
+        lightboxResmi.addEventListener('mousedown', function(e) {
+            if (zoomSeviyesi > 1) {
+                surukleniyor = true;
+                baslangicX = e.clientX - translateX;
+                baslangicY = e.clientY - translateY;
+                lightboxResmi.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+        });
+
+        window.addEventListener('mousemove', function(e) {
+            if (surukleniyor && zoomSeviyesi > 1) {
+                translateX = e.clientX - baslangicX;
+                translateY = e.clientY - baslangicY;
+                guncelleTransform();
+            }
+        });
+
+        window.addEventListener('mouseup', function() {
+            surukleniyor = false;
+            if(lightboxResmi) lightboxResmi.style.cursor = zoomSeviyesi > 1 ? 'grab' : 'default';
+        });
+
+        // Çift tıklama ile yakınlaştırma
+        lightboxResmi.addEventListener('dblclick', function(e) {
+            e.stopPropagation();
+            let eskiZoom = zoomSeviyesi;
+
+            if (zoomSeviyesi === 1) {
+                zoomSeviyesi = 2.5;
+                lightboxResmi.style.cursor = 'grab';
+                
+                const rect = lightbox.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left - rect.width / 2;
+                const mouseY = e.clientY - rect.top - rect.height / 2;
+                let oran = zoomSeviyesi / eskiZoom;
+                
+                translateX = mouseX - (mouseX - translateX) * oran;
+                translateY = mouseY - (mouseY - translateY) * oran;
+            } else {
+                zoomSeviyesi = 1;
+                translateX = 0;
+                translateY = 0;
+                lightboxResmi.style.cursor = 'default';
+            }
+            guncelleTransform();
+        });
+
+        function guncelleTransform() {
+            lightboxResmi.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomSeviyesi})`;
+            lightboxResmi.style.transition = surukleniyor ? 'none' : 'transform 0.15s ease-out';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape" && lightbox.style.display === 'flex') {
+                resmiKapat();
+            }
+        });
+    </script>
+</body>
+</html>
+
+<script src="site.js"></script>
+</body>
