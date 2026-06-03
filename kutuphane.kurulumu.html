@@ -6,10 +6,21 @@
     <title>Kütüphane Kurulumu - Hayal Ağacı Derneği</title>
     <link rel="stylesheet" href="style.css">
     <style>
+
+            .kutuphaneler-listesi {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+
         /* == FOTOĞRAF VE YAZI ALANINI KİLİTLEYEN, İÇERİĞİ ORTALAYAN KOD == */
         .kutuphane-karti {
             overflow: hidden !important; 
             display: flex !important;
+            width: 1200px !important;
+            height: 400px !important;
+            flex: 0 0 auto !important;
         }
         
         /* Resim Alanı (Kilitli Boyut) */
@@ -17,9 +28,9 @@
             flex: 0 0 40% !important; 
             width: 40% !important;
             max-width: 40% !important;
-            height: 400px !important; 
-            min-height: 400px !important;
-            max-height: 400px !important;
+            height: 100% !important; 
+            min-height: 100% !important;
+            max-height: 100% !important;
             border-radius: 0 !important;
             margin: 0 !important;
             padding: 0 !important;
@@ -30,7 +41,7 @@
             flex: 0 0 60% !important; 
             width: 60% !important;
             max-width: 60% !important;
-            height: 400px !important; 
+            height: 100% !important; 
             box-sizing: border-box !important;
             padding: 40px 50px !important; 
             word-wrap: break-word !important; 
@@ -52,10 +63,56 @@
             margin-top: 30px !important; 
             margin-left: 20px !important; 
         }
-        
+
+
+        /* gizli-sag Kartları - Fotoğraf Kaldırıldı, Kare Yapıldı */
+        .kutuphane-karti.gizli-sag {
+            flex-direction: row !important;
+        }
+
+        .kutuphane-karti.gizli-sag .kart-resim {
+            display: none !important;
+        }
+
+        .kutuphane-karti.gizli-sag .kart-icerik {
+            flex: 1 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            padding: 40px 50px !important;
+        }
+
+        /* gizli-sol Kartları - Fotoğraf Kaldırıldı, Kare Yapıldı */
+        .kutuphane-karti.gizli-sol {
+            flex-direction: row !important;
+        }
+
+        .kutuphane-karti.gizli-sol .kart-resim {
+            display: none !important;
+        }
+
+        .kutuphane-karti.gizli-sol .kart-icerik {
+            flex: 1 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100% !important;
+            max-height: 100% !important;
+            padding: 40px 50px !important;
+        }
+
         /* Telefon Ekranları İçin Sabitleme */
         @media (max-width: 900px) {
+            .kutuphaneler-listesi {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
             .kutuphane-karti {
+                width: 90vw !important;
+                max-width: 400px !important;
+                height: auto !important;
                 flex-direction: column !important;
             }
             .kart-resim {
@@ -76,6 +133,18 @@
             }
             .hikaye-butonu {
                 margin-left: 0 !important; 
+            }
+
+            .kutuphane-karti.gizli-sag .kart-icerik {
+                height: auto !important;
+                min-height: auto !important;
+                max-height: none !important;
+            }
+
+            .kutuphane-karti.gizli-sol .kart-icerik {
+                height: auto !important;
+                min-height: auto !important;
+                max-height: none !important;
             }
         }
     </style>
@@ -166,42 +235,6 @@
                 </div>
             </div>
 
-            <div class="kutuphane-karti gizli-sol">
-                <div class="kart-resim">
-                    <img src="source/ha/resim_eklenecek.jpg" alt="Beyza Yılmaz">
-                </div>
-                <div class="kart-icerik">
-                    <h2 class="sehit-ismi">Beyza Yılmaz</h2>
-                    <span class="konum-bilgisi">Kuyucak Şehit Abdurrahman Doğan Ortaokulu</span>
-                    <div class="motif-alani">🌿 🌳</div>
-                    <p class="kutuphane-hikayesi">"Acılarımızı güzelleştirmeliyiz" diyen Beyza'nın hayallerini yaşatıyoruz.</p>
-                    <a href="beyza.yilmaz.html" class="hikaye-butonu">Beyza Yılmaz Kimdir?</a>
-                </div>
-            </div>
-
-            <div class="kutuphane-karti gizli-sag">
-                <div class="kart-resim">
-                    <img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t0z4cut0z4cut0z4.png" alt="Ayşenur Yılmaz">
-                </div>
-                <div class="kart-icerik">
-                    <h2 class="sehit-ismi">Ayşenur Yılmaz</h2>
-                    <span class="konum-bilgisi">Adıyaman Dağ Kuyucak Ortaokulu</span>
-                    <div class="motif-alani">🌿 🌳</div>
-                    <p class="kutuphane-hikayesi">Ayşenur'un pozitif enerjisini ve hayallerini çocuklarla buluşturuyoruz.</p>
-                    <a href="aysenur.yilmaz.html" class="hikaye-butonu">Ayşenur Yılmaz Kimdir?</a>
-                </div>
-            </div>
-
-            <div class="kutuphane-karti gizli-sol">
-                <div class="kart-resim"><img src="source/Muhammed Işıkbulanoğlu.jpg"></div>
-                <div class="kart-icerik">
-                    <h2 class="sehit-ismi">Muhammed Işıkbulanoğlu</h2>
-                    <span class="konum-bilgisi">Zey Köy Okulu Kütüphanesi</span>
-                    <div class="motif-alani">🌿 🌳</div>
-                    <p class="kutuphane-hikayesi">Zey köyündeki öğrencilerimiz için kurulan kütüphane projemiz.</p>
-                    <a href="muhammed.isikbulanoglu.html" class="hikaye-butonu">Detayları Gör</a>
-                </div>
-            </div>
 
             <div class="kutuphane-karti gizli-sag">
                 <div class="kart-resim"><img src="source/ha/resim_eklenecek.jpg"></div>
@@ -210,7 +243,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🏠 📚</div>
                     <p class="kutuphane-hikayesi">Konteyner kentteki yaşam alanlarını kitaplarla güzelleştiriyoruz.</p>
-                    <a href="k1.konteyner.kent.html" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -221,7 +253,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🏠 📚</div>
                     <p class="kutuphane-hikayesi">Eğitimin her koşulda devam etmesi için kurulan kütüphanemiz.</p>
-                    <a href="k13.konteyner.kent.html" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -232,7 +263,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🏠 📚</div>
                     <p class="kutuphane-hikayesi">Çocukların sosyal gelişimine katkı sunan okuma alanı.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -243,7 +273,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🏠 📚</div>
                     <p class="kutuphane-hikayesi">Kitapların gücüyle hayatı yeniden inşa ediyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -254,7 +283,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🏠 📚</div>
                     <p class="kutuphane-hikayesi">Konteyner kentteki minik kalplere yeni bir dünya açıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -265,7 +293,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🌿 🌳</div>
                     <p class="kutuphane-hikayesi">Köy okullarındaki imkanları artırmak için kurulan kütüphanemiz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -276,7 +303,6 @@
                     <span class="konum-bilgisi">Kayatepe Köyü İlkokulu</span>
                     <div class="motif-alani">📚 ✨</div>
                     <p class="kutuphane-hikayesi">Kayatepe köyündeki öğrencilerin yeni bilgi yuvası.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -287,7 +313,6 @@
                     <span class="konum-bilgisi">Adıyaman Merkez</span>
                     <div class="motif-alani">🤝 📚</div>
                     <p class="kutuphane-hikayesi">100. Yıl ortaokulu kütüphanesine sağladığımız katkılarla eğitime destek veriyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -298,7 +323,6 @@
                     <span class="konum-bilgisi">Kalburcu Köyü İlkokulu</span>
                     <div class="motif-alani">🌸 📖</div>
                     <p class="kutuphane-hikayesi">Kalburcu köyünde iki güzel ismin anısını yaşatan kütüphanemiz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -309,7 +333,6 @@
                     <span class="konum-bilgisi">Serincek Köyü</span>
                     <div class="motif-alani">🌿 📚</div>
                     <p class="kutuphane-hikayesi">Serincek köyündeki kütüphane kurulum projemiz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -320,7 +343,6 @@
                     <span class="konum-bilgisi">Yenigüven Köyü Okulu</span>
                     <div class="motif-alani">📖 ✨</div>
                     <p class="kutuphane-hikayesi">Yenigüven köyündeki çocukların geleceğine ışık tutuyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -331,7 +353,6 @@
                     <span class="konum-bilgisi">Şireci Köy Okulu</span>
                     <div class="motif-alani">🤝 📖</div>
                     <p class="kutuphane-hikayesi">Şireci köyü kütüphanesine verdiğimiz destekle şehidimizin adını yaşatıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -342,7 +363,6 @@
                     <span class="konum-bilgisi">Batman Seyitler Ortaokulu</span>
                     <div class="motif-alani">🌿 📚</div>
                     <p class="kutuphane-hikayesi">Batman'daki öğrencilerimiz için hazırladığımız okuma alanı.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -353,7 +373,6 @@
                     <span class="konum-bilgisi">Kuyulu Köyü Okulu</span>
                     <div class="motif-alani">📖 ✨</div>
                     <p class="kutuphane-hikayesi">Kuyulu köyündeki kütüphane projemiz tamamlandı.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -364,7 +383,6 @@
                     <span class="konum-bilgisi">Adıyaman Kömür Ortaokulu</span>
                     <div class="motif-alani">🌿 📚</div>
                     <p class="kutuphane-hikayesi">Kömür beldesindeki ortaokul öğrencilerimiz için kurulan kütüphane.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -375,7 +393,6 @@
                     <span class="konum-bilgisi">Samsat Taşkuyu Ortaokulu</span>
                     <div class="motif-alani">🌿 📖</div>
                     <p class="kutuphane-hikayesi">Samsat ilçesindeki Taşkuyu köyünde kurulan kütüphanemiz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -386,7 +403,6 @@
                     <span class="konum-bilgisi">Atakent Köy Okulu</span>
                     <div class="motif-alani">🌿 ✨</div>
                     <p class="kutuphane-hikayesi">Atakent'teki minik kalplere yeni bir dünya açıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -397,7 +413,6 @@
                     <span class="konum-bilgisi">Örentaş Köy Okulu</span>
                     <div class="motif-alani">🌿 📖</div>
                     <p class="kutuphane-hikayesi">Örentaş köyündeki okuma seferberliğimizin bir parçası.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -408,7 +423,6 @@
                     <span class="konum-bilgisi">Azikan Köy Okulu</span>
                     <div class="motif-alani">🌿 ✨</div>
                     <p class="kutuphane-hikayesi">Azikan köyündeki kütüphane kurulum çalışmamız.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -419,7 +433,6 @@
                     <span class="konum-bilgisi">Kuyucak İlkokulu</span>
                     <div class="motif-alani">🌿 📖</div>
                     <p class="kutuphane-hikayesi">Kuyucak köyünde eğitimin kalbine dokunuyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -430,7 +443,6 @@
                     <span class="konum-bilgisi">Karagöl Köy Okulu</span>
                     <div class="motif-alani">🌿 ✨</div>
                     <p class="kutuphane-hikayesi">Karagöl köyündeki öğrencilerimize yeni okuma imkanları sağlıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -441,7 +453,6 @@
                     <span class="konum-bilgisi">Adıyaman Samsat</span>
                     <div class="motif-alani">🤝 📖</div>
                     <p class="kutuphane-hikayesi">Yarımbağ köy okulunun kütüphane kurulumuna destek olduk.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -452,7 +463,6 @@
                     <span class="konum-bilgisi">Gerger Şamani Köy Okulu</span>
                     <div class="motif-alani">🌿 ✨</div>
                     <p class="kutuphane-hikayesi">Şamani köyünde şehidimizin adını kütüphanemizde yaşatıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -463,7 +473,6 @@
                     <span class="konum-bilgisi">Adıyaman Besni</span>
                     <div class="motif-alani">🤝 📚</div>
                     <p class="kutuphane-hikayesi">Bilim sanat merkezi kütüphanesine verdiğimiz destekle yanlarındayız.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -474,7 +483,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🌿 🌳</div>
                     <p class="kutuphane-hikayesi">Dağyalankoz köyündeki okuma alanlarını geliştirmeye devam ediyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -485,7 +493,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🌿 🌳</div>
                     <p class="kutuphane-hikayesi">Tepecik köyündeki çocuklarımızı kitaplarla buluşturuyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -496,7 +503,6 @@
                     <span class="konum-bilgisi">Adıyaman</span>
                     <div class="motif-alani">🌿 🌳</div>
                     <p class="kutuphane-hikayesi">Güzelyurt köyündeki öğrencilerimize yeni okuma imkanları sağlıyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -507,7 +513,6 @@
                     <span class="konum-bilgisi">Bozova Ortatepe Köy Okulu</span>
                     <div class="motif-alani">🌿 📖</div>
                     <p class="kutuphane-hikayesi">Şanlıurfa Ortatepe köyündeki yeni okuma alanımız öğrencilerle buluştu.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
@@ -518,7 +523,6 @@
                     <span class="konum-bilgisi">Adıyaman Merkez</span>
                     <div class="motif-alani">🤝 ✨</div>
                     <p class="kutuphane-hikayesi">Merkez ortaokul kütüphanesine sağladığımız katkılarla eğitime omuz veriyoruz.</p>
-                    <a href="#" class="hikaye-butonu">Detayları Gör</a>
                 </div>
             </div>
 
