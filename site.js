@@ -131,42 +131,6 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-// ==========================================
-// AKILLI DUYURU VE AKORDEON SİSTEMİ
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    const panel = document.getElementById("duyuru-kart-sistemi");
-    const kisaMetin = document.getElementById("kisa-duyuru-metni");
-    const tamMetin = document.getElementById("tam-duyuru-metni");
-    const okSimgesi = document.querySelector(".acilis-oku");
-
-    if(panel && kisaMetin) {
-        fetch("duyuru.txt")
-            .then(res => res.text())
-            .then(data => {
-                const mesaj = data.trim();
-                
-                if (mesaj.length > 0) {
-                    panel.style.display = "block";
-                    tamMetin.textContent = mesaj;
-                    
-                    if (mesaj.length > 60) {
-                        kisaMetin.textContent = mesaj.substring(0, 60) + "...";
-                        if(okSimgesi) okSimgesi.style.display = "block";
-                    } else {
-                        kisaMetin.textContent = mesaj;
-                        if(okSimgesi) okSimgesi.style.display = "none"; 
-                        document.querySelector(".duyuru-akordeon").style.pointerEvents = "none";
-                    }
-                } else {
-                    panel.style.display = "none";
-                }
-            })
-            .catch(() => {
-                panel.style.display = "none";
-            });
-    }
-});
 
 // ==========================================
 // HAREKETLİ İSTATİSTİK SAYAÇLARI
