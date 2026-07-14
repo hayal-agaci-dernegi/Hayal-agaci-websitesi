@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Wheel event listener kaldırıldı — tarayıcının doğal scroll davranışı kullanılıyor
+
 const slider = document.getElementById('scrollWrapper');
 if (slider) {
     let isDown = false;
@@ -129,45 +131,6 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
- HEAD
-// ==========================================
-// AKILLI DUYURU VE AKORDEON SİSTEMİ
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    const panel = document.getElementById("duyuru-kart-sistemi");
-    const kisaMetin = document.getElementById("kisa-duyuru-metni");
-    const tamMetin = document.getElementById("tam-duyuru-metni");
-    const okSimgesi = document.<<<<<<<querySelector(".acilis-oku");
-
-    if(panel && kisaMetin) {
-        fetch("duyuru.txt")
-            .then(res => res.text())
-            .then(data => {
-                const mesaj = data.trim();
-                
-                if (mesaj.length > 0) {
-                    panel.style.display = "block";
-                    tamMetin.textContent = mesaj;
-                    
-                    if (mesaj.length > 60) {
-                        kisaMetin.textContent = mesaj.substring(0, 60) + "...";
-                        if(okSimgesi) okSimgesi.style.display = "block";
-                    } else {
-                        kisaMetin.textContent = mesaj;
-                        if(okSimgesi) okSimgesi.style.display = "none"; 
-                        document.querySelector(".duyuru-akordeon").style.pointerEvents = "none";
-                    }
-                } else {
-                    panel.style.display = "none";
-                }
-            })
-            .catch(() => {
-                panel.style.display = "none";
-            });
-    }
-});
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 
 // ==========================================
 // HAREKETLİ İSTATİSTİK SAYAÇLARI
