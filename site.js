@@ -1,64 +1,132 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // 1. Türkiye'deki Özel Günler ve Bilgileri (Ay-Gün formatında)
-    const ozelGunler = {
-        "01-01": {
-            kisa: "Yılbaşı Tatili 🎆",
-            tam: "Yeni yılın ilk günü! Herkese sağlık, mutluluk ve başarı dolu bir yıl dileriz. Bugün resmi tatildir."
-        },
-        "03-18": {
-            kisa: "18 Mart Çanakkale Zaferi 🇹🇷",
-            tam: "Çanakkale Zaferi'nin yıl dönümünde, başta Gazi Mustafa Kemal Atatürk olmak üzere tüm şehitlerimizi rahmet ve minnetle anıyoruz."
-        },
-        "04-23": {
-            kisa: "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı 🎈",
-            tam: "TBMM'nin açılışının yıl dönümü ve dünyadaki tek çocuk bayramı kutlu olsun! Bugün resmi tatildir."
-        },
-        "05-01": {
-            kisa: "1 Mayis Emek ve Dayanışma Günü 🛠️",
-            tam: "Tüm işçi ve emekçilerin Emek ve Dayanışma Günü kutlu olsun! Bugün resmi tatildir."
-        },
-        "05-19": {
-            kisa: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı 🏃‍♂️🇹🇷",
-            tam: "Gazi Mustafa Kemal Atatürk'ün Samsun'a çıkışının ve milli mücadelenin başlamasının yıl dönümü kutlu olsun! Bugün resmi tatildir."
-        },
-        "07-15": {
-            kisa: "15 Temmuz Demokrasi ve Milli Birlik Günü 🕊️",
-            tam: "Demokrasi ve Milli Birlik Günü'nde vatan uğruna canını feda eden tüm şehitlerimizi saygıyla anıyoruz. Bugün resmi tatildir."
-        },
-        "08-30": {
-            kisa: "30 Ağustos Zafer Bayramı ⚔️🇹🇷",
-            tam: "Büyük Taarruz'un zaferle sonuçlandığı bu şanlı günü gururla kutluyoruz. Başta Atatürk olmak üzere tüm kahramanlarımıza minnettarız. Bugün resmi tatildir."
-        },
-        "10-29": {
-            kisa: "29 Ekim Cumhuriyet Bayramı 📜🇹🇷",
-            tam: "Cumhuriyetimizin kuruluş yıl dönümü kutlu olsun! En büyük bayramımızdır. Bugün resmi tatildir."
-        },
-        "11-10": {
-            kisa: "10 Kasım Atatürk'ü Anma Günü 🖤",
-            tam: "Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ü, aramızdan ayrılışının yıl dönümünde saygı, sevgi ve özlemle anıyoruz."
-        }
-    };
+document.addEventListener("DOMContentLoaded", function() {
+    const gozlemci = new IntersectionObserver((eslesmeler) => {
+        eslesmeler.forEach((eslesme) => {
+            if (eslesme.isIntersecting) {
+                eslesme.target.classList.add('goster');
+            }
+        });
+    });
 
-    // 2. Bugünün Tarihini Al (GG-AA formatına getirmek için)
-    const bugun = new Date();
-    const gun = String(bugun.getDate()).padStart(2, '0');
-    const ay = String(bugun.getMonth() + 1).padStart(2, '0'); // Ocak 0'dan başladığı için +1 yapıyoruz
-    const bugununTarihi = `${ay}-${gun}`; // Örn: "10-29"
+    const gizliOgeler = document.querySelectorAll('.gizli');
+    gizliOgeler.forEach((oge) => gozlemci.observe(oge));
+});
 
-    // 3. Kontrol Et ve DOM'u Güncelle
-    if (ozelGunler[bugununTarihi]) {
-        const veri = ozelGunler[bugununTarihi];
+document.addEventListener("DOMContentLoaded", function() {
+    let sonKaydirmaKonumu = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', function() {
+        let mevcutKaydirma = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Elementleri Seç
-        const duyuruSistemi = document.getElementById("duyuru-kart-sistemi");
-        const kisaMetinElemani = document.getElementById("kisa-duyuru-metni");
-        const tamMetinElemani = document.getElementById("tam-duyuru-metni");
+        if (mevcutKaydirma > sonKaydirmaKonumu && mevcutKaydirma > 100) {
+            header.classList.add('gizle'); 
+        } else {
+            header.classList.remove('gizle'); 
+        }
+        
+        sonKaydirmaKonumu = mevcutKaydirma;
+    });
+});
 
-        // İçerikleri Yaz
-        kisaMetinElemani.textContent = veri.kisa;
-        tamMetinElemani.textContent = veri.tam;
+// Wheel event listener kaldırıldı — tarayıcının doğal scroll davranışı kullanılıyor
 
-        // Gizli olan sistemi görünür yap
-        duyuruSistemi.style.display = "block"; 
+const slider = document.getElementById('scrollWrapper');
+if (slider) {
+    let isDown = false;
+    let startX;
+    let currentX = 0; 
+    let speed = 1;
+
+    function render() {
+        if (!isDown) {
+            currentX -= speed;
+            if (Math.abs(currentX) >= slider.scrollWidth / 2) {
+                currentX = 0;
+            }
+            slider.style.transform = `translateX(${currentX}px)`;
+        }
+        requestAnimationFrame(render);
+    }
+
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - currentX;
+        slider.parentElement.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.parentElement.style.cursor = 'grab';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        currentX = e.pageX - startX;
+        
+        if (currentX > 0) currentX = -(slider.scrollWidth / 2);
+        if (Math.abs(currentX) >= slider.scrollWidth / 2) currentX = 0;
+
+        slider.style.transform = `translateX(${currentX}px)`;
+    });
+
+    render();
+}
+
+const animasyonluKartlar = document.querySelectorAll('.gizli-sol, .gizli-sag');
+if (animasyonluKartlar.length > 0) {
+    const observerAyarlari = { root: null, threshold: 0.15, rootMargin: "0px" };
+
+    const animasyonObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('goster-animasyon');
+            } else {
+                entry.target.classList.remove('goster-animasyon');
+            }
+        });
+    }, observerAyarlari);
+
+    animasyonluKartlar.forEach(kart => { animasyonObserver.observe(kart); });
+}
+
+if (window.location.hash) {
+    document.documentElement.style.scrollBehavior = 'auto';
+    setTimeout(function() {
+        document.documentElement.style.scrollBehavior = 'smooth';
+    }, 500);
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        const lightbox = document.getElementById('resim-lightbox');
+        if (lightbox && lightbox.style.display === 'flex') {
+            lightbox.style.display = 'none';
+        }
+    }
+});
+
+document.addEventListener('contextmenu', function(event) {
+    let resimMi = event.target.tagName && event.target.tagName.toLowerCase() === 'img';
+    let galeriKutusuMu = event.target.closest && event.target.closest('.galeri-kare') !== null;
+    let buyutmeEkraniMi = (event.target.closest && event.target.closest('#resim-lightbox') !== null) || event.target.id === 'lightbox-resmi';
+    let kartResmiMi = event.target.closest && event.target.closest('.kart-resim') !== null;
+    let heroResmiMi = event.target.closest && event.target.closest('.detay-hero-resim') !== null;
+    let anasayfaResmiMi = event.target.id === 'logo' || event.target.id === 'anaresim' || event.target.id === 'hakkimizda_resim' || (event.target.classList && event.target.classList.contains('item'));
+
+    if (resimMi || galeriKutusuMu || buyutmeEkraniMi || kartResmiMi || heroResmiMi || anasayfaResmiMi) {
+        event.preventDefault(); 
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "F12" || event.keyCode === 123) { event.preventDefault(); }
+    if (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "i")) { event.preventDefault(); }
+    if (event.ctrlKey && event.shiftKey && (event.key === "J" || event.key === "j")) { event.preventDefault(); }
+    if (event.ctrlKey && (event.key === "U" || event.key === "u")) { event.preventDefault(); }
+});
+
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName && e.target.tagName.toLowerCase() === 'img') {
+        e.preventDefault();
     }
 });
