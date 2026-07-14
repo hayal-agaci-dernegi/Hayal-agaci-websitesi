@@ -1317,4 +1317,3 @@ document.addEventListener("DOMContentLoaded", function() {
                 btn.classList.add('kopyalandi');
                 setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
             });
-        }
