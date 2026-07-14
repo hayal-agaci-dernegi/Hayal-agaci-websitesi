@@ -129,7 +129,7 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-<<<<<<< HEAD
+ HEAD
 // ==========================================
 // AKILLI DUYURU VE AKORDEON SİSTEMİ
 // ==========================================
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const panel = document.getElementById("duyuru-kart-sistemi");
     const kisaMetin = document.getElementById("kisa-duyuru-metni");
     const tamMetin = document.getElementById("tam-duyuru-metni");
-    const okSimgesi = document.querySelector(".acilis-oku");
+    const okSimgesi = document.<<<<<<<querySelector(".acilis-oku");
 
     if(panel && kisaMetin) {
         fetch("duyuru.txt")

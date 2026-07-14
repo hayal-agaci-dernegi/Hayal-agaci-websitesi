@@ -132,6 +132,7 @@ header a{
     color: rgb(134, 220, 84);
     font-weight: bold;
     position: absolute;
+    top: 540px;         
     left: 26%; 
 }
 .katılbt{
@@ -144,11 +145,7 @@ header a{
     font-weight: bold;
     font-size: 1.25rem;
     position: absolute;
-<<<<<<< HEAD
-    top: 77%;         
-=======
     top: 540px;         
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
     left: 37%; 
 }
 
@@ -406,11 +403,7 @@ header a{
 }
 
 footer{
-<<<<<<< HEAD
-    background-color: rgb(241, 178, 91);
-=======
     background-color: rgb(185, 218, 182);
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
     height: auto;
     padding-bottom: 30px;
 }
@@ -514,11 +507,7 @@ body.dark-mode #dil-btn {
     color: black;
     font-weight: bold;
     border: 2px black solid;
-<<<<<<< HEAD
-    width: 330px;
-=======
     width: 460px;
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
     margin:  0 auto 0 auto;
     border-radius: 20px;
 }
@@ -683,30 +672,18 @@ header a:hover::after { width: 100%; }
 
 @media (max-width: 1000px) { .hizmet-izgarasi { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 700px) { .hizmet-izgarasi { grid-template-columns: 1fr; } }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 #projelerimiz {
     background-color: rgb(254, 249, 241); 
     padding-bottom: 60px;
     padding-top: 20px;
     margin-top: 20px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-izgarasi {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     padding: 0 5%;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-karti {
     background-color: white;
     border-radius: 15px;
@@ -716,10 +693,6 @@ header a:hover::after { width: 100%; }
     flex-direction: column;
     position: relative; 
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-karti::after {
     content: "";
     position: absolute;
@@ -728,31 +701,18 @@ header a:hover::after { width: 100%; }
     width: 100%;
     height: 15px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-karti:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-icerik {
     padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-<<<<<<< HEAD
-}
-
-=======
     gap: 8px;
 }
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 .proje-icerik h3 {
     font-size: 1.4rem;
     color: rgb(27, 27, 27);
@@ -762,24 +722,6 @@ header a:hover::after { width: 100%; }
 /* === PROJE KARTLARI FOTOĞRAF SIĞDIRMA AYARI === */
 .resim-alani {
     width: 100%;
-<<<<<<< HEAD
-    height: 250px; /* Kutunun yüksekliğini sabitliyoruz */
-    background-color: #e0e0e0; 
-    border-radius: 15px 15px 0 0; 
-    overflow: hidden; /* Fotoğrafın dışarı taşmasını kesinlikle engeller */
-    position: relative;
-    display: block !important;
-}
-
-.resim-alani img {
-    width: 100% !important;
-    height: 100% !important; /* Fotoğrafı kutunun boyuna zorlar */
-    object-fit: cover; /* Fotoğrafın en-boy oranını bozmadan kutuyu tam doldurmasını sağlar */
-    display: block;
-}
-
-.proje-durum {
-=======
     height: 250px;
     background-color: #e0e0e0; 
     border-radius: 15px 15px 0 0; 
@@ -795,7 +737,6 @@ header a:hover::after { width: 100%; }
 }
 .proje-durum {
     margin-top: auto;
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
     padding: 6px 15px;
     border-radius: 20px;
     color: white;
@@ -915,41 +856,6 @@ img {
 /* ==========================================
    DERNEK ÖZEL DUYURU PANELİ TASARIMI
 ========================================== */
-<<<<<<< HEAD
-#duyuru-kart-sistemi {
-    max-width: 800px;
-    margin: 40px auto 60px auto;
-    padding: 0 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.duyuru-akordeon {
-    background: #ffffff;
-    border: 2px solid rgba(134, 220, 84, 0.3);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.duyuru-akordeon:hover {
-    border-color: rgb(134, 220, 84);
-    box-shadow: 0 15px 40px rgba(134, 220, 84, 0.1);
-    transform: translateY(-5px);
-}
-
-.duyuru-ozet {
-    padding: 20px;
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
-}
-
-.duyuru-ozet::-webkit-details-marker { display: none; }
-=======
 /* Duyuru Kartı Genel Kapsayıcı */
 #duyuru-kart-sistemi {
     margin: 20px 5%;
@@ -975,44 +881,10 @@ img {
 .duyuru-akordeon summary::-webkit-details-marker {
     display: none;
 }
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 
 .duyuru-baslik-alanı {
     display: flex;
     align-items: center;
-<<<<<<< HEAD
-    gap: 20px;
-    flex: 1;
-}
-
-.duyuru-can-konteynir {
-    position: relative;
-    width: 45px;
-    height: 45px;
-    background: rgba(134, 220, 84, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.duyuru-can {
-    font-size: 22px;
-    animation: canSallanma 2.5s infinite ease-in-out;
-    display: inline-block;
-}
-
-.duyuru-can-dalga {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgb(134, 220, 84);
-    border-radius: 50%;
-    animation: canDalga 2s infinite;
-}
-
-=======
     gap: 15px;
 }
 
@@ -1036,7 +908,6 @@ img {
     position: relative;
     display: inline-block;
 }
->>>>>>> dda5d6456ca1c1b0dba75972eff1d8b1cceca9d2
 @keyframes canSallanma {
     0%, 100% { transform: rotate(0); }
     10%, 30%, 50% { transform: rotate(15deg); }
