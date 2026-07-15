@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         "07-15": {
             kisa: "15 Temmuz Demokrasi ve Milli Birlik Günü 🕊️",
-            tam: "Demokrasi ve Milli Birlik Günü'nde vatan uğruna canını feda eden tüm şehitlerimizi saygıyla anıyoruz. Bugün resmi tatildir."
+            tam: "Demokrasi ve Milli Birlik Günü'nde vatan uğruna canını feda eden tüm şehitlerimizi saygıyla anıyoruz."
         },
         "08-30": {
             kisa: "30 Ağustos Zafer Bayramı ⚔️🇹🇷",
