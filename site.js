@@ -1203,14 +1203,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!iletisimFormu) return; 
 
     iletisimFormu.addEventListener('submit', function(e) {
-        // 1. Web3Forms'un kendi sayfasına yönlendirmesini kesin olarak engeller
         e.preventDefault(); 
 
         const form = e.target;
         const mesajKutusu = document.getElementById('mesaj').value.toLocaleLowerCase('tr-TR');
         const adKutusu = document.getElementById('ad').value.toLocaleLowerCase('tr-TR');
         
-        // 2. Yasaklı Kelime Listesi
         const yasakliKelimeler = [
             "amk", "aq", "mk", "awq", "amq", "sg", "oç", "oc", "pic", "s.g",
             "amcık", "siktir", "orospu", "fahişe", "pezevenk", "gavat", "göt", "götoş", 
@@ -1229,7 +1227,6 @@ document.addEventListener("DOMContentLoaded", function() {
             "şeriat", "terörist", "ypg", "dhkpc", "ışid"
         ]; 
         
-        // Noktalama işaretlerini sil ve kelimeleri tek tek ayır
         const temizMesaj = mesajKutusu.replace(/[.,!?]/g, '').split(/\s+/);
         const temizAd = adKutusu.replace(/[.,!?]/g, '').split(/\s+/);
         
@@ -1241,26 +1238,23 @@ document.addEventListener("DOMContentLoaded", function() {
             return false;
         }
 
-        // 3. Mesaj temizse butonu meşgule al
         const btn = form.querySelector('.gonder-btn');
         const orijinalMetin = btn.innerHTML;
         btn.innerHTML = "⌛ Gönderiliyor...";
         btn.style.opacity = "0.7";
         btn.style.pointerEvents = "none";
 
-        // 4. Verileri arka planda Web3Forms'a gönder
         const formData = new FormData(form);
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json' // Bu satır sistemi kendi sayfasında tutar efendim
+                'Accept': 'application/json'
             },
             body: formData
         })
         .then(async (response) => {
             if (response.status === 200) {
-                // İşlem başarılı, doğrudan teşekkür sayfasına yönlendir
                 window.location.href = "tesekkur.html";
             } else {
                 alert("Sunucu kaynaklı bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
@@ -1269,51 +1263,49 @@ document.addEventListener("DOMContentLoaded", function() {
                 btn.style.pointerEvents = "auto";
             }
         })
-                .catch(error => {
-                    alert("Bağlantı hatası. Lütfen internetinizi kontrol edin.");
-                    btn.innerHTML = orijinalMetin;
-                    btn.style.opacity = "1";
-                    btn.style.pointerEvents = "auto";
-                });
-            });
+        .catch(error => {
+            alert("Bağlantı hatası. Lütfen internetinizi kontrol edin.");
+            btn.innerHTML = orijinalMetin;
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
         });
+    });
+});
 
-        /* -------- BUGÜNÜN TARİH BİLGİSİ -------- */
-    var bugun = new Date();
+/* -------- BUGÜNÜN TARİH BİLGİSİ -------- */
+var bugun = new Date();
 
-    // GEÇİCİ TEST KODU (Adres çubuğundan emir alır)
-    var urlArama = new URLSearchParams(window.location.search);
-    var testAy = urlArama.get('ay');
-    var testGun = urlArama.get('gun');
+var urlArama = new URLSearchParams(window.location.search);
+var testAy = urlArama.get('ay');
+var testGun = urlArama.get('gun');
 
-    var ay    = testAy ? parseInt(testAy) : (bugun.getMonth() + 1);
-    var gun   = testGun ? parseInt(testGun) : bugun.getDate();
-    var yil   = bugun.getFullYear();
+var ay    = testAy ? parseInt(testAy) : (bugun.getMonth() + 1);
+var gun   = testGun ? parseInt(testGun) : bugun.getDate();
+var yil   = bugun.getFullYear();
 
-        // EKSİK OLAN KOD BURASI:
-        function hesapAdiKopyala(btn) {
-            const hesapAdi = document.getElementById('hesap-adi').innerText;
-            navigator.clipboard.writeText(hesapAdi).then(() => {
-                btn.textContent = '✅ Kopyalandı';
-                btn.classList.add('kopyalandi');
-                setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
-            });
-        }
+function hesapAdiKopyala(btn) {
+    const hesapAdi = document.getElementById('hesap-adi').innerText;
+    navigator.clipboard.writeText(hesapAdi).then(() => {
+        btn.textContent = '✅ Kopyalandı';
+        btn.classList.add('kopyalandi');
+        setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
+    });
+}
 
-        // ZATEN VAR OLAN DİĞER KODLAR:
-        function ibanKopyala(btn) {
-            const iban = document.getElementById('iban-no').innerText;
-            navigator.clipboard.writeText(iban).then(() => {
-                btn.textContent = '✅ Kopyalandı';
-                btn.classList.add('kopyalandi');
-                setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
-            });
-        }
+function ibanKopyala(btn) {
+    const iban = document.getElementById('iban-no').innerText;
+    navigator.clipboard.writeText(iban).then(() => {
+        btn.textContent = '✅ Kopyalandı';
+        btn.classList.add('kopyalandi');
+        setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
+    });
+}
 
-        function adresiKopyala(btn) {
-            const adres = "Hayal Ağacı Derneği\n[Adresinizi buraya ekleyin]\nAdıyaman / TÜRKİYE";
-            navigator.clipboard.writeText(adres).then(() => {
-                btn.textContent = '✅ Kopyalandı';
-                btn.classList.add('kopyalandi');
-                setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
-            });
+function adresiKopyala(btn) {
+    const adres = "Hayal Ağacı Derneği\n[Adresinizi buraya ekleyin]\nAdıyaman / TÜRKİYE";
+    navigator.clipboard.writeText(adres).then(() => {
+        btn.textContent = '✅ Kopyalandı';
+        btn.classList.add('kopyalandi');
+        setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
+    });
+}
