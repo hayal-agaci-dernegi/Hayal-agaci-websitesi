@@ -582,19 +582,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     else if (ay === 5  && gun === 19) {
         gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'🇹🇷 19 Mayıs Atatürk\'ü Anma, Gençlik ve Spor Bayramı!' };
+            mesaj:'19 Mayıs Atatürk\'ü Anma, Gençlik ve Spor Bayramı!' };
     }
     else if (ay === 7  && gun === 15) {
         gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'🇹🇷 15 Temmuz Demokrasi ve Milli Birlik Günü.' };
+            mesaj:'15 Temmuz Demokrasi ve Milli Birlik Günü.' };
     }
     else if (ay === 8  && gun === 30) {
         gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'🇹🇷 30 Ağustos Zafer Bayramı Kutlu Olsun!' };
+            mesaj:'30 Ağustos Zafer Bayramı Kutlu Olsun!' };
     }
     else if (ay === 10 && gun === 29) {
         gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'🇹🇷 Cumhuriyetimizin Doğum Günü Kutlu Olsun!' };
+            mesaj:'Cumhuriyetimizin Doğum Günü Kutlu Olsun!' };
     }
 
     /* ---- MATEM / SAYGI GÜNLERİ (Yaprak devam + Gri Tema) ---- */
@@ -608,7 +608,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     else if (ay === 3  && gun === 18) {
         gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'🇹🇷 18 Mart Çanakkale Zaferi ve Şehitleri Anma Günü.' };
+            mesaj:'18 Mart Çanakkale Zaferi ve Şehitleri Anma Günü.' };
     }
     else if (ay === 8  && gun === 17) {
         gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
