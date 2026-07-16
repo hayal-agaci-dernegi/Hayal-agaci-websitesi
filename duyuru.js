@@ -30,14 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU SİSTEMİ ===
     // Sadece duyuru yapmak istediğinizde aşağıdaki tırnakların içine metni giriniz.
     // İşiniz bittiğinde içlerini tamamen temizleyip ("") kaydederseniz ekrandan kalkar.
-    const manuelKisaBaslik = ""; // Örn: "Acil Toplantı Duyurusu ⚠️"
-    const manuelTamMetin = "";   // Örn: "Değerli üyelerimiz, bu hafta sonu dernek binasında olağanüstü toplantı yapılacaktır."
+    const manuelKisaBaslik = "Dr.Ali'nin Yarın Sınavı Var"; // Örn: "Acil Toplantı Duyurusu ⚠️"
+    const manuelTamMetin = "Dr.Ali'nin Yarın Sınavı Var ve Yarın Kurtuluyor Sınavlardan";   // Örn: "Değerli üyelerimiz, bu hafta sonu dernek binasında olağanüstü toplantı yapılacaktır."
 
     const manuelDuyuruSistemi = document.getElementById("manuel-duyuru-sistemi");
     if (manuelDuyuruSistemi) {
         if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
-            document.getElementById("Ali'nin sınavı var").textContent = manuelKisaBaslik;
-            document.getElementById("Duyuduk Duymadık Deneyin Yarın Dr.Ali Sınavını Verip Kurtuluyor").textContent = manuelTamMetin;
+            document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
+            document.getElementById("manuel-tam-metin").textContent = manuelTamMetin;
             manuelDuyuruSistemi.style.display = "block";
         } else {
             manuelDuyuruSistemi.style.display = "none";
