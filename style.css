@@ -903,31 +903,84 @@ img {
     color: #555;
 }
 
+/* ==========================================
+   AKORDEON PREMİUM AÇILIŞ VE ÇAN ANİMASYONU
+========================================== */
+
 .duyuru-can-konteynir {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 30px;
+    height: 30px;
 }
 
 .duyuru-can {
-    font-size: 1.4rem;
+    font-size: 1.25rem; /* Çan azıcık küçültüldü */
     display: inline-block;
     transform-origin: top center;
-    /* Süreyi 3 saniyeden 0.8 saniyeye düşürüp hızlandırdım */
-    animation: sadeHizliCan 0.8s ease-in-out infinite; 
+    animation: hafifSallanma 2.5s ease-in-out infinite; 
+    z-index: 2;
 }
 
-/* Kötü duran yeşil dalgayı tamamen gizledim */
 .duyuru-can-dalga {
-    display: none !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    height: 25px;
+    background-color: rgba(134, 220, 84, 0.35); /* Siteye uyumlu yeşil sonar */
+    border-radius: 50%;
+    z-index: 1;
+    animation: hafifSonar 2.5s ease-out infinite;
+    display: block !important;
 }
 
-/* Sadece olduğu yerde hafif büyüyen ve titreyen sade animasyon */
-@keyframes sadeHizliCan {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    30% { transform: scale(1.15) rotate(12deg); }
-    70% { transform: scale(1.15) rotate(-12deg); }
+/* Daha az hareket eden sade sallanma */
+@keyframes hafifSallanma {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(8deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(4deg); }
+    40% { transform: rotate(-4deg); }
+    50%, 100% { transform: rotate(0deg); }
+}
+
+/* Yeni sonar dalgası */
+@keyframes hafifSonar {
+    0% { width: 25px; height: 25px; opacity: 1; }
+    40% { width: 60px; height: 60px; opacity: 0; }
+    100% { width: 60px; height: 60px; opacity: 0; }
+}
+
+/* Premium Akordeon Açılış Efekti */
+details.duyuru-akordeon[open] .duyuru-tam-metin-alanı {
+    animation: akordeonAcilis 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    transform-origin: top;
+}
+
+@keyframes akordeonAcilis {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-10px) scaleY(0.97); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scaleY(1); 
+    }
+}
+
+@keyframes akordeonAcilis {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-10px) scaleY(0.97); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scaleY(1); 
+    }
 }
 
 #kisa-duyuru-metni {
