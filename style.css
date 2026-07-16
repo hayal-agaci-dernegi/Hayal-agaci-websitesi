@@ -956,41 +956,40 @@ img {
 }
 
 /* ==========================================
-   PREMİUM AKORDEON AÇILIŞ ANİMASYONU
+   KUSURSUZ YUMUŞAK AKORDEON ANİMASYONU
 ========================================== */
-
-/* Ok işaretinin de yumuşak dönmesi için */
 .acilis-oku {
     display: inline-block;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-details.duyuru-akordeon[open] .acilis-oku {
+details.duyuru-akordeon.aktif .acilis-oku {
     transform: rotate(180deg);
 }
 
-/* Kutunun yumuşakça uzayarak metni göstermesi */
-details.duyuru-akordeon[open] .duyuru-tam-metin-alanı {
-    animation: premiumKutuAcilis 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    transform-origin: top;
+.duyuru-tam-metin-alanı {
+    max-height: 0;
+    opacity: 0;
     overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    /* Yükseklik, şeffaflık ve iç boşluk geçişlerini tamamen senkronize ettik */
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid transparent; 
+    box-sizing: border-box;
 }
 
-@keyframes premiumKutuAcilis {
-    0% { 
-        opacity: 0; 
-        max-height: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        transform: translateY(-15px) scale(0.98); 
-    }
-    100% { 
-        opacity: 1; 
-        max-height: 800px; /* Metnin rahatça sığması için */
-        padding-top: 20px;
-        padding-bottom: 25px;
-        transform: translateY(0) scale(1); 
-    }
+details.duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
+    opacity: 1;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    border-top: 1px dashed #eee;
+}
+
+body.dark-mode details.duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
+    border-top: 1px dashed #555 !important;
 }
 
 #kisa-duyuru-metni {

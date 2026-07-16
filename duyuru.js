@@ -47,4 +47,38 @@ document.addEventListener("DOMContentLoaded", function () {
             anaKasa.style.display = "none";
         }
     }
+    
+    // === 4. KUSURSUZ YUMUŞAK AÇILIŞ/KAPANIŞ MOTORU ===
+    const duyuruOzetleri = document.querySelectorAll('.duyuru-akordeon summary');
+    
+    duyuruOzetleri.forEach(ozet => {
+        ozet.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const kutu = this.parentElement;
+            const icerik = kutu.querySelector('.duyuru-tam-metin-alanı');
+            
+            if (!kutu.classList.contains('aktif')) {
+                // AÇILMA İŞLEMİ
+                kutu.setAttribute('open', 'true');
+                
+                // Tarayıcının takılmasını (kare atlamasını) önlemek için render bekletiyoruz
+                requestAnimationFrame(() => {
+                    kutu.classList.add('aktif');
+                    // İçeriğin gerçek yüksekliğini hesaplayıp animasyonu o değere kilitliyoruz
+                    icerik.style.maxHeight = icerik.scrollHeight + 50 + "px"; 
+                });
+            } else {
+                // KAPANMA İŞLEMİ
+                kutu.classList.remove('aktif');
+                // max-height'i sıfırlayarak kapanıştaki o büyük takılmayı yok ediyoruz
+                icerik.style.maxHeight = "0px"; 
+                
+                setTimeout(() => {
+                    if (!kutu.classList.contains('aktif')) {
+                        kutu.removeAttribute('open');
+                    }
+                }, 400); // CSS animasyon süresiyle birebir aynı olmalı (0.4s)
+            }
+        });
+    });
 });
