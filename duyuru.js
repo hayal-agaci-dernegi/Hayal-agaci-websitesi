@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // === 1. OTOMATİK ÖZEL GÜN DUYURULARI ===
     const ozelGunler = {
         "01-01": { kisa: "Yılbaşı Tatili 🎆", tam: "Yeni yılın ilk günü! Herkese sağlık, mutluluk ve başarı dolu bir yıl dileriz. Bugün resmi tatildir." },
         "03-18": { kisa: "18 Mart Çanakkale Zaferi 🇹🇷", tam: "Çanakkale Zaferi'nin yıl dönümünde, başta Gazi Mustafa Kemal Atatürk olmak üzere tüm şehitlerimizi rahmet ve minnetle anıyoruz." },
@@ -17,30 +16,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const ay = String(bugun.getMonth() + 1).padStart(2, '0'); 
     const bugununTarihi = `${ay}-${gun}`;
 
+    const anaKasa = document.getElementById("duyuru-kart-sistemi");
+    let duyuruEkrandaVarMi = false;
+
+    // === 1. OTOMATİK DUYURU KONTROLÜ ===
     if (ozelGunler[bugununTarihi]) {
         const veri = ozelGunler[bugununTarihi];
-        const duyuruSistemi = document.getElementById("duyuru-kart-sistemi");
-        if (duyuruSistemi) {
-            document.getElementById("kisa-duyuru-metni").textContent = veri.kisa;
-            document.getElementById("tam-duyuru-metni").textContent = veri.tam;
-            duyuruSistemi.style.display = "block"; 
-        }
+        document.getElementById("kisa-duyuru-metni").textContent = veri.kisa;
+        document.getElementById("tam-duyuru-metni").textContent = veri.tam;
+        document.getElementById("oto-duyuru").style.display = "block";
+        duyuruEkrandaVarMi = true;
     }
 
-    // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU SİSTEMİ ===
-    // Sadece duyuru yapmak istediğinizde aşağıdaki tırnakların içine metni giriniz.
-    // İşiniz bittiğinde içlerini tamamen temizleyip ("") kaydederseniz ekrandan kalkar.
-    const manuelKisaBaslik = "Dr.Ali'nin Yarın Sınavı Var"; // Örn: "Acil Toplantı Duyurusu ⚠️"
-    const manuelTamMetin = "Dr.Ali'nin Yarın Sınavı Var ve Yarın Kurtuluyor Sınavlardan";   // Örn: "Değerli üyelerimiz, bu hafta sonu dernek binasında olağanüstü toplantı yapılacaktır."
+    // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU KONTROLÜ ===
+    const manuelKisaBaslik = "Dr.Ali'nin Yarın Sınavı Var"; 
+    const manuelTamMetin = "Dr.Ali'nin Yarın Sınavı Var ve Yarın Kurtuluyor Sınavlardan";   
 
-    const manuelDuyuruSistemi = document.getElementById("manuel-duyuru-sistemi");
-    if (manuelDuyuruSistemi) {
-        if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
-            document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
-            document.getElementById("manuel-tam-metin").textContent = manuelTamMetin;
-            manuelDuyuruSistemi.style.display = "block";
+    if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
+        document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
+        document.getElementById("manuel-tam-metin").textContent = manuelTamMetin;
+        document.getElementById("man-duyuru").style.display = "block";
+        duyuruEkrandaVarMi = true;
+    }
+
+    // === 3. ANA KASA KONTROLÜ ===
+    if (anaKasa) {
+        if (duyuruEkrandaVarMi) {
+            anaKasa.style.display = "block";
         } else {
-            manuelDuyuruSistemi.style.display = "none";
+            anaKasa.style.display = "none";
         }
     }
 });
