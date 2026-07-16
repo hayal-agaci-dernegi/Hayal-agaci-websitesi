@@ -955,31 +955,41 @@ img {
     100% { width: 60px; height: 60px; opacity: 0; }
 }
 
-/* Premium Akordeon Açılış Efekti */
+/* ==========================================
+   PREMİUM AKORDEON AÇILIŞ ANİMASYONU
+========================================== */
+
+/* Ok işaretinin de yumuşak dönmesi için */
+.acilis-oku {
+    display: inline-block;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+details.duyuru-akordeon[open] .acilis-oku {
+    transform: rotate(180deg);
+}
+
+/* Kutunun yumuşakça uzayarak metni göstermesi */
 details.duyuru-akordeon[open] .duyuru-tam-metin-alanı {
-    animation: akordeonAcilis 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: premiumKutuAcilis 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     transform-origin: top;
+    overflow: hidden;
 }
 
-@keyframes akordeonAcilis {
+@keyframes premiumKutuAcilis {
     0% { 
         opacity: 0; 
-        transform: translateY(-10px) scaleY(0.97); 
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        transform: translateY(-15px) scale(0.98); 
     }
     100% { 
         opacity: 1; 
-        transform: translateY(0) scaleY(1); 
-    }
-}
-
-@keyframes akordeonAcilis {
-    0% { 
-        opacity: 0; 
-        transform: translateY(-10px) scaleY(0.97); 
-    }
-    100% { 
-        opacity: 1; 
-        transform: translateY(0) scaleY(1); 
+        max-height: 800px; /* Metnin rahatça sığması için */
+        padding-top: 20px;
+        padding-bottom: 25px;
+        transform: translateY(0) scale(1); 
     }
 }
 
