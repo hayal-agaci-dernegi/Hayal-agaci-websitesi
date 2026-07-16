@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const veri = ozelGunler[bugununTarihi];
         const duyuruSistemi = document.getElementById("duyuru-kart-sistemi");
         if (duyuruSistemi) {
-            document.getElementById("kisa-duyuru-metni").textContent = veri.kisa;
-            document.getElementById("tam-duyuru-metni").textContent = veri.tam;
+            document.getElementById("Ali Ders Çalışıyor").textContent = veri.kisa;
+            document.getElementById("Ali'nin yarın sınavı var o sınavı verirse Memlekete Dönüyor").textContent = veri.tam;
             duyuruSistemi.style.display = "block"; 
         }
     }
