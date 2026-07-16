@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const veri = ozelGunler[bugununTarihi];
         const duyuruSistemi = document.getElementById("duyuru-kart-sistemi");
         if (duyuruSistemi) {
-            document.getElementById("Ali Ders Çalışıyor").textContent = veri.kisa;
-            document.getElementById("Ali'nin yarın sınavı var o sınavı verirse Memlekete Dönüyor").textContent = veri.tam;
+            document.getElementById("kisa-duyuru-metni").textContent = veri.kisa;
+            document.getElementById("tam-duyuru-metni").textContent = veri.tam;
             duyuruSistemi.style.display = "block"; 
         }
     }
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const manuelDuyuruSistemi = document.getElementById("manuel-duyuru-sistemi");
     if (manuelDuyuruSistemi) {
         if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
-            document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
-            document.getElementById("manuel-tam-metin").textContent = manuelTamMetin;
+            document.getElementById("Ali'nin sınavı var").textContent = manuelKisaBaslik;
+            document.getElementById("Duyuduk Duymadık Deneyin Yarın Dr.Ali Sınavını Verip Kurtuluyor").textContent = manuelTamMetin;
             manuelDuyuruSistemi.style.display = "block";
         } else {
             manuelDuyuruSistemi.style.display = "none";
