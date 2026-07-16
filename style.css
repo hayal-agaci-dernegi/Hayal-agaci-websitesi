@@ -860,7 +860,7 @@ img {
 #duyuru-kart-sistemi {
     margin: 20px 5%;
     background-color: #fff;
-    border: 2px solid #D9663C; /* Derneğin rengi veya dikkat çeken bir ton */
+    border: 2px solid rgb(134, 220, 84); /* Derneğin rengi veya dikkat çeken bir ton */
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     overflow: hidden;
