@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU KONTROLÜ ===
-    const manuelKisaBaslik = "Test"; 
-    const manuelTamMetin = "Bu Bir Test Duyurusudur Lütfen Dikkate Almayın.";   
+    const manuelKisaBaslik = ""; 
+    const manuelTamMetin = "";   
 
     if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
         document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             anaKasa.style.display = "none";
         }
     }
-    
+
     // === 4. KUSURSUZ YUMUŞAK AÇILIŞ/KAPANIŞ MOTORU ===
     const duyuruOzetleri = document.querySelectorAll('.duyuru-akordeon summary');
     
