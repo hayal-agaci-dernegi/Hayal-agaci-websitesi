@@ -964,11 +964,11 @@ img {
 }
 
 /* ==========================================
-   KESİN ÇÖZÜM: KUSURSUZ AKORDEON ANİMASYONU
+   KUSURSUZ YUMUŞAK AKORDEON ANİMASYONU (DİV İLE)
 ========================================== */
 .acilis-oku {
     display: inline-block;
-    transition: transform 0.35s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .duyuru-akordeon.aktif .acilis-oku {
@@ -979,24 +979,24 @@ img {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    /* Sadece yükseklik ve şeffaflık eşzamanlı çalışacak */
-    transition: max-height 0.35s ease, opacity 0.35s ease;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-top: 1px solid transparent; 
+    box-sizing: border-box;
 }
 
 .duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
     opacity: 1;
+    padding-top: 20px;
+    padding-bottom: 25px;
     border-top: 1px dashed #eee;
 }
 
 body.dark-mode .duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
     border-top: 1px dashed #555 !important;
-}
-
-/* İç boşluklar sadece paragrafa sabitlendi, kasa takılmadan kapanacak */
-.duyuru-tam-metin-alanı p {
-    margin: 0;
-    padding: 20px 25px 25px 85px; 
 }
 
 #kisa-duyuru-metni {
