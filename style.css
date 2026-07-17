@@ -979,9 +979,10 @@ img {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    /* Animasyon aynı pürüzsüzlükte kalacak */
     transition: max-height 0.35s ease, opacity 0.35s ease;
     border-top: 1px solid transparent; 
+    /* ÖNEMLİ: Eski boşlukların üst üste binmesini ve kaymayı engellemek için sıfırlıyoruz */
+    padding: 0 !important; 
 }
 
 .duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
@@ -993,12 +994,11 @@ body.dark-mode .duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
     border-top: 1px dashed #555 !important;
 }
 
-/* ESTETİK DÜZENLEME: Boşluklar daraltıldı, yazı sola hizalandı */
+/* Yazının hizası: 20px (kutu başı) + 30px (ikon) + 15px (aralık) = tam 65px */
 .duyuru-tam-metin-alanı p {
     margin: 0;
-    /* Üst: 12px, Sağ: 20px, Alt: 15px, Sol: 48px (Başlıkla tam milimetrik hiza) */
-    padding: 12px 20px 15px 48px; 
-    line-height: 1.5; /* Okunabilirliği artıran satır aralığı */
+    padding: 15px 20px 15px 65px; 
+    line-height: 1.5;
 }
 
 #kisa-duyuru-metni {
