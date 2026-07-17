@@ -22,10 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // === 1. OTOMATİK DUYURU KONTROLÜ ===
     if (ozelGunler[bugununTarihi]) {
         const veri = ozelGunler[bugununTarihi];
-        document.getElementById("kisa-duyuru-metni").textContent = veri.kisa;
-        document.getElementById("tam-duyuru-metni").textContent = veri.tam;
-        document.getElementById("oto-duyuru").style.display = "block";
-        duyuruEkrandaVarMi = true;
+        const kisaMetinEl = document.getElementById("kisa-duyuru-metni");
+        const tamMetinEl = document.getElementById("tam-duyuru-metni");
+        const otoDuyuruEl = document.getElementById("oto-duyuru");
+        
+        if (kisaMetinEl && tamMetinEl && otoDuyuruEl) {
+            kisaMetinEl.textContent = veri.kisa;
+            tamMetinEl.textContent = veri.tam;
+            otoDuyuruEl.style.display = "block";
+            duyuruEkrandaVarMi = true;
+        }
     }
 
     // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU KONTROLÜ ===
@@ -33,10 +39,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const manuelTamMetin = "deneme";   
 
     if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
-        document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
-        document.getElementById("manuel-tam-metin").textContent = manuelTamMetin;
-        document.getElementById("man-duyuru").style.display = "block";
-        duyuruEkrandaVarMi = true;
+        const manKisaEl = document.getElementById("manuel-kisa-metin");
+        const manTamEl = document.getElementById("manuel-tam-metin");
+        const manDuyuruEl = document.getElementById("man-duyuru");
+        
+        if (manKisaEl && manTamEl && manDuyuruEl) {
+            manKisaEl.textContent = manuelKisaBaslik;
+            manTamEl.textContent = manuelTamMetin;
+            manDuyuruEl.style.display = "block";
+            duyuruEkrandaVarMi = true;
+        }
     }
 
     // === 3. ANA KASA KONTROLÜ ===
@@ -48,36 +60,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // === 4. KUSURSUZ YUMUŞAK AÇILIŞ/KAPANIŞ MOTORU ===
-    const duyuruOzetleri = document.querySelectorAll('.duyuru-akordeon summary');
+    // === 4. KESİN ÇÖZÜM: YUMUŞAK AÇILIŞ/KAPANIŞ MOTORU ===
+    const duyuruOzetleri = document.querySelectorAll('.duyuru-ozet');
     
     duyuruOzetleri.forEach(ozet => {
-        ozet.addEventListener('click', function(e) {
-            e.preventDefault(); 
+        ozet.addEventListener('click', function() {
             const kutu = this.parentElement;
             const icerik = kutu.querySelector('.duyuru-tam-metin-alanı');
             
             if (!kutu.classList.contains('aktif')) {
-                // AÇILMA İŞLEMİ
-                kutu.setAttribute('open', 'true');
-                
-                // Tarayıcının takılmasını (kare atlamasını) önlemek için render bekletiyoruz
-                requestAnimationFrame(() => {
-                    kutu.classList.add('aktif');
-                    // İçeriğin gerçek yüksekliğini hesaplayıp animasyonu o değere kilitliyoruz
-                    icerik.style.maxHeight = icerik.scrollHeight + 50 + "px"; 
-                });
+                // AÇILMA: İçeriğin net pikselini ölç ve aç
+                kutu.classList.add('aktif');
+                icerik.style.maxHeight = icerik.scrollHeight + "px"; 
             } else {
-                // KAPANMA İŞLEMİ
-                kutu.classList.remove('aktif');
-                // max-height'i sıfırlayarak kapanıştaki o büyük takılmayı yok ediyoruz
-                icerik.style.maxHeight = "0px"; 
+                // KAPANMA: Önce yüksekliği mevcut boyuta sabitle ki tarayıcı nereden kapanacağını bilsin
+                icerik.style.maxHeight = icerik.scrollHeight + "px"; 
                 
+                // Çok kısa bir süre bekleyip boyu sıfırla (Pürüzsüz kapanışın sırrı)
                 setTimeout(() => {
-                    if (!kutu.classList.contains('aktif')) {
-                        kutu.removeAttribute('open');
-                    }
-                }, 400); // CSS animasyon süresiyle birebir aynı olmalı (0.4s)
+                    kutu.classList.remove('aktif');
+                    icerik.style.maxHeight = "0"; 
+                }, 10);
             }
         });
     });
