@@ -963,7 +963,15 @@ img {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-details.duyuru-akordeon.aktif .acilis-oku {
+/* ==========================================
+   KUSURSUZ YUMUŞAK AKORDEON ANİMASYONU (DİV İLE)
+========================================== */
+.acilis-oku {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duyuru-akordeon.aktif .acilis-oku {
     transform: rotate(180deg);
 }
 
@@ -973,7 +981,6 @@ details.duyuru-akordeon.aktif .acilis-oku {
     overflow: hidden;
     padding-top: 0;
     padding-bottom: 0;
-    /* Yükseklik, şeffaflık ve iç boşluk geçişlerini tamamen senkronize ettik */
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -981,14 +988,14 @@ details.duyuru-akordeon.aktif .acilis-oku {
     box-sizing: border-box;
 }
 
-details.duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
+.duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
     opacity: 1;
     padding-top: 20px;
     padding-bottom: 25px;
     border-top: 1px dashed #eee;
 }
 
-body.dark-mode details.duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
+body.dark-mode .duyuru-akordeon.aktif .duyuru-tam-metin-alanı {
     border-top: 1px dashed #555 !important;
 }
 

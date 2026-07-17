@@ -85,12 +85,8 @@
 
     <div id="duyuru-kart-sistemi" style="display: none;">
         
-        <!-- TEK KASA İÇİNDE BİRLEŞİK DUYURU SİSTEMİ -->
-    <div id="duyuru-kart-sistemi" style="display: none;">
-        
-        <!-- Otomatik Özel Gün Duyurusu -->
-        <div class="duyuru-akordeon" id="oto-duyuru" style="display: none;">
-            <div class="duyuru-ozet">
+        <details class="duyuru-akordeon" id="oto-duyuru" style="display: none;">
+            <summary class="duyuru-ozet">
                 <div class="duyuru-baslik-alanı">
                     <div class="duyuru-can-konteynir">
                         <span class="duyuru-can">🔔</span>
@@ -99,28 +95,27 @@
                     <p id="kisa-duyuru-metni"></p>
                 </div>
                 <span class="acilis-oku">▼</span>
-            </div>
+            </summary>
             <div class="duyuru-tam-metin-alanı">
                 <p id="tam-duyuru-metni"></p>
             </div>
-        </div>
+        </details>
 
-        <!-- Sizin Manuel Duyurunuz -->
-        <div class="duyuru-akordeon" id="man-duyuru" style="display: none; border-top: 1px solid #eee;">
-            <div class="duyuru-ozet">
-                <div class="duyuru-baslik-alanı">
-                    <div class="duyuru-can-konteynir">
-                        <span class="duyuru-can">📢</span>
-                        <span class="duyuru-can-dalga"></span>
-                    </div>
-                    <p id="manuel-kisa-metin"></p>
-                </div>
-                <span class="acilis-oku">▼</span>
+        <details class="duyuru-akordeon" id="man-duyuru" style="display: none; border-top: 1px solid #eee;">
+    <summary class="duyuru-ozet">
+        <div class="duyuru-baslik-alanı">
+            <div class="duyuru-can-konteynir">
+                <span class="duyuru-can">🔔</span>
+                <span class="duyuru-can-dalga"></span>
             </div>
-            <div class="duyuru-tam-metin-alanı">
-                <p id="manuel-tam-metin"></p>
-            </div>
+            <p id="manuel-kisa-metin"></p>
         </div>
+        <span class="acilis-oku">▼</span>
+    </summary>
+    <div class="duyuru-tam-metin-alanı">
+        <p id="manuel-tam-metin"></p>
+    </div>
+</details>
     </div>
 
     <div id="hakkimizda_ust"></div>
