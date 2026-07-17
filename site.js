@@ -230,14 +230,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// TERS MANTIKLI & YUMUŞAK EVRİLEN KARANLIK MOD
+// AKILLI VE MANUEL UYUMLU KARANLIK MOD SİSTEMİ
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const themeBtn = document.createElement("div");
     themeBtn.id = "theme-toggle-btn";
     document.body.appendChild(themeBtn);
 
-    // Temiz SVG Yapısı (İç içe geçme hatası giderilmiş)
     themeBtn.innerHTML = `
         <svg id="theme-svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
             <mask id="moon-mask">
@@ -261,63 +260,46 @@ document.addEventListener("DOMContentLoaded", function() {
     const applyTheme = (mode) => {
         if (mode === 'dark') {
             document.body.classList.add('dark-mode');
-            // GECE MODUNDA GÜNEŞ GÖRÜNSÜN
             sunRays.style.opacity = "1";
             sunRays.style.transform = "rotate(0deg) scale(1)";
             mainCircle.setAttribute('r', '5');
-            maskCircle.setAttribute('cx', '25'); // Maskeyi tamamen dışarı at (leke kalmasın)
+            maskCircle.setAttribute('cx', '25'); 
         } else {
             document.body.classList.remove('dark-mode');
-            // AYDINLIK MODDA AY GÖRÜNSÜN
             sunRays.style.opacity = "0";
             sunRays.style.transform = "rotate(-45deg) scale(0.5)";
             mainCircle.setAttribute('r', '9');
-            maskCircle.setAttribute('cx', '18'); // Maskeyi içeri al (hilal yap)
+            maskCircle.setAttribute('cx', '18'); 
         }
     };
 
-    const saved = localStorage.getItem("theme") || "light";
-    applyTheme(saved);
+    // 1. KULLANICI TERCİHİ KONTROLÜ
+    const kayitliMod = localStorage.getItem("theme");
 
+    if (kayitliMod) {
+        // Ziyaretçi daha önce manuel seçim yapmışsa, saat kaç olursa olsun onun kararına itaat edilir.
+        applyTheme(kayitliMod);
+    } else {
+        // Ziyaretçi siteye İLK KEZ girmişse veya tercih yapmamışsa saate bakılır.
+        const mevcutSaat = new Date().getHours();
+        
+        // Saat 19:00 ile sabah 07:00 arasındaysa gözü yormamak için gece modu otomatik açılır.
+        if (mevcutSaat >= 19 || mevcutSaat < 7) {
+            applyTheme("dark");
+        } else {
+            applyTheme("light");
+        }
+    }
+
+    // 2. KULLANICI BUTONA BASTIĞINDA
     themeBtn.addEventListener("click", () => {
         const newMode = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
         applyTheme(newMode);
+        
+        // Ziyaretçinin verdiği bu karar sonsuza dek hafızaya kazınır ve otomatik saat kontrolü tamamen ezilir.
         localStorage.setItem("theme", newMode);
     });
 });
-
-// ==========================================
-// AKILLI BAŞA DÖN BUTONU KONTROLÜ (KADEMELİ GEÇİŞ)
-// ==========================================
-
-window.addEventListener('scroll', function() {
-    var btn = document.getElementById("basa-don-btn");
-    var inilenMesafe = window.scrollY || document.documentElement.scrollTop;
-    
-    // 100 piksellik bir kaydırmadan sonra işlem başlasın
-    if (inilenMesafe > 100) {
-        btn.style.visibility = "visible";
-        
-        // 100px ile 500px arası kaydırmada saydamlığı 0'dan 1'e doğru yavaşça artır
-        var saydamlik = (inilenMesafe - 100) / 400; 
-        
-        // Saydamlık 1'i (Tam görünürlüğü) geçmesin
-        if (saydamlik > 1) { saydamlik = 1; } 
-        
-        btn.style.opacity = saydamlik;
-    } else {
-        // En yukarıdayken tamamen gizle
-        btn.style.opacity = "0";
-        btn.style.visibility = "hidden";
-    }
-});
-
-function basaDon() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}  
 
 // ==========================================
 // HAYAL AĞACI - YAPRAK ÜRETİCİ
