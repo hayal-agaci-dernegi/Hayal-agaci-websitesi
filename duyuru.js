@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU KONTROLÜ ===
-    const manuelKisaBaslik = "deneme"; 
-    const manuelTamMetin = "deneme";   
+    const manuelKisaBaslik = "Köy Okulları İçin Kışlık Kitap ve Kırtasiye Bağış Kampanyası Başlıyor"; 
+    const manuelTamMetin = "Değerli gönüllülerimiz, yeni eğitim ve öğretim yılına girerken köy okullarındaki öğrenci kardeşlerimize destek olmak amacıyla büyük bir bağış kampanyası başlatıyoruz. Bu kapsamda ilkokul ve ortaokul seviyesine uygun okuma kitapları, defter, kalem ve çeşitli kırtasiye malzemeleri toplanacaktır. Kampanyamız önümüzdeki ayın sonuna kadar devam edecek olup, toplanan tüm yardımlar tasnif edildikten sonra ihtiyaç sahibi okullara bizzat derneğimizin araçlarıyla teslim edilecektir. Detaylı bilgi ve malzeme teslimi için iletişim numaralarımızdan bizlere ulaşabilir veya merkez ofisimizi ziyaret edebilirsiniz. Destekleriniz için şimdiden teşekkür ederiz.";   
 
     if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
         document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
