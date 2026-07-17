@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // === 2. MANUEL (İSTEĞE BAĞLI) DUYURU KONTROLÜ ===
-    const manuelKisaBaslik = ""; 
-    const manuelTamMetin = "";   
+    const manuelKisaBaslik = "deneme"; 
+    const manuelTamMetin = "deneme";   
 
     if (manuelKisaBaslik.trim() !== "" || manuelTamMetin.trim() !== "") {
         document.getElementById("manuel-kisa-metin").textContent = manuelKisaBaslik;
