@@ -1399,8 +1399,8 @@ body.dark-mode .yukleme-metni { color: #bbb; }
    AKILLI BAŞA DÖN BUTONU (YENİ ZARİF TASARIM)
 ========================================== */
 #basa-don-btn {
-    visibility: visible; /* Buton her zaman görünür olsun (KUSURSUZ MOBİL UYUM İÇİN GÜNCELLENDİ) */
-    opacity: 1; /* Tamamen görünür (KUSURSUZ MOBİL UYUM İÇİN GÜNCELLENDİ) */
+    visibility: hidden; /* Başlangıçta tıklanmasını engeller */
+    opacity: 0; /* Tamamen saydam başlar */
     position: fixed; 
     bottom: 90px; 
     right: 20px;

@@ -1291,3 +1291,31 @@ function adresiKopyala(btn) {
         setTimeout(() => { btn.textContent = '📋 Kopyala'; btn.classList.remove('kopyalandi'); }, 2500);
     });
 }
+
+// ==========================================
+// BAŞA DÖN BUTONU VE KAYDIRMA KONTROLÜ
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const basaDonBtn = document.getElementById("basa-don-btn");
+
+    if (basaDonBtn) {
+        // Sayfa kaydırıldıkça butonun şeffaflığını ayarlar
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 100) {
+                basaDonBtn.style.opacity = "1";
+                basaDonBtn.style.visibility = "visible";
+            } else {
+                basaDonBtn.style.opacity = "0";
+                basaDonBtn.style.visibility = "hidden";
+            }
+        });
+    }
+});
+
+// HTML içindeki onclick="basaDon()" komutunun çalıştırdığı asıl fonksiyon
+function basaDon() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
