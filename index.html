@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Hayal Ağacı Derneği - Umut Yeşertiyoruz">
     <meta property="og:description" content="Kütüphaneler kurarak çocuklarımızın hayallerini yeşertiyoruz. Siz de bize katılın.">
-    <meta property="og:image" content="https://www.hayalagaci.org/source/ha/ha_logo_lr.png">
+    <meta property="og:image" content="https://hayalagaci.org/source/ha/ha_logo_lr.png">
 
     <link rel="icon" type="image/png" href="https://hayalagaci.org/source/ha/ha_logo_192.png">
     <link rel="canonical" href="https://hayalagaci.org/" />
@@ -349,5 +349,18 @@
     </div>
 </div>
 <script src="duyuru.js"></script>
+
+<!-- Çevrimdışı (İnternet Yok) Nöbetçi Aktivasyon Kodu -->
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('Çevrimdışı nöbetçi aktif.');
+        }).catch(function(err) {
+            console.log('Nöbetçi kayıt hatası: ', err);
+        });
+    });
+}
+</script>
 </body>
 </html>
