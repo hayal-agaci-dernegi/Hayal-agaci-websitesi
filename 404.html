@@ -9,6 +9,14 @@
     <link rel="canonical" href="https://hayalagaci.org/404.html" />
     
     <style>
+        /* ==========================================
+           YUMUŞAK GEÇİŞ SİSTEMİ (DARK MODE)
+        ========================================== */
+        /* Arka plan, metin rengi ve gölgeler için 0.8 saniyelik yumuşak geçiş emri */
+        body, .hata-kapsayici, .hata-mesaj, .hata-aciklama {
+            transition: background-color 0.8s ease, color 0.8s ease, text-shadow 0.8s ease !important;
+        }
+
         /* Sadece 404 sayfasına özel hizalama ayarları */
         .hata-kapsayici {
             display: flex;
