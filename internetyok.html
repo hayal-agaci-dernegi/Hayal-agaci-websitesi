@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        body, .hata-kapsayici, .hata-mesaj, .hata-aciklama {
-            transition: background-color 0.8s ease, color 0.8s ease, text-shadow 0.8s ease !important;
+        /* Animasyonlu pürüzsüz renk geçişleri */
+        body, .hata-kapsayici, .hata-mesaj, .hata-aciklama, #durum-logo, .bagisbt {
+            transition: background-color 0.8s ease, color 0.8s ease, filter 0.8s ease, border 0.8s ease !important;
         }
 
         .hata-kapsayici {
@@ -33,7 +34,6 @@
             width: 110px;
             margin-bottom: 15px;
             filter: grayscale(100%);
-            transition: filter 0.6s ease;
         }
 
         /* İnternet geldiğinde logonun rengini geri getiren sınıf */
@@ -63,9 +63,21 @@
             .hata-aciklama { font-size: 0.9rem; }
         }
 
-        body.dark-mode .hata-kapsayici { background-color: #121212 !important; }
-        body.dark-mode .hata-mesaj { color: #f5f5f5 !important; }
-        body.dark-mode .hata-aciklama { color: #aaa !important; }
+        /* ================= KUSURSUZ KARANLIK MOD STİLLERİ ================= */
+        body.dark-mode .hata-kapsayici { 
+            background-color: #121212 !important; 
+        }
+        body.dark-mode .hata-mesaj { 
+            color: #f5f5f5 !important; 
+        }
+        body.dark-mode .hata-aciklama { 
+            color: #aaa !important; 
+        }
+        body.dark-mode .bagisbt {
+            background-color: #1e1e1e !important;
+            color: #f5f5f5 !important;
+            border: 1px solid #444 !important;
+        }
     </style>
 </head>
 <body>
@@ -81,12 +93,36 @@
     </div>
 
     <script>
-        // İnternet geri geldiğinde çalışacak komutlar
+        // 1. ANA SİTEYE BAĞLI VE SAATE GÖRE OTOMATİK KARANLIK MOD ALGORİTMASI
+        function temaKontroluYap() {
+            // Ana sitenizden gelen localStorage verisini okuruz
+            const kayitliTema = localStorage.getItem("tema");
+            const guncelSaat = new Date().getHours();
+            const body = document.body;
+
+            if (kayitliTema === "dark") {
+                // Kullanıcı sitede karanlık modu seçmişse buna uyarız
+                body.classList.add("dark-mode");
+            } else if (kayitliTema === "light") {
+                // Kullanıcı aydınlık modu seçmişse buna uyarız
+                body.classList.remove("dark-mode");
+            } else {
+                // Herhangi bir seçim yapılmamışsa saati kontrol edip göz koruması uygularız (Akşam 7 ile Sabah 7 arası)
+                if (guncelSaat >= 19 || guncelSaat < 7) {
+                    body.classList.add("dark-mode");
+                }
+            }
+        }
+
+        // Sayfa ilk yüklendiğinde temayı hemen ayarla
+        temaKontroluYap();
+
+        // 2. İNTERNET GERİ GELDİĞİNDE TETİKLENEN YAPI
         window.addEventListener('online', function() {
-            // Logoya rengini geri ver
+            // Logoya rengini pürüzsüz bir animasyonla geri ver
             document.getElementById('durum-logo').classList.add('renkli');
             
-            // Rengin geldiği görülsün diye yarım saniye bekleyip sayfayı yenile
+            // Kullanıcının bağlantının geldiğini logodaki renkten anlaması için yarım saniye bekleyip yenile
             setTimeout(function() {
                 window.location.reload();
             }, 500);
