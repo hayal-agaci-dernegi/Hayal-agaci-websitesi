@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="İnternet bağlantısı yok - Hayal Ağacı Derneği">
-    <title>Çevrimdışı Mükemmel Macera - Hayal Ağacı Derneği</title>
+    <title>Bağlantı Koptu - Hayal Ağacı Derneği</title>
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -20,512 +20,51 @@
             min-height: 100vh; 
             background-color: rgb(254, 249, 241);
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             box-sizing: border-box; 
         }
 
         .hata-mesaj {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: rgb(27, 27, 27);
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin-top: 15px;
+            margin-bottom: 10px;
             font-weight: bold;
         }
 
-        #oyun-alani {
-            width: 100%;
-            max-width: 850px;
-            height: 260px;
-            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
-            border: 3px solid rgb(134, 220, 84);
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            margin-bottom: 12px;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        #bilgi-paneli {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 850px;
-            font-size: 1.15rem;
-            font-weight: bold;
-            color: rgb(134, 220, 84);
-            margin-bottom: 8px;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-
-        .oyun-butonlari {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 15px;
+        .hata-aciklama {
+            font-size: 1rem;
+            color: rgb(100, 100, 100);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
         @media (max-width: 900px) {
-            .hata-kapsayici img { width: 60px !important; margin-bottom: 5px !important; }
-            .hata-mesaj { font-size: 1.2rem; }
-            #oyun-alani { height: 200px; max-width: 100%; }
-            #bilgi-paneli { max-width: 100%; font-size: 0.9rem; }
+            .hata-kapsayici img { width: 80px !important; }
+            .hata-mesaj { font-size: 1.4rem; }
+            .hata-aciklama { font-size: 0.9rem; }
         }
 
         body.dark-mode .hata-kapsayici { background-color: #121212 !important; }
         body.dark-mode .hata-mesaj { color: #f5f5f5 !important; }
+        body.dark-mode .hata-aciklama { color: #aaa !important; }
     </style>
 </head>
 <body>
     <div class="hata-kapsayici">
-        <img src="/source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" style="width: 90px; margin-bottom: 5px;">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" style="width: 110px; margin-bottom: 15px;">
         
-        <h2 class="hata-mesaj">İnternet Yok, Dengeli ve Hızlı Macera Var! 🚀</h2>
-        
-        <div id="bilgi-paneli">
-            <div>Skor: <span id="skor">0</span> / <span id="hedef-puan">800</span></div>
-            <div>Can: <span id="can">❤️❤️❤️</span></div>
-            <div>Durum: <span id="durum-metni">Hazır (Space ile Başla)</span></div>
-        </div>
-
-        <div id="oyun-alani" onclick="oyunuBaslatVEYAZipla()">
-            <canvas id="hayalCanvas" width="850" height="260"></canvas>
-        </div>
-
-        <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px;">
-            <strong>Zıplamak:</strong> Space | <strong>Eğilmek:</strong> Shift | <strong>Yeniden Başlat:</strong> Elendikten Sonra Space
+        <h2 class="hata-mesaj">İnternet Bağlantınız Kesildi</h2>
+        <p class="hata-aciklama">
+            Şu anda çevrimdışısınız gibi görünüyor. Lütfen internet bağlantınızı kontrol edin veya bağlantı yeniden sağlandığında sayfayı yenileyin.
         </p>
 
-        <div class="oyun-butonlari">
-            <button onclick="oyunuBaslatVEYAZipla()" class="katılbt" style="cursor:pointer; border:none; padding: 8px 18px; font-size: 0.95rem; position: static;">Başla / Zıpla</button>
-            <button onclick="oyunuSifirlaHazirla()" class="bagisbt" style="cursor:pointer; padding: 8px 18px; font-size: 0.95rem; position: static;">Sıfırla</button>
-        </div>
+        <button onclick="window.location.reload()" class="bagisbt" style="cursor:pointer; padding: 12px 25px; font-size: 1rem; position: static;">Yeniden Dene</button>
     </div>
 
     <script>
-        const canvas = document.getElementById("hayalCanvas");
-        const ctx = canvas.getContext("2d");
-        const skorYazisi = document.getElementById("skor");
-        const hedefYazisi = document.getElementById("hedef-puan");
-        const canYazisi = document.getElementById("can");
-        const durumYazisi = document.getElementById("durum-metni");
-
-        let oyunDurumu = "HAZIR"; // "HAZIR", "OYNANIYOR", "BITTI", "KAZANDI"
-        let skor = 0;
-        let can = 3;
-        let oyunHizi = 6;
-        let hizCarpani = 1.0;
-        let boostSuresi = 0;
-        let zeminX = 0;
-
-        let oyuncuKayitlari = JSON.parse(localStorage.getItem("hayal_ai_kayitlari")) || { kaybedilmeSayisi: 0, kazanilmaSayisi: 0 };
-        let dinamikFinalPuani = 800;
-
-        function aiFinalPuaniniAyarla() {
-            if (oyuncuKayitlari.kaybedilmeSayisi > oyuncuKayitlari.kazanilmaSayisi + 2) {
-                dinamikFinalPuani = 600;
-            } else if (oyuncuKayitlari.kazanilmaSayisi > oyuncuKayitlari.kaybedilmeSayisi + 2) {
-                dinamikFinalPuani = 1600;
-            } else {
-                dinamikFinalPuani = 1000;
-            }
-            hedefYazisi.innerText = dinamikFinalPuani;
-        }
-        aiFinalPuaniniAyarla();
-
-        let karakter = {
-            x: 80,
-            y: 185,
-            genislik: 40,
-            yukseklik: 50,
-            vy: 0,
-            yercekimi: 0.8,
-            ziplamaGucu: -13,
-            isJumping: false,
-            isDucking: false,
-            animasyonFrame: 0
-        };
-
-        let engeller = [];
-        let kuslar = [];
-        let agaclar = [];
-        let parcaciklar = [];
-        let spawnSayaci = 0;
-
-        window.addEventListener("keydown", e => {
-            if (e.code === "Space") {
-                e.preventDefault();
-                if (oyunDurumu === "BITTI" || oyunDurumu === "KAZANDI") {
-                    oyunuSifirlaHazirla();
-                } else if (oyunDurumu === "HAZIR") {
-                    oyunDurumu = "OYNANIYOR";
-                    durumYazisi.innerText = "Koşuyor...";
-                } else if (oyunDurumu === "OYNANIYOR") {
-                    zipla();
-                }
-            }
-            if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
-                e.preventDefault();
-                if (oyunDurumu === "OYNANIYOR" && !karakter.isJumping) {
-                    karakter.isDucking = true;
-                    karakter.yukseklik = 28;
-                    karakter.y = 207;
-                }
-            }
-        });
-
-        window.addEventListener("keyup", e => {
-            if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
-                karakter.isDucking = false;
-                karakter.yukseklik = 50;
-                karakter.y = 185;
-            }
-        });
-
-        function oyunuSifirlaHazirla() {
-            oyunDurumu = "HAZIR";
-            skor = 0;
-            can = 3;
-            oyunHizi = 6;
-            hizCarpani = 1.0;
-            boostSuresi = 0;
-            engeller = [];
-            kuslar = [];
-            agaclar = [];
-            parcaciklar = [];
-            spawnSayaci = 0;
-            karakter.x = 80;
-            karakter.y = 185;
-            karakter.vy = 0;
-            karakter.isJumping = false;
-            karakter.isDucking = false;
-            skorYazisi.innerText = "0";
-            canYazisi.innerText = "❤️❤️❤️";
-            aiFinalPuaniniAyarla();
-            durumYazisi.innerText = "Hazır (Space ile Başla)";
-        }
-
-        function oyunuBaslatVEYAZipla() {
-            if (oyunDurumu === "BITTI" || oyunDurumu === "KAZANDI") {
-                oyunuSifirlaHazirla();
-                return;
-            }
-            if (oyunDurumu === "HAZIR") {
-                oyunDurumu = "OYNANIYOR";
-                durumYazisi.innerText = "Koşuyor...";
-            }
-            zipla();
-        }
-
-        function zipla() {
-            if (!karakter.isJumping && !karakter.isDucking && oyunDurumu === "OYNANIYOR") {
-                karakter.vy = karakter.ziplamaGucu;
-                karakter.isJumping = true;
-                for(let k=0; k<5; k++) {
-                    parcaciklar.push({x: karakter.x, y: 235, vx: (Math.random()-0.5)*3, vy: -Math.random()*2, renk: "#888", boyut: Math.random()*4+2});
-                }
-            }
-        }
-
-        function yapayZekaGuncelleme() {
-            if (oyunDurumu !== "OYNANIYOR") return;
-            // Süre geçtikçe hız kademeli ve sürekli artar
-            oyunHizi = (6 + (skor / 150)) * hizCarpani;
-
-            if (boostSuresi > 0) {
-                boostSuresi--;
-                durumYazisi.innerText = "HIZLI! (1.5x Boost)";
-                if (boostSuresi === 0) {
-                    hizCarpani = 1.0;
-                    durumYazisi.innerText = "Koşuyor...";
-                }
-            }
-
-            if (skor >= dinamikFinalPuani && oyunDurumu === "OYNANIYOR") {
-                oyunDurumu = "KAZANDI";
-                karakter.isJumping = false;
-                karakter.isDucking = false;
-                karakter.vy = 0;
-                karakter.y = 185;
-
-                oyuncuKayitlari.kazanilmaSayisi++;
-                localStorage.setItem("hayal_ai_kayitlari", JSON.stringify(oyuncuKayitlari));
-                durumYazisi.innerText = dinamikFinalPuani >= 1400 ? "SARAY KÜTÜPHANESİNE ULAŞILDI! BÜYÜK ZAFER!" : "KÜTÜPHANEYE ULAŞILDI! KAZANDINIZ!";
-            }
-        }
-
-        // Dengeli, Sık ve Adil Rastgele Üretim Algoritması
-        function nesneUret() {
-            if (oyunDurumu !== "OYNANIYOR") return;
-            spawnSayaci++;
-
-            // Hıza ve skora bağlı dengeli üretim aralığı
-            let limit = Math.max(45, 90 - Math.floor(skor / 20));
-
-            if (spawnSayaci >= limit) {
-                spawnSayaci = 0;
-                let rastgele = Math.random();
-
-                // %55 Kuru Ağaç, %25 Yapraklı Ağaç (Ödül), %20 Kuş (Dengeli sıklık)
-                if (rastgele < 0.55) {
-                    engeller.push({ x: 880, y: 185, genislik: 32, yukseklik: 50, hasarVerdi: false });
-                } else if (rastgele < 0.80) {
-                    agaclar.push({ x: 880, y: 175, genislik: 38, yukseklik: 55, alinidi: false });
-                } else {
-                    kuslar.push({ x: 880, y: 145, genislik: 42, yukseklik: 26, hasarVerdi: false, animasyon: 0 });
-                }
-            }
-        }
-
-        function karakteriCiz() {
-            ctx.save();
-            ctx.shadowColor = "rgba(134, 220, 84, 0.6)";
-            ctx.shadowBlur = 12;
-            ctx.fillStyle = "rgb(134, 220, 84)";
-
-            if (karakter.isDucking) {
-                ctx.fillRect(karakter.x, karakter.y, 55, karakter.yukseklik);
-                ctx.fillStyle = "#fff";
-                ctx.fillRect(karakter.x + 35, karakter.y + 6, 12, 10);
-            } else {
-                ctx.fillRect(karakter.x, karakter.y, karakter.genislik, karakter.yukseklik);
-                ctx.fillStyle = "#ffffff";
-                ctx.fillRect(karakter.x + 20, karakter.y - 14, 18, 16);
-                ctx.fillStyle = "#16213e";
-                ctx.fillRect(karakter.x + 30, karakter.y - 10, 5, 5);
-
-                let bacakOffset = Math.floor(karakter.animasyonFrame / 5) % 2;
-                ctx.fillStyle = "rgb(134, 220, 84)";
-                if (karakter.isJumping) {
-                    ctx.fillRect(karakter.x + 6, karakter.y + karakter.yukseklik, 7, 12);
-                    ctx.fillRect(karakter.x + 24, karakter.y + karakter.yukseklik, 7, 12);
-                } else if (bacakOffset === 0) {
-                    ctx.fillRect(karakter.x + 5, karakter.y + karakter.yukseklik, 8, 14);
-                    ctx.fillRect(karakter.x + 22, karakter.y + karakter.yukseklik, 6, 9);
-                } else {
-                    ctx.fillRect(karakter.x + 8, karakter.y + karakter.yukseklik, 6, 9);
-                    ctx.fillRect(karakter.x + 25, karakter.y + karakter.yukseklik, 8, 14);
-                }
-            }
-            ctx.restore();
-        }
-
-        function arkaPlanVeZeminCiz() {
-            ctx.strokeStyle = "rgb(134, 220, 84)";
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(0, 235);
-            ctx.lineTo(850, 235);
-            ctx.stroke();
-
-            ctx.fillStyle = "rgba(134, 220, 84, 0.4)";
-            zeminX -= oyunHizi;
-            if (zeminX <= -60) zeminX = 0;
-            for (let i = zeminX; i < 850; i += 80) {
-                ctx.fillRect(i, 240, 25, 3);
-            }
-
-            if (oyunDurumu === "KAZANDI") {
-                if (dinamikFinalPuani >= 1400) {
-                    ctx.fillStyle = "#8e44ad";
-                    ctx.fillRect(540, 50, 260, 185);
-                    ctx.fillStyle = "#f1c40f";
-                    ctx.fillRect(635, 130, 70, 105);
-                    ctx.fillStyle = "#3498db";
-                    ctx.fillRect(570, 80, 45, 55);
-                    ctx.fillRect(725, 80, 45, 55);
-                    ctx.fillStyle = "#fff";
-                    ctx.font = "bold 16px sans-serif";
-                    ctx.fillText("İHTİŞAMLI SARAY KÜTÜPHANESİ", 545, 35);
-                } else {
-                    ctx.fillStyle = "#e67e22";
-                    ctx.fillRect(600, 80, 180, 155);
-                    ctx.fillStyle = "#f1c40f";
-                    ctx.fillRect(665, 145, 50, 90);
-                    ctx.fillStyle = "#3498db";
-                    ctx.fillRect(620, 100, 35, 35);
-                    ctx.fillRect(725, 100, 35, 35);
-                    ctx.fillStyle = "#fff";
-                    ctx.font = "bold 15px sans-serif";
-                    ctx.fillText("HAYAL KÜTÜPHANESİ", 612, 65);
-                }
-            }
-        }
-
-        function oyunDongusu() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            arkaPlanVeZeminCiz();
-
-            if (oyunDurumu === "OYNANIYOR") {
-                karakter.vy += karakter.yercekimi;
-                karakter.y += karakter.vy;
-
-                if (karakter.y > 185 && !karakter.isDucking) {
-                    karakter.y = 185;
-                    karakter.vy = 0;
-                    karakter.isJumping = false;
-                } else if (karakter.y > 207 && karakter.isDucking) {
-                    karakter.y = 207;
-                    karakter.vy = 0;
-                    karakter.isJumping = false;
-                }
-
-                karakter.animasyonFrame++;
-                skor += 0.35;
-                skorYazisi.innerText = Math.floor(skor);
-
-                yapayZekaGuncelleme();
-                nesneUret();
-
-                for(let p = parcaciklar.length - 1; p >= 0; p--) {
-                    let part = parcaciklar[p];
-                    part.x += part.vx;
-                    part.y += part.vy;
-                    ctx.fillStyle = part.renk;
-                    ctx.fillRect(part.x, part.y, part.boyut, part.boyut);
-                    if(part.y > 240) parcaciklar.splice(p, 1);
-                }
-
-                // Kuru Ağaçlar
-                for (let i = engeller.length - 1; i >= 0; i--) {
-                    let e = engeller[i];
-                    e.x -= oyunHizi;
-                    ctx.fillStyle = "#d35400";
-                    ctx.fillRect(e.x + 10, e.y + 10, 12, 40);
-                    ctx.strokeStyle = "#e67e22";
-                    ctx.lineWidth = 3;
-                    ctx.beginPath();
-                    ctx.moveTo(e.x + 16, e.y + 25); ctx.lineTo(e.x - 5, e.y + 10);
-                    ctx.moveTo(e.x + 16, e.y + 15); ctx.lineTo(e.x + 35, e.y + 5);
-                    ctx.stroke();
-
-                    let kBox = { x: karakter.x, y: karakter.isDucking ? karakter.y + 15 : karakter.y, w: karakter.genislik, h: karakter.isDucking ? 28 : karakter.yukseklik };
-                    if (!e.hasarVerdi && kBox.x < e.x + e.genislik && kBox.x + kBox.w > e.x &&
-                        kBox.y < e.y + e.yukseklik && kBox.y + kBox.h > e.y) {
-                        e.hasarVerdi = true;
-                        can--;
-                        canYazisi.innerText = "❤️".repeat(Math.max(0, can));
-                        if (can <= 0) {
-                            oyunDurumu = "BITTI";
-                            oyuncuKayitlari.kaybedilmeSayisi++;
-                            localStorage.setItem("hayal_ai_kayitlari", JSON.stringify(oyuncuKayitlari));
-                            durumYazisi.innerText = "Oyun Bitti! Hazırda beklemek için [SPACE] tuşuna basın";
-                        }
-                    }
-                    if (e.x < -60) engeller.splice(i, 1);
-                }
-
-                // Kuşlar
-                for (let i = kuslar.length - 1; i >= 0; i--) {
-                    let k = kuslar[i];
-                    k.x -= oyunHizi;
-                    k.animasyon++;
-
-                    ctx.save();
-                    ctx.translate(k.x + 20, k.y + 13);
-                    
-                    ctx.fillStyle = "#e74c3c";
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, 15, 8, 0, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    ctx.fillStyle = "#c0392b";
-                    ctx.beginPath();
-                    ctx.arc(12, -2, 5, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillStyle = "#f1c40f";
-                    ctx.beginPath();
-                    ctx.moveTo(16, -3); ctx.lineTo(22, -1); ctx.lineTo(16, 1);
-                    ctx.fill();
-
-                    let kanatY = Math.sin(k.animasyon * 0.2) * 8;
-                    ctx.fillStyle = "#962d22";
-                    ctx.beginPath();
-                    ctx.moveTo(-4, -2);
-                    ctx.lineTo(4, -12 + kanatY);
-                    ctx.lineTo(8, -2);
-                    ctx.fill();
-
-                    ctx.restore();
-
-                    let kBox = { x: karakter.x, y: karakter.isDucking ? karakter.y + 15 : karakter.y, w: karakter.genislik, h: karakter.isDucking ? 28 : karakter.yukseklik };
-                    if (!k.hasarVerdi && kBox.x < k.x + k.genislik && kBox.x + kBox.w > k.x &&
-                        kBox.y < k.y + k.yukseklik && kBox.y + kBox.h > k.y) {
-                        k.hasarVerdi = true;
-                        can--;
-                        canYazisi.innerText = "❤️".repeat(Math.max(0, can));
-                        if (can <= 0) {
-                            oyunDurumu = "BITTI";
-                            oyuncuKayitlari.kaybedilmeSayisi++;
-                            localStorage.setItem("hayal_ai_kayitlari", JSON.stringify(oyuncuKayitlari));
-                            durumYazisi.innerText = "Oyun Bitti! Hazırda beklemek için [SPACE] tuşuna basın";
-                        }
-                    }
-                    if (k.x < -60) kuslar.splice(i, 1);
-                }
-
-                // Yapraklı Ağaçlar
-                for (let i = agaclar.length - 1; i >= 0; i--) {
-                    let a = agaclar[i];
-                    a.x -= oyunHizi;
-                    ctx.fillStyle = "#8B4513";
-                    ctx.fillRect(a.x + 14, a.y + 18, 10, 35);
-                    ctx.fillStyle = "#2ecc71";
-                    ctx.beginPath();
-                    ctx.arc(a.x + 19, a.y + 18, 22, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    let kBox = { x: karakter.x, y: karakter.isDucking ? karakter.y + 15 : karakter.y, w: karakter.genislik, h: karakter.isDucking ? 28 : karakter.yukseklik };
-                    if (!a.alinidi && kBox.x < a.x + a.genislik && kBox.x + kBox.w > a.x &&
-                        kBox.y < a.y + a.yukseklik && kBox.y + kBox.h > a.y) {
-                        a.alinidi = true;
-                        hizCarpani = 1.4;
-                        boostSuresi = 180;
-                        if (can < 3) can++;
-                        canYazisi.innerText = "❤️".repeat(can);
-                        agaclar.splice(i, 1);
-                        continue;
-                    }
-                    if (a.x < -60) agaclar.splice(i, 1);
-                }
-
-            } else if (oyunDurumu === "KAZANDI") {
-                let hedefX = dinamikFinalPuani >= 1400 ? 590 : 650;
-                if (karakter.x < hedefX) {
-                    karakter.x += 2;
-                    karakter.animasyonFrame++;
-                } else {
-                    ctx.fillStyle = "rgb(134, 220, 84)";
-                    ctx.font = "bold 18px sans-serif";
-                    ctx.fillText("TEBRİKLER! KÜTÜPHANEYE ULAŞTINIZ!", 240, 40);
-                    ctx.font = "13px sans-serif";
-                    ctx.fillText("Yeniden hazır beklemek için [SPACE] tuşuna basın", 270, 65);
-                }
-            } else if (oyunDurumu === "BITTI") {
-                ctx.fillStyle = "#e74c3c";
-                ctx.font = "bold 26px sans-serif";
-                ctx.fillText("OYUN BİTTİ", 360, 95);
-                ctx.font = "14px sans-serif";
-                ctx.fillStyle = "#fff";
-                ctx.fillText("Hazırda beklemek için [SPACE] tuşuna basın", 280, 130);
-            } else {
-                ctx.fillStyle = "#fff";
-                ctx.font = "bold 16px sans-serif";
-                ctx.fillText("Başlamak İçin [SPACE] Tuşuna Basın", 280, 115);
-            }
-
-            karakteriCiz();
-            requestAnimationFrame(oyunDongusu);
-        }
-
-        requestAnimationFrame(oyunDongusu);
-
+        // İnternet geri geldiğinde sayfayı otomatik yenile
         window.addEventListener('online', function() {
             window.location.reload();
         });
