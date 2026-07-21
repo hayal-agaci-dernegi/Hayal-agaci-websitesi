@@ -1312,6 +1312,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
 // HTML içindeki onclick="basaDon()" komutunun çalıştırdığı asıl fonksiyon
 function basaDon() {
     window.scrollTo({
