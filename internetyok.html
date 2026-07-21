@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="İnternet bağlantısı yok - Hayal Ağacı Derneği">
     <title>Bağlantı Koptu - Hayal Ağacı Derneği</title>
+    
+    <!-- Sekmedeki dünya simgesi yerine logonuzun çıkmasını sağlayan kısım -->
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_192.png">
+    
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -24,6 +28,19 @@
             box-sizing: border-box; 
         }
 
+        /* İnternet yokken logoyu tamamen gri yapan kısım */
+        #durum-logo {
+            width: 110px;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: filter 0.6s ease;
+        }
+
+        /* İnternet geldiğinde logonun rengini geri getiren sınıf */
+        #durum-logo.renkli {
+            filter: grayscale(0%);
+        }
+
         .hata-mesaj {
             font-size: 1.8rem;
             color: rgb(27, 27, 27);
@@ -41,7 +58,7 @@
         }
 
         @media (max-width: 900px) {
-            .hata-kapsayici img { width: 80px !important; }
+            #durum-logo { width: 80px !important; }
             .hata-mesaj { font-size: 1.4rem; }
             .hata-aciklama { font-size: 0.9rem; }
         }
@@ -53,7 +70,7 @@
 </head>
 <body>
     <div class="hata-kapsayici">
-        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" style="width: 110px; margin-bottom: 15px;">
+        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" id="durum-logo">
         
         <h2 class="hata-mesaj">İnternet Bağlantınız Kesildi</h2>
         <p class="hata-aciklama">
@@ -64,9 +81,15 @@
     </div>
 
     <script>
-        // İnternet geri geldiğinde sayfayı otomatik yenile
+        // İnternet geri geldiğinde çalışacak komutlar
         window.addEventListener('online', function() {
-            window.location.reload();
+            // Logoya rengini geri ver
+            document.getElementById('durum-logo').classList.add('renkli');
+            
+            // Rengin geldiği görülsün diye yarım saniye bekleyip sayfayı yenile
+            setTimeout(function() {
+                window.location.reload();
+            }, 500);
         });
     </script>
 </body>
