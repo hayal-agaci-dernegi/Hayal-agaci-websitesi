@@ -1319,3 +1319,24 @@ function basaDon() {
         behavior: "smooth"
     });
 }
+
+const internetUyarisi = document.getElementById('internet-uyarisi');
+
+function baglantiDurumunuGuncelle() {
+    if (internetUyarisi) {
+        if (navigator.onLine) {
+            // İnternet varsa kutuyu gizle
+            internetUyarisi.style.display = 'none';
+        } else {
+            // İnternet yoksa kutuyu göster (Tasarımınıza göre 'block' veya 'flex' yapabilirsiniz)
+            internetUyarisi.style.display = 'block'; 
+        }
+    }
+}
+
+// Sayfa ilk yüklendiğinde durumu kontrol et
+window.addEventListener('load', baglantiDurumunuGuncelle);
+
+// İnternet gidip geldiğinde anlık olarak durumu güncelle
+window.addEventListener('online', baglantiDurumunuGuncelle);
+window.addEventListener('offline', baglantiDurumunuGuncelle);

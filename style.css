@@ -2652,3 +2652,7 @@ body.dark-mode .duyuru-tam-metin-alanı {
     border-top: 1px dashed #555 !important;
     color: #ccc !important;
 }
+#internet-uyarisi {
+    display: none; /* İnternet varken tamamen gizli kalmasını sağlar */
+    /* Kutunun diğer tasarım kodları (renk, boyut vs.) burada kalabilir */
+}
