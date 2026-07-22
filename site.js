@@ -1340,3 +1340,90 @@ window.addEventListener('load', baglantiDurumunuGuncelle);
 // İnternet gidip geldiğinde anlık olarak durumu güncelle
 window.addEventListener('online', baglantiDurumunuGuncelle);
 window.addEventListener('offline', baglantiDurumunuGuncelle);
+
+// ==========================================
+// İNTERNET KOPMA UYARI POPUP SİSTEMİ
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const uyariKutusu = document.createElement("div");
+    uyariKutusu.id = "internet-uyari-kutusu";
+    uyariKutusu.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="font-size: 2rem;">📡</span>
+            <div>
+                <strong style="display: block; font-size: 1.1rem; color: #d9534f;">İnternet Bağlantısı Koptu</strong>
+                <span style="font-size: 0.9rem; color: #555;">Bağlantı bekleniyor...</span>
+            </div>
+        </div>
+    `;
+    
+    Object.assign(uyariKutusu.style, {
+        position: "fixed",
+        bottom: "-200px", /* Ekrandan tamamen çıksın diye -200px yaptık */
+        opacity: "0",     /* İnternet varken tamamen görünmez kalır */
+        visibility: "hidden", /* Tıklanmasını ve ekranda boş yer kaplamasını engeller */
+        left: "50%",
+        transform: "translateX(-50%)",
+        background: "white",
+        padding: "15px 25px",
+        borderRadius: "12px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+        borderLeft: "5px solid #d9534f",
+        zIndex: "999999",
+        transition: "all 0.5s ease", /* Hem inme/çıkma hem şeffaflık animasyonlu olarak gerçekleşir */
+        fontFamily: "inherit",
+        width: "85%", /* Mobilde taşıp dikine çok uzamaması için genişlik sınırı */
+        maxWidth: "400px"
+    });
+
+    document.body.appendChild(uyariKutusu);
+
+    // Sayfa ilk yüklendiğinde eğer o an internet yoksa kutuyu anında göster
+    if (!navigator.onLine) {
+        uyariKutusu.style.bottom = "30px";
+        uyariKutusu.style.opacity = "1";
+        uyariKutusu.style.visibility = "visible";
+    }
+
+    // İnternet kesildiği anda tetiklenen olay
+    window.addEventListener("offline", () => {
+        uyariKutusu.style.bottom = "30px";
+        uyariKutusu.style.opacity = "1";
+        uyariKutusu.style.visibility = "visible";
+    });
+
+    // İnternet geri geldiğinde tetiklenen olay
+    window.addEventListener("online", () => {
+        uyariKutusu.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="font-size: 2rem;">✅</span>
+                <div>
+                    <strong style="display: block; font-size: 1.1rem; color: rgb(134, 220, 84);">Bağlantı Sağlandı</strong>
+                    <span style="font-size: 0.9rem; color: #555;">Kaldığınız yerden devam edebilirsiniz.</span>
+                </div>
+            </div>
+        `;
+        uyariKutusu.style.borderLeftColor = "rgb(134, 220, 84)";
+        
+        // Bir süre yeşil kutuyu gösterip ardından tekrar saydamlaştırıp en dibe saklar
+        setTimeout(() => {
+            uyariKutusu.style.bottom = "-200px";
+            uyariKutusu.style.opacity = "0";
+            
+            setTimeout(() => {
+                uyariKutusu.style.visibility = "hidden";
+                // Eski HTML yapısına (📡) geri döndürür ki bir daha kesilirse hazır olsun
+                uyariKutusu.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span style="font-size: 2rem;">📡</span>
+                        <div>
+                            <strong style="display: block; font-size: 1.1rem; color: #d9534f;">İnternet Bağlantısı Koptu</strong>
+                            <span style="font-size: 0.9rem; color: #555;">Bağlantı bekleniyor...</span>
+                        </div>
+                    </div>
+                `;
+                uyariKutusu.style.borderLeftColor = "#d9534f";
+            }, 500);
+        }, 3000);
+    });
+});
