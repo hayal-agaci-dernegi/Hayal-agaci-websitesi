@@ -1427,3 +1427,73 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 3000);
     });
 });
+
+// ==========================================
+// GOOGLE E-TABLOLAR İLE DİNAMİK KÜTÜPHANE VERİTABANI
+// ==========================================
+document.addEventListener("DOMContentLoaded", async function() {
+    const kapsayici = document.getElementById('dinamik-kutuphane-listesi');
+    if (!kapsayici) return;
+
+    // Efendimizin ilettiği resmi veritabanı linki
+    const csvLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyPtoLrEKtvodUb3csXIrjHFrjpayp1peDrpDHZjNJRGAOVg-Y98pR6GMkZ9hAUz9snnJ68udYpQkA/pub?output=csv"; 
+
+    try {
+        const response = await fetch(csvLink);
+        const veri = await response.text();
+        
+        // Satırları ayırıyoruz (İlk satır başlık olduğu için atlıyoruz)
+        const satirlar = veri.split(/\r?\n/).slice(1); 
+
+        satirlar.forEach(satir => {
+            if(satir.trim() === "") return; // Boş satırları atla
+
+            // Virgülleri bölerken hikaye içindeki virgülleri koruyan zırhlı ayırıcı
+            const sutunlar = [];
+            let geciciSutun = '';
+            let tirnakIci = false;
+            
+            for(let i = 0; i < satir.length; i++) {
+                let karakter = satir[i];
+                if (karakter === '"') {
+                    tirnakIci = !tirnakIci; // Tırnak içine girildiğini veya çıkıldığını anlar
+                } else if (karakter === ',' && !tirnakIci) {
+                    sutunlar.push(geciciSutun.trim());
+                    geciciSutun = '';
+                } else {
+                    geciciSutun += karakter;
+                }
+            }
+            sutunlar.push(geciciSutun.trim()); // Son sütunu da ekler
+
+            // Sütunlar tamamsa kartı oluşturur
+            if (sutunlar.length >= 5) {
+                const resim = sutunlar[0];
+                const isim = sutunlar[1];
+                const konum = sutunlar[2];
+                const hikaye = sutunlar[3];
+                const link = sutunlar[4];
+
+                // Sadece kütüphane ismi doluysa karta dönüştür (Boş satırları ekranda göstermez)
+                if(isim.length > 2) {
+                    const kartHTML = `
+                        <div class="kutuphane-karti">
+                            <div class="kart-resim">
+                                <img src="${resim}" alt="${isim}">
+                            </div>
+                            <div class="kart-icerik">
+                                <h3 class="sehit-ismi">${isim}</h3>
+                                <span class="konum-bilgisi">${konum}</span>
+                                <p class="kutuphane-hikayesi">${hikaye}</p>
+                                <a href="${link}" class="hikaye-butonu">Hikayesini Oku</a>
+                            </div>
+                        </div>
+                    `;
+                    kapsayici.innerHTML += kartHTML;
+                }
+            }
+        });
+    } catch (hata) {
+        console.log("Veritabanından veri çekilemedi: ", hata);
+    }
+});
