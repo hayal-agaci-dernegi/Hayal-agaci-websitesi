@@ -2656,3 +2656,168 @@ body.dark-mode .duyuru-tam-metin-alanı {
     display: none; /* İnternet varken tamamen gizli kalmasını sağlar */
     /* Kutunun diğer tasarım kodları (renk, boyut vs.) burada kalabilir */
 }
+
+/* ==========================================
+   YASAL ÇEREZ ONAY KUTUSU (LIQUID GLASS)
+========================================== */
+#cerez-uyari-kutusu {
+    position: fixed;
+    bottom: -300px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(15px) saturate(140%);
+    -webkit-backdrop-filter: blur(15px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 2px 5px rgba(255, 255, 255, 0.6);
+    padding: 20px 25px;
+    border-radius: 15px;
+    z-index: 9999999;
+    transition: bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+}
+.cerez-icerik { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.cerez-metin strong { display: block; font-size: 1.1rem; color: rgb(27,27,27); margin-bottom: 5px; }
+.cerez-metin p { margin: 0; font-size: 0.9rem; color: #444; line-height: 1.5; font-weight: 500;}
+.cerez-metin a { color: rgb(134, 220, 84); font-weight: bold; text-decoration: underline; }
+#cerez-onay-btn {
+    background-color: rgb(134, 220, 84); color: white; border: none;
+    padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3); transition: all 0.3s ease;
+}
+#cerez-onay-btn:hover { background-color: #333; transform: scale(1.05); }
+
+/* Karanlık Mod */
+body.dark-mode #cerez-uyari-kutusu {
+    background: rgba(40, 40, 40, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .cerez-metin strong, body.dark-mode .cerez-metin p { color: #f5f5f5; }
+
+@media (max-width: 768px) {
+    .cerez-icerik { flex-direction: column; text-align: center; gap: 15px;}
+    #cerez-onay-btn { width: 100%; padding: 15px; }
+}
+
+/* ==========================================
+   YENİ MODERN FOOTER TASARIMI (TÜM SAYFALAR İÇİN)
+========================================== */
+.modern-footer {
+    background-color: rgb(248, 252, 246);
+    color: #333;
+    padding: 60px 5% 100px 5%; /* Butonların yazıyı kapatmaması için 100px boşluk */
+    border-top: 4px solid rgb(134, 220, 84);
+    font-family: inherit;
+}
+.footer-ust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.footer-marka {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+}
+.footer-marka h2 {
+    font-size: 1.8rem;
+    color: rgb(27, 27, 27);
+    margin: 0 0 15px 0;
+}
+.footer-marka p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+.footer-marka #iconlar {
+    display: flex;
+    gap: 25px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 0;
+    background: rgba(134, 220, 84, 0.15) !important;
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(134, 220, 84, 0.4) !important;
+    box-shadow: 0 8px 25px rgba(134, 220, 84, 0.1), inset 0 2px 5px rgba(255, 255, 255, 0.8);
+}
+.footer-ikon-link { transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center; }
+.footer-ikon-link:hover { transform: scale(1.06); }
+.footer-ikon { width: 35px; height: 35px; }
+
+.footer-linkler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    flex: 2;
+    justify-content: flex-end;
+}
+.link-sutun { min-width: 200px; }
+.link-sutun h3 {
+    font-size: 1.25rem; 
+    color: rgb(27, 27, 27); 
+    margin: 0 0 20px 0;
+    position: relative; 
+    padding-bottom: 10px;
+    width: max-content; /* Sadece yazı kadar genişlik kaplamasını sağlar */
+}
+
+.link-sutun h3::after {
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    bottom: 0;
+    width: 100%; /* 40px yerine %100 yaptık, çizgi tam yazı boyuna geldi */
+    height: 3px; 
+    background-color: rgb(134, 220, 84); 
+    border-radius: 2px;
+}
+.link-sutun ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.link-sutun ul li a {
+    color: #666; text-decoration: none; font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease; display: inline-block;
+}
+.link-sutun ul li a:hover { color: rgb(134, 220, 84); transform: translateX(5px); }
+
+.footer-alt {
+    border-top: 1px solid #ddd; padding-top: 25px; display: flex;
+    justify-content: space-between; align-items: center; flex-wrap: wrap;
+    gap: 15px; font-size: 0.95rem; color: #777;
+}
+.footer-alt p { margin: 0; font-weight: bold; }
+
+#modern-credit {
+    padding: 10px 22px; border-radius: 30px; color: #444; font-size: 0.95rem; font-weight: 500;
+    background: rgba(134, 220, 84, 0.15) !important; backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%); border: 1px solid rgba(134, 220, 84, 0.4);
+    box-shadow: 0 8px 25px rgba(134, 220, 84, 0.1), inset 0 2px 5px rgba(255, 255, 255, 0.8);
+}
+#modern-credit span { color: rgb(100, 180, 60); font-weight: bold; }
+
+/* Dark Mode Uyumu */
+body.dark-mode .modern-footer { background-color: #161616; border-top-color: rgb(134, 220, 84); }
+body.dark-mode .modern-footer h2, body.dark-mode .link-sutun h3 { color: #f5f5f5; }
+body.dark-mode .footer-marka p, body.dark-mode .link-sutun ul li a { color: #aaa; }
+body.dark-mode .link-sutun ul li a:hover { color: rgb(134, 220, 84); }
+body.dark-mode .footer-alt { border-top-color: #333; color: #cb5e5e; }
+
+body.dark-mode .footer-marka #iconlar,
+body.dark-mode #modern-credit {
+    background: rgba(134, 220, 84, 0.08) !important;
+    border-color: rgba(134, 220, 84, 0.25) !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.1);
+    color: #bbb;
+}
+body.dark-mode #modern-credit span { color: rgb(134, 220, 84); }
+
+@media (max-width: 900px) {
+    .footer-linkler { justify-content: flex-start; gap: 40px; }
+    .footer-alt { flex-direction: column; text-align: center; justify-content: center; }
+}

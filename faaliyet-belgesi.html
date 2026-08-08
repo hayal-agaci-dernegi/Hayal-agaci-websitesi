@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faaliyet Belgesi - Hayal Ağacı Derneği</title>
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_192.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- KOPYALAMA VE ÇALINMAYA KARŞI GÜVENLİK KİLİDİ -->
+    <style>
+        /* Sitedeki hiçbir yazının ve resmin seçilememesini sağlar */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .belge-kasa { 
+            max-width: 900px; 
+            margin: 150px auto 100px auto; 
+            padding: 40px; 
+            background: rgba(255,255,255,0.8); 
+            backdrop-filter: blur(10px); 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border: 1px solid rgba(255,255,255,0.8); 
+            color: #444; 
+        }
+
+        .belge-baslik { 
+            color: rgb(27,27,27); 
+            font-size: 2.2rem; 
+            margin-bottom: 30px; 
+            border-bottom: 3px solid rgb(134, 220, 84); 
+            padding-bottom: 10px; 
+            display: inline-block; 
+        }
+
+        .belge-bilgi-paneli {
+            background: #fdfdfd;
+            border-left: 4px solid rgb(134, 220, 84);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .belge-bilgi-paneli strong {
+            color: rgb(27,27,27);
+        }
+
+        .resim-koruma-alani {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Resmin üzerine sağ tıklanmasını, basılı tutup sürüklenmesini engeller */
+        .resim-koruma-alani img {
+            width: 100%;
+            height: auto;
+            display: block;
+            pointer-events: none; /* Fare etkileşimlerini tamamen kapatır */
+        }
+
+        /* Resmin üstüne görünmez bir kalkan çeker */
+        .kalkan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: transparent;
+        }
+
+        /* Karanlık Mod Uyumları */
+        body.dark-mode .belge-kasa { background: rgba(40,40,40,0.6); border-color: rgba(255,255,255,0.1); color: #ccc; }
+        body.dark-mode .belge-baslik { color: #f5f5f5; }
+        body.dark-mode .belge-bilgi-paneli { background: #2a2a2a; border-left-color: rgb(134, 220, 84); }
+        body.dark-mode .belge-bilgi-paneli strong { color: #f5f5f5; }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <!-- Bütün sayfada sağ tık iptal -->
+    <header>
+        <div id="header0">
+            <div id="isim_logo"><img src="source/ha/ha_logo_lr.png" alt="logo" id="logo"><h1>Hayal Ağacı Derneği</h1></div>
+            <div class="nav-kontrol"><nav><ul><a href="index.html"><li>Anasayfa'ya Dön</li></a></ul></nav></div>
+        </div>
+    </header>
+
+    <div class="belge-kasa">
+        <h1 class="belge-baslik">Dernek Faaliyet Belgesi</h1>
+        
+        <div class="belge-bilgi-paneli">
+            <p>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği, T.C. İçişleri Bakanlığı Sivil Toplumla İlişkiler Genel Müdürlüğü siciline kayıtlı faal bir kuruluştur. Resmi teyit bilgileri aşağıdadır:</p>
+            <ul>
+                <li><strong>Kurum Durumu:</strong> Faal</li>
+                <li><strong>Kütük No:</strong> 02-010-196</li>
+                <li><strong>Vergi Numarası:</strong> 4601173278</li>
+                <li><strong>Dernek Başkanı:</strong> Yusuf Can Bektaş</li>
+                <li><strong>Doğrulama Kodu:</strong> 352be9d4-ae60-4903-8ecc-657bc6f6e5cf</li>
+            </ul>
+            <p style="font-size: 0.9rem; color: #777; margin-top: 15px;">* e-Devlet üzerinden (siviltoplum.gov.tr) doğrulama kodu ile belgenin orijinalliği teyit edilebilir.</p>
+        </div>
+
+        <div class="resim-koruma-alani">
+            <div class="kalkan"></div>
+            <!-- Lütfen belgeyi resim formatına çevirip üzerine filigran basarak "source" klasörüne "faaliyet-belgesi.jpg" adıyla yükleyin -->
+            <img src="source/faaliyet-belgesi.jpg" alt="Hayal Ağacı Faaliyet Belgesi" ondragstart="return false;">
+        </div>
+    </div>
+    
+    <script src="site.js"></script>
+</body>
+</html>

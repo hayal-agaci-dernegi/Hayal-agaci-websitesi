@@ -23,6 +23,157 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- MODERN FOOTER TASARIM KODLARI -->
+    <style>
+        .modern-footer {
+            background-color: rgb(248, 252, 246);
+            color: #333;
+            padding: 60px 5% 20px 5%;
+            border-top: 4px solid rgb(134, 220, 84);
+            font-family: inherit;
+        }
+        .footer-ust {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-marka {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+        }
+        .footer-marka h2 {
+            font-size: 1.8rem;
+            color: rgb(27, 27, 27);
+            margin: 0 0 15px 0;
+        }
+        .footer-marka p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-marka #iconlar {
+            display: flex;
+            gap: 20px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            width: fit-content;
+            margin: 0;
+            background: rgba(134, 220, 84, 0.15) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(134, 220, 84, 0.4) !important;
+            box-shadow: 0 6px 20px rgba(134, 220, 84, 0.15);
+        }
+        
+        .footer-ikon-link { transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center;}
+        .footer-ikon-link:hover { transform: scale(1.08); }
+        .footer-ikon { width: 32px; height: 32px; }
+
+        .footer-linkler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            flex: 2;
+            justify-content: flex-end;
+        }
+        .link-sutun {
+            min-width: 200px;
+        }
+        
+        /* ÇİZGİ HİZALAMASI BURADA YAPILDI */
+        .link-sutun h3 {
+            font-size: 1.25rem;
+            color: rgb(27, 27, 27);
+            margin: 0 0 20px 0;
+            position: relative;
+            padding-bottom: 10px;
+            width: max-content; /* Sadece yazı kadar genişlik kaplamasını sağlar */
+        }
+        .link-sutun h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%; /* 40px yerine %100 yapıldı */
+            height: 3px;
+            background-color: rgb(134, 220, 84);
+            border-radius: 2px;
+        }
+        
+        .link-sutun ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link-sutun ul li a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .link-sutun ul li a:hover {
+            color: rgb(134, 220, 84);
+            transform: translateX(5px);
+        }
+        .footer-alt {
+            border-top: 1px solid #ddd;
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.95rem;
+            color: #777;
+        }
+        .footer-alt p {
+            margin: 0;
+            font-weight: bold;
+        }
+        #modern-credit {
+            background: rgba(134, 220, 84, 0.1);
+            padding: 8px 18px;
+            border-radius: 20px;
+            color: #444;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(134, 220, 84, 0.3);
+        }
+        #modern-credit span {
+            color: rgb(100, 180, 60);
+            font-weight: bold;
+        }
+
+        /* Dark Mode Uyumu */
+        body.dark-mode .modern-footer { background-color: #161616; border-top-color: rgb(134, 220, 84); }
+        body.dark-mode .modern-footer h2, body.dark-mode .link-sutun h3 { color: #f5f5f5; }
+        body.dark-mode .footer-marka p, body.dark-mode .link-sutun ul li a { color: #aaa; }
+        body.dark-mode .link-sutun ul li a:hover { color: rgb(134, 220, 84); }
+        body.dark-mode .footer-alt { border-top-color: #333; color: #888; }
+        body.dark-mode #modern-credit { background: rgba(255,255,255,0.05); color: #bbb; border-color: #444; }
+        body.dark-mode #modern-credit span { color: rgb(134, 220, 84); }
+        
+        body.dark-mode .footer-marka #iconlar {
+            background: rgba(134, 220, 84, 0.1) !important;
+            border-color: rgba(134, 220, 84, 0.3) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 900px) {
+            .footer-linkler { justify-content: flex-start; gap: 40px; }
+            .footer-alt { flex-direction: column; text-align: center; justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
@@ -301,22 +452,45 @@
         </section>
     </section>
 
-    <footer id="iletisim">
-        <p id="iletisim0" data-tr="İletişim" data-en="Contact">İletişim</p>
-        <div id="iconlar">
-    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
-        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
-    </a>
+    <!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
+    <footer id="iletisim" class="modern-footer">
+        <div class="footer-ust">
+            
+            <div class="footer-marka">
+                <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+                <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+                
+                <div id="iconlar">
+                    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-linkler">
+                <div class="link-sutun">
+                    <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
+                    <ul>
+                        <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                        <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                        <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
+                        <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
-        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-    </a>
-</div>
-        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-            <a href="sss.html" class="footer-sss-link" data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</a>
         </div>
-        <p id="hak" data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
-        <p id="credit"><span id="credi">Onur TURAN</span> <span data-tr="ve" data-en="&" ></span> <span id="credi">Enes SAYGILIER </span><span data-tr="tarafından yapılmıştır" data-en="built by">tarafından yapılmıştır</span></p>
+        
+        <div class="footer-alt">
+            <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+            
+            <div id="modern-credit">
+                <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            </div>
+        </div>
     </footer>
 
     <script src="site.js"></script>

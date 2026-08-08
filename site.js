@@ -131,7 +131,6 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-
 // ==========================================
 // HAREKETLİ İSTATİSTİK SAYAÇLARI
 // ==========================================
@@ -139,28 +138,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const sayaclar = document.querySelectorAll('.sayac');
     let sayacBasladi = false;
 
-    // Kullanıcı sayfanın o kısmına geldiğinde çalışmasını sağlar
     const sayacGozlemci = new IntersectionObserver((eslesmeler) => {
         eslesmeler.forEach((eslesme) => {
             if (eslesme.isIntersecting && !sayacBasladi) {
-                sayacBasladi = true; // Sadece bir kere çalışması için kilit
+                sayacBasladi = true; 
                 
                 sayaclar.forEach((sayac) => {
                     const hedef = parseInt(sayac.getAttribute('data-hedef'));
-                    const hiz = 100; // Sayma hızı (sayı küçüldükçe hızlanır)
+                    const hiz = 100; 
                     const artis = hedef / hiz;
 
                     const guncelle = () => {
-                        // Sayıdaki noktaları temizleyip matematiksel işleme sokuyoruz
                         const mevcutStr = sayac.innerText.replace(/\./g, '');
                         const mevcut = parseInt(mevcutStr) || 0;
 
                         if (mevcut < hedef) {
-                            // Sayıyı artır ve binlik ayraç (nokta) koyarak ekrana yaz
                             sayac.innerText = Math.ceil(mevcut + artis).toLocaleString('tr-TR');
-                            setTimeout(guncelle, 20); // 20 milisaniyede bir tekrarla
+                            setTimeout(guncelle, 20); 
                         } else {
-                            // İşlem bitince tam hedef sayısını yazıp bırak
                             sayac.innerText = hedef.toLocaleString('tr-TR');
                         }
                     };
@@ -168,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         });
-    }, { threshold: 0.5 }); // Tablonun yarısı ekrana girince başlat
+    }, { threshold: 0.5 }); 
 
     const skorTablosu = document.getElementById('skortablosu');
     if(skorTablosu) sayacGozlemci.observe(skorTablosu);
@@ -180,30 +175,24 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     var haritaKutusu = document.getElementById('harita');
     
-    // Eğer harita kutusu o sayfada varsa çalıştır
     if(haritaKutusu) {
-        // Haritayı Adıyaman merkez koordinatlarına odakla ve başlangıçta tekerlek yakınlaştırmasını KAPAT
         var harita = L.map('harita', {
             scrollWheelZoom: false
         }).setView([37.7636, 38.2773], 12);
 
-        // Haritanın üzerine TIKLANDIĞINDA tekerlek yakınlaştırmasını AÇ
         harita.on('click', function() { 
             harita.scrollWheelZoom.enable(); 
         });
 
-        // Fare haritanın DIŞINA ÇIKTIĞINDA tekerlek yakınlaştırmasını tekrar KAPAT
         harita.on('mouseout', function() { 
             harita.scrollWheelZoom.disable(); 
         });
 
-        // Ücretsiz harita görünümünü yükle
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap - Hayal Ağacı Derneği'
         }).addTo(harita);
 
-        // 1. İĞNE: Enkaz Kütüphanesi
         var enkazPin = L.marker([37.7640, 38.2780]).addTo(harita);
         enkazPin.bindPopup(`
             <b style="font-size: 16px;">Enkaz Kütüphanesi</b><br>
@@ -211,7 +200,6 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="EnkazKutuphanesi.html" style="background: rgb(134, 220, 84); color: white; padding: 5px 10px; text-decoration: none; border-radius: 5px; display: inline-block;">Hikayesini Oku</a>
         `);
 
-        // 2. İĞNE: K1 Konteyner Kent
         var k1Pin = L.marker([37.7500, 38.2600]).addTo(harita);
         k1Pin.bindPopup(`
             <b style="font-size: 16px;">K1 Konteyner Kent</b><br>
@@ -219,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function() {
             <a href="K1 Konteynerkent.html" style="background: rgb(134, 220, 84); color: white; padding: 5px 10px; text-decoration: none; border-radius: 5px; display: inline-block;">Sayfaya Git</a>
         `);
         
-        // 3. İĞNE: Muhammed Işıkbulanoğlu Kütüphanesi (Zey Köyü)
         var zeyPin = L.marker([37.8000, 38.2000]).addTo(harita);
         zeyPin.bindPopup(`
             <b style="font-size: 16px;">Muhammed Işıkbulanoğlu</b><br>
@@ -235,6 +222,9 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const themeBtn = document.createElement("div");
     themeBtn.id = "theme-toggle-btn";
+    
+    // Butonun CSS geçişini hazırlıyoruz ki mekanik zıplamada kaymak gibi görünsün
+    themeBtn.style.transition = "transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease";
     document.body.appendChild(themeBtn);
 
     themeBtn.innerHTML = `
@@ -273,17 +263,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // 1. KULLANICI TERCİHİ KONTROLÜ
     const kayitliMod = localStorage.getItem("theme");
 
     if (kayitliMod) {
-        // Ziyaretçi daha önce manuel seçim yapmışsa, saat kaç olursa olsun onun kararına itaat edilir.
         applyTheme(kayitliMod);
     } else {
-        // Ziyaretçi siteye İLK KEZ girmişse veya tercih yapmamışsa saate bakılır.
         const mevcutSaat = new Date().getHours();
         
-        // Saat 19:00 ile sabah 07:00 arasındaysa gözü yormamak için gece modu otomatik açılır.
         if (mevcutSaat >= 19 || mevcutSaat < 7) {
             applyTheme("dark");
         } else {
@@ -291,12 +277,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 2. KULLANICI BUTONA BASTIĞINDA
     themeBtn.addEventListener("click", () => {
         const newMode = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
         applyTheme(newMode);
-        
-        // Ziyaretçinin verdiği bu karar sonsuza dek hafızaya kazınır ve otomatik saat kontrolü tamamen ezilir.
         localStorage.setItem("theme", newMode);
     });
 });
@@ -305,81 +288,70 @@ document.addEventListener("DOMContentLoaded", function() {
 // HAYAL AĞACI - YAPRAK ÜRETİCİ
 // ==========================================
 function yaprakUret() {
-    // === AKILLI TAKVİM: Milli bayramlarda yaprak dökme, balon modu devrede ===
     if (window.balonModuAktif) return;
 
     var logoAlani = document.getElementById('isim_logo');
-    
-    // Eğer o sayfada logo yoksa (örn: 404 sayfası) hata vermemesi için kontrol
     if (!logoAlani) return;
 
     var yaprak = document.createElement('div');
     yaprak.classList.add('hayal-yaprak');
 
-    // Yaprağın sağdan/soldan hangi hizadan düşeceğini rastgele belirle
     yaprak.style.left = Math.random() * 80 + 10 + '%'; 
-    
-    // Rüzgar hızını ve düşüş süresini her yaprak için biraz farklı yap (Daha doğal durur)
-    var dususSuresi = (Math.random() * 2 + 3); // 3 ile 5 saniye arası
-    var ruzgarSuresi = (Math.random() * 1 + 1); // 1 ile 2 saniye arası
+    var dususSuresi = (Math.random() * 2 + 3);
+    var ruzgarSuresi = (Math.random() * 1 + 1); 
     
     yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
-
-    // Yaprağı logomuzun olduğu kutuya ekle
     logoAlani.appendChild(yaprak);
 
-    // Düşüş bittikten sonra yaprağı koddan temizle (Sitenin şişmesini engeller)
     setTimeout(function() {
         yaprak.remove();
     }, dususSuresi * 1000);
 }
 
-// Her 1.2 saniyede bir yeni bir yaprak dök (Süreyi azaltırsanız sonbahar gibi çok yaprak döker)
 setInterval(yaprakUret, 1200);
 
 // ==========================================
-// ZİYARETÇİ HAFIZASI VE KARŞILAMA (AKILLI ASANSÖR GÜNCELLEMESİ)
+// ZİYARETÇİ HAFIZASI VE KARŞILAMA (YENİLENEN SİSTEM)
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Sitenin tam yüklenmesi ve Preloader'ın bitmesi için 2 saniye bekletiyoruz
     setTimeout(function() {
         var karsilamaKutusu = document.getElementById('ziyaretci-karsilama');
         var mesajAlani = document.getElementById('karsilama-mesaji');
-        var muzikCalar = document.getElementById('muzik-calar-kapsayici'); // Müzik çaları sisteme tanıttık
+        var muzikCalar = document.getElementById('muzik-calar-kapsayici'); 
         
         if (!karsilamaKutusu || !mesajAlani) return;
 
-        var ziyaretDurumu = localStorage.getItem('hayalAgaciZiyaret');
+        // V3 anahtarını kullanıyoruz ki eski hatalı kayıtlar sistemi bozmasın
+        var ziyaretDurumu = localStorage.getItem('hayalAgaciZiyaretV3');
 
         if (!ziyaretDurumu) {
             mesajAlani.innerHTML = "🌱 Hayal Ağacı'na Hoş Geldiniz! Destekleriniz bizim için çok değerli.";
-            localStorage.setItem('hayalAgaciZiyaret', 'evet');
+            localStorage.setItem('hayalAgaciZiyaretV3', 'evet');
+
+            // Sadece ilk girişte kutuyu ekrana alıyoruz
+            karsilamaKutusu.style.bottom = "30px";
+            
+            // Eğer müzik çalar varsa onu da kutunun üstüne itiyoruz
+            if (muzikCalar) muzikCalar.style.bottom = "110px";
+
+            // 6 Saniye sonra kendi kendine kapanmasını sağla
+            setTimeout(karsilamayiKapat, 6000);
         } else {
-            mesajAlani.innerHTML = "💚 Tekrar Hoş Geldiniz! Sizi yeniden görmek ne güzel.";
+            // ZİYARETÇİ DAHA ÖNCE GİRMİŞSE KUTUYU DİREKT HTML'DEN SİL (KESİN ÇÖZÜM)
+            karsilamaKutusu.remove();
         }
-
-        // Karşılama kutusunu ekranın içine al
-        karsilamaKutusu.style.bottom = "30px";
-        
-        // EĞER MÜZİK ÇALAR VARSA, ONU DA KUTUNUN ÜSTÜNE (110px) İT
-        if (muzikCalar) {
-            muzikCalar.style.bottom = "110px";
-        }
-
-        // 6 Saniye sonra kendi kendine kapanmasını sağla
-        setTimeout(karsilamayiKapat, 6000);
     }, 2000); 
 });
 
 function karsilamayiKapat() {
     var karsilamaKutusu = document.getElementById('ziyaretci-karsilama');
-    var muzikCalar = document.getElementById('muzik-calar-kapsayici'); // Müzik çaları tekrar tanıttık
+    var muzikCalar = document.getElementById('muzik-calar-kapsayici'); 
     
     if (karsilamaKutusu) {
-        karsilamaKutusu.style.bottom = "-100px"; // Kutuyu tekrar ekranın altına sakla
+        karsilamaKutusu.style.bottom = "-100px"; 
     }
     
-    // KUTU GİTTİĞİNDE MÜZİK ÇALARI ESKİ YERİNE (20px) GERİ İNDİR
+    // Müzik çaları asıl yerine geri gönder
     if (muzikCalar) {
         muzikCalar.style.bottom = "20px";
     }
@@ -388,37 +360,28 @@ function karsilamayiKapat() {
 // ==========================================
 // AKILLI VE GERÇEK ZAMANLI GECE MODU
 // ==========================================
-
 function akilliGeceModuKontrol() {
     const body = document.body;
     const icon = document.getElementById('dark-mode-icon');
     const kayitliMod = localStorage.getItem('theme');
     
-    // 1. Kullanıcının manuel tercihi var mı?
     if (kayitliMod) {
         if (kayitliMod === 'dark') {
             body.classList.add('dark-mode');
             if(icon) icon.textContent = '☀️';
         }
-    } 
-    // 2. Tercih yoksa saate bak
-    else {
+    } else {
         const suAn = new Date();
         const saat = suAn.getHours();
         
-        // Akşam 20:00'den sonra veya sabah 06:00'dan önceyse
         if (saat >= 20 || saat < 6) {
             body.classList.add('dark-mode');
             if(icon) icon.textContent = '☀️';
-            console.log("Otomatik Gece Modu: Aktif (Saat: " + saat + ")");
         }
     }
 }
-
-// Sayfa açıldığında bu kontrolü çalıştır
 document.addEventListener('DOMContentLoaded', akilliGeceModuKontrol);
 
-// Mevcut toggleDarkMode fonksiyonunuzu koruyun (Manuel değişim için)
 function toggleDarkMode() {
     const body = document.body;
     const icon = document.getElementById('dark-mode-icon');
@@ -427,10 +390,10 @@ function toggleDarkMode() {
     
     if (body.classList.contains('dark-mode')) {
         icon.textContent = '☀️';
-        localStorage.setItem('theme', 'dark'); // Kullanıcı seçimi hafızaya alınır
+        localStorage.setItem('theme', 'dark'); 
     } else {
         icon.textContent = '🌙';
-        localStorage.setItem('theme', 'light'); // Kullanıcı seçimi hafızaya alınır
+        localStorage.setItem('theme', 'light'); 
     }
 }
 
@@ -449,9 +412,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(!sesDosyasi || !oynatDuraklatBtn) return;
 
+    // CSS Geçişi (Mekanik Çarpışma için)
+    const muzikCalarKapsayici = document.getElementById("muzik-calar-kapsayici");
+    if(muzikCalarKapsayici) {
+        muzikCalarKapsayici.style.transition = "bottom 0.6s cubic-bezier(0.25, 1, 0.5, 1), margin-bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1)";
+    }
+
     let oynuyorMu = false;
 
-    // Saniyeyi Dakika:Saniye (Örn: 2:34) formatına çevirir
     function formatZaman(saniye) {
         if (isNaN(saniye)) return "0:00";
         const dk = Math.floor(saniye / 60);
@@ -459,40 +427,35 @@ document.addEventListener("DOMContentLoaded", function() {
         return dk + ":" + (sn < 10 ? "0" + sn : sn);
     }
 
-    // Oynat / Duraklat Butonuna Tıklanınca
     oynatDuraklatBtn.addEventListener("click", function() {
         if (oynuyorMu) {
             sesDosyasi.pause();
             playIkon.style.display = "block";
             pauseIkon.style.display = "none";
-            ilerlemeAlani.classList.remove("acik"); // Barı gizle
+            ilerlemeAlani.classList.remove("acik"); 
         } else {
             sesDosyasi.play().catch(e => console.log("Tarayıcı engeli: " + e));
             playIkon.style.display = "none";
             pauseIkon.style.display = "block";
-            ilerlemeAlani.classList.add("acik"); // Barı uzatarak göster
+            ilerlemeAlani.classList.add("acik"); 
         }
         oynuyorMu = !oynuyorMu;
     });
 
-    // Şarkı çaldıkça çubuğu ve saniyeleri güncelle
     sesDosyasi.addEventListener("timeupdate", function() {
         const yuzde = (sesDosyasi.currentTime / sesDosyasi.duration) * 100;
         ilerlemeCubugu.value = yuzde || 0;
         gecenSure.textContent = formatZaman(sesDosyasi.currentTime);
         kalanSure.textContent = "-" + formatZaman(sesDosyasi.duration - sesDosyasi.currentTime);
         
-        // Dolum efekti için arkaplanı yeşil yap
         ilerlemeCubugu.style.background = `linear-gradient(to right, rgb(134, 220, 84) ${yuzde}%, #e0e0e0 ${yuzde}%)`;
     });
 
-    // Kullanıcı çubuğu fareyle kaydırınca (Sarma İşlemi)
     ilerlemeCubugu.addEventListener("input", function() {
         const yeniZaman = (ilerlemeCubugu.value / 100) * sesDosyasi.duration;
         sesDosyasi.currentTime = yeniZaman;
     });
 
-    // Şarkı bittiğinde her şeyi başa sarıp kapat
     sesDosyasi.addEventListener("ended", function() {
         oynuyorMu = false;
         playIkon.style.display = "block";
@@ -502,43 +465,35 @@ document.addEventListener("DOMContentLoaded", function() {
         sesDosyasi.currentTime = 0;
     });
 
-    // Ses dosyası yüklendiğinde toplam süreyi yaz
     sesDosyasi.addEventListener("loadedmetadata", function() {
         kalanSure.textContent = "-" + formatZaman(sesDosyasi.duration);
     });
 });
+
 // ==========================================
 // AKILLI TAKVİM VE TEMA SİSTEMİ (BAĞIMSIZ MODÜL)
-// Mevcut hiçbir kodla çakışmaz.
-// window.balonModuAktif → yaprakUret() zaten yukarıda kontrol ediyor.
 // ==========================================
 ;(function () {
     'use strict';
 
-    /* -------- YARDIMCI HESAPLAMALAR -------- */
-
-    /** Anneler Günü: Mayıs'ın 2. Pazar'ı */
     function annelerGunu(yil) {
         var d = new Date(yil, 4, 1);
         var ilkPazar = (d.getDay() === 0) ? 1 : (8 - d.getDay());
         return ilkPazar + 7;
     }
 
-    /** Babalar Günü: Haziran'ın 3. Pazar'ı */
     function babalarGunu(yil) {
         var d = new Date(yil, 5, 1);
         var ilkPazar = (d.getDay() === 0) ? 1 : (8 - d.getDay());
         return ilkPazar + 14;
     }
 
-    /** Kütüphaneler Haftası: Mart'ın son haftası (son Pazartesi → +6 gün) */
     function kutupHaftaAraligi(yil) {
         var d = new Date(yil, 2, 31);
         while (d.getDay() !== 1) d.setDate(d.getDate() - 1);
         return { baslangic: d.getDate(), bitis: d.getDate() + 6 };
     }
 
-    /* -------- BUGÜNÜN TARİH BİLGİSİ -------- */
     var bugun = new Date();
     var ay    = bugun.getMonth() + 1;
     var gun   = bugun.getDate();
@@ -548,146 +503,99 @@ document.addEventListener("DOMContentLoaded", function() {
     var babG  = babalarGunu(yil);
     var kutup = kutupHaftaAraligi(yil);
 
-    /*
-     * gunBilgisi nesnesi:
-     *   tema      → body'ye eklenecek CSS sınıfı
-     *   serit     → #akilli-takvim-serit'e eklenecek CSS sınıfı
-     *   mesaj     → Şeritte gösterilecek metin
-     *   animasyon → 'balon' | 'yaprak'  (null = varsayılan)
-     */
     var gunBilgisi = null;
 
-    /* ---- MİLLİ BAYRAMLAR (Balon + Kırmızı/Beyaz Tema) ---- */
     if      (ay === 4  && gun === 23) {
-        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'🎈 23 Nisan Ulusal Egemenlik ve Çocuk Bayramı Kutlu Olsun!' };
+        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon', mesaj:'🎈 23 Nisan Ulusal Egemenlik ve Çocuk Bayramı Kutlu Olsun!' };
     }
     else if (ay === 5  && gun === 19) {
-        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'19 Mayıs Atatürk\'ü Anma, Gençlik ve Spor Bayramı!' };
+        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon', mesaj:'19 Mayıs Atatürk\'ü Anma, Gençlik ve Spor Bayramı!' };
     }
     else if (ay === 7  && gun === 15) {
-        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'15 Temmuz Demokrasi ve Milli Birlik Günü.' };
+        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon', mesaj:'15 Temmuz Demokrasi ve Milli Birlik Günü.' };
     }
     else if (ay === 8  && gun === 30) {
-        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'30 Ağustos Zafer Bayramı Kutlu Olsun!' };
+        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon', mesaj:'30 Ağustos Zafer Bayramı Kutlu Olsun!' };
     }
     else if (ay === 10 && gun === 29) {
-        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon',
-            mesaj:'Cumhuriyetimizin Doğum Günü Kutlu Olsun!' };
+        gunBilgisi = { tema:'tema-milli', serit:'serit-milli', animasyon:'balon', mesaj:'Cumhuriyetimizin Doğum Günü Kutlu Olsun!' };
     }
-
-    /* ---- MATEM / SAYGI GÜNLERİ (Yaprak devam + Gri Tema) ---- */
     else if (ay === 2  && gun === 6 ) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'⌛ 6 Şubat: Unutmadık, Unutmayacağız. Acımız baki.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'⌛ 6 Şubat: Unutmadık, Unutmayacağız. Acımız baki.' };
     }
     else if (ay === 3  && gun === 12) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'📖 İstiklal Marşı\'mızın Kabulü ve Mehmet Akif Ersoy\'u Anma Günü.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'📖 İstiklal Marşı\'mızın Kabulü ve Mehmet Akif Ersoy\'u Anma Günü.' };
     }
     else if (ay === 3  && gun === 18) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'18 Mart Çanakkale Zaferi ve Şehitleri Anma Günü.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'18 Mart Çanakkale Zaferi ve Şehitleri Anma Günü.' };
     }
     else if (ay === 8  && gun === 17) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'⌛ 17 Ağustos 1999: Sesinizi hala duyuyoruz.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'⌛ 17 Ağustos 1999: Sesinizi hala duyuyoruz.' };
     }
     else if (ay === 9  && gun === 19) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'🎖️ Kahraman Gazilerimizin Günü Kutlu Olsun.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'🎖️ Kahraman Gazilerimizin Günü Kutlu Olsun.' };
     }
     else if (ay === 11 && gun === 10) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'🖤 Ulu Önder Atatürk\'ü Saygı, Özlem ve Minnetle Anıyoruz.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'🖤 Ulu Önder Atatürk\'ü Saygı, Özlem ve Minnetle Anıyoruz.' };
     }
     else if (ay === 12 && gun === 21) {
-        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak',
-            mesaj:'🌙 En Uzun Gece: Hayallerimiz karanlığı aydınlatmaya yeter.' };
+        gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'🌙 En Uzun Gece: Hayallerimiz karanlığı aydınlatmaya yeter.' };
     }
-
-    /* ---- BEYZA ÖZEL ANMA GÜNÜ (12 Ağustos) ---- */
     else if (ay === 8  && gun === 12) {
-        gunBilgisi = { tema:'tema-beyza', serit:'serit-beyza', animasyon:'yaprak',
-            mesaj:'🤍 12 Ağustos: Dostumuz Beyza\'nın doğum günü. Hatırası hayallerimizde yaşıyor.' };
+        gunBilgisi = { tema:'tema-beyza', serit:'serit-beyza', animasyon:'yaprak', mesaj:'🤍 12 Ağustos: Dostumuz Beyza\'nın doğum günü. Hatırası hayallerimizde yaşıyor.' };
     }
-
-    /* ---- DOĞA VE EĞİTİM GÜNLERİ (Yaprak + Yeşil Tema) ---- */
     else if (ay === 3  && gun === 22) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'💧 22 Mart Dünya Su Günü: Suyu koru, hayatı koru.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'💧 22 Mart Dünya Su Günü: Suyu koru, hayatı koru.' };
     }
     else if (ay === 4  && gun === 4 ) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'🐾 4 Nisan Sokak Hayvanları Farkındalık Günü: Onlar da yaşamayı hak ediyor.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'🐾 4 Nisan Sokak Hayvanları Farkındalık Günü: Onlar da yaşamayı hak ediyor.' };
     }
     else if (ay === 6  && gun === 5 ) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'🌍 5 Haziran Dünya Çevre Günü: Doğamıza sahip çıkalım.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'🌍 5 Haziran Dünya Çevre Günü: Doğamıza sahip çıkalım.' };
     }
     else if (ay === 9  && gun === 8 ) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'📚 8 Eylül Dünya Okuma Yazma Günü: Bilgi özgürleştirir.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'📚 8 Eylül Dünya Okuma Yazma Günü: Bilgi özgürleştirir.' };
     }
     else if (ay === 10 && gun === 4 ) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'🐾 4 Ekim Dünya Hayvanları Koruma Günü: Onların sesi olalım.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'🐾 4 Ekim Dünya Hayvanları Koruma Günü: Onların sesi olalım.' };
     }
     else if (ay === 11 && gun === 11) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'🌳 11 Kasım Ağaçlandırma Günü: Geleceğe kök salalım.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'🌳 11 Kasım Ağaçlandırma Günü: Geleceğe kök salalım.' };
     }
     else if (ay === 3 && gun >= kutup.baslangic && gun <= kutup.bitis) {
-        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak',
-            mesaj:'📖 Kütüphaneler Haftası: Bilgiye açık kapılar hiçbir zaman kapanmaz.' };
+        gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'📖 Kütüphaneler Haftası: Bilgiye açık kapılar hiçbir zaman kapanmaz.' };
     }
-
-    /* ---- VEFA VE TOPLUM GÜNLERİ (Yaprak + Sıcak Tema) ---- */
     else if (ay === 1  && gun === 1 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🎊 Yeni Yıl Kutlu Olsun! Hayallerimiz bu yıl da büyüsün.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🎊 Yeni Yıl Kutlu Olsun! Hayallerimiz bu yıl da büyüsün.' };
     }
     else if (ay === 3  && gun === 8 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'💐 8 Mart Dünya Kadınlar Günü: Güçlü kadınlara saygıyla.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'💐 8 Mart Dünya Kadınlar Günü: Güçlü kadınlara saygıyla.' };
     }
     else if (ay === 5  && gun === 1 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'✊ 1 Mayıs Emek ve Dayanışma Günü Kutlu Olsun!' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'✊ 1 Mayıs Emek ve Dayanışma Günü Kutlu Olsun!' };
     }
     else if (ay === 5  && gun === annG) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🌸 Anneler Günü Kutlu Olsun! Emekleriniz için teşekkürler.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🌸 Anneler Günü Kutlu Olsun! Emekleriniz için teşekkürler.' };
     }
     else if (ay === 6  && gun === babG) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'👨‍👧 Babalar Günü Kutlu Olsun! Sığınaklarımız, kahramanlarımız.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'👨‍👧 Babalar Günü Kutlu Olsun! Sığınaklarımız, kahramanlarımız.' };
     }
     else if (ay === 10 && gun === 1 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🌼 1 Ekim Dünya Yaşlılar Günü: Tecrübelerine değer veriyoruz.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🌼 1 Ekim Dünya Yaşlılar Günü: Tecrübelerine değer veriyoruz.' };
     }
     else if (ay === 11 && gun === 20) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🧒 20 Kasım Dünya Çocuk Hakları Günü: Her çocuk değerlidir.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🧒 20 Kasım Dünya Çocuk Hakları Günü: Her çocuk değerlidir.' };
     }
     else if (ay === 11 && gun === 24) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🎓 24 Kasım Öğretmenler Günü: Aydınlatan ellere minnetle.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🎓 24 Kasım Öğretmenler Günü: Aydınlatan ellere minnetle.' };
     }
     else if (ay === 12 && gun === 3 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'♿ 3 Aralık Dünya Engelliler Günü: Engel değil, fırsat eşitliği.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'♿ 3 Aralık Dünya Engelliler Günü: Engel değil, fırsat eşitliği.' };
     }
     else if (ay === 12 && gun === 5 ) {
-        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak',
-            mesaj:'🤝 5 Aralık Dünya Gönüllüler Günü: Birlikte daha güçlüyüz.' };
+        gunBilgisi = { tema:'tema-vefa', serit:'serit-vefa', animasyon:'yaprak', mesaj:'🤝 5 Aralık Dünya Gönüllüler Günü: Birlikte daha güçlüyüz.' };
     }
 
-    /* -------- BALON SİSTEMİ YARDIMCILARI -------- */
     var BALON_RENKLERI = [
         '#FF6B6B','#FF8C42','#FFCB47','#62D9A5','#4EC8D6',
         '#6A9FFF','#C77DFF','#FF6FA8','#FF9DE2','#A3E87E'
@@ -697,15 +605,14 @@ document.addEventListener("DOMContentLoaded", function() {
         return BALON_RENKLERI[Math.floor(Math.random() * BALON_RENKLERI.length)];
     }
 
-    /** Tam ekran balonunu oluşturur ve DOM'a ekler */
     function tamEkranBalonOlustur() {
         var balon   = document.createElement('div');
         balon.className = 'akilli-balon-tam';
-        var boyut   = Math.random() * 55 + 25;         // 25–80 px
-        var sol     = Math.random() * 93;               // 0–93 vw
-        var sure    = Math.random() * 3.5 + 3;          // 3–6.5 s
-        var gecikme = Math.random() * 4.5;              // 0–4.5 s
-        var surus   = (Math.random() - 0.5) * 110;     // ±55 px yatay
+        var boyut   = Math.random() * 55 + 25;         
+        var sol     = Math.random() * 93;               
+        var sure    = Math.random() * 3.5 + 3;          
+        var gecikme = Math.random() * 4.5;              
+        var surus   = (Math.random() - 0.5) * 110;     
         var rot     = (Math.random() - 0.5) * 32;
 
         balon.style.cssText =
@@ -722,16 +629,15 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function () { balon.remove(); }, (sure + gecikme + 0.7) * 1000);
     }
 
-    /** Logo alanından zarif balon uçurur */
     function logoBalonOlustur() {
         var logo = document.getElementById('isim_logo');
         if (!logo) return;
 
         var balon   = document.createElement('div');
         balon.className = 'logo-balon';
-        var boyut   = Math.random() * 22 + 13;         // 13–35 px (küçük, zarif)
-        var sol     = Math.random() * 76 + 10;          // %10–86
-        var sure    = Math.random() * 2 + 2.5;          // 2.5–4.5 s
+        var boyut   = Math.random() * 22 + 13;         
+        var sol     = Math.random() * 76 + 10;          
+        var sure    = Math.random() * 2 + 2.5;          
         var gecikme = Math.random() * 1.6;
         var surus   = (Math.random() - 0.5) * 72;
 
@@ -748,65 +654,50 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function () { balon.remove(); }, (sure + gecikme + 0.5) * 1000);
     }
 
-    /**
-     * 2 Aşamalı Balon Sistemi:
-     *   Aşama 1 (0–5 sn)  → SADECE index.html'de VE günlük ilk ziyarette tam ekran patlama
-     *   Aşama 2 (5+ sn)   → Her sayfada, her ziyarette logo alanından sakin uçuş (sonsuza kadar)
-     */
     function baslatBalonSistemi() {
-        // Hangi sayfada olduğumuzu kontrol et
         var yol = window.location.pathname;
         var anaSayfaMi = yol === '/' ||
                          yol.endsWith('/index.html') ||
                          yol === '/index.html';
 
-        // Bugünkü tarihi anahtar olarak kullan (her bayram günü bir kez göster)
         var bugunStr    = yil + '-' + ay + '-' + gun;
         var depoAnahtari = 'hayalAgaciBalonGunu';
         var kaydedilenGun = localStorage.getItem(depoAnahtari);
         var ilkZiyaretMi  = (kaydedilenGun !== bugunStr);
 
         if (anaSayfaMi && ilkZiyaretMi) {
-            /* ---------- AŞAMA 1: Tam ekran patlama ---------- */
-            localStorage.setItem(depoAnahtari, bugunStr); // Bugünü kaydet, bir daha gösterme
+            localStorage.setItem(depoAnahtari, bugunStr); 
             var gecenSure = 0;
             var asama1    = setInterval(function () {
                 for (var i = 0; i < 3; i++) tamEkranBalonOlustur();
                 gecenSure += 200;
                 if (gecenSure >= 5000) {
                     clearInterval(asama1);
-                    /* ---------- AŞAMA 2: Logo uçuşu ---------- */
                     setInterval(logoBalonOlustur, 1600);
                 }
             }, 200);
         } else {
-            /* Diğer sayfalar VEYA bugün zaten görüldü → direkt Aşama 2 */
             setInterval(logoBalonOlustur, 1600);
         }
     }
 
-    /* -------- DOM HAZIR OLUNCA UYGULA -------- */
     document.addEventListener('DOMContentLoaded', function () {
-        if (!gunBilgisi) return; // Özel bir gün değil → yaprak zaten çalışıyor, dokunma
+        if (!gunBilgisi) return; 
 
         var header = document.querySelector('header');
 
-        /* 1 — Tema sınıfını body'e ekle */
         document.body.classList.add(gunBilgisi.tema);
 
-        /* 2 — Üst şerit (banner) oluştur ve header içine yerleştir */
         var serit = document.createElement('div');
         serit.id        = 'akilli-takvim-serit';
         serit.className = gunBilgisi.serit;
         serit.textContent = gunBilgisi.mesaj;
         if (header) header.appendChild(serit);
 
-        /* 3 — Animasyon kararı */
         if (gunBilgisi.animasyon === 'balon') {
-            window.balonModuAktif = true; // yaprakUret() bu flag'i kontrol ediyor
+            window.balonModuAktif = true; 
             baslatBalonSistemi();
         }
-        /* 'yaprak' veya belirtilmemiş → mevcut setInterval zaten çalışıyor, elle dokunmaya gerek yok */
     });
 
 }());
@@ -815,7 +706,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // ALTERNATİF 1: OKUMA İLERLEME MOTORU
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
-    // Çubuğu HTML'e sizin yerinize otomatik olarak ekler
     const kapsayici = document.createElement("div");
     kapsayici.id = "okuma-cubugu-kapsayici";
     const cubuk = document.createElement("div");
@@ -823,7 +713,6 @@ document.addEventListener("DOMContentLoaded", function() {
     kapsayici.appendChild(cubuk);
     document.body.appendChild(kapsayici);
 
-    // Kullanıcı fareyi kaydırdıkça çubuğu doldurur
     window.addEventListener("scroll", function() {
         const inilenMesafe = document.documentElement.scrollTop || document.body.scrollTop;
         const toplamMesafe = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -839,22 +728,18 @@ document.addEventListener("DOMContentLoaded", function() {
     function loaderiKapat() {
         const loader = document.getElementById('preloader');
         if (loader) {
-            // Perdeyi usulca kapatmak için önce saydamlaştır
             loader.style.opacity = "0";
             loader.style.visibility = "hidden";
-            // Animasyon bittikten sonra sistemden tamamen sök
             setTimeout(() => {
                 loader.classList.add('gizli-loader');
             }, 400);
         }
     }
 
-    // SAYFA AÇILDIĞINDA: Her türlü yükleme senaryosunda kapat
     window.addEventListener('load', loaderiKapat);
     window.addEventListener('pageshow', loaderiKapat); 
     document.addEventListener('DOMContentLoaded', loaderiKapat);
 
-    // LİNKLERE TIKLANDIĞINDA:
     document.addEventListener("click", function(e) {
         const link = e.target.closest("a");
         if (!link) return;
@@ -862,21 +747,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const hedefRaw = link.getAttribute("href");
         const hedefTab = link.getAttribute("target");
 
-        // Boş linkleri, yeni sekme açanları ve mailleri atla
         if (!hedefRaw || hedefRaw.startsWith("mailto:") || hedefRaw.startsWith("tel:") || hedefTab === "_blank") return;
 
-        // Linkin gideceği tam adresi ve şu anki sayfanın adresini al
         const tamHedef = link.href;
         const suAnkiSayfa = window.location.origin + window.location.pathname;
-        const hedefSayfa = tamHedef.split('#')[0]; // Adresin sonundaki # kısmını keser
+        const hedefSayfa = tamHedef.split('#')[0]; 
 
-        // AKILLI KONTROL: EĞER LİNK AYNI SAYFA İÇİNDE BİR BÖLÜME GİDİYORSA
         if (suAnkiSayfa === hedefSayfa && tamHedef.includes("#")) {
-            // Yükleme ekranını kesinlikle açma, bırak tarayıcı usulca aşağı kaysın
             return;
         }
 
-        // EĞER FARKLI BİR SAYFAYA (Örn: sss.html) GİDİYORSA PERDEYİ AÇ
         const loader = document.getElementById('preloader');
         if (loader) {
             e.preventDefault();
@@ -885,7 +765,6 @@ document.addEventListener("DOMContentLoaded", function() {
             loader.style.opacity = "1";
             loader.style.visibility = "visible";
 
-            // Tam 200ms sonra hızlıca yönlendir
             setTimeout(() => {
                 window.location.href = hedefRaw;
             }, 200);
@@ -927,64 +806,53 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-        // AKILLI VİDEO ALGILAYICI VE HOVER MOTORU
-        // ==========================================
-        document.addEventListener("DOMContentLoaded", function() {
-            // Sitedeki tüm videoları bul
-            const videolar = document.querySelectorAll('.medya-karti video');
-            
-            videolar.forEach(video => {
-                // Sistemin sorunsuz çalışması için güvenlik ayarları (Sessiz ve satıriçi oynatma)
-                video.muted = true;
-                video.setAttribute('playsinline', ''); 
-                
-                const kart = video.closest('.medya-karti');
-                kart.classList.add('video-karti'); // Bu kartın video olduğunu sisteme işaretle
-                
-                // 1. Şık oynat butonunu yoktan var et ve videonun üstüne ekle
-                const oynatBtn = document.createElement('div');
-                oynatBtn.className = 'zarif-oynat-butonu';
-                oynatBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-                kart.appendChild(oynatBtn);
+// AKILLI VİDEO ALGILAYICI VE HOVER MOTORU
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const videolar = document.querySelectorAll('.medya-karti video');
+    
+    videolar.forEach(video => {
+        video.muted = true;
+        video.setAttribute('playsinline', ''); 
+        
+        const kart = video.closest('.medya-karti');
+        kart.classList.add('video-karti'); 
+        
+        const oynatBtn = document.createElement('div');
+        oynatBtn.className = 'zarif-oynat-butonu';
+        oynatBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+        kart.appendChild(oynatBtn);
 
-                // 2. Fare üzerine gelince videoyu başlat
-                kart.addEventListener('mouseenter', () => {
-                    // Sadece fare üzerindeyse oynat (Hızlı geçişlerdeki tarayıcı hatalarını önler)
-                    let playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            // Video otomatik oynatılamazsa sessizce yut
-                        });
-                    }
-                });
-                
-                // 3. Fare çekilince videoyu durdur ve başa sar
-                kart.addEventListener('mouseleave', () => {
-                    video.pause();
-                    video.currentTime = 0; // Bir sonraki hover için videoyu sıfırla
-                });
-            });
+        kart.addEventListener('mouseenter', () => {
+            let playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => { });
+            }
         });
+        
+        kart.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0; 
+        });
+    });
+});
 
-        // ==========================================
+// ==========================================
 // AKILLI HIZ SENSÖRÜ (LITE MOD MOTORU) v2
 // ==========================================
 (function() {
     let sayfaYuklendi = false;
 
-    // Sayfa tam yüklendiğinde bayrağı kaldır
     window.addEventListener('load', function() {
         sayfaYuklendi = true;
     });
 
     function liteModuAktifEt() {
-        // Zaten aktifse tekrar çalıştırma
         if (document.body.classList.contains('lite-mod')) return;
 
         document.body.classList.add('lite-mod');
         console.log("Sistem Uyarısı: Bağlantı gerçekten yavaş, Lite Mod (Hızlı Sürüm) aktif edildi.");
 
-        // Lite modda videoların indirilmesini durdur ki kota yemesin
         document.querySelectorAll('video').forEach(vid => {
             vid.pause();
             vid.removeAttribute('src');
@@ -992,26 +860,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ── GERÇEK HIZ TESTİ ──────────────────────────────────────────
-    // Küçük bir görsel indirip gerçek MB/s değerini ölçüyoruz.
-    // Eşik: 0.5 Mbps altı = gerçekten yavaş bağlantı.
-    // Test dosyası: tarayıcı önbelleğini atlamamız için timestamp ekliyoruz.
-    const HIZESIGI_MBPS = 0.5; // Bu değerin altı = yavaş
-    const TEST_URL = 'https://www.google.com/images/phd/px.gif'; // ~43 byte, sadece gecikme testi
-    // Daha iyi bir test için kendi sunucunuzda küçük bir dosya (örn. test-hiz.jpg ~50KB) barındırın:
-    // const TEST_URL = '/test-hiz.jpg';
+    const HIZESIGI_MBPS = 0.5; 
+    const TEST_URL = 'https://www.google.com/images/phd/px.gif'; 
 
     async function hizOlc() {
         try {
             const baslangic = performance.now();
             const yanit = await fetch(TEST_URL + '?nocache=' + Date.now(), {
                 cache: 'no-store',
-                mode: 'no-cors' // cross-origin dosyalarda içerik okuma gerekmez, sadece süre
+                mode: 'no-cors' 
             });
             const bitis = performance.now();
             const sureSaniye = (bitis - baslangic) / 1000;
 
-            // no-cors modunda response.blob() çalışır
             const blob = await yanit.blob().catch(() => ({ size: 43 }));
             const boyutBit = (blob.size || 43) * 8;
             const hizMbps = (boyutBit / 1_000_000) / sureSaniye;
@@ -1019,22 +880,16 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(`Hız testi: ${hizMbps.toFixed(3)} Mbps (${sureSaniye.toFixed(2)}s)`);
             return hizMbps;
         } catch (e) {
-            // Fetch tamamen başarısız olduysa (çevrimdışı vb.) yavaş say
             console.warn("Hız testi başarısız:", e);
             return 0;
         }
     }
 
-    // ── ANA KARAR MOTORU ─────────────────────────────────────────
-    // Hız testini ve sayfa yükleme süresini AYRI AYRI değerlendiriyoruz.
-    // İKİSİ de sorunluysa lite mod devreye girer. Biri iyiyse girmez.
-    const SAYFA_YÜKLEME_LIMITI_MS = 8000; // 8 saniyede yüklenmediyse "yavaş yükleme"
+    const SAYFA_YÜKLEME_LIMITI_MS = 8000; 
 
     Promise.all([
-        // 1. Hız testi: asenkron ölçüm
         hizOlc(),
 
-        // 2. Sayfa yükleme testi: 8 saniyeye kadar bekliyoruz
         new Promise(resolve => {
             if (sayfaYuklendi) return resolve(true);
             const zamanAsimi = setTimeout(() => resolve(false), SAYFA_YÜKLEME_LIMITI_MS);
@@ -1047,7 +902,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const hizYavas = hizMbps < HIZESIGI_MBPS;
         const yuklemeyavas = !sayfaHizliYuklendi;
 
-        // Her ikisi de sorunluysa: gerçekten yavaş bağlantı
         if (hizYavas && yuklemeyavas) {
             liteModuAktifEt();
         } else {
@@ -1057,63 +911,55 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 // ==========================================
-        // AKILLI VİDEO VE YÜKLEME ÇUBUĞU MOTORU
-        // ==========================================
-        document.addEventListener("DOMContentLoaded", function() {
-            const videolar = document.querySelectorAll('.medya-karti video');
-            
-            videolar.forEach(video => {
-                video.muted = true;
-                video.setAttribute('playsinline', ''); 
-                // Önemli: İnterneti yavaş olanları korumak için video otomatik inmesin
-                video.setAttribute('preload', 'none'); 
-                
-                const kart = video.closest('.medya-karti');
-                kart.classList.add('video-karti'); 
-                
-                // 1. Oynat Butonunu Ekle
-                const oynatBtn = document.createElement('div');
-                oynatBtn.className = 'zarif-oynat-butonu';
-                oynatBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-                kart.appendChild(oynatBtn);
+// AKILLI VİDEO VE YÜKLEME ÇUBUĞU MOTORU
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const videolar = document.querySelectorAll('.medya-karti video');
+    
+    videolar.forEach(video => {
+        video.muted = true;
+        video.setAttribute('playsinline', ''); 
+        video.setAttribute('preload', 'none'); 
+        
+        const kart = video.closest('.medya-karti');
+        kart.classList.add('video-karti'); 
+        
+        const oynatBtn = document.createElement('div');
+        oynatBtn.className = 'zarif-oynat-butonu';
+        oynatBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+        kart.appendChild(oynatBtn);
 
-                // 2. YouTube Stili İlerleme Alanını Ekle
-                const ilerlemeAlani = document.createElement('div');
-                ilerlemeAlani.className = 'video-ilerleme-alani';
-                const tamponCubugu = document.createElement('div');
-                tamponCubugu.className = 'video-tampon-cubugu';
-                ilerlemeAlani.appendChild(tamponCubugu);
-                kart.appendChild(ilerlemeAlani);
+        const ilerlemeAlani = document.createElement('div');
+        ilerlemeAlani.className = 'video-ilerleme-alani';
+        const tamponCubugu = document.createElement('div');
+        tamponCubugu.className = 'video-tampon-cubugu';
+        ilerlemeAlani.appendChild(tamponCubugu);
+        kart.appendChild(ilerlemeAlani);
 
-                // 3. Fişi Tak (Üzerine gelince oynamaya/indirmeye başlasın)
-                kart.addEventListener('mouseenter', () => {
-                    let playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => { /* Hataları yut */ });
-                    }
-                });
-                
-                // 4. Fişi Çek (Üzerinden gidince dursun)
-                kart.addEventListener('mouseleave', () => {
-                    video.pause();
-                });
-
-                // 5. YÜKLEME ÇUBUĞUNU DOLDURAN MATEMATİK
-                video.addEventListener('progress', function() {
-                    if (video.buffered.length > 0 && video.duration > 0) {
-                        // Videonun inen son saniyesini al
-                        const yuklenenSaniye = video.buffered.end(video.buffered.length - 1);
-                        const toplamSaniye = video.duration;
-                        
-                        // Yüzde kaçının indiğini hesapla ve çubuğun genişliğini ayarla
-                        const yuzde = (yuklenenSaniye / toplamSaniye) * 100;
-                        tamponCubugu.style.width = yuzde + '%';
-                    }
-                });
-            });
+        kart.addEventListener('mouseenter', () => {
+            let playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => { });
+            }
+        });
+        
+        kart.addEventListener('mouseleave', () => {
+            video.pause();
         });
 
-        // ==========================================
+        video.addEventListener('progress', function() {
+            if (video.buffered.length > 0 && video.duration > 0) {
+                const yuklenenSaniye = video.buffered.end(video.buffered.length - 1);
+                const toplamSaniye = video.duration;
+                
+                const yuzde = (yuklenenSaniye / toplamSaniye) * 100;
+                tamponCubugu.style.width = yuzde + '%';
+            }
+        });
+    });
+});
+
+// ==========================================
 // LITE MOD İSTEĞE BAĞLI MEDYA MOTORU
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
@@ -1124,26 +970,21 @@ document.addEventListener("DOMContentLoaded", function() {
         const kart = video.closest('.medya-karti');
         
         if (isLiteMode) {
-            // 1. Lite modda videonun indirilmesini tamamen DURDUR
             video.setAttribute('preload', 'none');
             
-            // 2. İndirme Butonunu Ekle
             const indirBtn = document.createElement('button');
             indirBtn.className = 'lite-indir-btn';
             indirBtn.innerHTML = '<span>📥</span> Medyayı Görüntüle';
             kart.appendChild(indirBtn);
 
-            // 3. Butona tıklandığında öncelikli indirmeyi başlat
             indirBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Lightbox'ın hemen açılmasını engelle
+                e.stopPropagation(); 
                 
                 indirBtn.innerHTML = '<span>⏳</span> Yükleniyor...';
                 
-                // Videoyu sisteme tanıt ve yükle
                 video.setAttribute('preload', 'auto');
                 video.load();
                 
-                // Yükleme tamamlanınca barı göster ve videoyu aç
                 video.addEventListener('canplaythrough', () => {
                     kart.classList.add('yuklendi');
                     indirBtn.style.display = 'none';
@@ -1254,7 +1095,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-/* -------- BUGÜNÜN TARİH BİLGİSİ -------- */
 var bugun = new Date();
 
 var urlArama = new URLSearchParams(window.location.search);
@@ -1299,7 +1139,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const basaDonBtn = document.getElementById("basa-don-btn");
 
     if (basaDonBtn) {
-        // Sayfa kaydırıldıkça butonun şeffaflığını ayarlar
         window.addEventListener("scroll", function() {
             if (window.scrollY > 100) {
                 basaDonBtn.style.opacity = "1";
@@ -1312,7 +1151,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// HTML içindeki onclick="basaDon()" komutunun çalıştırdığı asıl fonksiyon
 function basaDon() {
     window.scrollTo({
         top: 0,
@@ -1325,19 +1163,14 @@ const internetUyarisi = document.getElementById('internet-uyarisi');
 function baglantiDurumunuGuncelle() {
     if (internetUyarisi) {
         if (navigator.onLine) {
-            // İnternet varsa kutuyu gizle
             internetUyarisi.style.display = 'none';
         } else {
-            // İnternet yoksa kutuyu göster (Tasarımınıza göre 'block' veya 'flex' yapabilirsiniz)
             internetUyarisi.style.display = 'block'; 
         }
     }
 }
 
-// Sayfa ilk yüklendiğinde durumu kontrol et
 window.addEventListener('load', baglantiDurumunuGuncelle);
-
-// İnternet gidip geldiğinde anlık olarak durumu güncelle
 window.addEventListener('online', baglantiDurumunuGuncelle);
 window.addEventListener('offline', baglantiDurumunuGuncelle);
 
@@ -1359,9 +1192,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     Object.assign(uyariKutusu.style, {
         position: "fixed",
-        bottom: "-200px", /* Ekrandan tamamen çıksın diye -200px yaptık */
-        opacity: "0",     /* İnternet varken tamamen görünmez kalır */
-        visibility: "hidden", /* Tıklanmasını ve ekranda boş yer kaplamasını engeller */
+        bottom: "-200px", 
+        opacity: "0",     
+        visibility: "hidden", 
         left: "50%",
         transform: "translateX(-50%)",
         background: "white",
@@ -1370,29 +1203,26 @@ document.addEventListener("DOMContentLoaded", function() {
         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
         borderLeft: "5px solid #d9534f",
         zIndex: "999999",
-        transition: "all 0.5s ease", /* Hem inme/çıkma hem şeffaflık animasyonlu olarak gerçekleşir */
+        transition: "all 0.5s ease", 
         fontFamily: "inherit",
-        width: "85%", /* Mobilde taşıp dikine çok uzamaması için genişlik sınırı */
+        width: "85%", 
         maxWidth: "400px"
     });
 
     document.body.appendChild(uyariKutusu);
 
-    // Sayfa ilk yüklendiğinde eğer o an internet yoksa kutuyu anında göster
     if (!navigator.onLine) {
         uyariKutusu.style.bottom = "30px";
         uyariKutusu.style.opacity = "1";
         uyariKutusu.style.visibility = "visible";
     }
 
-    // İnternet kesildiği anda tetiklenen olay
     window.addEventListener("offline", () => {
         uyariKutusu.style.bottom = "30px";
         uyariKutusu.style.opacity = "1";
         uyariKutusu.style.visibility = "visible";
     });
 
-    // İnternet geri geldiğinde tetiklenen olay
     window.addEventListener("online", () => {
         uyariKutusu.innerHTML = `
             <div style="display: flex; align-items: center; gap: 15px;">
@@ -1405,14 +1235,12 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
         uyariKutusu.style.borderLeftColor = "rgb(134, 220, 84)";
         
-        // Bir süre yeşil kutuyu gösterip ardından tekrar saydamlaştırıp en dibe saklar
         setTimeout(() => {
             uyariKutusu.style.bottom = "-200px";
             uyariKutusu.style.opacity = "0";
             
             setTimeout(() => {
                 uyariKutusu.style.visibility = "hidden";
-                // Eski HTML yapısına (📡) geri döndürür ki bir daha kesilirse hazır olsun
                 uyariKutusu.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 15px;">
                         <span style="font-size: 2rem;">📡</span>
@@ -1435,20 +1263,17 @@ document.addEventListener("DOMContentLoaded", async function() {
     const kapsayici = document.getElementById('dinamik-kutuphane-listesi');
     if (!kapsayici) return;
 
-    // Efendimizin ilettiği resmi veritabanı linki
     const csvLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSyPtoLrEKtvodUb3csXIrjHFrjpayp1peDrpDHZjNJRGAOVg-Y98pR6GMkZ9hAUz9snnJ68udYpQkA/pub?output=csv"; 
 
     try {
         const response = await fetch(csvLink);
         const veri = await response.text();
         
-        // Satırları ayırıyoruz (İlk satır başlık olduğu için atlıyoruz)
         const satirlar = veri.split(/\r?\n/).slice(1); 
 
         satirlar.forEach(satir => {
-            if(satir.trim() === "") return; // Boş satırları atla
+            if(satir.trim() === "") return; 
 
-            // Virgülleri bölerken hikaye içindeki virgülleri koruyan zırhlı ayırıcı
             const sutunlar = [];
             let geciciSutun = '';
             let tirnakIci = false;
@@ -1456,7 +1281,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             for(let i = 0; i < satir.length; i++) {
                 let karakter = satir[i];
                 if (karakter === '"') {
-                    tirnakIci = !tirnakIci; // Tırnak içine girildiğini veya çıkıldığını anlar
+                    tirnakIci = !tirnakIci; 
                 } else if (karakter === ',' && !tirnakIci) {
                     sutunlar.push(geciciSutun.trim());
                     geciciSutun = '';
@@ -1464,9 +1289,8 @@ document.addEventListener("DOMContentLoaded", async function() {
                     geciciSutun += karakter;
                 }
             }
-            sutunlar.push(geciciSutun.trim()); // Son sütunu da ekler
+            sutunlar.push(geciciSutun.trim()); 
 
-            // Sütunlar tamamsa kartı oluşturur
             if (sutunlar.length >= 5) {
                 const resim = sutunlar[0];
                 const isim = sutunlar[1];
@@ -1474,7 +1298,6 @@ document.addEventListener("DOMContentLoaded", async function() {
                 const hikaye = sutunlar[3];
                 const link = sutunlar[4];
 
-                // Sadece kütüphane ismi doluysa karta dönüştür (Boş satırları ekranda göstermez)
                 if(isim.length > 2) {
                     const kartHTML = `
                         <div class="kutuphane-karti">
@@ -1495,5 +1318,67 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
     } catch (hata) {
         console.log("Veritabanından veri çekilemedi: ", hata);
+    }
+});
+
+// ==========================================
+// MEKANİK BUTON İTME SİSTEMİ (ÇARPIŞMA SENSÖRÜ)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const footer = document.querySelector("footer");
+    const basaDonBtn = document.getElementById("basa-don-btn");
+    const muzikCalar = document.getElementById("muzik-calar-kapsayici");
+    const themeBtn = document.getElementById("theme-toggle-btn");
+
+    if(footer) {
+        const gozlemci = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Footer göründüğünde yay gibi yukarı fırlat
+                    if (basaDonBtn) basaDonBtn.style.marginBottom = "85px";
+                    if (muzikCalar) muzikCalar.style.marginBottom = "85px";
+                    if (themeBtn) themeBtn.style.marginBottom = "85px";
+                } else {
+                    // Footer'dan çıkınca pürüzsüzce yerine otur
+                    if (basaDonBtn) basaDonBtn.style.marginBottom = "0px";
+                    if (muzikCalar) muzikCalar.style.marginBottom = "0px";
+                    if (themeBtn) themeBtn.style.marginBottom = "0px";
+                }
+            });
+        }, { 
+            rootMargin: "0px 0px 10px 0px", // Footer'a ramak kala tetikler
+            threshold: 0.05 
+        });
+
+        gozlemci.observe(footer);
+    }
+});
+
+// ==========================================
+// YASAL ÇEREZ VE GİZLİLİK ONAY SİSTEMİ
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    if (!localStorage.getItem("cerezOnay")) {
+        const cerezKutusu = document.createElement("div");
+        cerezKutusu.id = "cerez-uyari-kutusu";
+        cerezKutusu.innerHTML = `
+            <div class="cerez-icerik">
+                <div class="cerez-metin">
+                    <strong>🍪 Gizlilik ve Çerez Politikası</strong>
+                    <p>Sitemizde kullanıcı deneyimini artırmak ve tercihlerinizi hatırlamak amacıyla zorunlu çerezler kullanılmaktadır. Sitemizi kullanmaya devam ederek <a href="kvkk-gizlilik.html">Kullanım ve Gizlilik Sözleşmesi</a>'ni kabul etmiş sayılırsınız.</p>
+                </div>
+                <button id="cerez-onay-btn">Anladım</button>
+            </div>
+        `;
+        document.body.appendChild(cerezKutusu);
+
+        document.getElementById("cerez-onay-btn").addEventListener("click", function() {
+            localStorage.setItem("cerezOnay", "true");
+            cerezKutusu.style.bottom = "-300px"; 
+            setTimeout(() => cerezKutusu.remove(), 600);
+        });
+
+        // Sayfa açıldıktan 1.5 saniye sonra alttan yumuşakça çıkar
+        setTimeout(() => { cerezKutusu.style.bottom = "20px"; }, 1500);
     }
 });

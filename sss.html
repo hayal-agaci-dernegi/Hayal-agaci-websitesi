@@ -18,6 +18,7 @@
             padding: 20px;
             /* Header'ın altında kalmaması için padding-top */
             padding-top: 150px; 
+            padding-bottom: 80px;
             min-height: 80vh;
             font-family: Arial, sans-serif;
         }
@@ -69,7 +70,6 @@
         .sss-ozel-kutu summary {
             font-weight: bold;
             font-size: 1.3rem;
-            /* Dernek Yeşili */
             color: rgb(134, 220, 84); 
             list-style: none;
             outline: none;
@@ -78,23 +78,20 @@
             align-items: center;
         }
 
-        /* summary'nin varsayılan okunu gizle */
         .sss-ozel-kutu summary::-webkit-details-marker {
             display: none;
         }
 
-        /* Kendi ok simgemizi ekleyelim */
         .sss-ozel-kutu summary::after {
             content: '+'; 
             font-size: 1.5rem;
             font-weight: bold;
             transition: transform 0.3s ease;
+            color: #333;
         }
 
-        /* Kutu açılınca artı işaretini döndür */
         .sss-ozel-kutu[open] summary::after {
             transform: rotate(45deg);
-            color: #333;
         }
 
         /* Cevap Metni */
@@ -103,50 +100,66 @@
             color: #555;
             line-height: 1.8;
             font-size: 1.05rem;
-            border-top: 1px solid #eee;
+            border-top: 1px dashed #eee;
             padding-top: 15px;
         }
+
+        #sss-arama-input {
+            width: 100%; 
+            max-width: 600px; 
+            padding: 18px 25px; 
+            font-size: 1.1rem; 
+            border: 2px solid #eaeaea; 
+            border-radius: 50px; 
+            box-sizing: border-box; 
+            outline: none; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-family: inherit;
+        }
+
+        #sss-arama-input:focus {
+            border-color: rgb(134, 220, 84);
+            box-shadow: 0 4px 20px rgba(134, 220, 84, 0.2);
+        }
+
+        /* === KARANLIK MOD UYUMU (S.S.S. KUTULARI İÇİN) === */
+        body.dark-mode .sss-ozel-bolum { background-color: #121212; }
+        body.dark-mode .sss-ozel-baslik { color: #f5f5f5; }
+        body.dark-mode .sss-ozel-altbaslik { color: #aaa; }
+        
+        body.dark-mode #sss-arama-input {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+            border-color: #333;
+        }
+        body.dark-mode #sss-arama-input:focus { border-color: rgb(134, 220, 84); }
+        
+        body.dark-mode .sss-ozel-kutu {
+            background-color: #1e1e1e;
+            border-color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        body.dark-mode .sss-ozel-kutu:hover { border-color: rgb(134, 220, 84); }
+        body.dark-mode .sss-ozel-kutu[open] { background-color: #2a2a2a; }
+        body.dark-mode .sss-ozel-kutu summary::after { color: #f5f5f5; }
+        body.dark-mode .sss-ozel-cevap { color: #ccc; border-top-color: #444; }
     </style>
 </head>
 <body>
 
-<button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-</button>
-
+    <!-- YÜKLEME EKRANI -->
     <div id="preloader">
-    <div class="preloader-ic">
-        <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
-        <div class="yukleme-cubugu">
-            <div class="ilerleme"></div>
+        <div class="preloader-ic">
+            <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+            <div class="yukleme-cubugu">
+                <div class="ilerleme"></div>
+            </div>
+            <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
         </div>
-        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
     </div>
-</div>
 
-<script>
-    window.addEventListener('load', function() {
-        var loader = document.getElementById('preloader');
-        if (loader) {
-            loader.style.opacity = '0';
-            loader.style.visibility = 'hidden';
-            setTimeout(function() { loader.style.display = 'none'; }, 600);
-        }
-    });
-    
-    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
-    setTimeout(function() {
-        var loader = document.getElementById('preloader');
-        if (loader && loader.style.display !== 'none') {
-            loader.style.opacity = '0';
-            setTimeout(function() { loader.style.display = 'none'; }, 600);
-        }
-    }, 5000);
-</script>
-<script src="site.js"></script>
-</body>
+    <!-- ÜST MENÜ -->
     <header>
         <div id="header0">
             <div id="isim_logo">
@@ -155,10 +168,10 @@
             </div>
 
             <div id="hamburger-btn">
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-</div>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
 
             <nav>
                 <ul>
@@ -166,23 +179,25 @@
                     <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
                     <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
                     <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
-                    <a href="iletisim.html"><li>İletişim</li></a> </ul>
+                    <a href="iletisim.html"><li>İletişim</li></a>
+                </ul>
             </nav>
         </div>
     </header>
     
-
+    <!-- SSS İÇERİK ALANI -->
     <section class="sss-ozel-bolum">
         <h2 class="sss-ozel-baslik">Sıkça Sorulan Sorular</h2>
         <p class="sss-ozel-altbaslik">Derneğimiz, kütüphane projelerimiz ve bağış süreçleri hakkında merak ettiğiniz cevaplar.</p>
-<div style="text-align: center; margin-bottom: 40px;">
-    <input type="text" id="sss-arama-input" onkeyup="benzerSoruAra()" placeholder="🔍 Anahtar kelime yazın (Örn: kargo, kitap, gönüllü)..." 
-    style="width: 100%; max-width: 600px; padding: 18px 25px; font-size: 1.1rem; border: 2px solid #eaeaea; border-radius: 50px; box-sizing: border-box; outline: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-</div>
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <input type="text" id="sss-arama-input" onkeyup="benzerSoruAra()" placeholder="🔍 Anahtar kelime yazın (Örn: kargo, kitap, gönüllü)...">
+        </div>
 
-<div id="sss-yok-mesaji" style="display: none; text-align: center; color: #d9534f; background: #fdf7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px dashed #d9534f;">
-    ❌ Bu kelimeye uygun bir soru bulamadık. Lütfen başka bir kelime deneyin.
-</div>
+        <div id="sss-yok-mesaji" style="display: none; text-align: center; color: #d9534f; background: #fdf7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px dashed #d9534f;">
+            ❌ Bu kelimeye uygun bir soru bulamadık. Lütfen başka bir kelime deneyin.
+        </div>
+        
         <div class="sss-ozel-listesi">
 
             <details class="sss-ozel-kutu">
@@ -203,6 +218,7 @@
                 <summary>Kargo gönderim ücretini kim karşılıyor?</summary>
                 <div class="sss-ozel-cevap">
                     Derneğimizde kargo gönderim ücretleri gönderici tarafından karşılanmaktadır.
+                </div>
             </details>
 
             <details class="sss-ozel-kutu">
@@ -243,63 +259,87 @@
         </div>
     </section>
 
-    <footer id="iletisim">
-        <p id="iletisim0">İletişim</p>
-        <div id="iconlar">
-    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
-        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
-    </a>
+    <!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
+    <footer id="iletisim" class="modern-footer">
+        <div class="footer-ust">
+            
+            <div class="footer-marka">
+                <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+                <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+                
+                <div id="iconlar">
+                    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-linkler">
+                <div class="link-sutun">
+                    <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
+                    <ul>
+                        <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                        <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
+                        <!-- Pazartesi gününe kadar tıklanması JavaScript ile engellenmiştir -->
+                        <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
+                    </ul>
+                </div>
+            </div>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
-        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-    </a>
-</div>
-        <p id="hak">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
-        <p id="credit"><span id="credi">Onur TURAN</span> ve <span data-tr="ve" data-en="&" ></span> <span id="credi">Enes SAYGILIER </span><span data-tr="tarafından yapılmıştır" data-en="built by">tarafından yapılmıştır</span></p>
+        </div>
+        
+        <div class="footer-alt">
+            <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+            
+            <div id="modern-credit">
+                <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            </div>
+        </div>
     </footer>
 
-    <script src="site.js"></script>
     <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-</button>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
 
+    <script src="site.js"></script>
+
+    <!-- SSS ARAMA MOTORU SCRIPT'I -->
     <script>
-    function benzerSoruAra() {
-        // 1. Kullanıcının yazdığı kelimeyi al (Büyük/küçük harf duyarlılığını kaldır)
-        let aranan = document.getElementById("sss-arama-input").value.toLocaleLowerCase('tr-TR');
-        let kutular = document.querySelectorAll(".sss-ozel-kutu");
-        let bulunanSayisi = 0;
+        function benzerSoruAra() {
+            let aranan = document.getElementById("sss-arama-input").value.toLocaleLowerCase('tr-TR');
+            let kutular = document.querySelectorAll(".sss-ozel-kutu");
+            let bulunanSayisi = 0;
 
-        // 2. Bütün soruları tek tek kontrol et
-        kutular.forEach(function(kutu) {
-            let soru = kutu.querySelector("summary").innerText.toLocaleLowerCase('tr-TR');
-            let cevap = kutu.querySelector(".sss-ozel-cevap").innerText.toLocaleLowerCase('tr-TR');
+            kutular.forEach(function(kutu) {
+                let soru = kutu.querySelector("summary").innerText.toLocaleLowerCase('tr-TR');
+                let cevap = kutu.querySelector(".sss-ozel-cevap").innerText.toLocaleLowerCase('tr-TR');
 
-            // 3. Eğer aranan kelime, soruda VEYA cevapta geçiyorsa:
-            if (soru.includes(aranan) || cevap.includes(aranan)) {
-                kutu.style.display = "block"; // Soruyu ekranda bırak
-                bulunanSayisi++;
-                
-                // Kullanıcı 2 harften fazla bir şey yazdıysa ve eşleşme varsa, kutuyu otomatik açıp cevabı göstersin
-                if (aranan.length > 2) {
-                    kutu.setAttribute("open", "true");
+                if (soru.includes(aranan) || cevap.includes(aranan)) {
+                    kutu.style.display = "block"; 
+                    bulunanSayisi++;
+                    
+                    if (aranan.length > 2) {
+                        kutu.setAttribute("open", "true");
+                    } else {
+                        kutu.removeAttribute("open");
+                    }
                 } else {
-                    kutu.removeAttribute("open");
+                    kutu.style.display = "none"; 
                 }
-            } else {
-                // 4. Kelime geçmiyorsa soruyu gizle
-                kutu.style.display = "none"; 
-            }
-        });
+            });
 
-        // 5. Hiçbir soru bulunamadıysa uyarı mesajını göster
-        let yokMesaji = document.getElementById("sss-yok-mesaji");
-        if (bulunanSayisi === 0) {
-            yokMesaji.style.display = "block";
-        } else {
-            yokMesaji.style.display = "none";
+            let yokMesaji = document.getElementById("sss-yok-mesaji");
+            if (bulunanSayisi === 0) {
+                yokMesaji.style.display = "block";
+            } else {
+                yokMesaji.style.display = "none";
+            }
         }
-    }
-</script>
+    </script>
+</body>
+</html>
