@@ -19,16 +19,36 @@
         body.dark-mode .yasal-kasa h1, body.dark-mode .yasal-kasa h2 { color: #f5f5f5; }
         body.dark-mode .btn-anasayfa { background-color: #2c2c2c; border: 1px solid rgb(134, 220, 84); color: #f5f5f5; box-shadow: none; }
         body.dark-mode .btn-anasayfa:hover { background-color: rgb(134, 220, 84); color: white; }
+
+        /* MOBİL EKRANDA BUTONU GİZLE */
+        @media (max-width: 900px) {
+            .btn-anasayfa { display: none !important; }
+        }
     </style>
 </head>
 <body>
     <header>
         <div id="header0">
             <div id="isim_logo"><img src="source/ha/ha_logo_lr.png" alt="logo" id="logo"><h1>Hayal Ağacı Derneği</h1></div>
+            
             <div class="nav-kontrol">
-                <!-- Butona Dönüştürülmüş Menü -->
+                <!-- PC'de Görünen Buton -->
                 <a href="index.html" class="btn-anasayfa">⬅ Anasayfa'ya Dön</a>
             </div>
+
+            <!-- Mobilde Görünen 3 Çizgili Menü İkonu -->
+            <div id="hamburger-btn">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
+
+            <!-- JavaScript'in okuyup mobil menüye ekleyeceği gizli liste -->
+            <nav style="display: none;">
+                <ul>
+                    <a href="index.html"><li>⬅ Anasayfa'ya Dön</li></a>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -47,8 +67,7 @@
         </ul>
 
         <h2>Çerezleri Nasıl Kontrol Edebilirsiniz?</h2>
-        <p>Tarayıcınızın ayarlarını değiştirerek çerezleri tamamen reddedebilir veya silebilirsiniz. Ancak zorunlu çerezleri engellemeniz durumunda, sitemizdeki karanlık mod gibi bazı kullanıcı dostu özellikler düzgün çalışmayabilir. Sorularınız için hayalagaci.iletisim@gmail.com üzerinden iletişime geçebilirsiniz.</p>
-    
+        <p>Tarayıcınızın ayarlarını değiştirerek çerezleri tamamen reddedebilir veya silebilirsiniz. Ancak zorunlu çerezleri engellemeniz durumunda, sitemizdeki karanlık mod gibi bazı kullanıcı dostu özellikler düzgün çalışmayabilir. Sorularınız için [Resmi E-Posta Adresi] üzerinden bizimle iletişime geçebilirsiniz.</p>
     </div>
 
     <script src="site.js"></script>
