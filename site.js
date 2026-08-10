@@ -1382,3 +1382,29 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => { cerezKutusu.style.bottom = "20px"; }, 1500);
     }
 });
+
+// ==========================================
+// AKILLI MAİL SENSÖRÜ (PC İÇİN WEB GMAIL, MOBİL İÇİN UYGULAMA)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    var mailLinkleri = document.querySelectorAll('a[href^="mailto:"]');
+    
+    mailLinkleri.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            // Kullanıcının mobil cihazdan girip girmediğini tespit eder
+            var mobilMi = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            if (!mobilMi) {
+                // Kullanıcı bilgisayardaysa (PC) masaüstü posta uygulamasını açmasını engeller
+                e.preventDefault();
+                
+                // Linkin içinden "mailto:" kısmını atıp sadece e-posta adresini kopyalar
+                var mailAdresi = this.getAttribute('href').replace('mailto:', '').split('?')[0];
+                
+                // Bilgisayar için yeni sekmede doğrudan Google Gmail web ekranını açar
+                window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + mailAdresi, '_blank');
+            }
+            // Mobil cihazlardaysa koda hiç müdahale etmez, telefonun kendi mail uygulaması standart şekilde açılır.
+        });
+    });
+});
