@@ -494,14 +494,15 @@ document.addEventListener("DOMContentLoaded", function() {
         return { baslangic: d.getDate(), bitis: d.getDate() + 6 };
     }
 
+    /* KESİN ÇÖZÜM: Linkten gelen test tarihlerini takvimin merkezine okutuyoruz */
     var bugun = new Date();
-    var ay    = bugun.getMonth() + 1;
-    var gun   = bugun.getDate();
-    var yil   = bugun.getFullYear();
+    var urlArama = new URLSearchParams(window.location.search);
+    var testAy = urlArama.get('ay');
+    var testGun = urlArama.get('gun');
 
-    var annG  = annelerGunu(yil);
-    var babG  = babalarGunu(yil);
-    var kutup = kutupHaftaAraligi(yil);
+    var ay    = testAy ? parseInt(testAy) : (bugun.getMonth() + 1);
+    var gun   = testGun ? parseInt(testGun) : bugun.getDate();
+    var yil   = bugun.getFullYear();
 
     var gunBilgisi = null;
 
