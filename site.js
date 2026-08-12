@@ -542,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function() {
         gunBilgisi = { tema:'tema-matem', serit:'serit-matem', animasyon:'yaprak', mesaj:'🌙 En Uzun Gece: Hayallerimiz karanlığı aydınlatmaya yeter.' };
     }
     else if (ay === 8  && gun === 12) {
-        gunBilgisi = { tema:'tema-beyza', serit:'serit-beyza', animasyon:'yaprak', mesaj:'🤍 12 Ağustos: Dostumuz Beyza\'nın doğum günü. Hatırası hayallerimizde yaşıyor.' };
+        gunBilgisi = { tema:'tema-beyza', serit:'serit-beyza', animasyon:'yaprak', mesaj:'🤍 12 Ağustos: Beyza\'nın doğum günü. Hatırası hayallerimizde yaşıyor.' };
     }
     else if (ay === 3  && gun === 22) {
         gunBilgisi = { tema:'tema-doga', serit:'serit-doga', animasyon:'yaprak', mesaj:'💧 22 Mart Dünya Su Günü: Suyu koru, hayatı koru.' };
