@@ -2827,11 +2827,11 @@ body.dark-mode #modern-credit span { color: rgb(134, 220, 84); }
 ========================================== */
 
 /* 1. Tema Renk Değişkenleri (Özel günlere göre renkler) */
-body.tema-milli { --gunun-rengi: #e74c3c !important; } /* Kırmızı - Milli Bayramlar */
-body.tema-matem { --gunun-rengi: #546e7a !important; } /* Gri/Füme - Anma Günleri */
-body.tema-doga  { --gunun-rengi: #2e7d32 !important; } /* Koyu Orman Yeşili - Çevre/Doğa */
-body.tema-vefa  { --gunun-rengi: #f57c00 !important; } /* Turuncu - Anneler, Babalar, Emek Günü */
-body.tema-beyza { --gunun-rengi: #607d8b !important; } /* Mavi-Gri - Özel Anma */
+body.tema-milli { --gunun-rengi: #e74c3c !important; } /* Kırmızı: #e74c3c yerine kendi kodunuzu yazın */
+body.tema-matem { --gunun-rengi: #546e7a !important; } /* Gri/Füme: #546e7a yerine kendi kodunuzu yazın */
+body.tema-doga  { --gunun-rengi: #2e7d32 !important; } /* Koyu Yeşil: #2e7d32 yerine kendi kodunuzu yazın */
+body.tema-vefa  { --gunun-rengi: #f57c00 !important; } /* Turuncu: #f57c00 yerine kendi kodunuzu yazın */
+body.tema-beyza { --gunun-rengi: #607d8b !important; } /* Mavi-Gri: #607d8b yerine kendi kodunuzu yazın */
 
 /* 2. Rengin Uygulanacağı Tüm Arka Planlar (Butonlar, İkonlar, Şeritler, Çizgiler) */
 body[class*="tema-"] .katılbt,
