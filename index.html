@@ -180,6 +180,27 @@
             .footer-alt { flex-direction: column; text-align: center; justify-content: center; }
         }
     </style>
+
+    <!-- SEO UYUMU İÇİN YAPILANDIRILMIŞ VERİ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Hayal Ağacı Derneği",
+      "url": "https://hayalagaci.org/",
+      "logo": "https://hayalagaci.org/source/ha/ha_logo_lr.png",
+      "description": "Deprem bölgelerinde ve ihtiyaç duyulan okullarda kütüphaneler kurarak çocuklarımıza aydınlık bir gelecek sunuyoruz.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Adıyaman",
+        "addressCountry": "TR"
+      },
+      "sameAs": [
+        "https://www.instagram.com/hayalagacidernegi/"
+      ]
+    }
+    </script>
+
 </head>
 <body>
 
@@ -214,7 +235,8 @@
             <button id="dil-btn">EN</button>
         </div>
 
-        <div id="hamburger-btn">
+        <!-- ERİŞİLEBİLİRLİK (ARIA-LABEL) EKLENDİ -->
+        <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
             <span class="cizgi"></span>
             <span class="cizgi"></span>
             <span class="cizgi"></span>
@@ -404,6 +426,7 @@
             <h2 class="hizmet_baslik" data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</h2>
             <div class="proje-izgarasi">
                 
+                
                 <div class="proje-karti" onclick="location.href='ekip.html';" style="cursor: pointer;">
                     <div class="resim-alani">
                         <img src="source/ha/ha03.jpeg" alt="Ekibimiz">
@@ -500,7 +523,9 @@
     </footer>
 
     <script src="site.js"></script>
-    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+    
+    <!-- ERİŞİLEBİLİRLİK (ARIA-LABEL) EKLENDİ -->
+    <button id="basa-don-btn" onclick="basaDon()" aria-label="Sayfanın En Üstüne Dön" title="Yukarı Çık">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 19V5M5 12l7-7 7 7"/>
     </svg>

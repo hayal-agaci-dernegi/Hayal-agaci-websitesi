@@ -1411,52 +1411,166 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// HAYAL AĞACI - YAPRAK ÜRETİCİ (KUSURSUZ ÇİFT MOTOR)
+// AKILLI CİHAZ PERFORMANS (FPS) VE DONANIM TESTİ
 // ==========================================
+(function() {
+    window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
 
-// 1. MOTOR: ÖN YAPRAKLAR (Logodan tek tek düşer)
+    // Sadece mobil cihazları test et (Geniş ekranlı PC'ler zaten güçlüdür)
+    if (window.innerWidth > 900) return;
+
+    // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
+    // Cihazın RAM'i 4GB'tan veya işlemci çekirdeği 4'ten azsa direkt zayıf cihaz kabul et
+    const ram = navigator.deviceMemory || 8; 
+    const cpu = navigator.hardwareConcurrency || 8;
+    
+    if (ram < 4 || cpu < 4) {
+        window.cihazYetersiz = true;
+        document.body.classList.add('cihaz-yavas');
+        console.log("Sistem: Donanım düşük (RAM: " + ram + "GB). Ağır animasyonlar kapatıldı.");
+        return; // Donanım kötüyse 2. aşamaya (FPS testine) gerek bile yok
+    }
+
+    // 2. AŞAMA: Canlı FPS (Ekran Yenileme Hızı) Testi
+    // Telefonun kağıt üzerinde iyi olabilir ama o an ısınıp kasıyor mu? Bunu ölçüyoruz.
+    let frameSayisi = 0;
+    let testBaslangic = performance.now();
+    
+    function fpsTesti(zaman) {
+        frameSayisi++;
+        if (zaman - testBaslangic < 500) { // Sadece ilk yarım saniye (500ms) ölç
+            requestAnimationFrame(fpsTesti);
+        } else {
+            let fps = frameSayisi * 2; // Yarım saniyeyi 1 saniyeye (FPS) oranla
+            if (fps < 40) { // Saniyede 40 kareden az çiziyorsa cihaz kasıyordur
+                window.cihazYetersiz = true;
+                document.body.classList.add('cihaz-yavas');
+                console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
+            } else {
+                console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+            }
+        }
+    }
+    requestAnimationFrame(fpsTesti);
+})();
+
+// ==========================================
+// AKILLI CİHAZ PERFORMANS (FPS) VE DONANIM TESTİ
+// ==========================================
+(function() {
+    window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
+
+    // Sadece mobil cihazları test et (Geniş ekranlı PC'ler zaten güçlüdür)
+    if (window.innerWidth > 900) return;
+
+    // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
+    const ram = navigator.deviceMemory || 8; 
+    const cpu = navigator.hardwareConcurrency || 8;
+    
+    if (ram < 4 || cpu < 4) {
+        window.cihazYetersiz = true;
+        document.body.classList.add('cihaz-yavas');
+        console.log("Sistem: Donanım düşük (RAM: " + ram + "GB). Ağır animasyonlar kapatıldı.");
+        return; 
+    }
+
+    // 2. AŞAMA: Canlı FPS Testi
+    let frameSayisi = 0;
+    let testBaslangic = performance.now();
+    
+    function fpsTesti(zaman) {
+        frameSayisi++;
+        if (zaman - testBaslangic < 500) { 
+            requestAnimationFrame(fpsTesti);
+        } else {
+            let fps = frameSayisi * 2; 
+            if (fps < 40) { 
+                window.cihazYetersiz = true;
+                document.body.classList.add('cihaz-yavas');
+                console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
+            } else {
+                console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+            }
+        }
+    }
+    requestAnimationFrame(fpsTesti);
+})();
+
+// ==========================================
+// HAYAL AĞACI - YAPRAK ÜRETİCİ (AKILLI MOTORLAR)
+// ==========================================
 function onYaprakUret() {
+    if (window.cihazYetersiz) return;
+
     if (!window.balonModuAktif) {
         var logoAlani = document.getElementById('isim_logo');
         if (logoAlani) {
             var yaprak = document.createElement('div');
             yaprak.classList.add('hayal-yaprak');
             yaprak.style.left = Math.random() * 80 + 10 + '%'; 
-            
-            var dususSuresi = (Math.random() * 2 + 3); // 3 ile 5 saniye arası düşer
+            var dususSuresi = (Math.random() * 2 + 3); 
             var ruzgarSuresi = (Math.random() * 1 + 1.5); 
             yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
-            
             logoAlani.appendChild(yaprak);
             setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
         }
     }
-    // Yeni ön yaprak, eskisinin düşüşü bittikten sonra doğar
     setTimeout(onYaprakUret, Math.random() * 1000 + 4500); 
 }
 
-// 2. MOTOR: ARKA PLAN DEV YAPRAKLAR (Sırayla peş peşe düşer)
 function arkaYaprakUret() {
+    if (window.cihazYetersiz) return;
+
     if (!window.balonModuAktif && document.body.classList.contains('dark-mode')) {
         var arkaYaprak = document.createElement('div');
         arkaYaprak.classList.add('arka-plan-yaprak'); 
-        
         var boyut = Math.random() * 20 + 20; 
         arkaYaprak.style.width = boyut + 'px';
         arkaYaprak.style.height = boyut + 'px';
         arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
-        
         var devDusus = (Math.random() * 4 + 8); 
         var devRuzgar = (Math.random() * 2 + 2); 
         arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
-        
         document.body.appendChild(arkaYaprak);
         setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
     }
-    // Üretim hızı: 1 ile 2.5 saniye arasında peş peşe düşecek
     setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
 }
 
-// İŞTE UNUTULAN KISIM: MOTORLARI İLK KEZ ATEŞLEYEN KONTAK KODLARI
 setTimeout(onYaprakUret, 1000);
 setTimeout(arkaYaprakUret, 2000);
+
+// ==========================================
+// CANLI FPS GÖSTERGESİ (SADECE TEST İÇİN)
+// ==========================================
+(function() {
+    const fpsKutusu = document.createElement('div');
+    fpsKutusu.style.cssText = "position:fixed; top:15px; left:15px; background:rgba(0,0,0,0.8); color:#0f0; padding:8px 12px; z-index:9999999; font-weight:bold; font-family:monospace; border-radius:8px; border:1px solid #0f0; box-shadow: 0 0 10px rgba(0,255,0,0.5); pointer-events:none;";
+    fpsKutusu.innerText = "Hesaplanıyor...";
+    document.body.appendChild(fpsKutusu);
+
+    let sonZaman = performance.now();
+    let kareSayisi = 0;
+
+    function canliFpsHesapla() {
+        let simdi = performance.now();
+        kareSayisi++;
+        
+        if (simdi - sonZaman >= 1000) {
+            fpsKutusu.innerText = kareSayisi + " FPS";
+            if(kareSayisi < 40) {
+                fpsKutusu.style.color = "#ff4c4c";
+                fpsKutusu.style.borderColor = "#ff4c4c";
+                fpsKutusu.style.boxShadow = "0 0 10px rgba(255,76,76,0.5)";
+            } else {
+                fpsKutusu.style.color = "#0f0";
+                fpsKutusu.style.borderColor = "#0f0";
+                fpsKutusu.style.boxShadow = "0 0 10px rgba(0,255,0,0.5)";
+            }
+            kareSayisi = 0;
+            sonZaman = simdi;
+        }
+        requestAnimationFrame(canliFpsHesapla);
+    }
+    canliFpsHesapla();
+})();
