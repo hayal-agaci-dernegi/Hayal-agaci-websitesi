@@ -3090,3 +3090,25 @@ body:not(.dark-mode) .arka-plan-yaprak { display: none; }
         border-radius: 20px 20px 0px 0px !important;
     }
 }
+
+/* ==========================================
+   MOBİLDE #KATIL KUTUSU ALT KÖŞELERİNİ KESİN DÜZLEŞTİRME
+   (PC tarafına asla dokunmaz, sadece mobilde çalışır)
+========================================== */
+@media (max-width: 900px) {
+    #katıl {
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+}
+
+/* ==========================================
+   KRONİK DARK-MODE KÖŞE ÇAKIŞMASI KESİN ÇÖZÜMÜ
+   (PC görünümüne dokunmaz, mobilde dark-mode alt köşeleri düzleştirir)
+========================================== */
+@media (max-width: 900px) {
+    body.dark-mode #katıl,
+    #katıl {
+        border-radius: 20px 20px 0px 0px !important;
+    }
+}
