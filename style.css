@@ -2915,3 +2915,155 @@ body.dark-mode.tema-beyza {
         radial-gradient(circle at 100% 100%, rgba(69, 90, 100, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(144, 164, 174, 0.1) 0%, transparent 60%) !important;
 }
+
+    
+
+/* ==========================================
+   2. YÜKSEK SAYDAMLIKLI CAM KUTULAR (Güncellendi)
+========================================== */
+body.dark-mode #barbeyaz,
+body.dark-mode #katıl,
+body.dark-mode #hakkimizda,
+body.dark-mode #hakkimizda_ust,
+body.dark-mode #hakkimizda_alt,
+body.dark-mode .wrapper,
+body.dark-mode #hizmetlerimiz,
+body.dark-mode #projelerimiz,
+body.dark-mode .kutuphaneler-bolumu,
+body.dark-mode #faaliyet-haritasi {
+    /* Arka plan saydamlığı artırıldı (0.75'ten 0.4'e düşürüldü) */
+    background-color: rgba(42, 42, 45, 0.4) !important;
+    
+    /* Buzlanma efekti hafifletildi (15px'ten 10px'e düşürüldü) */
+    backdrop-filter: blur(10px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+    
+    /* Kenarlık ve gölge detayları */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ==========================================
+   KARANLIK MODDA KAYAN BUTONLARI HİZALAMA
+   (Aydınlık moda kesinlikle dokunmaz)
+========================================== */
+@media (min-width: 901px) {
+    body.dark-mode .bagisbt, 
+    body.dark-mode .katılbt {
+        top: auto !important;
+        bottom: 25px !important;
+    }
+    /* Karanlık mod cam efekti oranlarına göre orijinal konum hesaplaması */
+    body.dark-mode .bagisbt { 
+        left: 45% !important; 
+    }
+    body.dark-mode .katılbt { 
+        left: 70% !important; 
+    }
+}
+
+/* ==========================================
+   3. YAPRAK STİLLERİ (ÖN VE ARKA PLAN)
+========================================== */
+
+/* Ön Yaprak */
+.hayal-yaprak {
+    position: absolute !important;
+    width: 14px; height: 14px;
+    background-color: rgb(134, 220, 84);
+    border-radius: 0 14px 0 14px;
+    opacity: 0; pointer-events: none;
+    z-index: 10 !important;
+    animation: yaprakDususu 4s linear forwards, yaprakRuzgari 1.5s ease-in-out infinite alternate;
+}
+body.dark-mode .hayal-yaprak {
+    background-color: rgb(180, 255, 130) !important;
+    box-shadow: 0 0 10px rgba(180, 255, 130, 0.5) !important;
+}
+
+@keyframes yaprakDususu {
+    0%   { top: -10px; opacity: 0; }
+    15%  { opacity: 0.8; }
+    80%  { opacity: 0.8; }
+    100% { top: 80px; opacity: 0; }
+}
+
+@keyframes yaprakRuzgari {
+    0%   { transform: translateX(0) rotate(0deg); }
+    100% { transform: translateX(15px) rotate(60deg); }
+}
+
+/* Dev Neon Arka Plan Yaprağı */
+.arka-plan-yaprak {
+    position: fixed !important;
+    top: -10vh;
+    background-color: rgb(134, 220, 84);
+    border-radius: 0 50% 0 50%;
+    opacity: 0; pointer-events: none;
+    
+    /* YAPRAKLARI TEKRAR EN ARKAYA ALIYORUZ (-998) */
+    /* Glow'un önünde, buzlu cam kutuların ve tüm sitenin arkasında kalacak */
+    z-index: -998 !important; 
+    
+    box-shadow: 0 0 25px 6px rgba(134, 220, 84, 0.4), 0 0 55px 18px rgba(134, 220, 84, 0.15);
+    animation: arkaPlanYaprakDususu linear forwards, arkaPlanYaprakRuzgari ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+body:not(.dark-mode) .arka-plan-yaprak { display: none; }
+
+/* Footer'ı sağlama alıyoruz, yapraklar arkasına girecek */
+.modern-footer {
+    position: relative !important;
+    z-index: 100 !important; 
+}
+
+@keyframes arkaPlanYaprakDususu {
+    0%   { top: -10vh; opacity: 0; transform: scale(0.8); }
+    10%  { opacity: 0.5; }   
+    85%  { opacity: 0.5; }   
+    100% { top: 110vh; opacity: 0; transform: scale(1.2); } 
+}
+
+@keyframes arkaPlanYaprakRuzgari {
+    0%   { transform: translateX(0) rotate(0deg); }
+    100% { transform: translateX(60px) rotate(75deg); }
+}
+
+/* ==========================================
+   MOD GEÇİŞİNDE SAĞDAN/SOLDAN KAYMAYI KAPATIR
+========================================== */
+.bagisbt, .katılbt {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+/* ==========================================
+   BİREBİR MATEMATİKSEL KONUM EŞİTLEME (SADECE GECE MODU İÇİN)
+   Aydınlık modun orijinaline dokunmaz, karanlık modu onun üstüne kilitler.
+========================================== */
+@media (min-width: 901px) {
+    body.dark-mode .bagisbt, 
+    body.dark-mode .katılbt {
+        /* Aydınlık moddaki top: 540px değeri, tepedeki 100px'lik menü boşluğundan
+           dolayı karanlık modda aşağı kayıyordu. 440px yapılarak milimetrik eşitlendi. */
+        top: 440px !important; 
+        bottom: auto !important; 
+    }
+    
+    body.dark-mode .bagisbt { 
+        /* Aydınlık moddaki %26'lık konumun kutu içindeki tam karşılığı */
+        left: calc(26vw - 5vw) !important; 
+    }
+    
+    body.dark-mode .katılbt { 
+        /* Aydınlık moddaki %37'lik konumun kutu içindeki tam karşılığı */
+        left: calc(37vw - 5vw) !important; 
+    }
+}
+
+/* Karanlık motorda #katıl kutusunun sadece sol köşeleri oval kalır, 
+   sağ tarafı (yeşil çizgiye bakan kısım) fotoğrafla aynı hizada düz olur */
+body.dark-mode #katıl {
+    border-radius: 20px 0px 0px 20px !important;
+}

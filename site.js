@@ -1409,3 +1409,54 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// ==========================================
+// HAYAL AĞACI - YAPRAK ÜRETİCİ (KUSURSUZ ÇİFT MOTOR)
+// ==========================================
+
+// 1. MOTOR: ÖN YAPRAKLAR (Logodan tek tek düşer)
+function onYaprakUret() {
+    if (!window.balonModuAktif) {
+        var logoAlani = document.getElementById('isim_logo');
+        if (logoAlani) {
+            var yaprak = document.createElement('div');
+            yaprak.classList.add('hayal-yaprak');
+            yaprak.style.left = Math.random() * 80 + 10 + '%'; 
+            
+            var dususSuresi = (Math.random() * 2 + 3); // 3 ile 5 saniye arası düşer
+            var ruzgarSuresi = (Math.random() * 1 + 1.5); 
+            yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
+            
+            logoAlani.appendChild(yaprak);
+            setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
+        }
+    }
+    // Yeni ön yaprak, eskisinin düşüşü bittikten sonra doğar
+    setTimeout(onYaprakUret, Math.random() * 1000 + 4500); 
+}
+
+// 2. MOTOR: ARKA PLAN DEV YAPRAKLAR (Sırayla peş peşe düşer)
+function arkaYaprakUret() {
+    if (!window.balonModuAktif && document.body.classList.contains('dark-mode')) {
+        var arkaYaprak = document.createElement('div');
+        arkaYaprak.classList.add('arka-plan-yaprak'); 
+        
+        var boyut = Math.random() * 20 + 20; 
+        arkaYaprak.style.width = boyut + 'px';
+        arkaYaprak.style.height = boyut + 'px';
+        arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
+        
+        var devDusus = (Math.random() * 4 + 8); 
+        var devRuzgar = (Math.random() * 2 + 2); 
+        arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
+        
+        document.body.appendChild(arkaYaprak);
+        setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
+    }
+    // Üretim hızı: 1 ile 2.5 saniye arasında peş peşe düşecek
+    setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
+}
+
+// İŞTE UNUTULAN KISIM: MOTORLARI İLK KEZ ATEŞLEYEN KONTAK KODLARI
+setTimeout(onYaprakUret, 1000);
+setTimeout(arkaYaprakUret, 2000);
