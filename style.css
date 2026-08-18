@@ -3062,8 +3062,31 @@ body:not(.dark-mode) .arka-plan-yaprak { display: none; }
     }
 }
 
-/* Karanlık motorda #katıl kutusunun sadece sol köşeleri oval kalır, 
-   sağ tarafı (yeşil çizgiye bakan kısım) fotoğrafla aynı hizada düz olur */
-body.dark-mode #katıl {
-    border-radius: 20px 0px 0px 20px !important;
+/* ==========================================
+   #KATIL KUTUSU KÖŞE UYUMU (PC vs MOBİL) - KUSURSUZ FİNAL
+========================================== */
+
+/* 1. PC Görünümü (Yan yana): Sadece sağ taraf düz, sol köşeler oval */
+@media (min-width: 901px) {
+    body.dark-mode #katıl {
+        border-radius: 20px 0px 0px 20px !important;
+    }
+}
+
+/* 2. Mobil Görünümü (Alt alta): Fotoğraf altta olduğu için sadece ALT köşeler düz */
+@media (max-width: 900px) {
+    #katıl {
+        border-radius: 20px 20px 0px 0px !important;
+    }
+}
+
+/* ==========================================
+   MOBİL KÖŞE UYUMU (PC BÖLÜMÜNE ASLA DOKUNMAZ)
+   Mobilde #katıl kutusu üstte olduğu için alt köşeleri keskin yapar,
+   böylece alttaki yeşil çizgiyle kusursuz birleşir.
+========================================== */
+@media (max-width: 900px) {
+    #katıl {
+        border-radius: 20px 20px 0px 0px !important;
+    }
 }
