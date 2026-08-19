@@ -1540,37 +1540,3 @@ function arkaYaprakUret() {
 setTimeout(onYaprakUret, 1000);
 setTimeout(arkaYaprakUret, 2000);
 
-// ==========================================
-// CANLI FPS GÖSTERGESİ (SADECE TEST İÇİN)
-// ==========================================
-(function() {
-    const fpsKutusu = document.createElement('div');
-    fpsKutusu.style.cssText = "position:fixed; top:15px; left:15px; background:rgba(0,0,0,0.8); color:#0f0; padding:8px 12px; z-index:9999999; font-weight:bold; font-family:monospace; border-radius:8px; border:1px solid #0f0; box-shadow: 0 0 10px rgba(0,255,0,0.5); pointer-events:none;";
-    fpsKutusu.innerText = "Hesaplanıyor...";
-    document.body.appendChild(fpsKutusu);
-
-    let sonZaman = performance.now();
-    let kareSayisi = 0;
-
-    function canliFpsHesapla() {
-        let simdi = performance.now();
-        kareSayisi++;
-        
-        if (simdi - sonZaman >= 1000) {
-            fpsKutusu.innerText = kareSayisi + " FPS";
-            if(kareSayisi < 40) {
-                fpsKutusu.style.color = "#ff4c4c";
-                fpsKutusu.style.borderColor = "#ff4c4c";
-                fpsKutusu.style.boxShadow = "0 0 10px rgba(255,76,76,0.5)";
-            } else {
-                fpsKutusu.style.color = "#0f0";
-                fpsKutusu.style.borderColor = "#0f0";
-                fpsKutusu.style.boxShadow = "0 0 10px rgba(0,255,0,0.5)";
-            }
-            kareSayisi = 0;
-            sonZaman = simdi;
-        }
-        requestAnimationFrame(canliFpsHesapla);
-    }
-    canliFpsHesapla();
-})();
