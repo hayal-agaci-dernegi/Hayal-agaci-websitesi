@@ -3002,7 +3002,11 @@ body.dark-mode .hayal-yaprak {
 
 body:not(.dark-mode) .arka-plan-yaprak { 
     display: none; 
+<<<<<<< HEAD
 }
+=======
+}}
+>>>>>>> 04d50a20092e7c13d3f0b0faf7bd0a26b0d29cc8
 
 /* Footer'ı sağlama alıyoruz, yapraklar arkasına girecek */
 .modern-footer {
