@@ -1460,8 +1460,12 @@ document.addEventListener("DOMContentLoaded", function() {
 (function() {
     window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
 
-    // Sadece mobil cihazları test et (Geniş ekranlı PC'ler zaten güçlüdür)
-    if (window.innerWidth > 900) return;
+    // Sadece mobil cihazları test et (PC ise testi atla ve motorları direkt başlat)
+    if (window.innerWidth > 900) {
+        setTimeout(onYaprakUret, 1000);
+        setTimeout(arkaYaprakUret, 2000);
+        return;
+    }
 
     // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
     const ram = navigator.deviceMemory || 8; 
@@ -1474,26 +1478,38 @@ document.addEventListener("DOMContentLoaded", function() {
         return; 
     }
 
-    // 2. AŞAMA: Canlı FPS Testi
-    let frameSayisi = 0;
-    let testBaslangic = performance.now();
-    
-    function fpsTesti(zaman) {
-        frameSayisi++;
-        if (zaman - testBaslangic < 500) { 
-            requestAnimationFrame(fpsTesti);
-        } else {
-            let fps = frameSayisi * 2; 
-            if (fps < 40) { 
-                window.cihazYetersiz = true;
-                document.body.classList.add('cihaz-yavas');
-                console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
-            } else {
-                console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+    // 2. AŞAMA: Canlı FPS Testi (GÜNCELLENDİ: Sayfa tam yüklendikten sonra başlar)
+    window.addEventListener('load', function() {
+        
+        // Site yüklendikten sonra tarayıcının rahatlaması için yarım saniye daha bekle
+        setTimeout(function() {
+            let frameSayisi = 0;
+            let testBaslangic = performance.now();
+            
+            function fpsTesti(zaman) {
+                frameSayisi++;
+                // Testi 1 tam saniyeye (1000 ms) yaydık ki anlık düşüşler yanılmasın
+                if (zaman - testBaslangic < 1000) { 
+                    requestAnimationFrame(fpsTesti);
+                } else {
+                    let fps = frameSayisi; // 1 saniyede sayılan frame direkt FPS'i verir
+                    if (fps < 35) { // Mobilde sınır 35 FPS'dir
+                        window.cihazYetersiz = true;
+                        document.body.classList.add('cihaz-yavas');
+                        console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
+                    } else {
+                        console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+                    }
+                    
+                    // FPS Testi kararı verdikten sonra yaprak motorlarını ateşle
+                    // (Eğer cihaz yetersiz çıkarsa motorlar içeriden kendi kendini durdurur)
+                    setTimeout(onYaprakUret, 500);
+                    setTimeout(arkaYaprakUret, 1000);
+                }
             }
-        }
-    }
-    requestAnimationFrame(fpsTesti);
+            requestAnimationFrame(fpsTesti);
+        }, 500); // Yükleme sonrası dinlenme payı
+    });
 })();
 
 // ==========================================
@@ -1537,6 +1553,37 @@ function arkaYaprakUret() {
     setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
 }
 
-setTimeout(onYaprakUret, 1000);
-setTimeout(arkaYaprakUret, 2000);
+// ==========================================
+// CANLI FPS GÖSTERGESİ (SADECE TEST İÇİN)
+// ==========================================
+(function() {
+    const fpsKutusu = document.createElement('div');
+    fpsKutusu.style.cssText = "position:fixed; top:15px; left:15px; background:rgba(0,0,0,0.8); color:#0f0; padding:8px 12px; z-index:9999999; font-weight:bold; font-family:monospace; border-radius:8px; border:1px solid #0f0; box-shadow: 0 0 10px rgba(0,255,0,0.5); pointer-events:none;";
+    fpsKutusu.innerText = "Yükleniyor...";
+    document.body.appendChild(fpsKutusu);
 
+    let sonZaman = performance.now();
+    let kareSayisi = 0;
+
+    function canliFpsHesapla() {
+        let simdi = performance.now();
+        kareSayisi++;
+        
+        if (simdi - sonZaman >= 1000) {
+            fpsKutusu.innerText = kareSayisi + " FPS";
+            if(kareSayisi < 35) {
+                fpsKutusu.style.color = "#ff4c4c";
+                fpsKutusu.style.borderColor = "#ff4c4c";
+                fpsKutusu.style.boxShadow = "0 0 10px rgba(255,76,76,0.5)";
+            } else {
+                fpsKutusu.style.color = "#0f0";
+                fpsKutusu.style.borderColor = "#0f0";
+                fpsKutusu.style.boxShadow = "0 0 10px rgba(0,255,0,0.5)";
+            }
+            kareSayisi = 0;
+            sonZaman = simdi;
+        }
+        requestAnimationFrame(canliFpsHesapla);
+    }
+    canliFpsHesapla();
+})();
