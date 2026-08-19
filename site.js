@@ -1552,4 +1552,3 @@ function arkaYaprakUret() {
     }
     setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
 }
-
