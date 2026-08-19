@@ -1552,3 +1552,107 @@ function arkaYaprakUret() {
     }
     setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
 }
+
+// ==========================================
+// KESİN DONANIM VE PİL TASARRUFU (SİSTEM TERCİHİ) SENSÖRÜ
+// ==========================================
+(function() {
+    window.cihazYetersiz = false; 
+
+    // Geniş ekranlı PC'ler zaten güçlüdür, doğrudan devam etsin
+    if (window.innerWidth > 900) {
+        setTimeout(onYaprakUret, 1000);
+        setTimeout(arkaYaprakUret, 2000);
+        return;
+    }
+
+    function animasyonDurumunuGuncelle() {
+        // 1. Donanım Kontrolü (RAM ve İşlemci)
+        // (Safari gibi gizlilik odaklı tarayıcılar 0 veya undefined dönebilir, onlara varsayılan 4 veriyoruz ki haksız yere kısıtlanmasınlar)
+        const ram = navigator.deviceMemory || 4; 
+        const cpu = navigator.hardwareConcurrency || 4;
+        
+        // 2. İşletim Sistemi "Düşük Güç / Pil Tasarrufu / Hareketi Azalt" Sensörü
+        // Telefon güç tasarrufuna geçtiğinde bu değer 'true' olur.
+        const pilTasarrufuAcik = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // RAM düşükse, Çekirdek azsa VEYA telefon Pil Tasarrufu modundaysa
+        if (ram < 4 || cpu < 4 || pilTasarrufuAcik) {
+            window.cihazYetersiz = true;
+            document.body.classList.add('cihaz-yavas');
+            console.log("Sistem Uyarı: Zayıf donanım veya Pil Tasarrufu aktif. Ağır animasyonlar durduruldu.");
+        } else {
+            window.cihazYetersiz = false;
+            document.body.classList.remove('cihaz-yavas');
+            console.log("Sistem: Cihaz güçlü ve tam performans modunda. Animasyonlar aktif.");
+        }
+    }
+
+    // Site açılır açılmaz anında kontrol et (FPS beklemesi yok)
+    animasyonDurumunuGuncelle();
+
+    // SİHİRLİ KISIM: Kullanıcı sitedeyken "Pil Tasarrufunu" açar veya kapatırsa anında tepki ver
+    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+        console.log("Sistem: Pil/Performans ayarı değiştirildi, site yeniden ayarlanıyor...");
+        animasyonDurumunuGuncelle();
+    });
+
+    // Motorları ateşle
+    setTimeout(onYaprakUret, 1000);
+    setTimeout(arkaYaprakUret, 2000);
+})();
+
+// ==========================================
+// HAYAL AĞACI - YAPRAK ÜRETİCİ (AKILLI MOTORLAR)
+// ==========================================
+
+function onYaprakUret() {
+    // Cihaz kısıtlıysa veya pil tasarrufundaysa döngüyü kırma, 2 saniyede bir "Düzeldi mi?" diye rölantide bekle
+    if (window.cihazYetersiz) {
+        setTimeout(onYaprakUret, 2000); 
+        return; 
+    }
+
+    if (!window.balonModuAktif) {
+        var logoAlani = document.getElementById('isim_logo');
+        if (logoAlani) {
+            var yaprak = document.createElement('div');
+            yaprak.classList.add('hayal-yaprak');
+            yaprak.style.left = Math.random() * 80 + 10 + '%'; 
+            
+            var dususSuresi = (Math.random() * 2 + 3); 
+            var ruzgarSuresi = (Math.random() * 1 + 1.5); 
+            yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
+            
+            logoAlani.appendChild(yaprak);
+            setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
+        }
+    }
+    setTimeout(onYaprakUret, Math.random() * 1000 + 4500); 
+}
+
+function arkaYaprakUret() {
+    // Cihaz kısıtlıysa veya pil tasarrufundaysa döngüyü kırma, rölantide bekle
+    if (window.cihazYetersiz) {
+        setTimeout(arkaYaprakUret, 2000);
+        return;
+    }
+
+    if (!window.balonModuAktif && document.body.classList.contains('dark-mode')) {
+        var arkaYaprak = document.createElement('div');
+        arkaYaprak.classList.add('arka-plan-yaprak'); 
+        
+        var boyut = Math.random() * 20 + 20; 
+        arkaYaprak.style.width = boyut + 'px';
+        arkaYaprak.style.height = boyut + 'px';
+        arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
+        
+        var devDusus = (Math.random() * 4 + 8); 
+        var devRuzgar = (Math.random() * 2 + 2); 
+        arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
+        
+        document.body.appendChild(arkaYaprak);
+        setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
+    }
+    setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
+}
