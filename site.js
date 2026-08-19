@@ -1603,12 +1603,38 @@ function arkaYaprakUret() {
 })();
 
 // ==========================================
+// UYKU MODU SENSÖRÜ (PAGE VISIBILITY API)
+// ==========================================
+window.sekmeAktif = true;
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        window.sekmeAktif = false;
+        console.log("Sistem: Sekme arka plana alındı. Motorlar uyutuluyor.");
+    } else {
+        window.sekmeAktif = true;
+        console.log("Sistem: Sekmeye geri dönüldü. Motorlar uyandırılıyor.");
+    }
+});
+
+// ==========================================
+// TEMBEL YÜKLEME (LAZY LOAD) OTOMASYONU
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const resimler = document.querySelectorAll('img');
+    resimler.forEach(img => {
+        // Eğer resimde loading etiketi yoksa otomatik tembel yükleme ata
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+});
+
+// ==========================================
 // HAYAL AĞACI - YAPRAK ÜRETİCİ (AKILLI MOTORLAR)
 // ==========================================
-
 function onYaprakUret() {
-    // Cihaz kısıtlıysa veya pil tasarrufundaysa döngüyü kırma, 2 saniyede bir "Düzeldi mi?" diye rölantide bekle
-    if (window.cihazYetersiz) {
+    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
+    if (window.cihazYetersiz || !window.sekmeAktif) {
         setTimeout(onYaprakUret, 2000); 
         return; 
     }
@@ -1632,8 +1658,8 @@ function onYaprakUret() {
 }
 
 function arkaYaprakUret() {
-    // Cihaz kısıtlıysa veya pil tasarrufundaysa döngüyü kırma, rölantide bekle
-    if (window.cihazYetersiz) {
+    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
+    if (window.cihazYetersiz || !window.sekmeAktif) {
         setTimeout(arkaYaprakUret, 2000);
         return;
     }
