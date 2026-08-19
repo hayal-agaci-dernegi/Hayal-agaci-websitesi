@@ -1411,112 +1411,75 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// AKILLI CİHAZ PERFORMANS (FPS) VE DONANIM TESTİ
+// UYKU MODU SENSÖRÜ (PAGE VISIBILITY API)
 // ==========================================
-(function() {
-    window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
-
-    // Sadece mobil cihazları test et (Geniş ekranlı PC'ler zaten güçlüdür)
-    if (window.innerWidth > 900) return;
-
-    // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
-    // Cihazın RAM'i 4GB'tan veya işlemci çekirdeği 4'ten azsa direkt zayıf cihaz kabul et
-    const ram = navigator.deviceMemory || 8; 
-    const cpu = navigator.hardwareConcurrency || 8;
-    
-    if (ram < 4 || cpu < 4) {
-        window.cihazYetersiz = true;
-        document.body.classList.add('cihaz-yavas');
-        console.log("Sistem: Donanım düşük (RAM: " + ram + "GB). Ağır animasyonlar kapatıldı.");
-        return; // Donanım kötüyse 2. aşamaya (FPS testine) gerek bile yok
+window.sekmeAktif = true;
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        window.sekmeAktif = false;
+    } else {
+        window.sekmeAktif = true;
     }
+});
 
-    // 2. AŞAMA: Canlı FPS (Ekran Yenileme Hızı) Testi
-    // Telefonun kağıt üzerinde iyi olabilir ama o an ısınıp kasıyor mu? Bunu ölçüyoruz.
-    let frameSayisi = 0;
-    let testBaslangic = performance.now();
-    
-    function fpsTesti(zaman) {
-        frameSayisi++;
-        if (zaman - testBaslangic < 500) { // Sadece ilk yarım saniye (500ms) ölç
-            requestAnimationFrame(fpsTesti);
-        } else {
-            let fps = frameSayisi * 2; // Yarım saniyeyi 1 saniyeye (FPS) oranla
-            if (fps < 40) { // Saniyede 40 kareden az çiziyorsa cihaz kasıyordur
-                window.cihazYetersiz = true;
-                document.body.classList.add('cihaz-yavas');
-                console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
-            } else {
-                console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
-            }
+// ==========================================
+// TEMBEL YÜKLEME (LAZY LOAD) OTOMASYONU
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const resimler = document.querySelectorAll('img');
+    resimler.forEach(img => {
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
         }
-    }
-    requestAnimationFrame(fpsTesti);
-})();
+    });
+});
 
 // ==========================================
-// AKILLI CİHAZ PERFORMANS (FPS) VE DONANIM TESTİ
+// KESİN DONANIM VE PİL TASARRUFU SENSÖRÜ
 // ==========================================
 (function() {
-    window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
+    window.cihazYetersiz = false; 
 
-    // Sadece mobil cihazları test et (PC ise testi atla ve motorları direkt başlat)
+    // PC ekranlarında cihazı doğrudan güçlü kabul et ve çık
     if (window.innerWidth > 900) {
         setTimeout(onYaprakUret, 1000);
         setTimeout(arkaYaprakUret, 2000);
         return;
     }
 
-    // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
-    const ram = navigator.deviceMemory || 8; 
-    const cpu = navigator.hardwareConcurrency || 8;
-    
-    if (ram < 4 || cpu < 4) {
-        window.cihazYetersiz = true;
-        document.body.classList.add('cihaz-yavas');
-        console.log("Sistem: Donanım düşük (RAM: " + ram + "GB). Ağır animasyonlar kapatıldı.");
-        return; 
+    function animasyonDurumunuGuncelle() {
+        const ram = navigator.deviceMemory || 8; 
+        const cpu = navigator.hardwareConcurrency || 4;
+        const pilTasarrufuAcik = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Çekirdek 4'ten azsa VEYA RAM düşükse VEYA Pil Tasarrufu açıksa durdur
+        if (ram < 4 || cpu < 4 || pilTasarrufuAcik) {
+            window.cihazYetersiz = true;
+            document.body.classList.add('cihaz-yavas');
+        } else {
+            window.cihazYetersiz = false;
+            document.body.classList.remove('cihaz-yavas');
+        }
     }
 
-    // 2. AŞAMA: Canlı FPS Testi (GÜNCELLENDİ: Sayfa tam yüklendikten sonra başlar)
-    window.addEventListener('load', function() {
-        
-        // Site yüklendikten sonra tarayıcının rahatlaması için yarım saniye daha bekle
-        setTimeout(function() {
-            let frameSayisi = 0;
-            let testBaslangic = performance.now();
-            
-            function fpsTesti(zaman) {
-                frameSayisi++;
-                // Testi 1 tam saniyeye (1000 ms) yaydık ki anlık düşüşler yanılmasın
-                if (zaman - testBaslangic < 1000) { 
-                    requestAnimationFrame(fpsTesti);
-                } else {
-                    let fps = frameSayisi; // 1 saniyede sayılan frame direkt FPS'i verir
-                    if (fps < 35) { // Mobilde sınır 35 FPS'dir
-                        window.cihazYetersiz = true;
-                        document.body.classList.add('cihaz-yavas');
-                        console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
-                    } else {
-                        console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
-                    }
-                    
-                    // FPS Testi kararı verdikten sonra yaprak motorlarını ateşle
-                    // (Eğer cihaz yetersiz çıkarsa motorlar içeriden kendi kendini durdurur)
-                    setTimeout(onYaprakUret, 500);
-                    setTimeout(arkaYaprakUret, 1000);
-                }
-            }
-            requestAnimationFrame(fpsTesti);
-        }, 500); // Yükleme sonrası dinlenme payı
+    animasyonDurumunuGuncelle();
+
+    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+        animasyonDurumunuGuncelle();
     });
+
+    setTimeout(onYaprakUret, 1000);
+    setTimeout(arkaYaprakUret, 2000);
 })();
 
 // ==========================================
 // HAYAL AĞACI - YAPRAK ÜRETİCİ (AKILLI MOTORLAR)
 // ==========================================
 function onYaprakUret() {
-    if (window.cihazYetersiz) return;
+    if (window.cihazYetersiz || window.sekmeAktif === false) {
+        setTimeout(onYaprakUret, 2000); 
+        return; 
+    }
 
     if (!window.balonModuAktif) {
         var logoAlani = document.getElementById('isim_logo');
@@ -1524,19 +1487,21 @@ function onYaprakUret() {
             var yaprak = document.createElement('div');
             yaprak.classList.add('hayal-yaprak');
             yaprak.style.left = Math.random() * 80 + 10 + '%'; 
-            var dususSuresi = (Math.random() * 2 + 3); 
+            
+            var dususSuresi = (Math.random() * 1.5 + 2.5); 
             var ruzgarSuresi = (Math.random() * 1 + 1.5); 
             yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
+            
             logoAlani.appendChild(yaprak);
             setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
         }
     }
-    setTimeout(onYaprakUret, Math.random() * 1000 + 4500); 
+    // Yeni yaprak üretim aralığı 2.5 ile 4 saniye arasına çıkarıldı
+    setTimeout(onYaprakUret, Math.random() * 1500 + 2500); 
 }
 
 function arkaYaprakUret() {
-    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
-    if (window.cihazYetersiz || !window.sekmeAktif) {
+    if (window.cihazYetersiz || window.sekmeAktif === false) {
         setTimeout(arkaYaprakUret, 2000);
         return;
     }
@@ -1550,7 +1515,8 @@ function arkaYaprakUret() {
         arkaYaprak.style.height = boyut + 'px';
         arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
         
-        var devDusus = (Math.random() * 4 + 8); 
+        // Dev yaprak süzülme hızı eski normal ritmine alındı (6 ile 9 saniye)
+        var devDusus = (Math.random() * 3 + 6); 
         var devRuzgar = (Math.random() * 2 + 2); 
         arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
         
@@ -1558,55 +1524,6 @@ function arkaYaprakUret() {
         setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
     }
     
-    // OPTİMİZASYON: Üretim hızını iyice yavaşlattık. 
-    // Artık her 5 ile 8 saniye arasında rastgele sadece 1 tane dev yaprak çıkacak.
-    setTimeout(arkaYaprakUret, Math.random() * 3000 + 5000); 
+    // Dev yaprak spawn hızı: İstediğiniz gibi hızlandırıldı (2 ile 3 saniye aralığında seri üretim)
+    setTimeout(arkaYaprakUret, Math.random() * 1000 + 2000); 
 }
-
-// ==========================================
-// KESİN DONANIM VE PİL TASARRUFU (SİSTEM TERCİHİ) SENSÖRÜ
-// ==========================================
-(function() {
-    window.cihazYetersiz = false; 
-
-    // Geniş ekranlı PC'ler zaten güçlüdür, doğrudan devam etsin
-    if (window.innerWidth > 900) {
-        setTimeout(onYaprakUret, 1000);
-        setTimeout(arkaYaprakUret, 2000);
-        return;
-    }
-
-    function animasyonDurumunuGuncelle() {
-        // RAM testini Chrome manipüle ettiği için kaldırdık. 
-        // Sadece yalan söylenemeyen işlemci çekirdeğine (CPU) bakıyoruz.
-        const cpu = navigator.hardwareConcurrency || 4;
-        
-        // İşletim Sistemi "Düşük Güç / Hareketi Azalt" Sensörü
-        const pilTasarrufuAcik = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // SADECE çekirdek 4'ten azsa (eski hurda telefonlar) VEYA tasarruf modu açıksa durdur!
-        // Poco X6 Pro 8 çekirdektir, buraya asla takılmaz!
-        if (cpu < 4 || pilTasarrufuAcik) {
-            window.cihazYetersiz = true;
-            document.body.classList.add('cihaz-yavas');
-            console.log("Sistem Uyarı: Zayıf CPU (" + cpu + " çekirdek) veya Pil Tasarrufu aktif. Animasyonlar durduruldu.");
-        } else {
-            window.cihazYetersiz = false;
-            document.body.classList.remove('cihaz-yavas');
-            console.log("Sistem: Canavar donanım onaylandı (" + cpu + " Çekirdek). Animasyonlar devrede!");
-        }
-    }
-
-    // Site açılır açılmaz anında kontrol et
-    animasyonDurumunuGuncelle();
-
-    // Kullanıcı sitedeyken "Pil Tasarrufunu" açar veya kapatırsa anında tepki ver
-    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
-        console.log("Sistem: Pil/Performans ayarı değiştirildi, site yeniden ayarlanıyor...");
-        animasyonDurumunuGuncelle();
-    });
-
-    // Motorları ateşle
-    setTimeout(onYaprakUret, 1000);
-    setTimeout(arkaYaprakUret, 2000);
-})();
