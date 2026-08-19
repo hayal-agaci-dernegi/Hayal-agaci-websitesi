@@ -1460,8 +1460,12 @@ document.addEventListener("DOMContentLoaded", function() {
 (function() {
     window.cihazYetersiz = false; // Başlangıçta tüm cihazları güçlü kabul et
 
-    // Sadece mobil cihazları test et (Geniş ekranlı PC'ler zaten güçlüdür)
-    if (window.innerWidth > 900) return;
+    // Sadece mobil cihazları test et (PC ise testi atla ve motorları direkt başlat)
+    if (window.innerWidth > 900) {
+        setTimeout(onYaprakUret, 1000);
+        setTimeout(arkaYaprakUret, 2000);
+        return;
+    }
 
     // 1. AŞAMA: Donanım Kontrolü (RAM ve İşlemci)
     const ram = navigator.deviceMemory || 8; 
@@ -1474,26 +1478,38 @@ document.addEventListener("DOMContentLoaded", function() {
         return; 
     }
 
-    // 2. AŞAMA: Canlı FPS Testi
-    let frameSayisi = 0;
-    let testBaslangic = performance.now();
-    
-    function fpsTesti(zaman) {
-        frameSayisi++;
-        if (zaman - testBaslangic < 500) { 
-            requestAnimationFrame(fpsTesti);
-        } else {
-            let fps = frameSayisi * 2; 
-            if (fps < 40) { 
-                window.cihazYetersiz = true;
-                document.body.classList.add('cihaz-yavas');
-                console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
-            } else {
-                console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+    // 2. AŞAMA: Canlı FPS Testi (GÜNCELLENDİ: Sayfa tam yüklendikten sonra başlar)
+    window.addEventListener('load', function() {
+        
+        // Site yüklendikten sonra tarayıcının rahatlaması için yarım saniye daha bekle
+        setTimeout(function() {
+            let frameSayisi = 0;
+            let testBaslangic = performance.now();
+            
+            function fpsTesti(zaman) {
+                frameSayisi++;
+                // Testi 1 tam saniyeye (1000 ms) yaydık ki anlık düşüşler yanılmasın
+                if (zaman - testBaslangic < 1000) { 
+                    requestAnimationFrame(fpsTesti);
+                } else {
+                    let fps = frameSayisi; // 1 saniyede sayılan frame direkt FPS'i verir
+                    if (fps < 35) { // Mobilde sınır 35 FPS'dir
+                        window.cihazYetersiz = true;
+                        document.body.classList.add('cihaz-yavas');
+                        console.log("Sistem: FPS Düşük (" + fps + " FPS). Ağır efektler durduruldu.");
+                    } else {
+                        console.log("Sistem: Cihaz güçlü (" + fps + " FPS). Animasyonlar devrede.");
+                    }
+                    
+                    // FPS Testi kararı verdikten sonra yaprak motorlarını ateşle
+                    // (Eğer cihaz yetersiz çıkarsa motorlar içeriden kendi kendini durdurur)
+                    setTimeout(onYaprakUret, 500);
+                    setTimeout(arkaYaprakUret, 1000);
+                }
             }
-        }
-    }
-    requestAnimationFrame(fpsTesti);
+            requestAnimationFrame(fpsTesti);
+        }, 500); // Yükleme sonrası dinlenme payı
+    });
 })();
 
 // ==========================================
@@ -1536,7 +1552,4 @@ function arkaYaprakUret() {
     }
     setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
 }
-
-setTimeout(onYaprakUret, 1000);
-setTimeout(arkaYaprakUret, 2000);
 
