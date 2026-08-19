@@ -1535,22 +1535,32 @@ function onYaprakUret() {
 }
 
 function arkaYaprakUret() {
-    if (window.cihazYetersiz) return;
+    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
+    if (window.cihazYetersiz || !window.sekmeAktif) {
+        setTimeout(arkaYaprakUret, 2000);
+        return;
+    }
 
     if (!window.balonModuAktif && document.body.classList.contains('dark-mode')) {
         var arkaYaprak = document.createElement('div');
         arkaYaprak.classList.add('arka-plan-yaprak'); 
+        
         var boyut = Math.random() * 20 + 20; 
         arkaYaprak.style.width = boyut + 'px';
         arkaYaprak.style.height = boyut + 'px';
         arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
+        
         var devDusus = (Math.random() * 4 + 8); 
         var devRuzgar = (Math.random() * 2 + 2); 
         arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
+        
         document.body.appendChild(arkaYaprak);
         setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
     }
-    setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
+    
+    // OPTİMİZASYON: Üretim hızını iyice yavaşlattık. 
+    // Artık her 5 ile 8 saniye arasında rastgele sadece 1 tane dev yaprak çıkacak.
+    setTimeout(arkaYaprakUret, Math.random() * 3000 + 5000); 
 }
 
 // ==========================================
