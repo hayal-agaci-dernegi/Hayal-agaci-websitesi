@@ -1567,31 +1567,30 @@ function arkaYaprakUret() {
     }
 
     function animasyonDurumunuGuncelle() {
-        // 1. Donanım Kontrolü (RAM ve İşlemci)
-        // (Safari gibi gizlilik odaklı tarayıcılar 0 veya undefined dönebilir, onlara varsayılan 4 veriyoruz ki haksız yere kısıtlanmasınlar)
-        const ram = navigator.deviceMemory || 4; 
+        // RAM testini Chrome manipüle ettiği için kaldırdık. 
+        // Sadece yalan söylenemeyen işlemci çekirdeğine (CPU) bakıyoruz.
         const cpu = navigator.hardwareConcurrency || 4;
         
-        // 2. İşletim Sistemi "Düşük Güç / Pil Tasarrufu / Hareketi Azalt" Sensörü
-        // Telefon güç tasarrufuna geçtiğinde bu değer 'true' olur.
+        // İşletim Sistemi "Düşük Güç / Hareketi Azalt" Sensörü
         const pilTasarrufuAcik = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // RAM düşükse, Çekirdek azsa VEYA telefon Pil Tasarrufu modundaysa
-        if (ram < 4 || cpu < 4 || pilTasarrufuAcik) {
+        // SADECE çekirdek 4'ten azsa (eski hurda telefonlar) VEYA tasarruf modu açıksa durdur!
+        // Poco X6 Pro 8 çekirdektir, buraya asla takılmaz!
+        if (cpu < 4 || pilTasarrufuAcik) {
             window.cihazYetersiz = true;
             document.body.classList.add('cihaz-yavas');
-            console.log("Sistem Uyarı: Zayıf donanım veya Pil Tasarrufu aktif. Ağır animasyonlar durduruldu.");
+            console.log("Sistem Uyarı: Zayıf CPU (" + cpu + " çekirdek) veya Pil Tasarrufu aktif. Animasyonlar durduruldu.");
         } else {
             window.cihazYetersiz = false;
             document.body.classList.remove('cihaz-yavas');
-            console.log("Sistem: Cihaz güçlü ve tam performans modunda. Animasyonlar aktif.");
+            console.log("Sistem: Canavar donanım onaylandı (" + cpu + " Çekirdek). Animasyonlar devrede!");
         }
     }
 
-    // Site açılır açılmaz anında kontrol et (FPS beklemesi yok)
+    // Site açılır açılmaz anında kontrol et
     animasyonDurumunuGuncelle();
 
-    // SİHİRLİ KISIM: Kullanıcı sitedeyken "Pil Tasarrufunu" açar veya kapatırsa anında tepki ver
+    // Kullanıcı sitedeyken "Pil Tasarrufunu" açar veya kapatırsa anında tepki ver
     window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
         console.log("Sistem: Pil/Performans ayarı değiştirildi, site yeniden ayarlanıyor...");
         animasyonDurumunuGuncelle();
@@ -1601,84 +1600,3 @@ function arkaYaprakUret() {
     setTimeout(onYaprakUret, 1000);
     setTimeout(arkaYaprakUret, 2000);
 })();
-
-// ==========================================
-// UYKU MODU SENSÖRÜ (PAGE VISIBILITY API)
-// ==========================================
-window.sekmeAktif = true;
-document.addEventListener("visibilitychange", function() {
-    if (document.hidden) {
-        window.sekmeAktif = false;
-        console.log("Sistem: Sekme arka plana alındı. Motorlar uyutuluyor.");
-    } else {
-        window.sekmeAktif = true;
-        console.log("Sistem: Sekmeye geri dönüldü. Motorlar uyandırılıyor.");
-    }
-});
-
-// ==========================================
-// TEMBEL YÜKLEME (LAZY LOAD) OTOMASYONU
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    const resimler = document.querySelectorAll('img');
-    resimler.forEach(img => {
-        // Eğer resimde loading etiketi yoksa otomatik tembel yükleme ata
-        if (!img.hasAttribute('loading')) {
-            img.setAttribute('loading', 'lazy');
-        }
-    });
-});
-
-// ==========================================
-// HAYAL AĞACI - YAPRAK ÜRETİCİ (AKILLI MOTORLAR)
-// ==========================================
-function onYaprakUret() {
-    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
-    if (window.cihazYetersiz || !window.sekmeAktif) {
-        setTimeout(onYaprakUret, 2000); 
-        return; 
-    }
-
-    if (!window.balonModuAktif) {
-        var logoAlani = document.getElementById('isim_logo');
-        if (logoAlani) {
-            var yaprak = document.createElement('div');
-            yaprak.classList.add('hayal-yaprak');
-            yaprak.style.left = Math.random() * 80 + 10 + '%'; 
-            
-            var dususSuresi = (Math.random() * 2 + 3); 
-            var ruzgarSuresi = (Math.random() * 1 + 1.5); 
-            yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
-            
-            logoAlani.appendChild(yaprak);
-            setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
-        }
-    }
-    setTimeout(onYaprakUret, Math.random() * 1000 + 4500); 
-}
-
-function arkaYaprakUret() {
-    // Cihaz kısıtlıysa VEYA sekme arka plandaysa rölantide bekle
-    if (window.cihazYetersiz || !window.sekmeAktif) {
-        setTimeout(arkaYaprakUret, 2000);
-        return;
-    }
-
-    if (!window.balonModuAktif && document.body.classList.contains('dark-mode')) {
-        var arkaYaprak = document.createElement('div');
-        arkaYaprak.classList.add('arka-plan-yaprak'); 
-        
-        var boyut = Math.random() * 20 + 20; 
-        arkaYaprak.style.width = boyut + 'px';
-        arkaYaprak.style.height = boyut + 'px';
-        arkaYaprak.style.left = Math.random() * 94 + 'vw'; 
-        
-        var devDusus = (Math.random() * 4 + 8); 
-        var devRuzgar = (Math.random() * 2 + 2); 
-        arkaYaprak.style.animationDuration = devDusus + 's, ' + devRuzgar + 's';
-        
-        document.body.appendChild(arkaYaprak);
-        setTimeout(function() { arkaYaprak.remove(); }, devDusus * 1000);
-    }
-    setTimeout(arkaYaprakUret, Math.random() * 1500 + 1000); 
-}
