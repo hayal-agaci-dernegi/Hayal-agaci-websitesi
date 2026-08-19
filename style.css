@@ -2969,49 +2969,40 @@ body.dark-mode #faaliyet-haritasi {
 
 /* Ön Yaprak */
 .hayal-yaprak {
-    position: absolute !important;
-    width: 14px; height: 14px;
+    position: absolute !important; 
+    width: 14px; 
+    height: 14px; 
     background-color: rgb(134, 220, 84);
-    border-radius: 0 14px 0 14px;
-    opacity: 0; pointer-events: none;
+    border-radius: 0 14px 0 14px; 
+    opacity: 0; 
+    pointer-events: none; 
     z-index: 10 !important;
     animation: yaprakDususu 4s linear forwards, yaprakRuzgari 1.5s ease-in-out infinite alternate;
+    will-change: top, opacity, transform; /* GPU Hızlandırma Komutu Eklendi */
 }
+
 body.dark-mode .hayal-yaprak {
-    background-color: rgb(180, 255, 130) !important;
+    background-color: rgb(180, 255, 130) !important; 
     box-shadow: 0 0 10px rgba(180, 255, 130, 0.5) !important;
-}
-
-@keyframes yaprakDususu {
-    0%   { top: -10px; opacity: 0; }
-    15%  { opacity: 0.8; }
-    80%  { opacity: 0.8; }
-    100% { top: 80px; opacity: 0; }
-}
-
-@keyframes yaprakRuzgari {
-    0%   { transform: translateX(0) rotate(0deg); }
-    100% { transform: translateX(15px) rotate(60deg); }
 }
 
 /* Dev Neon Arka Plan Yaprağı */
 .arka-plan-yaprak {
-    position: fixed !important;
-    top: -10vh;
-    background-color: rgb(134, 220, 84);
-    border-radius: 0 50% 0 50%;
-    opacity: 0; pointer-events: none;
-    
-    /* YAPRAKLARI TEKRAR EN ARKAYA ALIYORUZ (-998) */
-    /* Glow'un önünde, buzlu cam kutuların ve tüm sitenin arkasında kalacak */
+    position: fixed !important; 
+    top: -10vh; 
+    background-color: rgb(134, 220, 84); 
+    border-radius: 0 50% 0 50%; 
+    opacity: 0; 
+    pointer-events: none;
     z-index: -998 !important; 
-    
     box-shadow: 0 0 25px 6px rgba(134, 220, 84, 0.4), 0 0 55px 18px rgba(134, 220, 84, 0.15);
-    animation: arkaPlanYaprakDususu linear forwards, arkaPlanYaprakRuzgari ease-in-out infinite alternate;
-    will-change: transform, opacity;
+    animation: arkaPlanYaprakDususu linear forwards, arkaPlanYaprakRuzgari ease-in-out infinite alternate; 
+    will-change: top, opacity, transform; /* GPU Hızlandırma Komutu Kusursuzlaştırıldı */
 }
 
-body:not(.dark-mode) .arka-plan-yaprak { display: none; }
+body:not(.dark-mode) .arka-plan-yaprak { 
+    display: none; 
+}
 
 /* Footer'ı sağlama alıyoruz, yapraklar arkasına girecek */
 .modern-footer {
