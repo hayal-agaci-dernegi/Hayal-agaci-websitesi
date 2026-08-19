@@ -3113,29 +3113,3 @@ body:not(.dark-mode) .arka-plan-yaprak { display: none; }
     }
 }
 
-/* ==========================================
-   MOBİL YATAY TAŞMA VE KAYMA KORUMASI
-========================================== */
-@media (max-width: 900px) {
-    body, html {
-        overflow-x: hidden !important;
-        width: 100% !important;
-        max-width: 100vw !important;
-        position: relative;
-    }
-}
-
-/* ==========================================
-   AKILLI PERFORMANS MODU (SADECE KASAN CİHAZLAR İÇİN)
-   JS tarafından (FPS veya RAM düşükse) devreye girer
-========================================== */
-body.cihaz-yavas .arka-plan-yaprak,
-body.cihaz-yavas .hayal-yaprak {
-    display: none !important;
-    animation: none !important;
-}
-
-body.cihaz-yavas.dark-mode::before {
-    background-image: none !important;
-    animation: none !important;
-}
