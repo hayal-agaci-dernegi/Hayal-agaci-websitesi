@@ -7,61 +7,173 @@
     <link rel="icon" type="image/png" href="source/ha/ha_logo_lr.png">
     <link rel="canonical" href="https://hayalagaci.org/ekip.html" />
     <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* Ekip Sayfasına Özel Ek Stiller */
-        .ekip-sayfa-kapsayici {
-            max-width: 1100px;
+        /* ==========================================
+           MODERN KURUMSAL YÖNETİM GRİDİ (PREMIUM STK)
+        ========================================== */
+        .kurumsal-sayfa-kapsayici {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 160px 20px 60px 20px; /* Header altında kalmaması için */
+            padding: 160px 20px 80px 20px;
             min-height: 80vh;
+        }
 
+        .kurumsal-baslik-alani {
+            text-align: center;
+            margin-bottom: 70px;
         }
-        .ekip-hiyerarsi {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
+
+        .kurumsal-baslik-alani h1 {
+            font-size: 3rem; 
+            color: rgb(27, 27, 27); 
+            font-weight: 800;
+            margin-bottom: 15px;
         }
-        .ekip-satir {
+
+        .kurumsal-baslik-alani p {
+            color: #666; 
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Hiyerarşi Başlıkları (Kategori İsimleri) */
+        .kategori-baslik {
+            text-align: center;
+            font-size: 1.6rem;
+            color: rgb(27, 27, 27);
+            font-weight: 800;
+            margin: 0 0 40px 0;
+            padding-bottom: 15px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kategori-baslik::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: rgb(134, 220, 84);
+            border-radius: 2px;
+        }
+
+        /* Liderlik ve Başkan Yardımcıları İçin Esnek Ortalama */
+        .liderlik-satiri {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            width: 100%;
+            margin-bottom: 70px;
         }
-        .ekip-kart {
+
+        /* Yönetim Kurulu İçin Otomatik Izgara (Grid) Sistemi */
+        .uyeler-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+
+        /* Premium Kart Tasarımı */
+        .kurumsal-kart {
             background: #fff;
-            border-radius: 15px;
-            padding: 25px;
-            width: 280px;
+            border-radius: 12px;
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
+            /* Çok yumuşak ve geniş bir gölge (Apple/Stripe stili) */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            /* İnce bir yeşil şerit kartın üstüne asalet katar */
+            border-top: 4px solid transparent;
         }
-        .ekip-kart:hover {
+
+        .kurumsal-kart:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(134, 220, 84, 0.3);
+            box-shadow: 0 20px 40px rgba(134, 220, 84, 0.15);
+            border-top: 4px solid rgb(134, 220, 84);
         }
-        .profil-daire {
+
+        /* Profil Çerçevesi */
+        .profil-cerceve {
             width: 130px;
             height: 130px;
-            margin: 0 auto 20px;
+            margin: 0 auto 20px auto;
             border-radius: 50%;
-            border: 3px solid rgb(134, 220, 84);
-            overflow: hidden;
-            background: #f9f9f9;
+            padding: 4px;
+            background: linear-gradient(135deg, rgb(134, 220, 84) 0%, #4caf50 100%);
+            transition: transform 0.4s ease;
         }
-        .profil-daire img { width: 100%; height: 100%; object-fit: cover; }
-        .ekip-kart h3 { margin: 10px 0 5px 0; color: #333; font-size: 1.3rem; }
-        .ekip-kart span { color: rgb(134, 220, 84); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        
-        body.dark-mode .ekip-kart { background: #2a2a2a; }
-        body.dark-mode .ekip-kart h3 { color: #fff; }
+
+        .profil-cerceve img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+        }
+
+        .kurumsal-kart:hover .profil-cerceve {
+            transform: scale(1.05);
+        }
+
+        /* İsim ve Unvanlar */
+        .kurumsal-kart h3 {
+            margin: 15px 0 5px 0;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .kurumsal-unvan {
+            color: rgb(134, 220, 84);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* Başkanlık kartlarını bir tık daha belirgin yapıyoruz */
+        .liderlik-satiri .kurumsal-kart {
+            width: 290px;
+        }
+        .liderlik-satiri .profil-cerceve {
+            width: 150px;
+            height: 150px;
+        }
+
+        /* GECE MODU (DARK MODE) UYUMU */
+        body.dark-mode .kurumsal-baslik-alani h1,
+        body.dark-mode .kategori-baslik,
+        body.dark-mode .kurumsal-kart h3 {
+            color: #f5f5f5;
+        }
+        body.dark-mode .kurumsal-kart {
+            background: #222;
+            border: 1px solid #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        body.dark-mode .profil-cerceve img {
+            border-color: #222;
+        }
+        body.dark-mode .kurumsal-kart:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-top: 4px solid rgb(134, 220, 84);
+        }
     </style>
 </head>
 <body>
 
-    <div id="preloader">
+<div id="preloader">
     <div class="preloader-ic">
         <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
         <div class="yukleme-cubugu">
@@ -70,28 +182,8 @@
         <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
     </div>
 </div>
-
-<script>
-    window.addEventListener('load', function() {
-        var loader = document.getElementById('preloader');
-        if (loader) {
-            loader.style.opacity = '0';
-            loader.style.visibility = 'hidden';
-            setTimeout(function() { loader.style.display = 'none'; }, 600);
-        }
-    });
     
-    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
-    setTimeout(function() {
-        var loader = document.getElementById('preloader');
-        if (loader && loader.style.display !== 'none') {
-            loader.style.opacity = '0';
-            setTimeout(function() { loader.style.display = 'none'; }, 600);
-        }
-    }, 5000);
-</script>
-    
-    <header>
+<header>
     <div id="header0">
         <div id="isim_logo">
             <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
@@ -101,7 +193,7 @@
         <div class="nav-kontrol">
             <nav>
                 <ul>
-                    <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                    <a href="index.html#anasayfa"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
                     <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
                     <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
                     <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
@@ -120,172 +212,130 @@
     </div>
 </header>
 
-<div class="ekip-sayfa-kapsayici">
-    <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;" data-tr="Yönetim Kurulu ve Ekibimiz" data-en="Board of Directors and Our Team">Yönetim Kurulu ve Ekibimiz</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 50px;" data-tr="Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız." data-en="Our companions with whom we build the future together.">Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız.</p>
+<div class="kurumsal-sayfa-kapsayici">
     
-    <div class="ekip-hiyerarsi">
-        <div class="ekip-satir">
-            
-            <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-                <div class="profil-daire">
-                    <img src="source/Ekip/Mahmut_Bektaş2.jpg" alt="Yusuf Safa Yılmaz">
-                </div>
-                <h3>Mahmut Bektaş</h3>
-                <span>Onursal Başkan</span>
+    <div class="kurumsal-baslik-alani">
+        <h1 data-tr="Yönetim Kurulu ve Ekibimiz" data-en="Board of Directors and Our Team">Yönetim Kurulu ve Ekibimiz</h1>
+        <p data-tr="Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız." data-en="Our companions with whom we build the future together.">Geleceği birlikte inşa ettiğimiz yol arkadaşlarımız.</p>
+    </div>
+    
+    <!-- === KATEGORİ 1: BAŞKANLIK === -->
+    <h2 class="kategori-baslik">Kurucu & Başkanlık</h2>
+    <div class="liderlik-satiri">
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve">
+                <img src="source/Ekip/Mahmut_Bektaş2.jpg" alt="Mahmut Bektaş" loading="lazy">
             </div>
-            <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-                <div class="profil-daire">
-                    <img src="source\Ekip\WhatsApp Image 2026-04-22 at 09.42.46.jpeg" alt="Yusufcan Bektaş">
-                </div>
-                <h3>Yusufcan Bektaş</h3>
-                <span>Dernek Başkanı</span>
-            </div>
+            <h3>Mahmut Bektaş</h3>
+            <p class="kurumsal-unvan">Onursal Başkan</p>
         </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve">
+                <img src="source\Ekip\WhatsApp Image 2026-04-22 at 09.42.46.jpeg" alt="Yusufcan Bektaş" loading="lazy">
+            </div>
+            <h3>Yusufcan Bektaş</h3>
+            <p class="kurumsal-unvan">Dernek Başkanı</p>
+        </div>
+    </div>
 
-            <div class="ekip-satir">
-                <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Buse_Sema_Tekdal.jpeg" alt="Buse Sema Tekdal">
+    <!-- === KATEGORİ 2: BAŞKAN YARDIMCILARI === -->
+    <h2 class="kategori-baslik">Başkan Yardımcıları</h2>
+    <div class="liderlik-satiri">
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve">
+                <img src="source/Buse_Sema_Tekdal.jpeg" alt="Buse Sema Tekdal" loading="lazy">
             </div>
             <h3>Buse Sema Tekdal</h3>
-            <p class="ekip-unvan">Başkan Yardımcısı</p>
+            <p class="kurumsal-unvan">Başkan Yardımcısı</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Abuzer_Kaya2.jpg" alt="Abuzer Kaya">
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve">
+                <img src="source/Ekip/Abuzer_Kaya2.jpg" alt="Abuzer Kaya" loading="lazy">
             </div>
             <h3>Abuzer Kaya</h3>
-            <p class="ekip-unvan">Başkan Yardımcısı</p>
+            <p class="kurumsal-unvan">Başkan Yardımcısı</p>
         </div>
     </div>
 
-    <div class="ekip-satir">
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/enes_saygilier1.jpeg" alt="Enes Saygılıer">
-            </div>
+    <!-- === KATEGORİ 3: YÖNETİM KURULU ÜYELERİ (OTOMATİK GRİD) === -->
+    <h2 class="kategori-baslik">Yönetim Kurulu Üyeleri</h2>
+    <div class="uyeler-grid">
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/enes_saygilier1.jpeg" alt="Enes Saygılıer" loading="lazy"></div>
             <h3>Enes Saygılıer</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Yusuf_Şafa_Yılmaz.jpg" alt="Yusuf Safa Yılmaz">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Yusuf_Şafa_Yılmaz.jpg" alt="Yusuf Safa Yılmaz" loading="lazy"></div>
             <h3>Yusuf Safa Yılmaz</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Osman_Ertürk2.jpg" alt="Osman Ertürk">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Osman_Ertürk2.jpg" alt="Osman Ertürk" loading="lazy"></div>
             <h3>Osman Ertürk</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/İhsan_Taşan.jpg" alt="İhsan Taşan">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/İhsan_Taşan.jpg" alt="İhsan Taşan" loading="lazy"></div>
             <h3>İhsan Taşan</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Taha_Çoban.jpg" alt="Taha Çoban">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Taha_Çoban.jpg" alt="Taha Çoban" loading="lazy"></div>
             <h3>Taha Çoban</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Beyza_İrfanoğlu.jpg" alt="Beyza İrfanoğlu">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Beyza_İrfanoğlu.jpg" alt="Beyza İrfanoğlu" loading="lazy"></div>
             <h3>Beyza İrfanoğlu</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Gamze_cevik.jpeg" alt="Gamze Çevik">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Gamze_cevik.jpeg" alt="Gamze Çevik" loading="lazy"></div>
             <h3>Gamze Çevik</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Betül_Özkalan.jpg" alt="Betül Özkalan">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Betül_Özkalan.jpg" alt="Betül Özkalan" loading="lazy"></div>
             <h3>Betül Özkalan</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Gazi_Eren_Özer.jpg" alt="Gazi Eren Özer">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Gazi_Eren_Özer.jpg" alt="Gazi Eren Özer" loading="lazy"></div>
             <h3>Gazi Eren Özer</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Zeynal_Abidin_Bektaş.jpg" alt="Zeynal Abidin Bektaş">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Zeynal_Abidin_Bektaş.jpg" alt="Zeynal Abidin Bektaş" loading="lazy"></div>
             <h3>Zeynal Abidin Bektaş</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Ezgi_Bektaş.jpg" alt="Ezgi Bektaş">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Ezgi_Bektaş.jpg" alt="Ezgi Bektaş" loading="lazy"></div>
             <h3>Ezgi Bektaş</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Miray_Zeliha_Yücetaş.jpg" alt="Miray Zeliha Yücetaş">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Miray_Zeliha_Yücetaş.jpg" alt="Miray Zeliha Yücetaş" loading="lazy"></div>
             <h3>Miray Zeliha Yücetaş</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Berivan_kaya.jpeg" alt="Berivan Kaya">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Berivan_kaya.jpeg" alt="Berivan Kaya" loading="lazy"></div>
             <h3>Berivan Kaya</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
-
-        <div class="ekip-kart" style="border-top: 5px solid rgb(134, 220, 84);">
-            <div class="profil-daire">
-                <img src="source/Ekip/Barış_Taştan2.jpg" alt="Barış Taştan">
-            </div>
+        <div class="kurumsal-kart">
+            <div class="profil-cerceve"><img src="source/Ekip/Barış_Taştan2.jpg" alt="Barış Taştan" loading="lazy"></div>
             <h3>Barış Taştan</h3>
-            <p class="ekip-unvan">Yönetim Kurulu Üyesi</p>
-        </div>
-    </div>
-</div>
-            
-            </div>
+            <p class="kurumsal-unvan">Yönetim Kurulu Üyesi</p>
         </div>
     </div>
 
-    <!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
+</div>
+
 <footer id="iletisim" class="modern-footer">
     <div class="footer-ust">
-        
         <div class="footer-marka">
             <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
             <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
@@ -295,8 +345,8 @@
                     <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
                 </a>
                <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
-    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-</a>
+                    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                </a>
             </div>
         </div>
         
@@ -311,7 +361,6 @@
                 </ul>
             </div>
         </div>
-
     </div>
     
     <div class="footer-alt">
@@ -323,13 +372,12 @@
     </div>
 </footer>
 
-    <script src="site.js"></script>
-    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+<script src="site.js"></script>
+<button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 19V5M5 12l7-7 7 7"/>
     </svg>
 </button>
 
-    <script src="site.js"></script>
 </body>
 </html>

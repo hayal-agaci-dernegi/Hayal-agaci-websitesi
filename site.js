@@ -1533,3 +1533,137 @@ function arkaYaprakUret() {
     // Dev yaprak spawn hızı: İstediğiniz gibi hızlandırıldı (2 ile 3 saniye aralığında seri üretim)
     setTimeout(arkaYaprakUret, Math.random() * 1000 + 2000); 
 }
+
+// ==========================================
+// S.S.S. AKORDEON MOTORU
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const sssSorular = document.querySelectorAll('.sss-soru');
+
+    sssSorular.forEach(soru => {
+        soru.addEventListener('click', function() {
+            // Aktif sınıfını tetikle (Renk değişimi ve artı ikonunun dönmesi için)
+            this.classList.toggle('aktif');
+
+            // Tıklanan sorunun cevabını bul
+            const cevap = this.nextElementSibling;
+
+            // Kutu kapalıysa aç, açıksa kapat
+            if (cevap.style.maxHeight) {
+                cevap.style.maxHeight = null;
+            } else {
+                // Diğer açık olanları otomatik kapatmak istersen aşağıdaki satırı aktif et:
+                /*
+                document.querySelectorAll('.sss-cevap').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('.sss-soru').forEach(s => s.classList.remove('aktif'));
+                this.classList.add('aktif');
+                */
+                cevap.style.maxHeight = cevap.scrollHeight + "px";
+            }
+        });
+    });
+});
+
+// ==========================================
+// HİBRİT DUYURU VE BASIN ODASI MOTORU
+// ==========================================
+let haberHafizasi = [];
+
+document.addEventListener("DOMContentLoaded", async function() {
+    const kapsayici = document.getElementById('dinamik-haber-listesi');
+    if (!kapsayici) return;
+
+    // Senin tablonun doğrudan CSV okuma linki (Edit linki dönüştürüldü)
+    const HABERLER_CSV_LINKI = "https://docs.google.com/spreadsheets/d/1U-Bk9pb0Il3aA_kwKHaonPcxUVOSg4GUBsGMe7kV3Co/export?format=csv";
+
+    try {
+        const response = await fetch(HABERLER_CSV_LINKI);
+        const veri = await response.text();
+        const satirlar = veri.split(/\r?\n/).slice(1);
+
+        kapsayici.innerHTML = ""; 
+        haberHafizasi = [];
+
+        satirlar.forEach((satir, index) => {
+            if (satir.trim() === "") return;
+
+            const sutunlar = [];
+            let geciciSutun = '';
+            let tirnakIci = false;
+
+            for (let i = 0; i < satir.length; i++) {
+                let karakter = satir[i];
+                if (karakter === '"') {
+                    tirnakIci = !tirnakIci;
+                } else if (karakter === ',' && !tirnakIci) {
+                    sutunlar.push(geciciSutun.trim());
+                    geciciSutun = '';
+                } else {
+                    geciciSutun += karakter;
+                }
+            }
+            sutunlar.push(geciciSutun.trim());
+
+            if (sutunlar.length >= 5) {
+                const kategori = sutunlar[0] || 'Duyuru';
+                const gorsel = sutunlar[1] || 'source/ha/ha01.jpeg';
+                const tarih = sutunlar[2] || '';
+                const baslik = sutunlar[3] || '';
+                const kisaOzet = sutunlar[4] || '';
+                const detayMetni = sutunlar[5] || '';
+                const instagramLink = sutunlar[6] || '';
+
+                haberHafizasi.push({ kategori, baslik, detayMetni });
+
+                let butonHTML = '';
+                if (instagramLink.length > 5) {
+                    butonHTML = `<a href="${instagramLink}" target="_blank" class="haber-aksiyon-btn">Instagram'da Gör <span>→</span></a>`;
+                } else if (detayMetni.length > 5) {
+                    butonHTML = `<button onclick="haberiAc(${index})" class="haber-aksiyon-btn">Detayları Oku <span>→</span></button>`;
+                }
+
+                const kartHTML = `
+                    <article class="haber-karti">
+                        <div class="haber-resim-alani">
+                            <span class="haber-kategori">${kategori}</span>
+                            <img src="${gorsel}" alt="${baslik}" loading="lazy">
+                        </div>
+                        <div class="haber-icerik">
+                            <div class="haber-tarih">📅 ${tarih}</div>
+                            <h3>${baslik}</h3>
+                            <p>${kisaOzet}</p>
+                            ${butonHTML}
+                        </div>
+                    </article>
+                `;
+                kapsayici.innerHTML += kartHTML;
+            }
+        });
+    } catch (hata) {
+        console.error("Duyuru verileri alınamadı:", hata);
+        kapsayici.innerHTML = `<p style="text-align:center; grid-column:1/-1; color:#888;">Şu an gösterilecek yeni bir duyuru bulunmuyor.</p>`;
+    }
+});
+
+function haberiAc(index) {
+    const haber = haberHafizasi[index];
+    if (!haber) return;
+
+    document.getElementById('modal-kategori-alani').innerText = haber.kategori;
+    document.getElementById('modal-baslik-alani').innerText = haber.baslik;
+    document.getElementById('modal-metin-alani').innerText = haber.detayMetni;
+
+    const modal = document.getElementById('haber-modal');
+    modal.style.display = 'flex';
+}
+
+function haberiKapat() {
+    const modal = document.getElementById('haber-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function modalDisiTiklandi(e) {
+    if (e.target.id === 'haber-modal') {
+        haberiKapat();
+    }
+}
