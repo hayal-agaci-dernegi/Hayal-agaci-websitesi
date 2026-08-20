@@ -1481,6 +1481,8 @@ function onYaprakUret() {
         return; 
     }
 
+    var beklemeSuresi = 2000; // Logonun olmadığı durumlar için varsayılan süre
+
     if (!window.balonModuAktif) {
         var logoAlani = document.getElementById('isim_logo');
         if (logoAlani) {
@@ -1488,16 +1490,20 @@ function onYaprakUret() {
             yaprak.classList.add('hayal-yaprak');
             yaprak.style.left = Math.random() * 80 + 10 + '%'; 
             
-            var dususSuresi = (Math.random() * 1.5 + 2.5); 
+            var dususSuresi = (Math.random() * 1.5 + 2.5); // 2.5 ile 4 saniye arası düşüş
             var ruzgarSuresi = (Math.random() * 1 + 1.5); 
             yaprak.style.animationDuration = dususSuresi + 's, ' + ruzgarSuresi + 's';
             
             logoAlani.appendChild(yaprak);
             setTimeout(function() { yaprak.remove(); }, dususSuresi * 1000);
+
+            // KESİN ÇÖZÜM: Yeni yaprak, tam olarak bu yaprak yere düştükten hemen sonra (dususSuresi + ufak bir nefes payı ile) üretilecek
+            beklemeSuresi = (dususSuresi * 1000) + (Math.random() * 500 + 200);
         }
     }
-    // Yeni yaprak üretim aralığı 2.5 ile 4 saniye arasına çıkarıldı
-    setTimeout(onYaprakUret, Math.random() * 1500 + 2500); 
+    
+    // Yeni yaprağı hesaplanan kusursuz sıraya göre çağır
+    setTimeout(onYaprakUret, beklemeSuresi); 
 }
 
 function arkaYaprakUret() {
