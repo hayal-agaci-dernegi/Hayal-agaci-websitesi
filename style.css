@@ -3460,3 +3460,173 @@ body.dark-mode .haber-karti, body.dark-mode .haber-modal-kutusu { background: #2
 body.dark-mode .haber-icerik h3, body.dark-mode .modal-baslik { color: #f5f5f5; }
 body.dark-mode .haber-icerik p, body.dark-mode .modal-metin { color: #ccc; }
 body.dark-mode .modal-kapat-btn { color: #aaa; }
+
+/* ==========================================
+   PROFESYONEL GÖNÜLLÜ BAŞVURU FORMU
+========================================== */
+.gonullu-kapsayici {
+    max-width: 850px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border-top: 5px solid rgb(134, 220, 84);
+}
+
+.gonullu-baslik-alani {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gonullu-baslik-alani h2 {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.gonullu-baslik-alani p {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.form-bolum {
+    margin-bottom: 40px;
+}
+
+.form-bolum h3 {
+    font-size: 1.3rem;
+    color: rgb(134, 220, 84);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.form-eleman {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-eleman label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.form-eleman input[type="text"],
+.form-eleman input[type="email"],
+.form-eleman input[type="tel"],
+.form-eleman input[type="date"],
+.form-eleman select,
+.form-eleman textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-eleman input:focus,
+.form-eleman select:focus,
+.form-eleman textarea:focus {
+    outline: none;
+    border-color: rgb(134, 220, 84);
+    box-shadow: 0 0 0 3px rgba(134, 220, 84, 0.1);
+}
+
+.form-grup-yan-yana {
+    display: flex;
+    gap: 20px;
+}
+
+.form-grup-yan-yana .form-eleman {
+    flex: 1;
+}
+
+/* Checkbox (Seçim Kutuları) Düzeni */
+.checkbox-grubu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fdfdfd;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+.checkbox-grubu label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    cursor: pointer;
+    margin: 0;
+}
+
+.form-onay-kutusu {
+    background: rgba(134, 220, 84, 0.1);
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid rgb(134, 220, 84);
+    margin-top: 20px;
+}
+
+.form-onay-kutusu label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.form-onay-kutusu a {
+    color: rgb(70, 140, 30);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.btn-gonullu-gonder {
+    width: 100%;
+    background-color: rgb(134, 220, 84);
+    color: #111;
+    border: none;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-gonullu-gonder:hover {
+    background-color: rgb(110, 190, 60);
+    color: #fff;
+}
+
+/* Mobil Uyum */
+@media (max-width: 768px) {
+    .form-grup-yan-yana {
+        flex-direction: column;
+        gap: 0;
+    }
+    .gonullu-kapsayici {
+        padding: 30px 20px;
+        margin: 30px 15px;
+    }
+}
+
+/* Gece Modu */
+body.dark-mode .gonullu-kapsayici { background: #222; border-color: #333; }
+body.dark-mode .gonullu-baslik-alani h2 { color: #fff; }
+body.dark-mode .gonullu-baslik-alani p, body.dark-mode .form-eleman label, body.dark-mode .checkbox-grubu label, body.dark-mode .form-onay-kutusu label { color: #ccc; }
+body.dark-mode .form-eleman input, body.dark-mode .form-eleman select, body.dark-mode .form-eleman textarea { background: #333; border-color: #444; color: #fff; }
+body.dark-mode .checkbox-grubu { background: #1a1a1a; border-color: #333; }     

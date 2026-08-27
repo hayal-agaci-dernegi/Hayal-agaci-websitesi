@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Analytics 4 (GA4) İzleme Kodu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LTPXR4034"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LTPXR4034');
+    </script>
+
+    <title>Gönüllü Ol - Hayal Ağacı Derneği</title>
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_lr.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div id="header0">
+        <div id="isim_logo">
+            <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+            <h1>Hayal Ağacı Derneği</h1>
+        </div>
+        
+        <div class="nav-kontrol">
+            <nav>
+                <ul>
+                    <a href="index.html#anasayfa"><li>Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
+                    <a href="haberler.html"><li>Haberler</li></a>
+                    <a href="sss.html"><li>S.S.S.</li></a>
+                </ul>
+            </nav>
+            <button id="dil-btn">EN</button>
+        </div>
+    </div>
+</header>
+
+<!-- GÖNÜLLÜ FORMU GÖVDESİ -->
+<div class="gonullu-kapsayici">
+    <div class="gonullu-baslik-alani">
+        <h2>Gönüllü Başvuru Formu</h2>
+        <p>Hayal Ağacı Derneği'nin sahadaki gücü olmak için aşağıdaki formu eksiksiz doldurunuz. Başvurunuz incelendikten sonra sizinle iletişime geçilecektir.</p>
+    </div>
+    
+    <form id="gonulluFormu" class="gonullu-form">
+        
+        <div class="form-bolum">
+            <h3>1. Kişisel Bilgiler</h3>
+            <div class="form-grup-yan-yana">
+                <div class="form-eleman">
+                    <label>Adınız ve Soyadınız *</label>
+                    <input type="text" required placeholder="Örn: Ahmet Yılmaz">
+                </div>
+                <div class="form-eleman">
+                    <label>Doğum Tarihiniz *</label>
+                    <input type="date" required>
+                </div>
+            </div>
+            
+            <div class="form-grup-yan-yana">
+                <div class="form-eleman">
+                    <label>Telefon Numaranız *</label>
+                    <input type="tel" required placeholder="05XX XXX XX XX">
+                </div>
+                <div class="form-eleman">
+                    <label>E-Posta Adresiniz *</label>
+                    <input type="email" required placeholder="ornek@mail.com">
+                </div>
+            </div>
+
+            <div class="form-eleman">
+                <label>Yaşadığınız Şehir ve İlçe *</label>
+                <input type="text" required placeholder="Örn: Adıyaman / Merkez">
+            </div>
+        </div>
+
+        <div class="form-bolum">
+            <h3>2. İlgi Alanları ve Müsaitlik</h3>
+            <div class="form-eleman">
+                <label>Derneğimize hangi alanlarda destek olabilirsiniz? (Birden fazla seçebilirsiniz)</label>
+                <div class="checkbox-grubu">
+                    <label><input type="checkbox" name="alan" value="saha"> Kütüphane Kurulumu ve Saha Çalışmaları</label>
+                    <label><input type="checkbox" name="alan" value="lojistik"> Kitap Ayrıştırma, Paketleme ve Lojistik</label>
+                    <label><input type="checkbox" name="alan" value="sosyal_medya"> Sosyal Medya Yönetimi ve İçerik Üretimi</label>
+                    <label><input type="checkbox" name="alan" value="tasarim"> Grafik Tasarım / Video Kurgu</label>
+                    <label><input type="checkbox" name="alan" value="egitim"> Çocuklara Yönelik Atölye ve Etkinlikler</label>
+                </div>
+            </div>
+            
+            <div class="form-eleman">
+                <label>Gönüllülük faaliyetleri için haftada ortalama kaç saatinizi ayırabilirsiniz? *</label>
+                <select required>
+                    <option value="">Lütfen seçiniz...</option>
+                    <option value="1-3">1 - 3 Saat</option>
+                    <option value="3-5">3 - 5 Saat</option>
+                    <option value="5+">5 Saatten Fazla</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-bolum">
+            <h3>3. Motivasyon ve Onay</h3>
+            <div class="form-eleman">
+                <label>Neden Hayal Ağacı Derneği'nde gönüllü olmak istiyorsunuz? (Kısaca açıklayınız)</label>
+                <textarea rows="4" placeholder="Düşüncelerinizi buraya yazabilirsiniz..."></textarea>
+            </div>
+            
+            <div class="form-onay-kutusu">
+                <label>
+                    <input type="checkbox" required> 
+                    <span><a href="kvkk-gizlilik.html" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kişisel verilerimin işlenmesini onaylıyorum. *</span>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-gonullu-gonder">Başvurumu Gönder</button>
+    </form>
+</div>
+
+<footer id="iletisim" class="modern-footer">
+    <div class="footer-ust">
+        <div class="footer-marka">
+            <h2>İletişim</h2>
+            <p>Derneğimizle doğrudan iletişime geçmek için resmi kanallarımızı kullanabilirsiniz.</p>
+            <div class="footer-iletisim-detay">
+                <p><span>📍</span> <span><strong>Adres:</strong> Merkez / Adıyaman <br>(Açık adresinizi buraya yazın)</span></p>
+                <p><span>📞</span> <span><strong>Telefon:</strong> +90 5XX XXX XX XX</span></p>
+            </div>
+            <div id="iconlar">
+                <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                    <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                </a>
+               <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
+                    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                </a>
+            </div>
+        </div>
+        <div class="footer-linkler">
+            <div class="link-sutun">
+                <h3>Bilgi & Yasal</h3>
+                <ul>
+                    <li><a href="sss.html">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                    <li><a href="kvkk-gizlilik.html">KVKK ve Gizlilik Politikası</a></li>
+                    <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-alt">
+        <p>Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+        <div id="modern-credit">
+            <span>Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

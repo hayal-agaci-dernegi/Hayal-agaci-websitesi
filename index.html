@@ -4,7 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Google Analytics 4 (GA4) İzleme Kodu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LTPXR4034"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LTPXR4034');
+    </script>
+
     <title>Hayal Ağacı Derneği - Umut Yeşertiyoruz</title>
+
+    <!-- TEMEL SEO ETİKETLERİ -->
+    <meta name="description" content="Hayal Ağacı Derneği, Türkiye'nin dört bir yanındaki çocukları kitaplarla buluşturarak onlara güvenli okuma alanları inşa eden bir sivil toplum kuruluşudur.">
+    <meta name="keywords" content="hayal ağacı, dernek, kütüphane, kitap bağışı, sivil toplum, çocuk, eğitim, adıyaman">
+    <meta name="author" content="Hayal Ağacı Derneği">
+    <link rel="canonical" href="https://hayalagaci.org/index.html">
+
+    <!-- AÇIK GRAFİK (OPEN GRAPH) - WhatsApp, Facebook, LinkedIn Paylaşımları İçin -->
+    <meta property="og:title" content="Hayal Ağacı Derneği - Çocukların Hayallerini Yeşertiyoruz">
+    <meta property="og:description" content="Türkiye'nin dört bir yanındaki çocukları kitaplarla buluşturuyor, güvenli okuma alanları inşa ediyoruz. Bize katılın.">
+    <meta property="og:image" content="https://hayalagaci.org/source/ha/ha_logo_lr.png">
+    <meta property="og:url" content="https://hayalagaci.org/">
+    <meta property="og:type" content="website">
+
+    <!-- TWITTER KARTLARI -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hayal Ağacı Derneği">
+    <meta name="twitter:description" content="Çocukları kitaplarla buluşturuyor, güvenli okuma alanları inşa ediyoruz.">
+    <meta name="twitter:image" content="https://hayalagaci.org/source/ha/ha_logo_lr.png">
+
+    <!-- SCHEMA.ORG (Google'a Dernek Olduğunuzu Kanıtlayan Yapılandırılmış Veri) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Hayal Ağacı Derneği",
+      "url": "https://hayalagaci.org",
+      "logo": "https://hayalagaci.org/source/ha/ha_logo_lr.png",
+      "description": "Çocukları kitaplarla buluşturan ve kütüphaneler kuran sivil toplum kuruluşu.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Adıyaman",
+        "addressCountry": "TR"
+      }
+    }
+    </script>
     
     <meta name="description" content="Deprem bölgelerinde ve ihtiyaç duyulan okullarda kütüphaneler kurarak çocuklarımıza aydınlık bir gelecek sunuyoruz. Hayallerine ortak olun.">
     <meta name="keywords" content="Hayal Ağacı Derneği, Adıyaman kütüphane, deprem bölgesi kitap bağışı, köy okullarına kütüphane, kitap bağışı, konteyner kent eğitim, gönüllü ol, Enkaz Kütüphanesi">
@@ -181,26 +227,6 @@
         }
     </style>
 
-    <!-- SEO UYUMU İÇİN YAPILANDIRILMIŞ VERİ (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NGO",
-      "name": "Hayal Ağacı Derneği",
-      "url": "https://hayalagaci.org/",
-      "logo": "https://hayalagaci.org/source/ha/ha_logo_lr.png",
-      "description": "Deprem bölgelerinde ve ihtiyaç duyulan okullarda kütüphaneler kurarak çocuklarımıza aydınlık bir gelecek sunuyoruz.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Adıyaman",
-        "addressCountry": "TR"
-      },
-      "sameAs": [
-        "https://www.instagram.com/hayalagacidernegi/"
-      ]
-    }
-    </script>
-
 </head>
 <body>
 
@@ -220,7 +246,7 @@
             <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
             <h1>Hayal Ağacı Derneği</h1>
         </div>
-        
+
         <div class="nav-kontrol">
             <nav>
                 <ul>
@@ -243,6 +269,8 @@
         </div>
     </div>
 </header>
+
+
 
     <div id="barbeyaz"></div>
 
@@ -567,6 +595,9 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+
+
+
 </script>
 </body>
 </html>
