@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Şeffaflık ve İlkelerimiz - Hayal Ağacı Derneği">
+    
+    <!-- Google Analytics 4 (GA4) İzleme Kodu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LTPXR4034"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LTPXR4034');
+    </script>
+    
+    <title data-tr="Şeffaflık & İlkelerimiz - Hayal Ağacı Derneği" data-en="Transparency & Our Principles - Hayal Ağacı Association">Şeffaflık & İlkelerimiz - Hayal Ağacı Derneği</title>
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_192.png">
+    <link rel="canonical" href="https://hayalagaci.org/faaliyet-raporlari.html" />
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .raporlar-sayfa {
+            background-color: rgb(254, 249, 241);
+            min-height: 100vh;
+            padding: 140px 5% 80px 5%;
+        }
+
+        .raporlar-kapsayici {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .raporlar-baslik-alani {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .raporlar-baslik-alani h1 {
+            font-size: 3rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .raporlar-baslik-alani p {
+            color: #666;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Şeffaflık İlke Kartları */
+        .ilke-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .ilke-kart {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid rgb(134, 220, 84);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ilke-kart:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(134, 220, 84, 0.2);
+        }
+
+        .ilke-ikon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ilke-kart h3 {
+            font-size: 1.4rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .ilke-kart p {
+            color: #666;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Bilgilendirme Notu Kutusu */
+        .seffaflik-notu {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid rgb(134, 220, 84);
+            margin-top: 40px;
+        }
+
+        .seffaflik-notu h3 {
+            font-size: 1.5rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 15px;
+        }
+
+        .seffaflik-notu p {
+            color: #555;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ---- DARK MODE UYUMU ---- */
+        body.dark-mode .raporlar-sayfa { background-color: #1a1a1a; }
+        body.dark-mode .raporlar-baslik-alani h1,
+        body.dark-mode .seffaflik-notu h3 { color: #f5f5f5; }
+        body.dark-mode .raporlar-baslik-alani p,
+        body.dark-mode .seffaflik-notu p { color: #aaa; }
+        body.dark-mode .ilke-kart,
+        body.dark-mode .seffaflik-notu { background: #2a2a2a; border-color: #3d3d3d; }
+        body.dark-mode .ilke-kart h3 { color: #f5f5f5; }
+        body.dark-mode .ilke-kart p { color: #ccc; }
+
+        @media (max-width: 900px) {
+            .raporlar-baslik-alani h1 { font-size: 2.2rem; }
+            .raporlar-sayfa { padding: 120px 4% 60px 4%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-ic">
+            <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+            <div class="yukleme-cubugu"><div class="ilerleme"></div></div>
+            <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            var l = document.getElementById('preloader');
+            if (l) { l.style.opacity='0'; l.style.visibility='hidden'; setTimeout(()=>l.style.display='none',600); }
+        });
+        setTimeout(function() {
+            var l = document.getElementById('preloader');
+            if (l && l.style.display !== 'none') { l.style.opacity='0'; setTimeout(()=>l.style.display='none',600); }
+        }, 5000);
+    </script>
+
+    <!-- HEADER -->
+    <header>
+        <div id="header0">
+            <div id="isim_logo">
+                <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                <h1>Hayal Ağacı Derneği</h1>
+            </div>
+            
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
+
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ANA İÇERİK -->
+    <div class="raporlar-sayfa">
+        <div class="raporlar-kapsayici">
+            
+            <div class="raporlar-baslik-alani">
+                <h1 data-tr="Şeffaflık & İlkelerimiz" data-en="Transparency & Our Principles">Şeffaflık & İlkelerimiz</h1>
+                <p data-tr="Hayal Ağacı Derneği olarak bağışçılarımıza ve çocuklarımıza karşı en büyük sorumluluğumuz dürüstlük, açıklık ve güven esasına dayalı bir yönetim anlayışıdır." data-en="As Hayal Ağacı Association, our greatest responsibility to our donors and children is a management approach based on honesty, openness, and trust.">Hayal Ağacı Derneği olarak bağışçılarımıza ve çocuklarımıza karşı en büyük sorumluluğumuz dürüstlük, açıklık ve güven esasına dayalı bir yönetim anlayışıdır.</p>
+            </div>
+
+            <div class="ilke-grid">
+                
+                <!-- İlke Kartı 1 -->
+                <div class="ilke-kart">
+                    <div class="ilke-ikon">🎯</div>
+                    <h3 data-tr="Doğrudan Destek Prensibi" data-en="Direct Support Principle">Doğrudan Destek Prensibi</h3>
+                    <p data-tr="Toplanan tüm kitaplar ve yardımlar, aracı kurumlar olmaksızın doğrudan köy okullarına ve kütüphane kurulacak bölgelerdeki çocuklara ulaştırılır." data-en="All collected books and aids are delivered directly to village schools and children in regions where libraries will be established, without intermediary institutions.">Toplanan tüm kitaplar ve yardımlar, aracı kurumlar olmaksızın doğrudan köy okullarına ve kütüphane kurulacak bölgelerdeki çocuklara ulaştırılır.</p>
+                </div>
+
+                <!-- İlke Kartı 2 -->
+                <div class="ilke-kart">
+                    <div class="ilke-ikon">🤝</div>
+                    <h3 data-tr="Gönüllülük Esası" data-en="Voluntary Basis">Gönüllülük Esası</h3>
+                    <p data-tr="Derneğimizin tüm saha operasyonları, kütüphane kurulumları ve sevkiyat süreçleri tamamen fedakar gönüllülerimizin ortak emeğiyle yürütülür." data-en="All field operations, library installations, and shipment processes of our association are carried out entirely through the joint efforts of our devoted volunteers.">Derneğimizin tüm saha operasyonları, kütüphane kurulumları ve sevkiyat süreçleri tamamen fedakar gönüllülerimizin ortak emeğiyle yürütülür.</p>
+                </div>
+
+                <!-- İlke Kartı 3 -->
+                <div class="ilke-kart">
+                    <div class="ilke-ikon">🔍</div>
+                    <h3 data-tr="Açık İletişim" data-en="Open Communication">Açık İletişim</h3>
+                    <p data-tr="Bağışçılarımız kargo gönderimlerinden kütüphane açılışlarına kadar her aşamada bilgilendirilir; soru ve önerileri için her zaman şeffaf iletişim kanallarımız açıktır." data-en="Our donors are informed at every stage from cargo shipments to library openings; our transparent communication channels are always open for their questions and suggestions.">Bağışçılarımız kargo gönderimlerinden kütüphane açılışlarına kadar her aşamada bilgilendirilir; soru ve önerileri için her zaman şeffaf iletişim kanallarımız açıktır.</p>
+                </div>
+
+            </div>
+
+            <div class="seffaflik-notu">
+                <h3 data-tr="💡 Bağışçılarımıza Taahhüdümüz" data-en="💡 Our Commitment to Our Donors">💡 Bağışçılarımıza Taahhüdümüz</h3>
+                <p data-tr="Geçmişten bugüne attığımız her adımda tek amacımız; kaybedilen umutları yeşertmek ve çocukların yüzünde saf bir tebessüm bırakmaktır. Süreçlerimizle ilgili her türlü bilgi talebiniz için iletişim sayfamız üzerinden bize her zaman ulaşabilirsiniz." data-en="In every step we have taken from past to present, our only goal is to sprout lost hopes and leave a pure smile on children's faces. You can always reach us via our contact page for any information requests regarding our processes.">Geçmişten bugüne attığımız her adımda tek amacımız; kaybedilen umutları yeşertmek ve çocukların yüzünde saf bir tebessüm bırakmaktır. Süreçlerimizle ilgili her türlü bilgi talebiniz için iletişim sayfamız üzerinden bize her zaman ulaşabilirsiniz.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer id="iletisim" class="modern-footer">
+        <div class="footer-ust">
+            
+            <div class="footer-marka">
+                <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+                <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+                
+                <div id="iconlar">
+                    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                    </a>
+                    <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-linkler">
+                <div class="link-sutun">
+                    <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
+                    <ul>
+                        <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                        <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                        <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
+                        <li><a href="faaliyet-raporlari.html" data-tr="Şeffaflık & İlkeler" data-en="Transparency & Principles">Şeffaflık & İlkeler</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer-alt">
+            <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+            
+            <div id="modern-credit">
+                <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+</body>
+</html>

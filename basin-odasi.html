@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Basın Odası ve Medya Kiti - Hayal Ağacı Derneği">
+    
+    <!-- Google Analytics 4 (GA4) İzleme Kodu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LTPXR4034"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LTPXR4034');
+    </script>
+    
+    <title data-tr="Basın Odası & Medya Kiti - Hayal Ağacı Derneği" data-en="Press Room & Media Kit - Hayal Ağacı Association">Basın Odası & Medya Kiti - Hayal Ağacı Derneği</title>
+    <link rel="icon" type="image/png" href="source/ha/ha_logo_192.png">
+    <link rel="canonical" href="https://hayalagaci.org/basin-odasi.html" />
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .basin-sayfa {
+            background-color: rgb(254, 249, 241);
+            min-height: 100vh;
+            padding: 140px 5% 80px 5%;
+        }
+
+        .basin-kapsayici {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .basin-baslik-alani {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .basin-baslik-alani h1 {
+            font-size: 3rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .basin-baslik-alani p {
+            color: #666;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Bölüm Başlıkları */
+        .basin-bolum-baslik {
+            font-size: 1.8rem;
+            color: rgb(27, 27, 27);
+            margin: 40px 0 25px 0;
+            font-weight: 700;
+            border-bottom: 3px solid rgb(134, 220, 84);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        /* Medya Kiti ve Logo Kartları */
+        .basin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .basin-kart {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 4px solid rgb(134, 220, 84);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .basin-kart:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(134, 220, 84, 0.2);
+        }
+
+        .basin-kart h3 {
+            font-size: 1.35rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .basin-kart p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .basin-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: rgb(134, 220, 84);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3);
+        }
+
+        .basin-btn:hover {
+            background-color: #333;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Basın Bültenleri Listesi */
+        .bulten-liste {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .bulten-oge {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .bulten-oge:hover {
+            transform: translateX(5px);
+        }
+
+        .bulten-meta {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .bulten-baslik {
+            font-size: 1.2rem;
+            color: rgb(27, 27, 27);
+            font-weight: 700;
+            margin: 0;
+            text-decoration: none;
+        }
+        .bulten-baslik:hover {
+            color: rgb(134, 220, 84);
+        }
+
+        /* İletişim Kutusu */
+        .basin-iletisim-kutusu {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 5px solid rgb(134, 220, 84);
+            margin-top: 40px;
+        }
+
+        .basin-iletisim-kutusu h3 {
+            font-size: 1.5rem;
+            color: rgb(27, 27, 27);
+            margin-bottom: 15px;
+        }
+
+        .basin-iletisim-kutusu p {
+            color: #555;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ---- DARK MODE UYUMU ---- */
+        body.dark-mode .basin-sayfa { background-color: #1a1a1a; }
+        body.dark-mode .basin-baslik-alani h1,
+        body.dark-mode .basin-bolum-baslik,
+        body.dark-mode .basin-iletisim-kutusu h3 { color: #f5f5f5; }
+        body.dark-mode .basin-baslik-alani p,
+        body.dark-mode .basin-iletisim-kutusu p { color: #aaa; }
+        body.dark-mode .basin-kart,
+        body.dark-mode .bulten-oge,
+        body.dark-mode .basin-iletisim-kutusu { background: #2a2a2a; border-color: #3d3d3d; }
+        body.dark-mode .basin-kart h3,
+        body.dark-mode .bulten-baslik { color: #f5f5f5; }
+        body.dark-mode .basin-kart p { color: #ccc; }
+        body.dark-mode .basin-btn { background-color: #2c2c2c; border: 1px solid rgb(134, 220, 84); color: #f5f5f5; box-shadow: none; }
+        body.dark-mode .basin-btn:hover { background-color: rgb(134, 220, 84); color: white; }
+
+        @media (max-width: 900px) {
+            .basin-baslik-alani h1 { font-size: 2.2rem; }
+            .bulten-oge { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .basin-sayfa { padding: 120px 4% 60px 4%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-ic">
+            <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
+            <div class="yukleme-cubugu"><div class="ilerleme"></div></div>
+            <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            var l = document.getElementById('preloader');
+            if (l) { l.style.opacity='0'; l.style.visibility='hidden'; setTimeout(()=>l.style.display='none',600); }
+        });
+        setTimeout(function() {
+            var l = document.getElementById('preloader');
+            if (l && l.style.display !== 'none') { l.style.opacity='0'; setTimeout(()=>l.style.display='none',600); }
+        }, 5000);
+    </script>
+
+    <!-- HEADER -->
+    <header>
+        <div id="header0">
+            <div id="isim_logo">
+                <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
+                <h1>Hayal Ağacı Derneği</h1>
+            </div>
+            
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
+
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ANA İÇERİK -->
+    <div class="basin-sayfa">
+        <div class="basin-kapsayici">
+            
+            <div class="basin-baslik-alani">
+                <h1 data-tr="Basın Odası & Medya Kiti" data-en="Press Room & Media Kit">Basın Odası & Medya Kiti</h1>
+                <p data-tr="Gazeteciler, medya mensupları ve sponsorlarımız için resmi logolarımız, basın bültenlerimiz ve kurumsal materyallerimiz." data-en="Our official logos, press releases, and corporate materials for journalists, media members, and sponsors.">Gazeteciler, medya mensupları ve sponsorlarımız için resmi logolarımız, basın bültenlerimiz ve kurumsal materyallerimiz.</p>
+            </div>
+
+            <!-- Medya Kiti & Logolar -->
+            <h2 class="basin-bolum-baslik" data-tr="Medya Kiti & Logolar" data-en="Media Kit & Logos">Medya Kiti & Logolar</h2>
+            <div class="basin-grid">
+                
+                <div class="basin-kart">
+                    <div>
+                        <h3 data-tr="Dernek Logoları (Paket)" data-en="Association Logos (Package)">Derneğimizin Resmi Logoları</h3>
+                        <p data-tr="Yüksek çözünürlüklü PNG ve vektörel formatlarda Hayal Ağacı Derneği amblemleri." data-en="Hayal Ağacı Association emblems in high-resolution PNG and vector formats.">Yüksek çözünürlüklü PNG ve vektörel formatlarda Hayal Ağacı Derneği amblemleri.</p>
+                    </div>
+                    <a href="source/ha/ha_logo_192.png" download class="basin-btn" data-tr="📥 Logoları İndir (.ZIP)" data-en="📥 Download Logos (.ZIP)">📥 Logoları İndir (.ZIP)</a>
+                </div>
+
+                <div class="basin-kart">
+                    <div>
+                        <h3 data-tr="Kurumsal Tanıtım Dosyası" data-en="Corporate Presentation File">Kurumsal Tanıtım Dosyası</h3>
+                        <p data-tr="Derneğimizin kuruluş hikayesini, saha projelerini ve hedeflerini anlatan resmi sunum dosyası." data-en="Official presentation file detailing our association's founding story, field projects, and goals.">Derneğimizin kuruluş hikayesini, saha projelerini ve hedeflerini anlatan resmi sunum dosyası.</p>
+                    </div>
+                    <a href="source/raporlar/tanitim_dosyasi.pdf" target="_blank" class="basin-btn" data-tr="📥 Dosyayı İndir (PDF)" data-en="📥 Download File (PDF)">📥 Dosyayı İndir (PDF)</a>
+                </div>
+
+            </div>
+
+            <!-- Basın Bültenleri -->
+            <h2 class="basin-bolum-baslik" data-tr="Basın Bültenleri" data-en="Press Releases">Basın Bültenleri</h2>
+            <div class="bulten-liste">
+                
+                <div class="bulten-oge">
+                    <div>
+                        <div class="bulten-meta">12 Ağustos 2025</div>
+                        <a href="haberler.html" class="bulten-baslik" data-tr="Hayal Ağacı Derneği'nden Adıyaman'da Yeni Kütüphane Hamlesi" data-en="New Library Initiative in Adıyaman from Hayal Ağacı Association">Hayal Ağacı Derneği'nden Adıyaman'da Yeni Kütüphane Hamlesi</a>
+                    </div>
+                    <a href="haberler.html" class="basin-btn" style="padding: 8px 16px; font-size: 0.85rem;" data-tr="Oku →" data-en="Read →">Oku →</a>
+                </div>
+
+                <div class="bulten-oge">
+                    <div>
+                        <div class="bulten-meta">06 Şubat 2025</div>
+                        <a href="haberler.html" class="bulten-baslik" data-tr="Enkazdan Yükselen Umutlar: Deprem Bölgesinde Anı Kütüphaneleri" data-en="Hopes Rising from the Rubble: Memorial Libraries in the Earthquake Zone">Enkazdan Yükselen Umutlar: Deprem Bölgesinde Anı Kütüphaneleri</a>
+                    </div>
+                    <a href="haberler.html" class="basin-btn" style="padding: 8px 16px; font-size: 0.85rem;" data-tr="Oku →" data-en="Read →">Oku →</a>
+                </div>
+
+            </div>
+
+            <div class="basin-iletisim-kutusu">
+                <h3><span data-tr="🎙️ Basın İletişim" data-en="🎙️ Press Contact">🎙️ Basın İletişim</span></h3>
+                <p data-tr="Röportaj talepleriniz, basın bülteni aboneliği veya medya sorularınız için doğrudan kurumsal e-posta adresimiz üzerinden bizimle iletişime geçebilirsiniz: <strong>hayalagaci.iletisim@gmail.com</strong>" data-en="You can contact us directly via our corporate e-mail address for interview requests, press release subscriptions, or media inquiries: <strong>hayalagaci.iletisim@gmail.com</strong>">Röportaj talepleriniz, basın bülteni aboneliği veya medya sorularınız için doğrudan kurumsal e-posta adresimiz üzerinden bizimle iletişime geçebilirsiniz: <strong>hayalagaci.iletisim@gmail.com</strong></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODERN FOOTER -->
+    <footer id="iletisim" class="modern-footer">
+        <div class="footer-ust">
+            
+            <div class="footer-marka">
+                <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+                <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+                
+                <div id="iconlar">
+                    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                    </a>
+                    <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-linkler">
+                <div class="link-sutun">
+                    <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
+                    <ul>
+                        <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                        <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                        <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
+                        <li><a href="basin-odasi.html" data-tr="Basın Odası" data-en="Press Room">Basın Odası</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer-alt">
+            <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+            
+            <div id="modern-credit">
+                <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site.js"></script>
+    <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+</body>
+</html>
