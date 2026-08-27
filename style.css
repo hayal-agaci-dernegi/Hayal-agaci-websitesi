@@ -3630,3 +3630,23 @@ body.dark-mode .gonullu-baslik-alani h2 { color: #fff; }
 body.dark-mode .gonullu-baslik-alani p, body.dark-mode .form-eleman label, body.dark-mode .checkbox-grubu label, body.dark-mode .form-onay-kutusu label { color: #ccc; }
 body.dark-mode .form-eleman input, body.dark-mode .form-eleman select, body.dark-mode .form-eleman textarea { background: #333; border-color: #444; color: #fff; }
 body.dark-mode .checkbox-grubu { background: #1a1a1a; border-color: #333; }     
+
+/* Aydınlık modda mouse üzerine gelince siyah olsun */
+.kalem-metin a, 
+.tesekkur-notu strong a, 
+.iletisim-kalem a {
+    transition: color 0.3s ease !important;
+}
+
+.kalem-metin a:hover, 
+.tesekkur-notu strong a:hover, 
+.iletisim-kalem a:hover {
+    color: #000000 !important;
+}
+
+/* Karanlık modda mouse üzerine gelince beyaz olsun */
+body.dark-mode .kalem-metin a:hover, 
+body.dark-mode .tesekkur-notu strong a:hover, 
+body.dark-mode .iletisim-kalem a:hover {
+    color: #ffffff !important;
+}

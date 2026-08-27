@@ -22,8 +22,21 @@
         .yasal-kasa h1 { color: rgb(27,27,27); font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid rgb(134, 220, 84); padding-bottom: 10px; display: inline-block; }
         .yasal-kasa h2 { color: rgb(27,27,27); font-size: 1.4rem; margin-top: 30px; }
         
-        /* Şık Anasayfa Butonu Stili */
-        .btn-anasayfa { background-color: rgb(134, 220, 84); color: white; padding: 10px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: all 0.3s ease; display: inline-block; box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3); }
+        /* Şık Anasayfa Butonu Stili - KÜÇÜLTÜLDÜ VE HİZALANDI */
+        .btn-anasayfa { 
+            background-color: rgb(134, 220, 84); 
+            color: white; 
+            padding: 8px 18px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            transition: all 0.3s ease; 
+            display: inline-flex; 
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3); 
+            white-space: nowrap;
+        }
         .btn-anasayfa:hover { background-color: #333; transform: scale(1.05); color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
         
         body.dark-mode .yasal-kasa { background: rgba(40,40,40,0.6); border-color: rgba(255,255,255,0.1); color: #ccc; }
@@ -43,12 +56,13 @@
             <div id="isim_logo"><img src="source/ha/ha_logo_lr.png" alt="logo" id="logo"><h1>Hayal Ağacı Derneği</h1></div>
             
             <div class="nav-kontrol">
-                <!-- PC'de Görünen Buton -->
-                <a href="index.html" class="btn-anasayfa">⬅ Anasayfa'ya Dön</a>
+                <!-- PC'de Görünen Buton (Daraltıldı) ve EN Butonu Eklendi -->
+                <a href="index.html" class="btn-anasayfa" data-tr="⬅ Anasayfa" data-en="⬅ Home">⬅ Anasayfa</a>
+                <button id="dil-btn">EN</button>
             </div>
 
             <!-- Mobilde Görünen 3 Çizgili Menü İkonu -->
-            <div id="hamburger-btn">
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
@@ -57,28 +71,28 @@
             <!-- JavaScript'in okuyup mobil menüye ekleyeceği gizli liste -->
             <nav style="display: none;">
                 <ul>
-                    <a href="index.html"><li>⬅ Anasayfa'ya Dön</li></a>
+                    <a href="index.html"><li data-tr="⬅ Anasayfa'ya Dön" data-en="⬅ Back to Home">⬅ Anasayfa'ya Dön</li></a>
                 </ul>
             </nav>
         </div>
     </header>
 
     <div class="yasal-kasa">
-        <h1>Kullanım ve Gizlilik Sözleşmesi (Aydınlatma Metni)</h1>
-        <p><strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> olarak, kişisel verilerinizin güvenliğine büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, web sitemizi kullanırken ve formlarımızı doldururken sağladığınız bilgiler, "Veri Sorumlusu" sıfatıyla derneğimiz tarafından işlenmektedir.</p>
+        <h1 data-tr="Kullanım ve Gizlilik Sözleşmesi (Aydınlatma Metni)" data-en="Terms of Use and Privacy Policy (Clarification Text)">Kullanım ve Gizlilik Sözleşmesi (Aydınlatma Metni)</h1>
+        
+        <p data-tr="<strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> olarak, kişisel verilerinizin güvenliğine büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, web sitemizi kullanırken ve formlarımızı doldururken sağladığınız bilgiler, &quot;Veri Sorumlusu&quot; sıfatıyla derneğimiz tarafından işlenmektedir." data-en="As <strong>Hayal Ağacı Social Assistance and Solidarity Association</strong>, we attach great importance to the security of your personal data. In accordance with the Personal Data Protection Law No. 6698 (&quot;KVKK&quot;), the information you provide while using our website and filling out our forms is processed by our association in the capacity of &quot;Data Controller&quot;."><strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> olarak, kişisel verilerinizin güvenliğine büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, web sitemizi kullanırken ve formlarımızı doldururken sağladığınız bilgiler, "Veri Sorumlusu" sıfatıyla derneğimiz tarafından işlenmektedir.</p>
 
+        <h2 data-tr="1. Site Kullanım Şartları" data-en="1. Terms of Site Use">1. Site Kullanım Şartları</h2>
+        <p data-tr="Web sitemizde yer alan tüm görsel, yazılı ve işitsel materyaller Hayal Ağacı Derneği'ne aittir. İzinsiz kopyalanamaz, çoğaltılamaz ve ticari amaçlarla kullanılamaz. Sitemizi ziyaret eden tüm kullanıcılar bu şartları kabul etmiş sayılır." data-en="All visual, written, and audio materials on our website belong to Hayal Ağacı Association. They cannot be copied, reproduced, or used for commercial purposes without permission. All users visiting our site are deemed to have accepted these terms.">Web sitemizde yer alan tüm görsel, yazılı ve işitsel materyaller Hayal Ağacı Derneği'ne aittir. İzinsiz kopyalanamaz, çoğaltılamaz ve ticari amaçlarla kullanılamaz. Sitemizi ziyaret eden tüm kullanıcılar bu şartları kabul etmiş sayılır.</p>
 
-        <h2>1. Site Kullanım Şartları</h2>
-        <p>Web sitemizde yer alan tüm görsel, yazılı ve işitsel materyaller Hayal Ağacı Derneği'ne aittir. İzinsiz kopyalanamaz, çoğaltılamaz ve ticari amaçlarla kullanılamaz. Sitemizi ziyaret eden tüm kullanıcılar bu şartları kabul etmiş sayılır.</p>
+        <h2 data-tr="2. Kişisel Verilerin İşlenme Amacı ve Hukuki Sebebi" data-en="2. Purpose and Legal Reason for Processing Personal Data">2. Kişisel Verilerin İşlenme Amacı ve Hukuki Sebebi</h2>
+        <p data-tr="Derneğimize gönüllü başvuru formları veya iletişim formları aracılığıyla ilettiğiniz ad, soyad, e-posta, telefon ve konum gibi bilgileriniz; dernek faaliyetlerimizi yürütmek, gönüllü koordinasyonunu sağlamak ve sizinle iletişim kurabilmek amacıyla KVKK Madde 5/2-f uyarınca &quot;ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması&quot; hukuki sebebine dayanarak işlenmektedir." data-en="Your information such as name, surname, e-mail, phone, and location that you transmit to our association via volunteer application forms or contact forms are processed based on the legal reason that &quot;data processing is mandatory for the legitimate interests of the data controller, provided that it does not harm the fundamental rights and freedoms of the data subject&quot; in accordance with Article 5/2-f of the KVKK, in order to carry out our association activities, ensure volunteer coordination, and communicate with you.">Derneğimize gönüllü başvuru formları veya iletişim formları aracılığıyla ilettiğiniz ad, soyad, e-posta, telefon ve konum gibi bilgileriniz; dernek faaliyetlerimizi yürütmek, gönüllü koordinasyonunu sağlamak ve sizinle iletişim kurabilmek amacıyla KVKK Madde 5/2-f uyarınca "ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması" hukuki sebebine dayanarak işlenmektedir.</p>
 
-        <h2>2. Kişisel Verilerin İşlenme Amacı ve Hukuki Sebebi</h2>
-        <p>Derneğimize gönüllü başvuru formları veya iletişim formları aracılığıyla ilettiğiniz ad, soyad, e-posta, telefon ve konum gibi bilgileriniz; dernek faaliyetlerimizi yürütmek, gönüllü koordinasyonunu sağlamak ve sizinle iletişim kurabilmek amacıyla KVKK Madde 5/2-f uyarınca "ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması" hukuki sebebine dayanarak işlenmektedir.</p>
+        <h2 data-tr="3. Kişisel Verilerin Aktarılması" data-en="3. Transfer of Personal Data">3. Kişisel Verilerin Aktarılması</h2>
+        <p data-tr="Toplanan kişisel verileriniz, hiçbir surette ticari amaçla satılmaz veya yetkisiz üçüncü şahıslarla paylaşılmaz. Sadece hukuki uyuşmazlıklarda yetkili kamu kurum ve kuruluşları ile yasal zorunluluklar kapsamında paylaşılabilir." data-en="Your collected personal data is never sold for commercial purposes or shared with unauthorized third parties. It can only be shared with authorized public institutions and organizations within the scope of legal obligations in legal disputes.">Toplanan kişisel verileriniz, hiçbir surette ticari amaçla satılmaz veya yetkisiz üçüncü şahıslarla paylaşılmaz. Sadece hukuki uyuşmazlıklarda yetkili kamu kurum ve kuruluşları ile yasal zorunluluklar kapsamında paylaşılabilir.</p>
 
-        <h2>3. Kişisel Verilerin Aktarılması</h2>
-        <p>Toplanan kişisel verileriniz, hiçbir surette ticari amaçla satılmaz veya yetkisiz üçüncü şahıslarla paylaşılmaz. Sadece hukuki uyuşmazlıklarda yetkili kamu kurum ve kuruluşları ile yasal zorunluluklar kapsamında paylaşılabilir.</p>
-
-        <h2>4. KVKK Kapsamındaki Haklarınız ve Başvuru Yöntemi</h2>
-        <p>KVKK'nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, silinmesini isteme, eksik veya yanlış işlenmişse düzeltilmesini talep etme haklarına sahipsiniz. Bu haklarınızı kullanmak için taleplerinizi hayalagaci.iletisim@gmail.com resmi e-posta adresimize iletebilirsiniz.</p>
+        <h2 data-tr="4. KVKK Kapsamındaki Haklarınız ve Başvuru Yöntemi" data-en="4. Your Rights under KVKK and Application Method">4. KVKK Kapsamındaki Haklarınız ve Başvuru Yöntemi</h2>
+        <p data-tr="KVKK'nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, silinmesini isteme, eksik veya yanlış işlenmişse düzeltilmesini talep etme haklarına sahipsiniz. Bu haklarınızı kullanmak için taleplerinizi hayalagaci.iletisim@gmail.com resmi e-posta adresimize iletebilirsiniz." data-en="In accordance with Article 11 of the KVKK; you have the right to learn whether your data is processed, request its deletion, and request its correction if it is processed incompletely or incorrectly. To exercise these rights, you can send your requests to our official e-mail address hayalagaci.iletisim@gmail.com.">KVKK'nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, silinmesini isteme, eksik veya yanlış işlenmişse düzeltilmesini talep etme haklarına sahipsiniz. Bu haklarınızı kullanmak için taleplerinizi hayalagaci.iletisim@gmail.com resmi e-posta adresimize iletebilirsiniz.</p>
     </div>
     
     <script src="site.js"></script>

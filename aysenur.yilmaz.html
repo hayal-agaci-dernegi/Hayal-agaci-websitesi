@@ -203,14 +203,13 @@
             justify-content: center;
         }
 
-        /* MUCİZE BURADA: Resim yerine boş kutu kullanıyoruz */
         #lightbox-resmi {
             width: 90vw;
             height: 90vh;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            pointer-events: auto !important; /* Kaydırma için mecburi açık */
+            pointer-events: auto !important;
             transition: transform 0.15s ease-out;
             cursor: default;
         }
@@ -299,7 +298,7 @@
         <div class="yukleme-cubugu">
             <div class="ilerleme"></div>
         </div>
-        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+        <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
     </div>
 </div>
 
@@ -313,7 +312,6 @@
         }
     });
     
-    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
     setTimeout(function() {
         var loader = document.getElementById('preloader');
         if (loader && loader.style.display !== 'none') {
@@ -330,23 +328,25 @@
                 <h1>Hayal Ağacı Derneği</h1>
             </div>
 
-            <div id="hamburger-btn">
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-</div>
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
 
-            <nav>
-                <ul>
-                    <a href="index.html"><li>Anasayfa</li></a>
-                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
-                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
-                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
-                    <a href="sss.html"><li>S.S.S.</li></a>
-                    <a href="iletisim.html"><li>İletişim</li></a>
-                </ul>
-            </nav>
-            
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
         </div>
     </header> 
 
@@ -356,7 +356,7 @@
             <img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t0z4cut0z4cut0z4.png" alt="Ayşenur Yılmaz">
         </div>
         <div class="detay-hero-icerik">
-            <span class="detay-etiket">Adıyaman · Dağ Kuyucak Köy Okulu</span>
+            <span class="detay-etiket" data-tr="Adıyaman · Dağ Kuyucak Köy Okulu" data-en="Adıyaman · Dağ Kuyucak Village School">Adıyaman · Dağ Kuyucak Köy Okulu</span>
             <h1 class="detay-baslik">Ayşenur Yılmaz</h1>
 
             <a href="https://goo.gl/maps/jCVKKAeQZBSjfPg98?g_st=aw" target="_blank" class="konum-btn">
@@ -364,23 +364,23 @@
                     <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                 </svg>
-                Haritada Gör
+                <span data-tr="Haritada Gör" data-en="View on Map">Haritada Gör</span>
             </a>
 
-            <p class="detay-aciklama">
+            <p class="detay-aciklama" data-tr="Ayşen'in de her daim söylediği gibi sorunsuz mutluluk getiren yarınlarımız olması dileğiyle" data-en="As Ayşen always said, wishing for tomorrows that bring trouble-free happiness">
                 Ayşen'in de her daim söylediği gibi sorunsuz mutluluk getiren yarınlarımız olması dileğiyle
             </p>
         </div>
     </div>
 
     <div class="hikaye-bolumu">
-        <h3>Ayşenur Yılmaz Kimdir?</h3>
-        <p>Ayşenur Yılmaz, 2004 doğumlu. Hayatla iç içe olmasıyla bilinip, onlarca arkadaşının hayatına dokunmuştu. Tek bir negatif düşüncesine güç vermeden hayata her zaman pozitiflik aşılardı. Hâlâ bugün dönüp baktığımızda hayatına dokunduğu insanlarda bıraktığı izlere rastlayabilirsiniz. Kurduğu hayallerin birini bile atlamadan amaçladığı şeylerin her birini gerçekleştirmek üzere yola çıktık Hayal Ağacı Derneği ile birlikte. Her zaman el ele hareket etmek üzere koyulduk yola. Minik kalplerimizin gözlerindeki hayata dair olan o buruk ifadeye yer bırakmadan her zaman umut vermeye çalıştık. Yıllardır dernek başkanımız ve gönüllülerimiz ile birlikte minik kalplerimize umut olmaya çalıştık. Ayşen'in kalbinin bizimle olduğunu hissettiğimiz anlar ve anılardı bizler için. Ve böyle olmaya devam etmesini amaçlayıp bu yolda ilerliyoruz.</p>
+        <h3 data-tr="Ayşenur Yılmaz Kimdir?" data-en="Who is Ayşenur Yılmaz?">Ayşenur Yılmaz Kimdir?</h3>
+        <p data-tr="Ayşenur Yılmaz, 2004 doğumlu. Hayatla iç içe olmasıyle bilinip, onlarca arkadaşının hayatına dokunmuştu. Tek bir negatif düşüncesine güç vermeden hayata her zaman pozitiflik aşılardı. Hâlâ bugün dönüp baktığımızda hayatına dokunduğu insanlarda bıraktığı izlere rastlayabilirsiniz. Kurduğu hayallerin birini bile atlamadan amaçladığı şeylerin her birini gerçekleştirmek üzere yola çıktık Hayal Ağacı Derneği ile birlikte. Her zaman el ele hareket etmek üzere koyulduk yola. Minik kalplerimizin gözlerindeki hayata dair olan o buruk ifadeye yer bırakmadan her zaman umut vermeye çalıştık. Yıllardır dernek başkanımız ve gönüllülerimiz ile birlikte minik kalplerimize umut olmaya çalıştık. Ayşen'in kalbinin bizimle olduğunu hissettiğimiz anlar ve anılardı bizler için. Ve böyle olmaya devam etmesini amaçlayıp bu yolda ilerliyoruz." data-en="Ayşenur Yılmaz was born in 2004. Known for her intertwining relationship with life, she touched the lives of dozens of friends. She always instilled positivity into life without giving power to a single negative thought. Even today, when we look back, we can trace the marks she left on the people whose lives she touched. Together with Hayal Ağacı Association, we set out to realize every single thing she aimed for, without skipping a single dream she built. We set out to always move hand in hand. Without leaving room for that bitter expression regarding life in the eyes of our tiny hearts, we always tried to give hope. For years, together with our association president and volunteers, we tried to be a beacon of hope for our tiny hearts. These were moments and memories for us when we felt Ayşen's heart was with us. And we are moving forward on this path, aiming for this to continue.">Ayşenur Yılmaz, 2004 doğumlu. Hayatla iç içe olmasıyle bilinip, onlarca arkadaşının hayatına dokunmuştu. Tek bir negatif düşüncesine güç vermeden hayata her zaman pozitiflik aşılardı. Hâlâ bugün dönüp baktığımızda hayatına dokunduğu insanlarda bıraktığı izlere rastlayabilirsiniz. Kurduğu hayallerin birini bile atlamadan amaçladığı şeylerin her birini gerçekleştirmek üzere yola çıktık Hayal Ağacı Derneği ile birlikte. Her zaman el ele hareket etmek üzere koyulduk yola. Minik kalplerimizin gözlerindeki hayata dair olan o buruk ifadeye yer bırakmadan her zaman umut vermeye çalıştık. Yıllardır dernek başkanımız ve gönüllülerimiz ile birlikte minik kalplerimize umut olmaya çalıştık. Ayşen'in kalbinin bizimle olduğunu hissettiğimiz anlar ve anılardı bizler için. Ve böyle olmaya devam etmesini amaçlayıp bu yolda ilerliyoruz.</p>
     </div>
 
     <div class="galeri-bolumu">
         <div class="galeri-konteyner">
-            <h3>Fotoğraflar</h3>
+            <h3 data-tr="Fotoğraflar" data-en="Photos">Fotoğraflar</h3>
             <div class="galeri-izgara">
                 <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_t33nw6t33nw6t33n.png" alt=""></div>
                 <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/Ayşenur Yılmaz/Gemini_Generated_Image_sdmb7vsdmb7vsdmb.png" alt=""></div>
@@ -401,7 +401,7 @@
     </div>
 
     <div class="geri-don-sarici">
-        <a href="galeri.html" class="geri-don-btn">
+        <a href="galeri.html" class="geri-don-btn" data-tr="← Galeriye Dön" data-en="← Back to Gallery">
             ← Galeriye Dön
         </a>
     </div>
@@ -466,13 +466,9 @@
         const lightboxResmi = document.getElementById('lightbox-resmi');
 
         function resmiBuyut(element) {
-            // Küçük resmin yolunu alıyoruz
             var resimYolu = element.querySelector('img').src;
-            
-            // GÜVENLİK HİLESİ: Resmi kutunun duvar kağıdı (background) yapıyoruz.
             lightboxResmi.style.backgroundImage = `url('${resimYolu}')`;
             
-            // Ayarları sıfırla
             zoomSeviyesi = 1;
             translateX = 0;
             translateY = 0;
@@ -491,14 +487,12 @@
             document.body.style.touchAction = '';
         }
 
-        // Arka plan kaymasını engelle
         window.addEventListener('wheel', function(e) {
             if (lightbox.style.display === 'flex') {
                 e.preventDefault();
             }
         }, { passive: false });
 
-        // Fare tekerleği ile yakınlaştırma
         lightbox.addEventListener('wheel', function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -530,7 +524,6 @@
             guncelleTransform();
         }, { passive: false });
 
-        // Fare ile fotoğrafı kaydırma
         lightboxResmi.addEventListener('mousedown', function(e) {
             if (zoomSeviyesi > 1) {
                 surukleniyor = true;
@@ -554,7 +547,6 @@
             if(lightboxResmi) lightboxResmi.style.cursor = zoomSeviyesi > 1 ? 'grab' : 'default';
         });
 
-        // Çift tıklama ile yakınlaştırma
         lightboxResmi.addEventListener('dblclick', function(e) {
             e.stopPropagation();
             let eskiZoom = zoomSeviyesi;
@@ -592,6 +584,3 @@
     </script>
 </body>
 </html>
-
-<script src="site.js"></script>
-</body>

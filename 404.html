@@ -12,23 +12,21 @@
         /* ==========================================
            YUMUŞAK GEÇİŞ SİSTEMİ (DARK MODE)
         ========================================== */
-        /* Arka plan, metin rengi ve gölgeler için 0.8 saniyelik yumuşak geçiş emri */
         body, .hata-kapsayici, .hata-mesaj, .hata-aciklama {
             transition: background-color 0.8s ease, color 0.8s ease, text-shadow 0.8s ease !important;
         }
 
-        /* Sadece 404 sayfasına özel hizalama ayarları */
         .hata-kapsayici {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            /* YENİ: "height" yerine "min-height" kullandık ki sığmazsa aşağı kaydırılabilsin */
             min-height: 100vh; 
             background-color: rgb(254, 249, 241);
             text-align: center;
             padding: 20px;
-            box-sizing: border-box; /* Padding'in sayfayı taşırmasını engeller */
+            box-sizing: border-box;
+            position: relative;
         }
 
         .hata-kodu {
@@ -55,14 +53,35 @@
             margin-bottom: 40px;
         }
 
-        /* YENİ: TELEFON VE TABLET İÇİN KÜÇÜLTME (RESPONSIVE) AYARLARI */
+        /* 404 sayfasına özel çevrimdışı dil butonu tasarımı */
+        #offline-dil-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgb(134, 220, 84);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #offline-dil-btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
         @media (max-width: 900px) {
             .hata-kapsayici img {
-                width: 100px !important; /* Logoyu küçült */
+                width: 100px !important;
                 margin-bottom: 10px !important;
             }
             .hata-kodu {
-                font-size: 6rem; /* 10rem olan dev yazıyı telefona sığacak kadar küçült */
+                font-size: 6rem;
             }
             .hata-mesaj {
                 font-size: 1.8rem;
@@ -73,17 +92,24 @@
                 margin-bottom: 25px;
             }
             .hata-kapsayici .katılbt {
-                width: 80% !important; /* Butonun dışarı taşmasını engeller */
+                width: 80% !important;
                 max-width: 300px;
                 padding: 15px !important;
                 font-size: 1.2rem !important;
             }
+            #offline-dil-btn {
+                top: 20px;
+                right: 20px;
+                padding: 5px 12px;
+            }
         }
 
-        /* Karanlık Mod (Dark Mode) Uyumu */
+        /* Karanlık Mod Uyumu */
         body.dark-mode .hata-kapsayici { background-color: #121212 !important; }
         body.dark-mode .hata-mesaj { color: #f5f5f5 !important; }
         body.dark-mode .hata-aciklama { color: #ccc !important; }
+        body.dark-mode #offline-dil-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid #555; color: #f5f5f5; }
+        body.dark-mode #offline-dil-btn:hover { background: rgb(134, 220, 84); color: white; border-color: rgb(134, 220, 84); }
     </style>
 </head>
 <body>
@@ -94,7 +120,7 @@
         <div class="yukleme-cubugu">
             <div class="ilerleme"></div>
         </div>
-        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+        <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
     </div>
 </div>
 
@@ -108,7 +134,6 @@
         }
     });
     
-    // Güvenlik Kilidi: Ne olursa olsun 5 saniye sonra ekranı zorla kapat
     setTimeout(function() {
         var loader = document.getElementById('preloader');
         if (loader && loader.style.display !== 'none') {
@@ -119,19 +144,61 @@
 </script>
 
     <div class="hata-kapsayici">
+        <!-- 404 Dil Butonu -->
+        <button id="offline-dil-btn">EN</button>
+
         <img src="/source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" style="width: 150px; margin-bottom: 20px;">
         
         <h1 class="hata-kodu">404</h1>
-        <h2 class="hata-mesaj">Yolumuzu Kaybettik</h2>
-        <p class="hata-aciklama">
+        <h2 class="hata-mesaj" data-tr="Yolumuzu Kaybettik" data-en="We Lost Our Way">Yolumuzu Kaybettik</h2>
+        <p class="hata-aciklama" data-tr="Aradığınız sayfa silinmiş veya adresi değiştirilmiş olabilir. Ancak merak etmeyin, kütüphane kurduğumuz okullardaki çocuklarımız aynı yerlerinde umutla beklemeye devam ediyor." data-en="The page you are looking for may have been deleted or its address changed. But don't worry, the children in the schools where we established libraries continue to wait hopefully in their places.">
             Aradığınız sayfa silinmiş veya adresi değiştirilmiş olabilir. Ancak merak etmeyin, kütüphane kurduğumuz okullardaki çocuklarımız aynı yerlerinde umutla beklemeye devam ediyor.
         </p>
         
-        <a href="/" class="katılbt" style="text-decoration: none; display: flex; align-items: center; justify-content: center; position: static; margin: 0 auto;">
-    Anasayfa'ya Dön
-</a>
+        <a href="/" class="katılbt" style="text-decoration: none; display: flex; align-items: center; justify-content: center; position: static; margin: 0 auto;" data-tr="Anasayfa'ya Dön" data-en="Back to Home">
+            Anasayfa'ya Dön
+        </a>
     </div>
 
+    <script>
+        // Tema kontrolü
+        function temaKontroluYap() {
+            const kayitliTema = localStorage.getItem("theme");
+            const guncelSaat = new Date().getHours();
+            const body = document.body;
+
+            if (kayitliTema === "dark") {
+                body.classList.add("dark-mode");
+            } else if (kayitliTema === "light") {
+                body.classList.remove("dark-mode");
+            } else {
+                if (guncelSaat >= 19 || guncelSaat < 7) {
+                    body.classList.add("dark-mode");
+                }
+            }
+        }
+
+        // Dil motoru
+        const dilBtn = document.getElementById("offline-dil-btn");
+        let mevcutDil = localStorage.getItem("ha-dil") || "tr";
+
+        function dilUygula(dil) {
+            document.documentElement.lang = dil;
+            document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + dil);
+            });
+            dilBtn.textContent = (dil === 'tr') ? 'EN' : 'TR';
+        }
+
+        dilBtn.addEventListener("click", function() {
+            mevcutDil = (mevcutDil === 'tr') ? 'en' : 'tr';
+            localStorage.setItem('ha-dil', mevcutDil);
+            dilUygula(mevcutDil);
+        });
+
+        temaKontroluYap();
+        dilUygula(mevcutDil);
+    </script>
     <script src="site.js"></script>
 </body>
 </html>

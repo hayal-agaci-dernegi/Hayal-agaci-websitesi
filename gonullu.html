@@ -30,15 +30,21 @@
         <div class="nav-kontrol">
             <nav>
                 <ul>
-                    <a href="index.html#anasayfa"><li>Anasayfa</li></a>
-                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
-                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
-                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
-                    <a href="haberler.html"><li>Haberler</li></a>
-                    <a href="sss.html"><li>S.S.S.</li></a>
+                    <a href="index.html#anasayfa"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                    <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                    <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                    <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                    <a href="haberler.html"><li data-tr="Haberler" data-en="News">Haberler</li></a>
+                    <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
                 </ul>
             </nav>
             <button id="dil-btn">EN</button>
+        </div>
+
+        <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
+            <span class="cizgi"></span>
         </div>
     </div>
 </header>
@@ -46,93 +52,93 @@
 <!-- GÖNÜLLÜ FORMU GÖVDESİ -->
 <div class="gonullu-kapsayici">
     <div class="gonullu-baslik-alani">
-        <h2>Gönüllü Başvuru Formu</h2>
-        <p>Hayal Ağacı Derneği'nin sahadaki gücü olmak için aşağıdaki formu eksiksiz doldurunuz. Başvurunuz incelendikten sonra sizinle iletişime geçilecektir.</p>
+        <h2 data-tr="Gönüllü Başvuru Formu" data-en="Volunteer Application Form">Gönüllü Başvuru Formu</h2>
+        <p data-tr="Hayal Ağacı Derneği'nin sahadaki gücü olmak için aşağıdaki formu eksiksiz doldurunuz. Başvurunuz incelendikten sonra sizinle iletişime geçilecektir." data-en="Please fill out the form below completely to become the field strength of Hayal Ağacı Association. You will be contacted after your application is reviewed.">Hayal Ağacı Derneği'nin sahadaki gücü olmak için aşağıdaki formu eksiksiz doldurunuz. Başvurunuz incelendikten sonra sizinle iletişime geçilecektir.</p>
     </div>
     
     <form id="gonulluFormu" class="gonullu-form">
         
         <div class="form-bolum">
-            <h3>1. Kişisel Bilgiler</h3>
+            <h3 data-tr="1. Kişisel Bilgiler" data-en="1. Personal Information">1. Kişisel Bilgiler</h3>
             <div class="form-grup-yan-yana">
                 <div class="form-eleman">
-                    <label>Adınız ve Soyadınız *</label>
-                    <input type="text" required placeholder="Örn: Ahmet Yılmaz">
+                    <label data-tr="Adınız ve Soyadınız *" data-en="Full Name *">Adınız ve Soyadınız *</label>
+                    <input type="text" required placeholder="Örn: Ahmet Yılmaz" data-tr-placeholder="Örn: Ahmet Yılmaz" data-en-placeholder="E.g: John Doe">
                 </div>
                 <div class="form-eleman">
-                    <label>Doğum Tarihiniz *</label>
+                    <label data-tr="Doğum Tarihiniz *" data-en="Date of Birth *">Doğum Tarihiniz *</label>
                     <input type="date" required>
                 </div>
             </div>
             
             <div class="form-grup-yan-yana">
                 <div class="form-eleman">
-                    <label>Telefon Numaranız *</label>
-                    <input type="tel" required placeholder="05XX XXX XX XX">
+                    <label data-tr="Telefon Numaranız *" data-en="Phone Number *">Telefon Numaranız *</label>
+                    <input type="tel" required placeholder="05XX XXX XX XX" data-tr-placeholder="05XX XXX XX XX" data-en-placeholder="+90 5XX XXX XX XX">
                 </div>
                 <div class="form-eleman">
-                    <label>E-Posta Adresiniz *</label>
-                    <input type="email" required placeholder="ornek@mail.com">
+                    <label data-tr="E-Posta Adresiniz *" data-en="E-Mail Address *">E-Posta Adresiniz *</label>
+                    <input type="email" required placeholder="ornek@mail.com" data-tr-placeholder="ornek@mail.com" data-en-placeholder="example@mail.com">
                 </div>
             </div>
 
             <div class="form-eleman">
-                <label>Yaşadığınız Şehir ve İlçe *</label>
-                <input type="text" required placeholder="Örn: Adıyaman / Merkez">
+                <label data-tr="Yaşadığınız Şehir ve İlçe *" data-en="City and District You Live In *">Yaşadığınız Şehir ve İlçe *</label>
+                <input type="text" required placeholder="Örn: Adıyaman / Merkez" data-tr-placeholder="Örn: Adıyaman / Merkez" data-en-placeholder="E.g: Adıyaman / Center">
             </div>
         </div>
 
         <div class="form-bolum">
-            <h3>2. İlgi Alanları ve Müsaitlik</h3>
+            <h3 data-tr="2. İlgi Alanları ve Müsaitlik" data-en="2. Interests and Availability">2. İlgi Alanları ve Müsaitlik</h3>
             <div class="form-eleman">
-                <label>Derneğimize hangi alanlarda destek olabilirsiniz? (Birden fazla seçebilirsiniz)</label>
+                <label data-tr="Derneğimize hangi alanlarda destek olabilirsiniz? (Birden fazla seçebilirsiniz)" data-en="In which areas can you support our association? (You can select multiple)">Derneğimize hangi alanlarda destek olabilirsiniz? (Birden fazla seçebilirsiniz)</label>
                 <div class="checkbox-grubu">
-                    <label><input type="checkbox" name="alan" value="saha"> Kütüphane Kurulumu ve Saha Çalışmaları</label>
-                    <label><input type="checkbox" name="alan" value="lojistik"> Kitap Ayrıştırma, Paketleme ve Lojistik</label>
-                    <label><input type="checkbox" name="alan" value="sosyal_medya"> Sosyal Medya Yönetimi ve İçerik Üretimi</label>
-                    <label><input type="checkbox" name="alan" value="tasarim"> Grafik Tasarım / Video Kurgu</label>
-                    <label><input type="checkbox" name="alan" value="egitim"> Çocuklara Yönelik Atölye ve Etkinlikler</label>
+                    <label><input type="checkbox" name="alan" value="saha"> <span data-tr="Kütüphane Kurulumu ve Saha Çalışmaları" data-en="Library Installation and Field Work">Kütüphane Kurulumu ve Saha Çalışmaları</span></label>
+                    <label><input type="checkbox" name="alan" value="lojistik"> <span data-tr="Kitap Ayrıştırma, Paketleme ve Lojistik" data-en="Book Sorting, Packaging and Logistics">Kitap Ayrıştırma, Paketleme ve Lojistik</span></label>
+                    <label><input type="checkbox" name="alan" value="sosyal_medya"> <span data-tr="Sosyal Medya Yönetimi ve İçerik Üretimi" data-en="Social Media Management and Content Creation">Sosyal Medya Yönetimi ve İçerik Üretimi</span></label>
+                    <label><input type="checkbox" name="alan" value="tasarim"> <span data-tr="Grafik Tasarım / Video Kurgu" data-en="Graphic Design / Video Editing">Grafik Tasarım / Video Kurgu</span></label>
+                    <label><input type="checkbox" name="alan" value="egitim"> <span data-tr="Çocuklara Yönelik Atölye ve Etkinlikler" data-en="Workshops and Activities for Children">Çocuklara Yönelik Atölye ve Etkinlikler</span></label>
                 </div>
             </div>
             
             <div class="form-eleman">
-                <label>Gönüllülük faaliyetleri için haftada ortalama kaç saatinizi ayırabilirsiniz? *</label>
+                <label data-tr="Gönüllülük faaliyetleri için haftada ortalama kaç saatinizi ayırabilirsiniz? *" data-en="How many hours a week on average can you dedicate to volunteer activities? *">Gönüllülük faaliyetleri için haftada ortalama kaç saatinizi ayırabilirsiniz? *</label>
                 <select required>
-                    <option value="">Lütfen seçiniz...</option>
-                    <option value="1-3">1 - 3 Saat</option>
-                    <option value="3-5">3 - 5 Saat</option>
-                    <option value="5+">5 Saatten Fazla</option>
+                    <option value="" data-tr="Lütfen seçiniz..." data-en="Please select...">Lütfen seçiniz...</option>
+                    <option value="1-3" data-tr="1 - 3 Saat" data-en="1 - 3 Hours">1 - 3 Saat</option>
+                    <option value="3-5" data-tr="3 - 5 Saat" data-en="3 - 5 Hours">3 - 5 Saat</option>
+                    <option value="5+" data-tr="5 Saatten Fazla" data-en="More than 5 Hours">5 Saatten Fazla</option>
                 </select>
             </div>
         </div>
 
         <div class="form-bolum">
-            <h3>3. Motivasyon ve Onay</h3>
+            <h3 data-tr="3. Motivasyon ve Onay" data-en="3. Motivation and Consent">3. Motivasyon ve Onay</h3>
             <div class="form-eleman">
-                <label>Neden Hayal Ağacı Derneği'nde gönüllü olmak istiyorsunuz? (Kısaca açıklayınız)</label>
-                <textarea rows="4" placeholder="Düşüncelerinizi buraya yazabilirsiniz..."></textarea>
+                <label data-tr="Neden Hayal Ağacı Derneği'nde gönüllü olmak istiyorsunuz? (Kısaca açıklayınız)" data-en="Why do you want to volunteer at Hayal Ağacı Association? (Please explain briefly)">Neden Hayal Ağacı Derneği'nde gönüllü olmak istiyorsunuz? (Kısaca açıklayınız)</label>
+                <textarea rows="4" placeholder="Düşüncelerinizi buraya yazabilirsiniz..." data-tr-placeholder="Düşüncelerinizi buraya yazabilirsiniz..." data-en-placeholder="You can write your thoughts here..."></textarea>
             </div>
             
             <div class="form-onay-kutusu">
                 <label>
                     <input type="checkbox" required> 
-                    <span><a href="kvkk-gizlilik.html" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kişisel verilerimin işlenmesini onaylıyorum. *</span>
+                    <span><a href="kvkk-gizlilik.html" target="_blank" data-tr="KVKK Aydınlatma Metni" data-en="KVKK Clarification Text">KVKK Aydınlatma Metni</a><span data-tr="'ni okudum, anladım ve kişisel verilerimin işlenmesini onaylıyorum. *" data-en=" - I have read, understood and approve the processing of my personal data. *">'ni okudum, anladım ve kişisel verilerimin işlenmesini onaylıyorum. *</span></span>
                 </label>
             </div>
         </div>
 
-        <button type="submit" class="btn-gonullu-gonder">Başvurumu Gönder</button>
+        <button type="submit" class="btn-gonullu-gonder" data-tr="Başvurumu Gönder" data-en="Submit My Application">Başvurumu Gönder</button>
     </form>
 </div>
 
 <footer id="iletisim" class="modern-footer">
     <div class="footer-ust">
         <div class="footer-marka">
-            <h2>İletişim</h2>
-            <p>Derneğimizle doğrudan iletişime geçmek için resmi kanallarımızı kullanabilirsiniz.</p>
+            <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+            <p data-tr="Derneğimizle doğrudan iletişime geçmek için resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için resmi kanallarımızı kullanabilirsiniz.</p>
             <div class="footer-iletisim-detay">
-                <p><span>📍</span> <span><strong>Adres:</strong> Merkez / Adıyaman <br>(Açık adresinizi buraya yazın)</span></p>
-                <p><span>📞</span> <span><strong>Telefon:</strong> +90 5XX XXX XX XX</span></p>
+                <p><span>📍</span> <span><strong data-tr="Adres:" data-en="Address:">Adres:</strong> <span data-tr="Merkez / Adıyaman <br>(Açık adresinizi buraya yazın)" data-en="Center / Adıyaman <br>(Write your full address here)">Merkez / Adıyaman <br>(Açık adresinizi buraya yazın)</span></span></p>
+                <p><span>📞</span> <span><strong data-tr="Telefon:" data-en="Phone:">Telefon:</strong> +90 5XX XXX XX XX</span></p>
             </div>
             <div id="iconlar">
                 <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
@@ -145,23 +151,46 @@
         </div>
         <div class="footer-linkler">
             <div class="link-sutun">
-                <h3>Bilgi & Yasal</h3>
+                <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
                 <ul>
-                    <li><a href="sss.html">S.S.S. (Sıkça Sorulan Sorular)</a></li>
-                    <li><a href="kvkk-gizlilik.html">KVKK ve Gizlilik Politikası</a></li>
-                    <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+                    <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                    <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                    <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-alt">
-        <p>Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+        <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
         <div id="modern-credit">
-            <span>Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
         </div>
     </div>
 </footer>
 
 <script src="site.js"></script>
+
+<script>
+    // Sayfa yüklendiğinde ve dil değiştiğinde Placeholder çevirilerini uygula
+    document.addEventListener("DOMContentLoaded", function() {
+        const dilBtn = document.getElementById('dil-btn');
+        const inputs = document.querySelectorAll('input[data-tr-placeholder], textarea[data-tr-placeholder]');
+        
+        function updatePlaceholders() {
+            let currentLang = localStorage.getItem('ha-dil') || 'tr';
+            inputs.forEach(input => {
+                input.setAttribute('placeholder', input.getAttribute(`data-${currentLang}-placeholder`));
+            });
+        }
+        
+        if(dilBtn && inputs.length > 0) {
+            updatePlaceholders();
+            dilBtn.addEventListener('click', function() {
+                setTimeout(updatePlaceholders, 50); // Dil butonuna tıklandıktan hemen sonra tetikle
+            });
+        }
+    });
+</script>
+
 </body>
 </html>

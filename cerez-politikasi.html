@@ -23,7 +23,20 @@
         .yasal-kasa h2 { color: rgb(27,27,27); font-size: 1.4rem; margin-top: 30px; }
         
         /* Şık Anasayfa Butonu Stili */
-        .btn-anasayfa { background-color: rgb(134, 220, 84); color: white; padding: 10px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: all 0.3s ease; display: inline-block; box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3); }
+        .btn-anasayfa { 
+            background-color: rgb(134, 220, 84); 
+            color: white; 
+            padding: 8px 18px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            transition: all 0.3s ease; 
+            display: inline-flex; 
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(134, 220, 84, 0.3); 
+            white-space: nowrap;
+        }
         .btn-anasayfa:hover { background-color: #333; transform: scale(1.05); color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
 
         body.dark-mode .yasal-kasa { background: rgba(40,40,40,0.6); border-color: rgba(255,255,255,0.1); color: #ccc; }
@@ -43,12 +56,13 @@
             <div id="isim_logo"><img src="source/ha/ha_logo_lr.png" alt="logo" id="logo"><h1>Hayal Ağacı Derneği</h1></div>
             
             <div class="nav-kontrol">
-                <!-- PC'de Görünen Buton -->
-                <a href="index.html" class="btn-anasayfa">⬅ Anasayfa'ya Dön</a>
+                <!-- PC'de Görünen Buton ve Dil Butonu Yan Yana -->
+                <a href="index.html" class="btn-anasayfa" data-tr="⬅ Anasayfa" data-en="⬅ Home">⬅ Anasayfa</a>
+                <button id="dil-btn">EN</button>
             </div>
 
             <!-- Mobilde Görünen 3 Çizgili Menü İkonu -->
-            <div id="hamburger-btn">
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
@@ -57,28 +71,28 @@
             <!-- JavaScript'in okuyup mobil menüye ekleyeceği gizli liste -->
             <nav style="display: none;">
                 <ul>
-                    <a href="index.html"><li>⬅ Anasayfa'ya Dön</li></a>
+                    <a href="index.html"><li data-tr="⬅ Anasayfa'ya Dön" data-en="⬅ Back to Home">⬅ Anasayfa'ya Dön</li></a>
                 </ul>
             </nav>
         </div>
     </header>
 
     <div class="yasal-kasa">
-        <h1>Çerez (Cookie) Politikası</h1>
-        <p><strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> web sitesi (hayalagaci.org) olarak, ziyaretçilerimize daha iyi bir kullanıcı deneyimi sunabilmek için çerezler (cookies) kullanmaktayız.</p>
+        <h1 data-tr="Çerez (Cookie) Politikası" data-en="Cookie Policy">Çerez (Cookie) Politikası</h1>
+        <p data-tr="<strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> web sitesi (hayalagaci.org) olarak, ziyaretçilerimize daha iyi bir kullanıcı deneyimi sunabilmek için çerezler (cookies) kullanmaktayız." data-en="As <strong>Hayal Ağacı Social Assistance and Solidarity Association</strong> website (hayalagaci.org), we use cookies to provide a better user experience to our visitors."><strong>Hayal Ağacı Sosyal Yardımlaşma ve Dayanışma Derneği</strong> web sitesi (hayalagaci.org) olarak, ziyaretçilerimize daha iyi bir kullanıcı deneyimi sunabilmek için çerezler (cookies) kullanmaktayız.</p>
 
-        <h2>Çerez Nedir ve Neden Kullanıyoruz?</h2>
-        <p>Çerezler, web sitemizi ziyaret ettiğinizde tarayıcınız aracılığıyla cihazınıza kaydedilen küçük metin dosyalarıdır. Sitemizde herhangi bir pazarlama, reklam veya kişisel izleme (tracking) çerezi kullanılmamaktadır. Sadece web sitemizin teknik olarak işlevini yerine getirmesi için "Zorunlu Çerezler" kullanılmaktadır.</p>
+        <h2 data-tr="Çerez Nedir ve Neden Kullanıyoruz?" data-en="What is a Cookie and Why Do We Use It?">Çerez Nedir ve Neden Kullanıyoruz?</h2>
+        <p data-tr="Çerezler, web sitemizi ziyaret ettiğinizde tarayıcınız aracılığıyla cihazınıza kaydedilen küçük metin dosyalarıdır. Sitemizde herhangi bir pazarlama, reklam veya kişisel izleme (tracking) çerezi kullanılmamaktadır. Sadece web sitemizin teknik olarak işlevini yerine getirmesi için &quot;Zorunlu Çerezler&quot; kullanılmaktadır." data-en="Cookies are small text files saved on your device through your browser when you visit our website. No marketing, advertising, or personal tracking cookies are used on our site. Only &quot;Strictly Necessary Cookies&quot; are used for our website to technically perform its function.">Çerezler, web sitemizi ziyaret ettiğinizde tarayıcınız aracılığıyla cihazınıza kaydedilen küçük metin dosyalarıdır. Sitemizde herhangi bir pazarlama, reklam veya kişisel izleme (tracking) çerezi kullanılmamaktadır. Sadece web sitemizin teknik olarak işlevini yerine getirmesi için "Zorunlu Çerezler" kullanılmaktadır.</p>
 
-        <h2>Hangi Çerezleri Kullanıyoruz?</h2>
+        <h2 data-tr="Hangi Çerezleri Kullanıyoruz?" data-en="Which Cookies Do We Use?">Hangi Çerezleri Kullanıyoruz?</h2>
         <ul>
-            <li><strong>Tema Çerezi (theme):</strong> Sitede karanlık mod (gece modu) veya aydınlık mod tercihlerinizi hatırlamak için kullanılır.</li>
-            <li><strong>Ziyaretçi Karşılama Çerezi:</strong> Siteye daha önce girip girmediğinizi algılayarak karşılama mesajını kontrol etmek için kullanılır.</li>
-            <li><strong>Onay Çerezi (cerezOnay):</strong> Çerez uyarı metnini okuyup onayladığınızı sisteme bildirerek popup'ın tekrar çıkmasını engeller.</li>
+            <li><strong data-tr="Tema Çerezi (theme):" data-en="Theme Cookie (theme):">Tema Çerezi (theme):</strong> <span data-tr="Sitede karanlık mod (gece modu) veya aydınlık mod tercihlerinizi hatırlamak için kullanılır." data-en="Used to remember your dark mode or light mode preferences on the site.">Sitede karanlık mod (gece modu) veya aydınlık mod tercihlerinizi hatırlamak için kullanılır.</span></li>
+            <li><strong data-tr="Ziyaretçi Karşılama Çerezi:" data-en="Visitor Welcome Cookie:">Ziyaretçi Karşılama Çerezi:</strong> <span data-tr="Siteye daha önce girip girmediğinizi algılayarak karşılama mesajını kontrol etmek için kullanılır." data-en="Used to control the welcome message by detecting whether you have visited the site before.">Siteye daha önce girip girmediğinizi algılayarak karşılama mesajını kontrol etmek için kullanılır.</span></li>
+            <li><strong data-tr="Onay Çerezi (cerezOnay):" data-en="Consent Cookie (cerezOnay):">Onay Çerezi (cerezOnay):</strong> <span data-tr="Çerez uyarı metnini okuyup onayladığınızı sisteme bildirerek popup'ın tekrar çıkmasını engeller." data-en="Prevents the popup from appearing again by informing the system that you have read and approved the cookie warning text.">Çerez uyarı metnini okuyup onayladığınızı sisteme bildirerek popup'ın tekrar çıkmasını engeller.</span></li>
         </ul>
 
-        <h2>Çerezleri Nasıl Kontrol Edebilirsiniz?</h2>
-        <p>Tarayıcınızın ayarlarını değiştirerek çerezleri tamamen reddedebilir veya silebilirsiniz. Ancak zorunlu çerezleri engellemeniz durumunda, sitemizdeki karanlık mod gibi bazı kullanıcı dostu özellikler düzgün çalışmayabilir. Sorularınız için [Resmi E-Posta Adresi] üzerinden bizimle iletişime geçebilirsiniz.</p>
+        <h2 data-tr="Çerezleri Nasıl Kontrol Edebilirsiniz?" data-en="How Can You Control Cookies?">Çerezleri Nasıl Kontrol Edebilirsiniz?</h2>
+        <p data-tr="Tarayıcınızın ayarlarını değiştirerek çerezleri tamamen reddedebilir veya silebilirsiniz. Ancak zorunlu çerezleri engellemeniz durumunda, sitemizdeki karanlık mod gibi bazı kullanıcı dostu özellikler düzgün çalışmayabilir. Sorularınız için hayalagaci.iletisim@gmail.com üzerinden bizimle iletişime geçebilirsiniz." data-en="You can completely reject or delete cookies by changing your browser settings. However, if you block necessary cookies, some user-friendly features like dark mode on our site may not work properly. You can contact us via hayalagaci.iletisim@gmail.com for your questions.">Tarayıcınızın ayarlarını değiştirerek çerezleri tamamen reddedebilir veya silebilirsiniz. Ancak zorunlu çerezleri engellemeniz durumunda, sitemizdeki karanlık mod gibi bazı kullanıcı dostu özellikler düzgün çalışmayabilir. Sorularınız için hayalagaci.iletisim@gmail.com üzerinden bizimle iletişime geçebilirsiniz.</p>
     </div>
 
     <script src="site.js"></script>

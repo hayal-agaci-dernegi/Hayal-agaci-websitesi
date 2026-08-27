@@ -94,6 +94,7 @@
             font-size: 1rem;
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.3s ease; 
         }
 
         .kalem-metin a:hover { color: rgb(134, 220, 84); }
@@ -203,6 +204,7 @@
         body.dark-mode .bilgi-paneli > p { color: #aaa; }
         body.dark-mode .kalem-metin a,
         body.dark-mode .kalem-metin span { color: #ddd; }
+        body.dark-mode .kalem-metin a:hover { color: rgb(134, 220, 84); } /* Gece modunda yeşil efekti düzeltildi */
         body.dark-mode .form-paneli { background: #2a2a2a; }
         body.dark-mode .form-paneli h3 { color: #f5f5f5; }
         body.dark-mode .form-grup label { color: #bbb; }
@@ -230,7 +232,7 @@
         <div class="preloader-ic">
             <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
             <div class="yukleme-cubugu"><div class="ilerleme"></div></div>
-            <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+            <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
         </div>
     </div>
     <script>
@@ -251,21 +253,26 @@
                 <img src="source/ha/ha_logo_lr.png" alt="logo" id="logo">
                 <h1>Hayal Ağacı Derneği</h1>
             </div>
-            <div id="hamburger-btn">
+            
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
+            
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
             </div>
-            <nav>
-                <ul>
-                    <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
-                    <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
-                    <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
-                    <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
-                    <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
-                    <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -275,20 +282,21 @@
 
             <!-- SOL: BİLGİLER -->
             <div class="bilgi-paneli">
-                <h2>Bize Ulaşın</h2>
-                <p>Kitap Bağış İçin <strong>Instagram'dan</strong> Ulaşa Bilirsiniz</p>
+                <h2 data-tr="Bize Ulaşın" data-en="Contact Us">Bize Ulaşın</h2>
+                <p data-tr="Kitap Bağış İçin <strong>Instagram'dan</strong> Ulaşabilirsiniz" data-en="You can contact us via <strong>Instagram</strong> for book donations">Kitap Bağış İçin <strong>Instagram'dan</strong> Ulaşabilirsiniz</p>
+                
                 <div class="iletisim-kalem">
                     <div class="kalem-ikon">📧</div>
                     <div class="kalem-metin">
-                        <strong>E-Posta</strong>
-                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">hayalagaci.iletisim@gmail.com</a>
+                        <strong data-tr="E-Posta" data-en="E-Mail">E-Posta</strong>
+                         <a href="mailto:hayalagaci.iletisim@gmail.com">hayalagaci.iletisim@gmail.com</a>
                     </div>
                 </div>
 
                 <div class="iletisim-kalem">
                     <div class="kalem-ikon">📸</div>
                     <div class="kalem-metin">
-                        <strong>Instagram</strong>
+                        <strong data-tr="Instagram" data-en="Instagram">Instagram</strong>
                         <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" rel="noopener noreferrer">@hayalagacidernegi</a>
                     </div>
                 </div>
@@ -296,70 +304,61 @@
                 <div class="iletisim-kalem">
                     <div class="kalem-ikon">📍</div>
                     <div class="kalem-metin">
-                        <strong>Faaliyet Bölgesi</strong>
-                        <span>Adıyaman ve çevre iller</span>
+                        <strong data-tr="Faaliyet Bölgesi" data-en="Operating Region">Faaliyet Bölgesi</strong>
+                        <span data-tr="Adıyaman ve çevre iller" data-en="Adıyaman and surrounding provinces">Adıyaman ve çevre iller</span>
                     </div>
                 </div>
 
                 <div class="iletisim-kalem">
                     <div class="kalem-ikon">⏰</div>
                     <div class="kalem-metin">
-                        <strong>Yanıt Süresi</strong>
-                        <span>Genellikle 24-48 saat içinde</span>
+                        <strong data-tr="Yanıt Süresi" data-en="Response Time">Yanıt Süresi</strong>
+                        <span data-tr="Genellikle 24-48 saat içinde" data-en="Usually within 24-48 hours">Genellikle 24-48 saat içinde</span>
                     </div>
                 </div>
             </div>
 
             <!-- SAĞ: FORM -->
             <div class="form-paneli">
-                <h3>Mesaj Gönderin</h3>
+                <h3 data-tr="Mesaj Gönderin" data-en="Send a Message">Mesaj Gönderin</h3>
 
-                <!--
-                    WEB3FORMS KURULUMU:
-                    1. https://formspree.io adresine gidin
-                    2. Ücretsiz hesap açın
-                    3. "New Form" oluşturun
-                    4. Size verilen kodu action="" kısmına yapıştırın
-                    Örnek: action="https://formspree.io/f/xyzabcde"
-                -->
                 <form id="hayal-iletisim-formu" action="https://api.web3forms.com/submit" method="POST">
 
                     <div class="form-iki-kolon">
                         <div class="form-grup">
-                            <label for="ad">Ad Soyad *</label>
-                            <input type="text" id="ad" name="ad" placeholder="Ahmet" required>
+                            <label for="ad" data-tr="Ad Soyad *" data-en="Full Name *">Ad Soyad *</label>
+                            <input type="text" id="ad" name="ad" placeholder="Ahmet" data-tr-placeholder="Ahmet" data-en-placeholder="John Doe" required>
                         </div>
                         <div class="form-grup">
-                            <label for="eposta">E-Posta *</label>
-                            <input type="email" id="eposta" name="eposta" placeholder="ornek@mail.com" required>
+                            <label for="eposta" data-tr="E-Posta *" data-en="E-Mail *">E-Posta *</label>
+                            <input type="email" id="eposta" name="eposta" placeholder="ornek@mail.com" data-tr-placeholder="ornek@mail.com" data-en-placeholder="example@mail.com" required>
                         </div>
                     </div>
 
                     <div class="form-grup">
-                        <label for="konu">Konu</label>
+                        <label for="konu" data-tr="Konu" data-en="Subject">Konu</label>
                         <select id="konu" name="konu">
-                            <option value="">Konu seçin...</option>
-                            <option value="kitap-bagisi">Kitap Bağışı</option>
-                            <option value="gonullu">Gönüllü Olmak</option>
-                            <option value="kurumsal">Kurumsal İş Birliği</option>
-                            <option value="kütüphane">Kütüphane Kurulumu</option>
-                            <option value="diger">Diğer</option>
+                            <option value="" data-tr="Konu seçin..." data-en="Select a subject...">Konu seçin...</option>
+                            <option value="kitap-bagisi" data-tr="Kitap Bağışı" data-en="Book Donation">Kitap Bağışı</option>
+                            <option value="gonullu" data-tr="Gönüllü Olmak" data-en="Volunteering">Gönüllü Olmak</option>
+                            <option value="kurumsal" data-tr="Kurumsal İş Birliği" data-en="Corporate Collaboration">Kurumsal İş Birliği</option>
+                            <option value="kütüphane" data-tr="Kütüphane Kurulumu" data-en="Library Installation">Kütüphane Kurulumu</option>
+                            <option value="diger" data-tr="Diğer" data-en="Other">Diğer</option>
                         </select>
                     </div>
 
                     <div class="form-grup">
-                        <label for="mesaj">Mesajınız *</label>
-                        <textarea id="mesaj" name="mesaj" placeholder="Merhaba, size ulaşmak istedim çünkü..." required></textarea>
+                        <label for="mesaj" data-tr="Mesajınız *" data-en="Your Message *">Mesajınız *</label>
+                        <textarea id="mesaj" name="mesaj" placeholder="Merhaba, size ulaşmak istedim çünkü..." data-tr-placeholder="Merhaba, size ulaşmak istedim çünkü..." data-en-placeholder="Hello, I wanted to reach out because..." required></textarea>
                     </div>
 
                     <input type="hidden" name="access_key" value="f885de93-59ed-43ac-a3bb-b12bdf710029">
                     <!-- Formspree spam koruması için gizli alan -->
                     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    <!-- Gönderimden sonra yönlendirilecek sayfa -->
 
-                    <button type="submit" class="gonder-btn">✉️ Mesajı Gönder</button>
+                    <button type="submit" class="gonder-btn" data-tr="✉️ Mesajı Gönder" data-en="✉️ Send Message">✉️ Mesajı Gönder</button>
 
-                    <div id="basari-mesaji">
+                    <div id="basari-mesaji" data-tr="✅ Mesajınız iletildi! En kısa sürede size dönüş yapacağız." data-en="✅ Your message has been sent! We will get back to you as soon as possible.">
                         ✅ Mesajınız iletildi! En kısa sürede size dönüş yapacağız.
                     </div>
 
@@ -370,45 +369,45 @@
     </div>
 
     <!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
-<footer id="iletisim" class="modern-footer">
-    <div class="footer-ust">
-        
-        <div class="footer-marka">
-            <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
-            <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+    <footer id="iletisim" class="modern-footer">
+        <div class="footer-ust">
             
-            <div id="iconlar">
-                <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
-                    <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
-                </a>
-                <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
-    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-</a>
+            <div class="footer-marka">
+                <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
+                <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
+                
+                <div id="iconlar">
+                    <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
+                    </a>
+                    <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
+                </div>
             </div>
-        </div>
-        
-        <div class="footer-linkler">
-            <div class="link-sutun">
-                <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
-                <ul>
-                    <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
-                    <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
-                    <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
-                    <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
-                </ul>
+            
+            <div class="footer-linkler">
+                <div class="link-sutun">
+                    <h3 data-tr="Bilgi & Yasal" data-en="Info & Legal">Bilgi & Yasal</h3>
+                    <ul>
+                        <li><a href="sss.html" data-tr="S.S.S. (Sıkça Sorulan Sorular)" data-en="F.A.Q.">S.S.S. (Sıkça Sorulan Sorular)</a></li>
+                        <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
+                        <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
+                        <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-    </div>
-    
-    <div class="footer-alt">
-        <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
-        
-        <div id="modern-credit">
-            <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
         </div>
-    </div>
-</footer>
+        
+        <div class="footer-alt">
+            <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
+            
+            <div id="modern-credit">
+                <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
+            </div>
+        </div>
+    </footer>
 
     <script src="site.js"></script>
     <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
@@ -418,6 +417,26 @@
     </button>
 
     <script>
+        // Sayfa yüklendiğinde ve dil değiştiğinde Placeholder çevirilerini uygula
+        document.addEventListener("DOMContentLoaded", function() {
+            const dilBtn = document.getElementById('dil-btn');
+            const inputs = document.querySelectorAll('input[data-tr-placeholder], textarea[data-tr-placeholder]');
+            
+            function updatePlaceholders() {
+                let currentLang = localStorage.getItem('ha-dil') || 'tr';
+                inputs.forEach(input => {
+                    input.setAttribute('placeholder', input.getAttribute(`data-${currentLang}-placeholder`));
+                });
+            }
+            
+            if(dilBtn && inputs.length > 0) {
+                updatePlaceholders();
+                dilBtn.addEventListener('click', function() {
+                    setTimeout(updatePlaceholders, 50); // Dil butonuna tıklandıktan hemen sonra tetikle
+                });
+            }
+        });
+
         // URL'de "gonderildi=1" varsa başarı mesajını göster
         if (window.location.search.includes('gonderildi=1')) {
             document.getElementById('basari-mesaji').style.display = 'block';
@@ -426,80 +445,79 @@
     </script>
 
     <script>
-document.getElementById('hayal-iletisim-formu').addEventListener('submit', function(e) {
-    // 1. ADIM: Formun Web3Forms sayfasına gitmesini KESİNLİKLE engelliyoruz
-    e.preventDefault(); 
+        document.getElementById('hayal-iletisim-formu').addEventListener('submit', function(e) {
+            e.preventDefault(); 
 
-    const form = e.target;
-    const mesajKutusu = document.getElementById('mesaj').value.toLocaleLowerCase('tr-TR');
-    const adKutusu = document.getElementById('ad').value.toLocaleLowerCase('tr-TR');
-    
-    // YASAKLI KELİME LİSTESİ
-    const yasakliKelimeler = [
-        "amk", "aq", "mk", "awq", "amq", "sg", "oç", "oc", "pic", "s.g",
-        "amcık", "siktir", "orospu", "fahişe", "pezevenk", "gavat", "göt", "götoş", 
-        "yarrak", "yarak", "dalyarak", "yavşak", "kahpe", "sürtük", "piç", "amına", 
-        "koyim", "koyam", "sokam", "sikeyim", "sikem", "sikim", "sikiş", "ibne", 
-        "ipne", "şerefsiz", "haysiyetsiz", "namussuz", "kanıbozuk", "veledizina", 
-        "puşt", "yavsak", "dangalak", "sik", "am", "orospucoçocuğu", "sikik", "sikme",
-        "fuck", "shit", "bitch", "cunt", "asshole", "motherfucker", "dick", "cock", 
-        "pussy", "whore", "slut", "faggot", "fag", "nigger", "nigga", "retard", 
-        "wanker", "bastard", "douchebag",
-        "cyka", "blyat", "suka", "bliad", "pizdec", "pizdet", "naxui", "hui", 
-        "xuy", "chmo", "pidar", "pidaras", "pidor", "shluha", "сука", "блять", 
-        "пиздец", "хуй", "пидор", "шлюха",
-        "akp", "chp", "mhp", "hdp", "dem", "tayyip", "erdoğan", "kılıçdaroğlu", 
-        "bahçeli", "apo", "feto", "fetö", "pkk", "kürdistan", "faşist", "komünist", 
-        "şeriat", "terörist", "ypg", "dhkpc", "ışid"
-    ]; 
-    
-    // Noktalama işaretlerini sil ve kelimeleri tek tek ayır
-    const temizMesaj = mesajKutusu.replace(/[.,!?]/g, '').split(/\s+/);
-    const temizAd = adKutusu.replace(/[.,!?]/g, '').split(/\s+/);
-    
-    const mesajdaVarMi = temizMesaj.some(kelime => yasakliKelimeler.includes(kelime));
-    const addaVarMi = temizAd.some(kelime => yasakliKelimeler.includes(kelime));
+            const form = e.target;
+            const mesajKutusu = document.getElementById('mesaj').value.toLocaleLowerCase('tr-TR');
+            const adKutusu = document.getElementById('ad').value.toLocaleLowerCase('tr-TR');
+            const mevcutDil = localStorage.getItem('ha-dil') || 'tr';
+            
+            // YASAKLI KELİME LİSTESİ
+            const yasakliKelimeler = [
+                "amk", "aq", "mk", "awq", "amq", "sg", "oç", "oc", "pic", "s.g",
+                "amcık", "siktir", "orospu", "fahişe", "pezevenk", "gavat", "göt", "götoş", 
+                "yarrak", "yarak", "dalyarak", "yavşak", "kahpe", "sürtük", "piç", "amına", 
+                "koyim", "koyam", "sokam", "sikeyim", "sikem", "sikim", "sikiş", "ibne", 
+                "ipne", "şerefsiz", "haysiyetsiz", "namussuz", "kanıbozuk", "veledizina", 
+                "puşt", "yavsak", "dangalak", "sik", "am", "orospucoçocuğu", "sikik", "sikme",
+                "fuck", "shit", "bitch", "cunt", "asshole", "motherfucker", "dick", "cock", 
+                "pussy", "whore", "slut", "faggot", "fag", "nigger", "nigga", "retard", 
+                "wanker", "bastard", "douchebag",
+                "cyka", "blyat", "suka", "bliad", "pizdec", "pizdet", "naxui", "hui", 
+                "xuy", "chmo", "pidar", "pidaras", "pidor", "shluha", "сука", "блять", 
+                "пиздец", "хуй", "пидор", "шлюха",
+                "akp", "chp", "mhp", "hdp", "dem", "tayyip", "erdoğan", "kılıçdaroğlu", 
+                "bahçeli", "apo", "feto", "fetö", "pkk", "kürdistan", "faşist", "komünist", 
+                "şeriat", "terörist", "ypg", "dhkpc", "ışid"
+            ]; 
+            
+            const temizMesaj = mesajKutusu.replace(/[.,!?]/g, '').split(/\s+/);
+            const temizAd = adKutusu.replace(/[.,!?]/g, '').split(/\s+/);
+            
+            const mesajdaVarMi = temizMesaj.some(kelime => yasakliKelimeler.includes(kelime));
+            const addaVarMi = temizAd.some(kelime => yasakliKelimeler.includes(kelime));
 
-    if (mesajdaVarMi || addaVarMi) {
-        alert("Lütfen derneğimize yakışır, daha nazik ve uygun bir dil kullanınız. Mesajınız gönderilmedi.");
-        return false;
-    }
+            if (mesajdaVarMi || addaVarMi) {
+                let alertMesaj = mevcutDil === 'en' 
+                    ? "Please use appropriate language. Your message has not been sent." 
+                    : "Lütfen derneğimize yakışır, daha nazik ve uygun bir dil kullanınız. Mesajınız gönderilmedi.";
+                alert(alertMesaj);
+                return false;
+            }
 
-    // 2. ADIM: Mesaj temizse butonu meşgule al
-    const btn = form.querySelector('.gonder-btn');
-    const orijinalMetin = btn.innerHTML;
-    btn.innerHTML = "⌛ Gönderiliyor...";
-    btn.style.opacity = "0.7";
-    btn.style.pointerEvents = "none";
+            const btn = form.querySelector('.gonder-btn');
+            const orijinalMetin = btn.innerHTML;
+            
+            btn.innerHTML = mevcutDil === 'en' ? "⌛ Sending..." : "⌛ Gönderiliyor...";
+            btn.style.opacity = "0.7";
+            btn.style.pointerEvents = "none";
 
-    // 3. ADIM: Verileri arka planda Web3Forms'a gönder
-    const formData = new FormData(form);
+            const formData = new FormData(form);
 
-    fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-    })
-    .then(async (response) => {
-        if (response.status === 200) {
-            // 4. ADIM: BAŞARILI! BİZİM KENDİ TEŞEKKÜR SAYFAMIZA YÖNLENDİR
-            window.location.href = "tesekkur.html";
-        } else {
-            alert("Sunucu kaynaklı bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
-            btn.innerHTML = orijinalMetin;
-            btn.style.opacity = "1";
-            btn.style.pointerEvents = "auto";
-        }
-    })
-    .catch(error => {
-        alert("Bağlantı hatası. Lütfen internetinizi kontrol edin.");
-        btn.innerHTML = orijinalMetin;
-        btn.style.opacity = "1";
-        btn.style.pointerEvents = "auto";
-    });
-});
-</script>
-
-</body>
-</html>
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async (response) => {
+                if (response.status === 200) {
+                    window.location.href = "tesekkur.html";
+                } else {
+                    let serverHata = mevcutDil === 'en' ? "A server error occurred. Please try again later." : "Sunucu kaynaklı bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+                    alert(serverHata);
+                    btn.innerHTML = orijinalMetin;
+                    btn.style.opacity = "1";
+                    btn.style.pointerEvents = "auto";
+                }
+            })
+            .catch(error => {
+                let baglantiHata = mevcutDil === 'en' ? "Connection error. Please check your internet." : "Bağlantı hatası. Lütfen internetinizi kontrol edin.";
+                alert(baglantiHata);
+                btn.innerHTML = orijinalMetin;
+                btn.style.opacity = "1";
+                btn.style.pointerEvents = "auto";
+            });
+        });
+    </script>
 </body>
 </html>

@@ -27,7 +27,6 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            /* Header'ın altında kalmaması için padding-top */
             padding-top: 150px; 
             padding-bottom: 80px;
             min-height: 80vh;
@@ -54,7 +53,6 @@
             gap: 15px;
         }
 
-        /* Akordeon Kutu Tasarımı */
         .sss-ozel-kutu {
             background-color: #fff;
             padding: 20px;
@@ -65,19 +63,16 @@
             border: 1px solid transparent;
         }
 
-        /* Mouse ile üzerine gelince */
         .sss-ozel-kutu:hover {
             box-shadow: 0 6px 20px rgba(134, 220, 84, 0.15);
             border-color: rgba(134, 220, 84, 0.3);
         }
 
-        /* Kutu Açıkken (Open State) */
         .sss-ozel-kutu[open] {
             background-color: #fafafa;
             border-color: rgba(134, 220, 84, 0.5);
         }
 
-        /* Soru Başlığı */
         .sss-ozel-kutu summary {
             font-weight: bold;
             font-size: 1.3rem;
@@ -93,19 +88,27 @@
             display: none;
         }
 
+        /* --- ARTI SİMGESİ VE RENK GEÇİŞİ BAŞLANGICI --- */
         .sss-ozel-kutu summary::after {
             content: '+'; 
             font-size: 1.5rem;
             font-weight: bold;
-            transition: transform 0.3s ease;
-            color: #333;
+            transition: transform 0.3s ease, color 0.3s ease; /* Renk geçişini ekledik */
+            color: #333; /* Normal durumu (Aydınlık mod) */
         }
 
+        /* Mouse kutunun üzerindeyken artı yeşil olur */
+        .sss-ozel-kutu:hover summary::after {
+            color: rgb(134, 220, 84); 
+        }
+
+        /* Kutu tıklandığında (açıldığında) artı X şeklini alır ve yeşil kalır */
         .sss-ozel-kutu[open] summary::after {
             transform: rotate(45deg);
+            color: rgb(134, 220, 84); 
         }
+        /* --- ARTI SİMGESİ BİTİŞİ --- */
 
-        /* Cevap Metni */
         .sss-ozel-cevap {
             margin-top: 15px;
             color: #555;
@@ -134,7 +137,7 @@
             box-shadow: 0 4px 20px rgba(134, 220, 84, 0.2);
         }
 
-        /* === KARANLIK MOD UYUMU (S.S.S. KUTULARI İÇİN) === */
+        /* === KARANLIK MOD UYUMU === */
         body.dark-mode .sss-ozel-bolum { background-color: #121212; }
         body.dark-mode .sss-ozel-baslik { color: #f5f5f5; }
         body.dark-mode .sss-ozel-altbaslik { color: #aaa; }
@@ -153,24 +156,31 @@
         }
         body.dark-mode .sss-ozel-kutu:hover { border-color: rgb(134, 220, 84); }
         body.dark-mode .sss-ozel-kutu[open] { background-color: #2a2a2a; }
+        
+        /* Karanlık modda artının normal rengi beyazımsı olsun */
         body.dark-mode .sss-ozel-kutu summary::after { color: #f5f5f5; }
+        
+        /* Karanlık modda da hover (üstüne gelme) ve open (açık) durumunda artı yeşil olsun */
+        body.dark-mode .sss-ozel-kutu:hover summary::after,
+        body.dark-mode .sss-ozel-kutu[open] summary::after {
+            color: rgb(134, 220, 84);
+        }
+
         body.dark-mode .sss-ozel-cevap { color: #ccc; border-top-color: #444; }
     </style>
 </head>
 <body>
 
-    <!-- YÜKLEME EKRANI -->
     <div id="preloader">
         <div class="preloader-ic">
             <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Yükleniyor" class="yukleme-logo">
             <div class="yukleme-cubugu">
                 <div class="ilerleme"></div>
             </div>
-            <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+            <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
         </div>
     </div>
 
-    <!-- ÜST MENÜ -->
     <header>
         <div id="header0">
             <div id="isim_logo">
@@ -178,91 +188,94 @@
                 <h1>Hayal Ağacı Derneği</h1>
             </div>
 
-            <div id="hamburger-btn">
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
+
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
                 <span class="cizgi"></span>
             </div>
-
-            <nav>
-                <ul>
-                    <a href="index.html"><li>Anasayfa</li></a>
-                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
-                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
-                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
-                    <a href="iletisim.html"><li>İletişim</li></a>
-                </ul>
-            </nav>
         </div>
     </header>
     
-    <!-- SSS İÇERİK ALANI -->
     <section class="sss-ozel-bolum">
-        <h2 class="sss-ozel-baslik">Sıkça Sorulan Sorular</h2>
-        <p class="sss-ozel-altbaslik">Derneğimiz, kütüphane projelerimiz ve bağış süreçleri hakkında merak ettiğiniz cevaplar.</p>
+        <h2 class="sss-ozel-baslik" data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
+        <p class="sss-ozel-altbaslik" data-tr="Derneğimiz, kütüphane projelerimiz ve bağış süreçleri hakkında merak ettiğiniz cevaplar." data-en="Answers you wonder about our association, library projects, and donation processes.">Derneğimiz, kütüphane projelerimiz ve bağış süreçleri hakkında merak ettiğiniz cevaplar.</p>
         
         <div style="text-align: center; margin-bottom: 40px;">
-            <input type="text" id="sss-arama-input" onkeyup="benzerSoruAra()" placeholder="🔍 Anahtar kelime yazın (Örn: kargo, kitap, gönüllü)...">
+            <input type="text" id="sss-arama-input" onkeyup="benzerSoruAra()" placeholder="🔍 Anahtar kelime yazın (Örn: kargo, kitap, gönüllü)..." data-tr-placeholder="🔍 Anahtar kelime yazın (Örn: kargo, kitap, gönüllü)..." data-en-placeholder="🔍 Type a keyword (E.g: shipping, book, volunteer)...">
         </div>
 
-        <div id="sss-yok-mesaji" style="display: none; text-align: center; color: #d9534f; background: #fdf7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px dashed #d9534f;">
+        <div id="sss-yok-mesaji" style="display: none; text-align: center; color: #d9534f; background: #fdf7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px dashed #d9534f;" data-tr="❌ Bu kelimeye uygun bir soru bulamadık. Lütfen başka bir kelime deneyin." data-en="❌ We couldn't find a question matching this keyword. Please try another word.">
             ❌ Bu kelimeye uygun bir soru bulamadık. Lütfen başka bir kelime deneyin.
         </div>
         
         <div class="sss-ozel-listesi">
 
             <details class="sss-ozel-kutu">
-                <summary>Hangi tür kitapları bağışlayabilirim?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Hangi tür kitapları bağışlayabilirim?" data-en="What kind of books can I donate?">Hangi tür kitapları bağışlayabilirim?</summary>
+                <div class="sss-ozel-cevap" data-tr="Öncelikli olarak ilkokul, ortaokul ve lise seviyesine uygun okuma kitapları, hikayeler, romanlar ve güncel müfredata uygun test kitapları kabul ediyoruz. Ayrıca boya kalemi, defter gibi temel kırtasiye malzemeleri de gönderebilirsiniz." data-en="We primarily accept reading books, stories, novels suitable for primary, middle, and high school levels, and test books in line with the current curriculum. You can also send basic stationery materials such as crayons and notebooks.">
                     Öncelikli olarak ilkokul, ortaokul ve lise seviyesine uygun okuma kitapları, hikayeler, romanlar ve güncel müfredata uygun test kitapları kabul ediyoruz. Ayrıca boya kalemi, defter gibi temel kırtasiye malzemeleri de gönderebilirsiniz.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>İkinci el kitap kabul ediyor musunuz?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="İkinci el kitap kabul ediyor musunuz?" data-en="Do you accept second-hand books?">İkinci el kitap kabul ediyor musunuz?</summary>
+                <div class="sss-ozel-cevap" data-tr="Evet, kabul ediyoruz. Ancak bu kitapları doğrudan deprem bölgesindeki çocuklarımıza ulaştıracağımız için kitapların çok yıpranmamış, sayfalarının eksiksiz ve kullanılabilir durumda olmasına özen göstermenizi rica ederiz." data-en="Yes, we do. However, since we will deliver these books directly to our children in the earthquake zone, we kindly ask you to ensure that the books are not too worn out, their pages are complete, and they are in usable condition.">
                     Evet, kabul ediyoruz. Ancak bu kitapları doğrudan deprem bölgesindeki çocuklarımıza ulaştıracağımız için kitapların çok yıpranmamış, sayfalarının eksiksiz ve kullanılabilir durumda olmasına özen göstermenizi rica ederiz.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Kargo gönderim ücretini kim karşılıyor?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Kargo gönderim ücretini kim karşılıyor?" data-en="Who covers the shipping cost?">Kargo gönderim ücretini kim karşılıyor?</summary>
+                <div class="sss-ozel-cevap" data-tr="Derneğimizde kargo gönderim ücretleri gönderici tarafından karşılanmaktadır." data-en="In our association, shipping costs are covered by the sender.">
                     Derneğimizde kargo gönderim ücretleri gönderici tarafından karşılanmaktadır.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Maddi bağış (para yardımı) kabul ediyor musunuz?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Maddi bağış (para yardımı) kabul ediyor musunuz?" data-en="Do you accept financial donations?">Maddi bağış (para yardımı) kabul ediyor musunuz?</summary>
+                <div class="sss-ozel-cevap" data-tr="Hayal Ağacı Derneği olarak önceliğimiz ayni (kitap/kırtasiye) yardımlardır. Resmi maddi bağış süreçleri ve hesap bilgilerimiz için lütfen doğrudan Instagram adresimiz üzerinden veya e-posta yoluyla bizimle iletişime geçiniz." data-en="As Hayal Ağacı Association, our priority is in-kind (book/stationery) aid. For official financial donation processes and our account information, please contact us directly via our Instagram address or by e-mail.">
                     Hayal Ağacı Derneği olarak önceliğimiz ayni (kitap/kırtasiye) yardımlardır. Resmi maddi bağış süreçleri ve hesap bilgilerimiz için lütfen doğrudan Instagram adresimiz üzerinden veya e-posta yoluyla bizimle iletişime geçiniz.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Size nasıl gönüllü olarak katılabilirim?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Size nasıl gönüllü olarak katılabilirim?" data-en="How can I join you as a volunteer?">Size nasıl gönüllü olarak katılabilirim?</summary>
+                <div class="sss-ozel-cevap" data-tr="Kütüphane kurulum aşamalarında sahada çalışmak, kitapları tasnif etmek veya arka planda ekibimize destek olmak isterseniz, iletişim bölümündeki e-posta adresimizden bize ulaşabilir veya gönüllü başvuru formumuzu doldurabilirsiniz." data-en="If you would like to work in the field during the library installation phases, sort books, or support our team in the background, you can contact us from our e-mail address in the contact section or fill out our volunteer application form.">
                     Kütüphane kurulum aşamalarında sahada çalışmak, kitapları tasnif etmek veya arka planda ekibimize destek olmak isterseniz, iletişim bölümündeki e-posta adresimizden bize ulaşabilir veya gönüllü başvuru formumuzu doldurabilirsiniz.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Kütüphaneler hangi bölgelerde açılıyor?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Kütüphaneler hangi bölgelerde açılıyor?" data-en="In which regions are libraries opened?">Kütüphaneler hangi bölgelerde açılıyor?</summary>
+                <div class="sss-ozel-cevap" data-tr="Şu ana kadar çalışmalarımızı ağırlıklı olarak Adıyaman ilinde yürüttük. Deprem bölgesindeki konteyner kentler, köy okulları ve ilçe okullarını önceliklendiriyoruz. İlerleyen süreçte diğer deprem illerine de ulaşmayı hedefliyoruz." data-en="So far, we have carried out our work mainly in the province of Adıyaman. We prioritize container cities, village schools, and district schools in the earthquake zone. In the upcoming period, we aim to reach other earthquake-affected provinces.">
                     Şu ana kadar çalışmalarımızı ağırlıklı olarak Adıyaman ilinde yürüttük. Deprem bölgesindeki konteyner kentler, köy okulları ve ilçe okullarını önceliklendiriyoruz. İlerleyen süreçte diğer deprem illerine de ulaşmayı hedefliyoruz.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Derneğin resmi tüzel kişiliği var mı?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Derneğin resmi tüzel kişiliği var mı?" data-en="Does the association have an official legal entity?">Derneğin resmi tüzel kişiliği var mı?</summary>
+                <div class="sss-ozel-cevap" data-tr="Evet, Hayal Ağacı Derneği resmi olarak tescillenmiş bir sivil toplum kuruluşudur. Tüm faaliyetlerimiz yasal mevzuat çerçevesinde yürütülmekte ve hesaplarımız şeffaf biçimde tutulmaktadır." data-en="Yes, Hayal Ağacı Association is an officially registered non-governmental organization. All our activities are carried out within the framework of legal regulations and our accounts are kept transparently.">
                     Evet, Hayal Ağacı Derneği resmi olarak tescillenmiş bir sivil toplum kuruluşudur. Tüm faaliyetlerimiz yasal mevzuat çerçevesinde yürütülmekte ve hesaplarımız şeffaf biçimde tutulmaktadır.
                 </div>
             </details>
 
             <details class="sss-ozel-kutu">
-                <summary>Kurumsal olarak nasıl destek olabiliriz?</summary>
-                <div class="sss-ozel-cevap">
+                <summary data-tr="Kurumsal olarak nasıl destek olabiliriz?" data-en="How can we support corporately?">Kurumsal olarak nasıl destek olabiliriz?</summary>
+                <div class="sss-ozel-cevap" data-tr="Şirketinizin sosyal sorumluluk projeleri kapsamında bizimle iş birliği yapabilirsiniz. Kitap bağışı, kütüphane sponsorluğu veya gönüllü gün organizasyonu gibi konularda hayalagaci.iletisim@gmail.com adresine yazarak detaylı bilgi alabilirsiniz." data-en="You can collaborate with us within the scope of your company's social responsibility projects. You can get detailed information by writing to hayalagaci.iletisim@gmail.com on issues such as book donation, library sponsorship, or volunteer day organization.">
                     Şirketinizin sosyal sorumluluk projeleri kapsamında bizimle iş birliği yapabilirsiniz. Kitap bağışı, kütüphane sponsorluğu veya gönüllü gün organizasyonu gibi konularda hayalagaci.iletisim@gmail.com adresine yazarak detaylı bilgi alabilirsiniz.
                 </div>
             </details>
@@ -283,8 +296,8 @@
                         <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
                     </a>
                     <a href="mailto:hayalagaci.iletisim@gmail.com" class="footer-ikon-link">
-    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-</a>
+                        <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
+                    </a>
                 </div>
             </div>
             
@@ -294,8 +307,7 @@
                     <ul>
                         <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
                         <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
-                        <!-- Pazartesi gününe kadar tıklanması JavaScript ile engellenmiştir -->
-                        <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
+                        <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü (Yakında)" data-en="Association Bylaws (Soon)" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
                     </ul>
                 </div>
             </div>
@@ -321,14 +333,43 @@
 
     <!-- SSS ARAMA MOTORU SCRIPT'I -->
     <script>
+        // Placeholder çevirisi için ek kontrol
+        document.addEventListener("DOMContentLoaded", function() {
+            const dilBtn = document.getElementById('dil-btn');
+            const aramaInput = document.getElementById('sss-arama-input');
+            
+            if(dilBtn && aramaInput) {
+                // Sayfa ilk yüklendiğinde kontrol et
+                let mevcutDil = localStorage.getItem('ha-dil') || 'tr';
+                if(mevcutDil === 'en') {
+                    aramaInput.setAttribute('placeholder', aramaInput.getAttribute('data-en-placeholder'));
+                }
+                
+                // Butona tıklandığında değişimi yakala
+                dilBtn.addEventListener('click', function() {
+                    let yeniDil = localStorage.getItem('ha-dil'); // Dil fonksiyonu çalıştığı için yeni dili çekeriz
+                    if(yeniDil === 'en') {
+                        aramaInput.setAttribute('placeholder', aramaInput.getAttribute('data-en-placeholder'));
+                    } else {
+                        aramaInput.setAttribute('placeholder', aramaInput.getAttribute('data-tr-placeholder'));
+                    }
+                });
+            }
+        });
+
         function benzerSoruAra() {
             let aranan = document.getElementById("sss-arama-input").value.toLocaleLowerCase('tr-TR');
             let kutular = document.querySelectorAll(".sss-ozel-kutu");
             let bulunanSayisi = 0;
 
             kutular.forEach(function(kutu) {
-                let soru = kutu.querySelector("summary").innerText.toLocaleLowerCase('tr-TR');
-                let cevap = kutu.querySelector(".sss-ozel-cevap").innerText.toLocaleLowerCase('tr-TR');
+                // Hem Türkçe hem İngilizce içeriklerde arama yapabilmesi için düzeltme
+                let soruElementi = kutu.querySelector("summary");
+                let cevapElementi = kutu.querySelector(".sss-ozel-cevap");
+                
+                // Mevcut görünen metin üzerinden arama yapar
+                let soru = soruElementi.innerText.toLocaleLowerCase('tr-TR');
+                let cevap = cevapElementi.innerText.toLocaleLowerCase('tr-TR');
 
                 if (soru.includes(aranan) || cevap.includes(aranan)) {
                     kutu.style.display = "block"; 

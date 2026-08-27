@@ -287,6 +287,143 @@
             transform: translateY(-2px);
         }
 
+        /* ── MODERN FOOTER TASARIM KODLARI ── */
+        .modern-footer {
+            background-color: rgb(248, 252, 246);
+            color: #333;
+            padding: 60px 5% 20px 5%;
+            border-top: 4px solid rgb(134, 220, 84);
+            font-family: inherit;
+        }
+        .footer-ust {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-marka {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+        }
+        .footer-marka h2 {
+            font-size: 1.8rem;
+            color: rgb(27, 27, 27);
+            margin: 0 0 15px 0;
+        }
+        .footer-marka p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        .footer-marka #iconlar {
+            display: flex;
+            gap: 20px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            width: fit-content;
+            margin: 0;
+            background: rgba(134, 220, 84, 0.15) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(134, 220, 84, 0.4) !important;
+            box-shadow: 0 6px 20px rgba(134, 220, 84, 0.15);
+        }
+        .footer-ikon-link { transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center;}
+        .footer-ikon-link:hover { transform: scale(1.08); }
+        .footer-ikon { width: 32px; height: 32px; }
+        .footer-linkler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            flex: 2;
+            justify-content: flex-end;
+        }
+        .link-sutun {
+            min-width: 200px;
+        }
+        .link-sutun h3 {
+            font-size: 1.25rem;
+            color: rgb(27, 27, 27);
+            margin: 0 0 20px 0;
+            position: relative;
+            padding-bottom: 10px;
+            width: max-content;
+        }
+        .link-sutun h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: rgb(134, 220, 84);
+            border-radius: 2px;
+        }
+        .link-sutun ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link-sutun ul li a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .link-sutun ul li a:hover {
+            color: rgb(134, 220, 84);
+            transform: translateX(5px);
+        }
+        .footer-alt {
+            border-top: 1px solid #ddd;
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.95rem;
+            color: #777;
+        }
+        .footer-alt p {
+            margin: 0;
+            font-weight: bold;
+        }
+        #modern-credit {
+            background: rgba(134, 220, 84, 0.1);
+            padding: 8px 18px;
+            border-radius: 20px;
+            color: #444;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(134, 220, 84, 0.3);
+        }
+        #modern-credit span {
+            color: rgb(100, 180, 60);
+            font-weight: bold;
+        }
+
+        /* Dark Mode Uyumu */
+        body.dark-mode .modern-footer { background-color: #161616; border-top-color: rgb(134, 220, 84); }
+        body.dark-mode .modern-footer h2, body.dark-mode .link-sutun h3 { color: #f5f5f5; }
+        body.dark-mode .footer-marka p, body.dark-mode .link-sutun ul li a { color: #aaa; }
+        body.dark-mode .link-sutun ul li a:hover { color: rgb(134, 220, 84); }
+        body.dark-mode .footer-alt { border-top-color: #333; color: #888; }
+        body.dark-mode #modern-credit { background: rgba(255,255,255,0.05); color: #bbb; border-color: #444; }
+        body.dark-mode #modern-credit span { color: rgb(134, 220, 84); }
+        body.dark-mode .footer-marka #iconlar {
+            background: rgba(134, 220, 84, 0.1) !important;
+            border-color: rgba(134, 220, 84, 0.3) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
         /* ── MOBİL UYUM ─────────────────────────── */
         @media (max-width: 900px) {
             .detay-hero {
@@ -321,6 +458,8 @@
             .galeri-izgara {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .footer-linkler { justify-content: flex-start; gap: 40px; }
+            .footer-alt { flex-direction: column; text-align: center; justify-content: center; }
         }
 
         @media (max-width: 600px) {
@@ -338,7 +477,7 @@
         <div class="yukleme-cubugu">
             <div class="ilerleme"></div>
         </div>
-        <p class="yukleme-metni">Hayaller Yeşeriyor...</p>
+        <p class="yukleme-metni" data-tr="Hayaller Yeşeriyor..." data-en="Dreams are Sprouting...">Hayaller Yeşeriyor...</p>
     </div>
 </div>
 
@@ -369,22 +508,25 @@
                 <h1>Hayal Ağacı Derneği</h1>
             </div>
 
-            <div id="hamburger-btn">
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-    <span class="cizgi"></span>
-</div>
+            <div class="nav-kontrol">
+                <nav>
+                    <ul>
+                        <a href="index.html"><li data-tr="Anasayfa" data-en="Home">Anasayfa</li></a>
+                        <a href="index.html#hakkimizda"><li data-tr="Hakkımızda" data-en="About Us">Hakkımızda</li></a>
+                        <a href="index.html#hizmetlerimiz"><li data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</li></a>
+                        <a href="index.html#projelerimiz"><li data-tr="Projelerimiz" data-en="Our Projects">Projelerimiz</li></a>
+                        <a href="sss.html"><li data-tr="S.S.S." data-en="F.A.Q.">S.S.S.</li></a>
+                        <a href="iletisim.html"><li data-tr="İletişim" data-en="Contact">İletişim</li></a>
+                    </ul>
+                </nav>
+                <button id="dil-btn">EN</button>
+            </div>
 
-            <nav>
-                <ul>
-                    <a href="index.html"><li>Anasayfa</li></a>
-                    <a href="index.html#hakkimizda"><li>Hakkımızda</li></a>
-                    <a href="index.html#hizmetlerimiz"><li>Hizmetlerimiz</li></a>
-                    <a href="index.html#projelerimiz"><li>Projelerimiz</li></a>
-                    <a href="sss.html"><li>S.S.S.</li></a>
-                    <a href="iletisim.html"><li>İletişim</li></a>
-                </ul>
-            </nav>
+            <div id="hamburger-btn" aria-label="Menüyü Aç veya Kapat" role="button" tabindex="0">
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+                <span class="cizgi"></span>
+            </div>
         </div>
     </header>
 
@@ -393,18 +535,18 @@
             <img src="source/ha/resim_eklenecek.jpg" alt="K1 Konteyner Kent">
         </div>
         <div class="detay-hero-icerik">
-            <span class="detay-etiket">Adıyaman · K1 Konteyner Kent</span>
-            <h1 class="detay-baslik">K1 Konteyner Kent Kütüphanesi</h1>
+            <span class="detay-etiket" data-tr="Adıyaman · K1 Konteyner Kent" data-en="Adıyaman · K1 Container City">Adıyaman · K1 Konteyner Kent</span>
+            <h1 class="detay-baslik" data-tr="K1 Konteyner Kent Kütüphanesi" data-en="K1 Container City Library">K1 Konteyner Kent Kütüphanesi</h1>
 
             <a href="HARİTA_LINKINI_BURAYA_YAZIN" target="_blank" class="konum-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                 </svg>
-                Haritada Gör
+                <span data-tr="Haritada Gör" data-en="View on Map">Haritada Gör</span>
             </a>
 
-            <p class="detay-aciklama">
+            <p class="detay-aciklama" data-tr="Konteyner kentteki yaşam alanlarını kitaplarla güzelleştiriyor, çocuklarımızın her koşulda eğitime ulaşabilmesi için destek olmaya devam ediyoruz." data-en="We beautify the living spaces in the container city with books and continue to support our children so they can access education under all circumstances.">
                 Konteyner kentteki yaşam alanlarını kitaplarla güzelleştiriyor, çocuklarımızın her koşulda eğitime ulaşabilmesi için destek olmaya devam ediyoruz.
             </p>
         </div>
@@ -412,14 +554,14 @@
 
     
     <div class="hikaye-bolumu">
-        <h3>Kütüphanemizin Amacı</h3>
-        <p>Deprem sonrası zorlu koşullarda eğitimden uzak kalan çocuklarımız için K1 Konteyner Kent'te kurduğumuz bu kütüphane, onların yeni umut kapısı oldu. Burası sadece kitap okudukları bir yer değil, aynı zamanda sosyalleştikleri ve hayal kurdukları sıcacık bir alan.</p>
-        <p>Açıklama metninin devamını veya kütüphaneyle ilgili eklemek istediğiniz diğer detayları buraya yazabilirsiniz...</p>
+        <h3 data-tr="Kütüphanemizin Amacı" data-en="Purpose of Our Library">Kütüphanemizin Amacı</h3>
+        <p data-tr="Deprem sonrası zorlu koşullarda eğitimden uzak kalan çocuklarımız için K1 Konteyner Kent'te kurduğumuz bu kütüphane, onların yeni umut kapısı oldu. Burası sadece kitap okudukları bir yer değil, aynı zamanda sosyalleştikleri ve hayal kurdukları sıcacık bir alan." data-en="This library we established in K1 Container City for our children who stayed away from education in difficult conditions after the earthquake has become their new door of hope. This is not only a place where they read books, but also a warm space where they socialize and dream.">Deprem sonrası zorlu koşullarda eğitimden uzak kalan çocuklarımız için K1 Konteyner Kent'te kurduğumuz bu kütüphane, onların yeni umut kapısı oldu. Burası sadece kitap okudukları bir yer değil, aynı zamanda sosyalleştikleri ve hayal kurdukları sıcacık bir alan.</p>
+        <p data-tr="Açıklama metninin devamını veya kütüphaneyle ilgili eklemek istediğiniz diğer detayları buraya yazabilirsiniz..." data-en="You can write the rest of the description text or other details you want to add about the library here...">Açıklama metninin devamını veya kütüphaneyle ilgili eklemek istediğiniz diğer detayları buraya yazabilirsiniz...</p>
     </div>
 
     <div class="galeri-bolumu">
         <div class="galeri-konteyner">
-            <h3>Fotoğraflar</h3>
+            <h3 data-tr="Fotoğraflar" data-en="Photos">Fotoğraflar</h3>
             <div class="galeri-izgara">
                 <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/ha/resim_eklenecek.jpg" alt=""></div>
                 <div class="galeri-kare" onclick="resmiBuyut(this)"><img src="source/ha/resim_eklenecek.jpg" alt=""></div>
@@ -440,61 +582,12 @@
     </div>
 
     <div class="geri-don-sarici">
-        <a href="kutuphane.kurulumu.html" class="geri-don-btn">
+        <a href="kutuphane.kurulumu.html" class="geri-don-btn" data-tr="← Tüm Kütüphanelere Dön" data-en="← Back to All Libraries">
             ← Tüm Kütüphanelere Dön
         </a>
     </div>
 
     <!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
-<footer id="iletisim" class="modern-footer">
-    <div class="footer-ust">
-        
-        <div class="footer-marka">
-            <h2 data-tr="İletişim" data-en="Contact">İletişim</h2>
-            <p data-tr="Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz." data-en="You can use our official channels below to contact our association directly.">Derneğimizle doğrudan iletişime geçmek için aşağıdaki resmi kanallarımızı kullanabilirsiniz.</p>
-            
-            <div id="iconlar">
-                <a href="https://www.instagram.com/hayalagacidernegi/" target="_blank" class="footer-ikon-link">
-                    <img class="footer-ikon" src="source/insta_icon.png" alt="Instagram">
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hayalagaci.iletisim@gmail.com" target="_blank" class="footer-ikon-link">
-                    <img class="footer-ikon" src="source/gmail_icon.png" alt="Gmail">
-                </a>
-            </div>
-        </div>
-        
-        <div class="footer-linkler">
-            <div class="link-sutun">
-                <h3 data-tr="Destek & Faaliyetler" data-en="Support & Activities">Destek & Faaliyetler</h3>
-                <ul>
-                    <li><a href="kutuphane.kurulumu.html" data-tr="Kütüphanelerimiz" data-en="Our Libraries">Kütüphanelerimiz</a></li>
-                    <li><a href="galeri.html" data-tr="Galeri" data-en="Gallery">Galeri</a></li>
-                    <li><a href="ekip.html" data-tr="Ekibimiz" data-en="Our Team">Ekibimiz</a></li>
-                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeXI-T2nXzO6ZOW5DndTx9CkO-8ro7R8r-aQfTdxt34Hbq1Rw/viewform" target="_blank" data-tr="Gönüllü Ol" data-en="Volunteer">Gönüllü Ol</a></li>
-                </ul>
-            </div>
-            
-            <div class="link-sutun">
-                <h3 data-tr="Yasal" data-en="Legal">Yasal</h3>
-                <ul>
-                    <li><a href="kvkk-gizlilik.html" data-tr="KVKK ve Gizlilik Politikası" data-en="Privacy Policy">KVKK ve Gizlilik Politikası</a></li>
-                    <li><a href="cerez-politikasi.html" data-tr="Çerez Politikası" data-en="Cookie Policy">Çerez Politikası</a></li>
-                    <!-- Pazartesi gününe kadar tıklanması JavaScript ile engellenmiştir -->
-                    <li><a href="javascript:void(0)" data-tr="Dernek Tüzüğü" data-en="Association Bylaws" style="opacity: 0.5; cursor: not-allowed;" title="Çok yakında eklenecektir">Dernek Tüzüğü (Yakında)</a></li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-    
-    <div class="footer-alt">
-        <p data-tr="Hayal Ağacı Derneği &copy; Tüm hakları saklıdır" data-en="Hayal Ağacı Association &copy; All rights reserved">Hayal Ağacı Derneği &copy; Tüm hakları saklıdır</p>
-        
-        <div id="modern-credit">
-            <span data-tr="Geliştiriciler:" data-en="Developed by:">Geliştiriciler:</span> <span>Onur TURAN</span> & <span>Enes SAYGILIER</span>
-        </div>
-    </div>
-</footer><!-- TAMAMEN YENİLENMİŞ MODERN FOOTER BÖLÜMÜ -->
 <footer id="iletisim" class="modern-footer">
     <div class="footer-ust">
         
@@ -535,7 +628,6 @@
     </div>
 </footer>
 
-    <script src="site.js"></script>
     <button id="basa-don-btn" onclick="basaDon()" title="Yukarı Çık">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 19V5M5 12l7-7 7 7"/>
@@ -682,6 +774,3 @@
     </script>
 </body>
 </html>
-
-<script src="site.js"></script>
-</body>

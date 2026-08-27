@@ -6,13 +6,10 @@
     <meta name="description" content="İnternet bağlantısı yok - Hayal Ağacı Derneği">
     <title>Bağlantı Koptu - Hayal Ağacı Derneği</title>
     
-    <!-- Sekmedeki dünya simgesi yerine logonuzun çıkmasını sağlayan kısım -->
     <link rel="icon" type="image/png" href="source/ha/ha_logo_192.png">
-    
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Animasyonlu pürüzsüz renk geçişleri */
         body, .hata-kapsayici, .hata-mesaj, .hata-aciklama, #durum-logo, .bagisbt {
             transition: background-color 0.8s ease, color 0.8s ease, filter 0.8s ease, border 0.8s ease !important;
         }
@@ -27,16 +24,15 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box; 
+            position: relative;
         }
 
-        /* İnternet yokken logoyu tamamen gri yapan kısım */
         #durum-logo {
             width: 110px;
             margin-bottom: 15px;
             filter: grayscale(100%);
         }
 
-        /* İnternet geldiğinde logonun rengini geri getiren sınıf */
         #durum-logo.renkli {
             filter: grayscale(0%);
         }
@@ -57,72 +53,137 @@
             margin-bottom: 25px;
         }
 
+        /* Üst sağ kontroller grubu (Dil ve Tema butonları yan yana) */
+        .ust-sag-butonlar {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Çevrimdışı özel butonlar ortak tasarım */
+        .off-kontrol-btn {
+            background: rgb(134, 220, 84);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .off-kontrol-btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
         @media (max-width: 900px) {
             #durum-logo { width: 80px !important; }
             .hata-mesaj { font-size: 1.4rem; }
             .hata-aciklama { font-size: 0.9rem; }
+            .ust-sag-butonlar { top: 20px; right: 20px; }
         }
 
-        /* ================= KUSURSUZ KARANLIK MOD STİLLERİ ================= */
-        body.dark-mode .hata-kapsayici { 
-            background-color: #121212 !important; 
-        }
-        body.dark-mode .hata-mesaj { 
-            color: #f5f5f5 !important; 
-        }
-        body.dark-mode .hata-aciklama { 
-            color: #aaa !important; 
-        }
-        body.dark-mode .bagisbt {
-            background-color: #1e1e1e !important;
-            color: #f5f5f5 !important;
-            border: 1px solid #444 !important;
-        }
+        /* KARANLIK MOD STİLLERİ */
+        body.dark-mode .hata-kapsayici { background-color: #121212 !important; }
+        body.dark-mode .hata-mesaj { color: #f5f5f5 !important; }
+        body.dark-mode .hata-aciklama { color: #aaa !important; }
+        body.dark-mode .bagisbt { background-color: #1e1e1e !important; color: #f5f5f5 !important; border: 1px solid #444 !important; }
+        body.dark-mode .off-kontrol-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid #555; color: #f5f5f5; }
+        body.dark-mode .off-kontrol-btn:hover { background: rgb(134, 220, 84); color: white; border-color: rgb(134, 220, 84); }
     </style>
 </head>
 <body>
     <div class="hata-kapsayici">
+        
+        <!-- Üst Sağ Butonlar (Dil ve Tema Değiştirici) -->
+        <div class="ust-sag-butonlar">
+            <button id="offline-tema-btn" class="off-kontrol-btn" title="Modu Değiştir">🌙</button>
+            <button id="offline-dil-btn" class="off-kontrol-btn">EN</button>
+        </div>
+
         <img src="source/ha/ha_logo_lr.png" alt="Hayal Ağacı Logo" id="durum-logo">
         
-        <h2 class="hata-mesaj">İnternet Bağlantınız Kesildi</h2>
-        <p class="hata-aciklama">
+        <h2 class="hata-mesaj" data-tr="İnternet Bağlantınız Kesildi" data-en="Internet Connection Lost">İnternet Bağlantınız Kesildi</h2>
+        
+        <p class="hata-aciklama" data-tr="Şu anda çevrimdışısınız gibi görünüyor. Lütfen internet bağlantınızı kontrol edin veya bağlantı yeniden sağlandığında sayfayı yenileyin." data-en="It looks like you are currently offline. Please check your internet connection or refresh the page when the connection is restored.">
             Şu anda çevrimdışısınız gibi görünüyor. Lütfen internet bağlantınızı kontrol edin veya bağlantı yeniden sağlandığında sayfayı yenileyin.
         </p>
 
-        <button onclick="window.location.reload()" class="bagisbt" style="cursor:pointer; padding: 12px 25px; font-size: 1rem; position: static;">Yeniden Dene</button>
+        <button onclick="window.location.reload()" class="bagisbt" style="cursor:pointer; padding: 12px 25px; font-size: 1rem; position: static;" data-tr="Yeniden Dene" data-en="Try Again">Yeniden Dene</button>
     </div>
 
     <script>
-        // 1. ANA SİTEYE BAĞLI VE SAATE GÖRE OTOMATİK KARANLIK MOD ALGORİTMASI
-        function temaKontroluYap() {
-            // Ana sitenizden gelen localStorage verisini okuruz
-            const kayitliTema = localStorage.getItem("tema");
+        // TEMA KONTROLÜ VE DEĞİŞTİRME MİMARİSİ
+        const temaBtn = document.getElementById("offline-tema-btn");
+        const body = document.body;
+
+        function temaGuncelle(isDark) {
+            if (isDark) {
+                body.classList.add("dark-mode");
+                temaBtn.textContent = "☀️";
+                localStorage.setItem("theme", "dark");
+            } else {
+                body.classList.remove("dark-mode");
+                temaBtn.textContent = "🌙";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        function temaKontroluBaslangic() {
+            const kayitliTema = localStorage.getItem("theme");
             const guncelSaat = new Date().getHours();
-            const body = document.body;
 
             if (kayitliTema === "dark") {
-                // Kullanıcı sitede karanlık modu seçmişse buna uyarız
-                body.classList.add("dark-mode");
+                temaGuncelle(true);
             } else if (kayitliTema === "light") {
-                // Kullanıcı aydınlık modu seçmişse buna uyarız
-                body.classList.remove("dark-mode");
+                temaGuncelle(false);
             } else {
-                // Herhangi bir seçim yapılmamışsa saati kontrol edip göz koruması uygularız (Akşam 7 ile Sabah 7 arası)
+                // Kayıt yoksa saat bazlı otomatik ayarla ama kullanıcı isterse üstten değiştirebilsin
                 if (guncelSaat >= 19 || guncelSaat < 7) {
-                    body.classList.add("dark-mode");
+                    temaGuncelle(true);
+                } else {
+                    temaGuncelle(false);
                 }
             }
         }
 
-        // Sayfa ilk yüklendiğinde temayı hemen ayarla
-        temaKontroluYap();
+        // Tema butonuna tıklandığında anında mod değiştir
+        temaBtn.addEventListener("click", function() {
+            const suAnDarkMi = body.classList.contains("dark-mode");
+            temaGuncelle(!suAnDarkMi);
+        });
 
-        // 2. İNTERNET GERİ GELDİĞİNDE TETİKLENEN YAPI
+        // ÇEVRİMDİŞİ DİL MOTORU
+        const dilBtn = document.getElementById("offline-dil-btn");
+        let mevcutDil = localStorage.getItem("ha-dil") || "tr";
+
+        function dilUygula(dil) {
+            document.documentElement.lang = dil;
+            document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + dil);
+            });
+            dilBtn.textContent = (dil === 'tr') ? 'EN' : 'TR';
+        }
+
+        dilBtn.addEventListener("click", function() {
+            mevcutDil = (mevcutDil === 'tr') ? 'en' : 'tr';
+            localStorage.setItem('ha-dil', mevcutDil);
+            dilUygula(mevcutDil);
+        });
+
+        // Sayfa açılışında çalıştır
+        temaKontroluBaslangic();
+        dilUygula(mevcutDil);
+
+        // İNTERNET GELDİĞİNDE OTOMATİK YENİLEME
         window.addEventListener('online', function() {
-            // Logoya rengini pürüzsüz bir animasyonla geri ver
             document.getElementById('durum-logo').classList.add('renkli');
-            
-            // Kullanıcının bağlantının geldiğini logodaki renkten anlaması için yarım saniye bekleyip yenile
             setTimeout(function() {
                 window.location.reload();
             }, 500);
@@ -130,3 +191,4 @@
     </script>
 </body>
 </html>
+```[cite: 16]
